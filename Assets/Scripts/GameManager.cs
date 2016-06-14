@@ -18,9 +18,6 @@ public class GameManager : MonoBehaviour {
 	public int startingHealth;
 	string[] player1Controls, player2Controls;
 	PlayerStats player1Stats, player2Stats;
-	string sceneName;
-	AudioClip[] dialogue;
-	AudioSource dialoguePlayer;
 	BulletDepot bullets;
 	GameObject[] SetLifeBar;
 	GameObject[] HorusLifeBar;
@@ -55,9 +52,6 @@ public class GameManager : MonoBehaviour {
             j++;
         }
 
-        dialoguePlayer = GetComponent<AudioSource>();
-		sceneName = "intro";
-		loadAudio();
 		bullets = new BulletDepot();
 		bullets.Load();
 		player1Controls = CreateControlScheme(0);
@@ -158,9 +152,6 @@ public class GameManager : MonoBehaviour {
 		player1Wins = 0;
 		player2RoundWins = 0;
 		player2Wins = 0;
-		dialoguePlayer = GetComponent<AudioSource>();
-		sceneName = "intro";
-		loadAudio();
 		bullets = new BulletDepot();
 		bullets.Load();
 		player1Controls = CreateControlScheme(0);
@@ -172,57 +163,23 @@ public class GameManager : MonoBehaviour {
 		currentRoundTime -= Time.deltaTime;
         roundTimer.text = Mathf.RoundToInt(currentRoundTime).ToString();
 
-		string nextSceneCode = "T";
 		UpdateLifeBars();
 
 		if(player1Stats.health <= 0 || player2Stats.health <= 0 || currentRoundTime <= 0) {
 			LockPlayers();
 			if(player1Stats.health <= 0 && player2Stats.health <= 0 ||
-				player1Stats.health == player2Stats.health) {
-				switch(sceneName[sceneName.Length - 1]) {
-					case 'o':
-						StartCoroutine(DisplayVictoryText(5, 0));
-						nextSceneCode = "t";
-						break;
-					case 't':
-						StartCoroutine(DisplayVictoryText(5, 0));
-						nextSceneCode = "t";
-						break;
-					case 's':
-                        StartCoroutine(DisplayVictoryText(4, player2RoundWins));
-						player2RoundWins++;
-                        SetWinsIconsSR[player2RoundWins - 1].enabled = true;
-                        audioOutro(1);
-						nextSceneCode = "s";
-						break;
-					case 'h':
-                        StartCoroutine(DisplayVictoryText(3,player1RoundWins));
-                        player1RoundWins++;
-                        HorusWinsIconsSR[player1RoundWins - 1].enabled = true;
-                        audioOutro(0);
-                        nextSceneCode = "h";
-						break;
-					}
+							player1Stats.health == player2Stats.health) {
+					StartCoroutine(DisplayVictoryText(5, 0));
 			}
 			else if(player1Stats.health <= 0 || player1Stats.health < player2Stats.health) {
-                audioOutro(1);
                 player2RoundWins++;
                 StartCoroutine(DisplayVictoryText(2, player2RoundWins));
                 SetWinsIconsSR[player2RoundWins - 1].enabled = true;
-				nextSceneCode = "s";
 			}
 			else if (player2Stats.health <= 0 || player2Stats.health < player1Stats.health){
-                audioOutro(0);
                 player1RoundWins++;
                 StartCoroutine(DisplayVictoryText(1, player1RoundWins));
                 HorusWinsIconsSR[player1RoundWins - 1].enabled = true;
-                nextSceneCode = "h";
-			}
-			if(sceneName == "intro") {
-				sceneName = nextSceneCode;
-			}
-			else {
-				sceneName = string.Concat(sceneName, nextSceneCode);
 			}
 			currentUpdateFunction = RoundEndUpdate;
 			ClearBullets();
@@ -230,8 +187,6 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void RoundEndUpdate() {
-		if(!dialoguePlayer.isPlaying)
-		{
 			if(player1RoundWins > 2 || player2RoundWins > 2){
 				Destroy(player1Reticle);
 				Destroy(player2Reticle);
@@ -254,7 +209,6 @@ public class GameManager : MonoBehaviour {
 				return;
 			}
 			RoundReset();
-		}
 	}
 
 	void UpdateLifeBars() {
@@ -288,27 +242,16 @@ public class GameManager : MonoBehaviour {
 		currentRoundTime = roundTime;	
         roundTimer = GameObject.FindGameObjectWithTag("RoundTimer").GetComponent<Text>();
         roundTimer.enabled = true;
-        StartCoroutine(audioIntro());
+        FightIntro();
     }
 
-	IEnumerator audioIntro() {
+	void FightIntro() {
 		LockPlayers();
+		// Probably put some ready fight shit over here
 		Invoke("UnlockPlayers", 2.5f);
 		AudioSource backgroundMusic = Camera.main.GetComponent<AudioSource>();
 		backgroundMusic.clip = Resources.Load<AudioClip>("audio/music/battleTheme/RenewYourSoul");
-		for(int i = 0; i < dialogue.Length - 2; i++) {
-			dialoguePlayer.clip = dialogue[i];
-			dialoguePlayer.Play();
-			while(dialoguePlayer.isPlaying) {
-				yield return null;
-			}
-		}
 		backgroundMusic.Play();
-	}
-
-	void audioOutro(int playerNum) {
-		dialoguePlayer.clip = dialogue[dialogue.Length - 2 + playerNum];
-		dialoguePlayer.Play();
 	}
 
 	void LockPlayers() {
@@ -338,12 +281,7 @@ public class GameManager : MonoBehaviour {
 		Destroy(player2Reticle);
 		Destroy(player1);
 		Destroy(player2);
-		loadAudio();
 		StartRound();
-	}
-
-	void loadAudio() {
-		dialogue = Resources.LoadAll<AudioClip>(string.Concat("audio/dialogue/", sceneName));
 	}
 
 	GameObject CreatePlayer(string[] controls, Color color, Vector3 position){
