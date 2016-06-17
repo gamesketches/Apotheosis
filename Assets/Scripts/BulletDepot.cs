@@ -34,12 +34,16 @@ public class BulletDepot : ScriptableObject {
 		public List<ProjectileType> projectileTypes = new List<ProjectileType>();
 	}
 
-	public Character types;
+	public Character[] types;
 	// Use this for initialization
 	public void Load () {
+		types = new Character[2];
 		var serializer = new XmlSerializer(typeof(Character));
 		TextAsset bulletData = Resources.Load("setBullets") as TextAsset;
 		TextReader reader = new StringReader(bulletData.text);
-		types = (Character)serializer.Deserialize(reader);
+		types[0] = (Character)serializer.Deserialize(reader);
+		bulletData = Resources.Load("horusBullets") as TextAsset;
+		reader = new StringReader(bulletData.text);
+		types[1] = (Character)serializer.Deserialize(reader);
 	}
 }
