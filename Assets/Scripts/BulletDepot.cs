@@ -28,18 +28,18 @@ public class BulletDepot : ScriptableObject {
 	}
 
 	[XmlRoot("Root")]
-	public class BulletCollection {
-		[XmlArray("BulletCollection")]
+	public class Character {
+		[XmlArray("Character")]
 		[XmlArrayItem("ProjectileType")]
 		public List<ProjectileType> projectileTypes = new List<ProjectileType>();
 	}
 
-	public BulletCollection types;
+	public Character types;
 	// Use this for initialization
 	public void Load () {
-		var serializer = new XmlSerializer(typeof(BulletCollection));
-		TextAsset bulletData = Resources.Load("bullets") as TextAsset;
+		var serializer = new XmlSerializer(typeof(Character));
+		TextAsset bulletData = Resources.Load("setBullets") as TextAsset;
 		TextReader reader = new StringReader(bulletData.text);
-		types = (BulletCollection)serializer.Deserialize(reader);
+		types = (Character)serializer.Deserialize(reader);
 	}
 }
