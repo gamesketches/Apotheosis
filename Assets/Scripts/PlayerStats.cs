@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class PlayerStats : MonoBehaviour {
 	public float health;
 	public float maxHealth;
@@ -8,4 +9,5 @@ public class PlayerStats : MonoBehaviour {
 	public int shotCooldown;
 	public int meleeCooldown;
 	public int number;
+	public Character character;
 }

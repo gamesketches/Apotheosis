@@ -134,7 +134,7 @@ public class InputManager : MonoBehaviour {
 				return;
 				break;
 		}
-		BulletDepot.Volley volley = bullets.types[playerStats.number].projectileTypes[(int)type].volleys[bufferIter];
+		BulletDepot.Volley volley = bullets.types[(int)playerStats.character].projectileTypes[(int)type].volleys[bufferIter];
 		foreach(BulletDepot.Bullet bullet in volley.volley) {
 			CreateBullet(bullet, type);
 		}
@@ -215,7 +215,7 @@ public class InputManager : MonoBehaviour {
 			}
 		}
 		for(int i = 0; i < bulletAngles.Count; i++) {
-			BulletDepot.Bullet bullet = bullets.types[playerStats.number].projectileTypes[(int)bulletTypes[i]].volleys[0].volley[0];
+			BulletDepot.Bullet bullet = bullets.types[(int)playerStats.character].projectileTypes[(int)bulletTypes[i]].volleys[0].volley[0];
 			bullet.angle = (int)bulletAngles[i];
 			CreateBullet(bullet, bulletTypes[i]);
 		}
