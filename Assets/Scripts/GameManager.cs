@@ -9,8 +9,7 @@ public class GameManager : MonoBehaviour {
 
 	delegate void UpdateFunction();
 	UpdateFunction currentUpdateFunction;
-	GameObject player1;
-	GameObject player2;
+	GameObject player1, player2;
 	GameObject player1Reticle;
 	GameObject player2Reticle;
 	int player1RoundWins, player1Wins, player2RoundWins, player2Wins;
@@ -23,7 +22,7 @@ public class GameManager : MonoBehaviour {
 	BulletDepot bullets;
 	GameObject[] SetLifeBar;
 	GameObject[] HorusLifeBar;
-
+	Character p1Character, p2Character;
 
     SpriteRenderer titleLogo;
     SpriteRenderer infoScreen;
@@ -97,6 +96,22 @@ public class GameManager : MonoBehaviour {
             pressStart.enabled = true;
             currentUpdateFunction = TitleScreen;
         }
+    }
+
+    void CharacterSelect() {
+    	if(Input.GetAxis("Horizontal0") < 0) {
+    		p1Character = Character.Horus;
+    	}
+    	else if(Input.GetAxis("Horizontal0") > 0) {
+    		p1Character = Character.Red;
+    	}
+    	if(Input.GetAxis("Horizontal1") < 0) {
+    		p2Character = Character.Horus;
+    	}
+    	else if(Input.GetAxis("Horizontal1") > 0) {
+    		p2Character = Character.Red;
+    	}
+
     }
 
     IEnumerator DisplayVictoryText(int playerNum, int roundsWon)
