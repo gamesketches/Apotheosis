@@ -122,10 +122,6 @@ public class GameManager : MonoBehaviour {
     		p2Character = Character.Red;
     	}
 
-    	//SpriteRenderer[] portraits = characterSelectElements.GetComponentsInChildren<SpriteRenderer>();
-    	//portraits[0].sprite = characterPortraits[(int)p1Character];
-    	//portraits[1].sprite = characterPortraits[(int)p2Character];
-
     	UpdateInfoCharacterSelect(characterSelectElements.transform.GetChild(0).gameObject, p1Character);
     	UpdateInfoCharacterSelect(characterSelectElements.transform.GetChild(1).gameObject, p2Character);
 
@@ -142,6 +138,8 @@ public class GameManager : MonoBehaviour {
     void UpdateInfoCharacterSelect(GameObject player, Character highlightedCharacter) {
     	SpriteRenderer portrait = player.GetComponentInChildren<SpriteRenderer>();
     	portrait.sprite = characterPortraits[(int)highlightedCharacter];
+    	Text nameText = player.GetComponentInChildren<Text>();
+    	nameText.text = highlightedCharacter.ToString();
     }
 
     IEnumerator DisplayVictoryText(int playerNum, int roundsWon)
