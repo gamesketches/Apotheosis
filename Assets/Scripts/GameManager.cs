@@ -108,6 +108,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    #region CharacterSelect
     void CharacterSelect() {
     	if(Input.GetAxis("Horizontal0") < 0) {
     		p1Character = Character.Horus;
@@ -141,6 +142,8 @@ public class GameManager : MonoBehaviour {
     	Text nameText = player.GetComponentInChildren<Text>();
     	nameText.text = highlightedCharacter.ToString();
     }
+
+    #endregion
 
     IEnumerator DisplayVictoryText(int playerNum, int roundsWon)
     {
@@ -279,8 +282,8 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void StartRound() {
-		player1 = CreatePlayer(player1Controls, Color.blue, player1Pos);
-		player2 = CreatePlayer(player2Controls, Color.red, player2Pos);
+		player1 = CreatePlayer(player1Controls, p1Character, player1Pos);
+		player2 = CreatePlayer(player2Controls, p2Character, player2Pos);
 		player1Stats = player1.GetComponent<PlayerStats>();
 		player2Stats = player2.GetComponent<PlayerStats>();
 		currentUpdateFunction = InGameUpdate;
@@ -329,7 +332,8 @@ public class GameManager : MonoBehaviour {
 		StartRound();
 	}
 
-	GameObject CreatePlayer(string[] controls, Color color, Vector3 position){
+	GameObject CreatePlayer(string[] controls, Character character, Vector3 position){
+		Color color = character == Character.Horus ? Color.blue : Color.red;
 		GameObject temp = (GameObject)Instantiate(Resources.Load("prefabs/Player"), 
 												position, Quaternion.identity);
 		Reticle reticle = ((GameObject)Instantiate(Resources.Load("prefabs/Reticle"))).GetComponent<Reticle>();
@@ -341,6 +345,7 @@ public class GameManager : MonoBehaviour {
 
 		tempStats.health = startingHealth;
 		tempStats.maxHealth = startingHealth;
+		tempStats.character = character;
 		tempStats.playerColor = color;
 		temp.GetComponent<PlayerMovement>().InitializeAxes(controls);
 
@@ -351,18 +356,16 @@ public class GameManager : MonoBehaviour {
 		tempInputManager.InitializeControls(controls);
 		tempInputManager.reticle = reticle;
 
-		if(color == Color.blue) {
+		if(character == Character.Horus) {
 			temp.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/playerStillBlackWhite");
 			tempMovement.SetAnimator(Resources.Load<RuntimeAnimatorController>("sprites/HorusAnimation/HorusAnimation_0"));
 			tempStats.number = 0;
-			tempStats.character = Character.Horus;
 			reticle.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/Khopesh/khopeshHorus");
 			player1Reticle = reticle.gameObject;
-		} else if(color == Color.red) {
+		} else if(character == Character.Red) {
 			temp.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/playerStillWhiteBlack");
 			tempMovement.SetAnimator(Resources.Load<RuntimeAnimatorController>("sprites/SetAnimation/SetAnimation_0"));
 			tempStats.number = 1;
-			tempStats.character = Character.Red;
 			reticle.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/Khopesh/khopeshSet");
 			player2Reticle = reticle.gameObject;
 		}
