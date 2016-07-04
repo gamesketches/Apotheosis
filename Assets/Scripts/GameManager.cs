@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour {
 	GameObject[] HorusLifeBar;
 
 	#region CharacterSelect Vars
+	GameObject characterSelectElements;
 	Character p1Character, p2Character;
 	Sprite[] characterPortraits;
 	#endregion
@@ -67,6 +68,8 @@ public class GameManager : MonoBehaviour {
 		background = GameObject.FindGameObjectWithTag("Background").GetComponent<SpriteRenderer>();
         roundTimer = GameObject.FindGameObjectWithTag("RoundTimer").GetComponent<Text>();
         victoryText = GameObject.FindGameObjectWithTag("VictoryText").GetComponent<Text>();
+        characterSelectElements = GameObject.Find("CharacterSelectElements");
+        characterSelectElements.SetActive(false);
         titleLogo.enabled = true;
         pressStart.enabled = true;
         currentUpdateFunction = TitleScreen;
@@ -82,6 +85,7 @@ public class GameManager : MonoBehaviour {
             pressStart.enabled = false;
 			background.enabled = true;
             //InitializeGameSettings();
+            characterSelectElements.SetActive(true);
             currentUpdateFunction = CharacterSelect;
         }
         else if (Input.GetButtonUp("ButtonD0") || Input.GetButtonUp("ButtonC0") || Input.GetButtonUp("ButtonB0"))
@@ -118,17 +122,26 @@ public class GameManager : MonoBehaviour {
     		p2Character = Character.Red;
     	}
 
-    	SpriteRenderer[] portraits = GameObject.Find("CharacterSelectElements").GetComponentsInChildren<SpriteRenderer>();
-    	portraits[0].sprite = characterPortraits[(int)p1Character];
-    	portraits[1].sprite = characterPortraits[(int)p2Character];
+    	//SpriteRenderer[] portraits = characterSelectElements.GetComponentsInChildren<SpriteRenderer>();
+    	//portraits[0].sprite = characterPortraits[(int)p1Character];
+    	//portraits[1].sprite = characterPortraits[(int)p2Character];
+
+    	UpdateInfoCharacterSelect(characterSelectElements.transform.GetChild(0).gameObject, p1Character);
+    	UpdateInfoCharacterSelect(characterSelectElements.transform.GetChild(1).gameObject, p2Character);
 
     	if(Input.GetButtonUp("ButtonA0")) {
 			titleLogo.enabled = false;
             pressStart.enabled = false;
 			background.enabled = true;
+			characterSelectElements.SetActive(false);
             InitializeGameSettings();
     	}
 
+    }
+
+    void UpdateInfoCharacterSelect(GameObject player, Character highlightedCharacter) {
+    	SpriteRenderer portrait = player.GetComponentInChildren<SpriteRenderer>();
+    	portrait.sprite = characterPortraits[(int)highlightedCharacter];
     }
 
     IEnumerator DisplayVictoryText(int playerNum, int roundsWon)
