@@ -22,8 +22,11 @@ public class GameManager : MonoBehaviour {
 	BulletDepot bullets;
 	GameObject[] SetLifeBar;
 	GameObject[] HorusLifeBar;
-	Character p1Character, p2Character;
 
+	#region CharacterSelect Vars
+	Character p1Character, p2Character;
+	Sprite[] characterPortraits;
+	#endregion
     SpriteRenderer titleLogo;
     SpriteRenderer infoScreen;
 	SpriteRenderer background;
@@ -67,6 +70,8 @@ public class GameManager : MonoBehaviour {
         titleLogo.enabled = true;
         pressStart.enabled = true;
         currentUpdateFunction = TitleScreen;
+
+        characterPortraits = Resources.LoadAll<Sprite>("sprites/CharacterPortraits");
     }
 
     void TitleScreen()
@@ -76,7 +81,8 @@ public class GameManager : MonoBehaviour {
             titleLogo.enabled = false;
             pressStart.enabled = false;
 			background.enabled = true;
-            InitializeGameSettings();
+            //InitializeGameSettings();
+            currentUpdateFunction = CharacterSelect;
         }
         else if (Input.GetButtonUp("ButtonD0") || Input.GetButtonUp("ButtonC0") || Input.GetButtonUp("ButtonB0"))
         {
@@ -110,6 +116,17 @@ public class GameManager : MonoBehaviour {
     	}
     	else if(Input.GetAxis("Horizontal1") > 0) {
     		p2Character = Character.Red;
+    	}
+
+    	SpriteRenderer[] portraits = GameObject.Find("CharacterSelectElements").GetComponentsInChildren<SpriteRenderer>();
+    	portraits[0].sprite = characterPortraits[(int)p1Character];
+    	portraits[1].sprite = characterPortraits[(int)p2Character];
+
+    	if(Input.GetButtonUp("ButtonA0")) {
+			titleLogo.enabled = false;
+            pressStart.enabled = false;
+			background.enabled = true;
+            InitializeGameSettings();
     	}
 
     }
