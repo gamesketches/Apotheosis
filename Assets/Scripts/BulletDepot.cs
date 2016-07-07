@@ -25,6 +25,9 @@ public class BulletDepot : ScriptableObject {
 
 		[XmlAttribute("name")]
 		public string typeName;
+
+		[XmlAttribute("desc")]
+		public string bulletDescription;
 	}
 
 	[XmlRoot("Root")]
@@ -32,6 +35,9 @@ public class BulletDepot : ScriptableObject {
 		[XmlArray("Character")]
 		[XmlArrayItem("ProjectileType")]
 		public List<ProjectileType> projectileTypes = new List<ProjectileType>();
+
+		[XmlAttribute("name")]
+		public string characterName;
 	}
 
 	public Character[] types;

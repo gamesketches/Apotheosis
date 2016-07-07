@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<Character name="set">
-    <ProjectileType name="gator"> <!-- BLOCK blt count: 1,1,3,3,3,3,5,5-->
+    <ProjectileType name="gator" desc="gator golf"> <!-- BLOCK blt count: 1,1,3,3,3,3,5,5-->
       <Volley>
         <!-- Volley #1 -->
         <Bullet>
@@ -171,7 +171,7 @@
         </Bullet>
       </Volley>
     </ProjectileType>
-		<ProjectileType name="hippo"> <!-- BLOCK blt count: 1,2,3,5,9,13,15,20-->
+		<ProjectileType name="hippo" desc="hungry hungry"> <!-- BLOCK blt count: 1,2,3,5,9,13,15,20-->
       <Volley>
 					<Bullet>
 						<size>2</size>
@@ -599,7 +599,7 @@
 				</Volley>
 
 		</ProjectileType>
-		<ProjectileType name="crane"> <!-- ROUNDABOUT blt count: 1,2,4,6,6,10,10,10-->
+		<ProjectileType name="crane" desc="cranium"> <!-- ROUNDABOUT blt count: 1,2,4,6,6,10,10,10-->
 				<Volley>
           <!-- Volley #1 1 bullets 4dmg  -->
           <Bullet>

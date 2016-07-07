@@ -88,8 +88,9 @@ public class GameManager : MonoBehaviour {
             titleLogo.enabled = false;
             pressStart.enabled = false;
 			background.enabled = true;
-            //InitializeGameSettings();
             characterSelectElements.SetActive(true);
+            p1Character = Character.Horus;
+            p2Character = Character.Red;
             currentUpdateFunction = CharacterSelect;
         }
         else if (Input.GetButtonUp("ButtonD0") || Input.GetButtonUp("ButtonC0") || Input.GetButtonUp("ButtonB0"))
@@ -147,6 +148,11 @@ public class GameManager : MonoBehaviour {
     	portrait.sprite = characterPortraits[(int)highlightedCharacter];
     	Text nameText = player.GetComponentInChildren<Text>();
     	nameText.text = highlightedCharacter.ToString();
+    	Text[] bulletDescriptions = player.GetComponentsInChildren<Text>();
+    	int firstText = bulletDescriptions.Length - 3;
+    	for(int i = 0; i < 3; i++) {
+    		bulletDescriptions[firstText + i].text = bullets.types[(int)highlightedCharacter].projectileTypes[i].bulletDescription;
+    	}
     }
 
     #endregion
