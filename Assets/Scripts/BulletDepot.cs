@@ -25,6 +25,9 @@ public class BulletDepot : ScriptableObject {
 
 		[XmlAttribute("name")]
 		public string typeName;
+
+		[XmlAttribute("desc")]
+		public string bulletDescription;
 	}
 
 	[XmlRoot("Root")]
@@ -32,6 +35,9 @@ public class BulletDepot : ScriptableObject {
 		[XmlArray("Character")]
 		[XmlArrayItem("ProjectileType")]
 		public List<ProjectileType> projectileTypes = new List<ProjectileType>();
+
+		[XmlAttribute("name")]
+		public string characterName;
 	}
 
 	public Character[] types;
@@ -39,10 +45,10 @@ public class BulletDepot : ScriptableObject {
 	public void Load () {
 		types = new Character[2];
 		var serializer = new XmlSerializer(typeof(Character));
-		TextAsset bulletData = Resources.Load("setBullets") as TextAsset;
+		TextAsset bulletData = Resources.Load("flamelBullets") as TextAsset;
 		TextReader reader = new StringReader(bulletData.text);
 		types[0] = (Character)serializer.Deserialize(reader);
-		bulletData = Resources.Load("horusBullets") as TextAsset;
+		bulletData = Resources.Load("orpheusBullets") as TextAsset;
 		reader = new StringReader(bulletData.text);
 		types[1] = (Character)serializer.Deserialize(reader);
 	}

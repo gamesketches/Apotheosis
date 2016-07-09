@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		reticle.gameObject.layer = gameObject.layer;
 		rb2D = GetComponent<Rigidbody2D>();
+		anim.speed = 0.6f;
 		if(playerStats.number == 0) {
 			radians = 0.0f;
 			anim.SetTrigger("Idle East");

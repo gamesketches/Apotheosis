@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public enum Character {Horus, Red};
+public enum Character {Flamel, Orpheus};
 
 public class GameManager : MonoBehaviour {
 
@@ -88,8 +88,9 @@ public class GameManager : MonoBehaviour {
             titleLogo.enabled = false;
             pressStart.enabled = false;
 			background.enabled = true;
-            //InitializeGameSettings();
             characterSelectElements.SetActive(true);
+            p1Character = Character.Flamel;
+            p2Character = Character.Orpheus;
             currentUpdateFunction = CharacterSelect;
         }
         else if (Input.GetButtonUp("ButtonD0") || Input.GetButtonUp("ButtonC0") || Input.GetButtonUp("ButtonB0"))
@@ -117,16 +118,16 @@ public class GameManager : MonoBehaviour {
     #region CharacterSelect
     void CharacterSelect() {
     	if(Input.GetAxis("Horizontal0") < 0) {
-    		p1Character = Character.Horus;
+    		p1Character = Character.Flamel;
     	}
     	else if(Input.GetAxis("Horizontal0") > 0) {
-    		p1Character = Character.Red;
+    		p1Character = Character.Orpheus;
     	}
     	if(Input.GetAxis("Horizontal1") < 0) {
-    		p2Character = Character.Horus;
+    		p2Character = Character.Flamel;
     	}
     	else if(Input.GetAxis("Horizontal1") > 0) {
-    		p2Character = Character.Red;
+    		p2Character = Character.Orpheus;
     	}
 
     	UpdateInfoCharacterSelect(characterSelectElements.transform.GetChild(0).gameObject, p1Character);
@@ -147,6 +148,11 @@ public class GameManager : MonoBehaviour {
     	portrait.sprite = characterPortraits[(int)highlightedCharacter];
     	Text nameText = player.GetComponentInChildren<Text>();
     	nameText.text = highlightedCharacter.ToString();
+    	Text[] bulletDescriptions = player.GetComponentsInChildren<Text>();
+    	int firstText = bulletDescriptions.Length - 3;
+    	for(int i = 0; i < 3; i++) {
+    		bulletDescriptions[firstText + i].text = bullets.types[(int)highlightedCharacter].projectileTypes[i].bulletDescription;
+    	}
     }
 
     #endregion
@@ -168,7 +174,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	GameObject CreatePlayer(string[] controls, Character character, Vector3 position){
-		Color color = character == Character.Horus ? Color.blue : Color.red;
+		Color color = character == Character.Flamel ? Color.blue : Color.red;
 		GameObject temp = (GameObject)Instantiate(Resources.Load("prefabs/Player"), 
 												position, Quaternion.identity);
 		Reticle reticle = ((GameObject)Instantiate(Resources.Load("prefabs/Reticle"))).GetComponent<Reticle>();
@@ -191,15 +197,15 @@ public class GameManager : MonoBehaviour {
 		tempInputManager.InitializeControls(controls);
 		tempInputManager.reticle = reticle;
 
-		if(character == Character.Horus) {
+		if(character == Character.Flamel) {
 			temp.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/playerStillBlackWhite");
 			tempMovement.SetAnimator(Resources.Load<RuntimeAnimatorController>("sprites/HorusAnimation/HorusAnimation_0"));
 			tempStats.number = 0;
 			reticle.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/Khopesh/khopeshHorus");
 			player1Reticle = reticle.gameObject;
-		} else if(character == Character.Red) {
+		} else if(character == Character.Orpheus) {
 			temp.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/playerStillWhiteBlack");
-			tempMovement.SetAnimator(Resources.Load<RuntimeAnimatorController>("sprites/SetAnimation/SetAnimation_0"));
+			tempMovement.SetAnimator(Resources.Load<RuntimeAnimatorController>("sprites/OrpheusAnimation/orpheusAnimation"));
 			tempStats.number = 1;
 			reticle.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/Khopesh/khopeshSet");
 			player2Reticle = reticle.gameObject;

@@ -1,0 +1,545 @@
+fileFormatVersion: 2
+guid: a6cea65b2a7bc407da32dc553dbd8fc3
+timeCreated: 1467945530
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: orpheusSpriteSheet_0
+    21300002: orpheusSpriteSheet_1
+    21300004: orpheusSpriteSheet_2
+    21300006: orpheusSpriteSheet_3
+    21300008: orpheusSpriteSheet_4
+    21300010: orpheusSpriteSheet_5
+    21300012: orpheusSpriteSheet_6
+    21300014: orpheusSpriteSheet_7
+    21300016: orpheusSpriteSheet_8
+    21300018: orpheusSpriteSheet_9
+    21300020: orpheusSpriteSheet_10
+    21300022: orpheusSpriteSheet_11
+    21300024: orpheusSpriteSheet_12
+    21300026: orpheusSpriteSheet_13
+    21300028: orpheusSpriteSheet_14
+    21300030: orpheusSpriteSheet_15
+    21300032: orpheusSpriteSheet_16
+    21300034: orpheusSpriteSheet_17
+    21300036: orpheusSpriteSheet_18
+    21300038: orpheusSpriteSheet_19
+    21300040: orpheusSpriteSheet_20
+    21300042: orpheusSpriteSheet_21
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: orpheusSpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 0
+        width: 528
+        height: 607
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 21.061844, y: 18}
+        - {x: -2.9381561, y: 43}
+        - {x: -13.938156, y: 43}
+        - {x: -19.938156, y: 28}
+        - {x: -19.938156, y: 25}
+        - {x: -35.938156, y: 19}
+        - {x: -36.938156, y: 19}
+        - {x: -36.938156, y: 7}
+        - {x: -20.938156, y: -35}
+        - {x: -16.938156, y: -43}
+        - {x: -0.9381561, y: -43}
+        - {x: 3.0618439, y: -33}
+        - {x: 38.061844, y: -14}
+        - {x: 38.061844, y: -5}
+    - name: orpheusSpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 748
+        y: 0
+        width: 491
+        height: 572
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 4.7455673, y: -40.5}
+        - {x: 35.745567, y: -20.5}
+        - {x: 35.745567, y: 17.5}
+        - {x: 3.7455673, y: 40.5}
+        - {x: -14.254433, y: 40.5}
+        - {x: -34.254433, y: 15.5}
+        - {x: -34.254433, y: -40.5}
+    - name: orpheusSpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 1414
+        y: 0
+        width: 496
+        height: 572
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -32.99167, y: -40.5}
+        - {x: 5.0083313, y: -40.5}
+        - {x: 35.00833, y: -20.5}
+        - {x: 35.00833, y: 15.5}
+        - {x: -3.9916687, y: 40.5}
+        - {x: -19.991669, y: 40.5}
+        - {x: -34.99167, y: 19.5}
+        - {x: -34.99167, y: -26.5}
+    - name: orpheusSpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 2053
+        y: 0
+        width: 421
+        height: 614
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9.490173, y: 39}
+        - {x: 7.4901733, y: 37}
+        - {x: 7.4901733, y: 35}
+        - {x: 1.4901733, y: 43}
+        - {x: -5.5098267, y: 43}
+        - {x: -29.509827, y: 30}
+        - {x: -29.509827, y: -2}
+        - {x: -20.509827, y: -38}
+        - {x: -9.509827, y: -43}
+        - {x: 7.4901733, y: -43}
+        - {x: 30.490173, y: 16}
+        - {x: 30.490173, y: 31}
+        - {x: 11.490173, y: 40}
+    - name: orpheusSpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 2717
+        y: 0
+        width: 550
+        height: 621
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 19.47287, y: 43.5}
+        - {x: -38.52713, y: 43.5}
+        - {x: -38.52713, y: 3.5}
+        - {x: -29.52713, y: -43.5}
+        - {x: 14.47287, y: -43.5}
+        - {x: 39.47287, y: -33.5}
+        - {x: 39.47287, y: -22.5}
+        - {x: 34.47287, y: -12.5}
+    - name: orpheusSpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 3431
+        y: 11
+        width: 422
+        height: 603
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11.542725, y: 43.040375}
+        - {x: -27.542725, y: 31.040375}
+        - {x: -29.542725, y: 15.040375}
+        - {x: -29.542725, y: -40.959625}
+        - {x: -19.542725, y: -36.959625}
+        - {x: -19.542725, y: -33.959625}
+        - {x: -17.542725, y: -40.959625}
+        - {x: -15.542725, y: -41.959625}
+        - {x: -13.542725, y: -41.959625}
+        - {x: -8.542725, y: -35.959625}
+        - {x: 2.4572754, y: -41.959625}
+        - {x: 25.457275, y: -41.959625}
+        - {x: 30.457275, y: -34.959625}
+        - {x: 30.457275, y: 7.0403748}
+        - {x: -1.5427246, y: 43.040375}
+    - name: orpheusSpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 4095
+        y: 4
+        width: 422
+        height: 617
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 5.4400024, y: 33.060135}
+        - {x: -2.5599976, y: 44.060135}
+        - {x: -8.559998, y: 44.060135}
+        - {x: -15.559998, y: 31.060135}
+        - {x: -22.559998, y: 17.060135}
+        - {x: -29.559998, y: -12.939865}
+        - {x: -29.559998, y: -31.939865}
+        - {x: -22.559998, y: -37.939865}
+        - {x: -18.559998, y: -36.939865}
+        - {x: -12.559998, y: -42.939865}
+        - {x: 8.440002, y: -42.939865}
+        - {x: 30.440002, y: -32.939865}
+        - {x: 30.440002, y: -15.939865}
+        - {x: 28.440002, y: -13.939865}
+    - name: orpheusSpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 4760
+        y: 4
+        width: 428
+        height: 610
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13.937256, y: 43.560135}
+        - {x: -29.937256, y: -0.4398651}
+        - {x: -29.937256, y: -33.439865}
+        - {x: -23.937256, y: -39.439865}
+        - {x: -19.937256, y: -35.439865}
+        - {x: -19.937256, y: -31.439865}
+        - {x: -11.937256, y: -42.439865}
+        - {x: 9.062744, y: -42.439865}
+        - {x: 31.062744, y: -35.439865}
+        - {x: 31.062744, y: -8.439865}
+        - {x: 0.06274414, y: 43.560135}
+    - name: orpheusSpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 5424
+        y: 18
+        width: 428
+        height: 596
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 2.0454102, y: 42.520615}
+        - {x: -10.95459, y: 30.520615}
+        - {x: -29.95459, y: -11.479385}
+        - {x: -29.95459, y: -37.479385}
+        - {x: -21.95459, y: -41.479385}
+        - {x: 28.04541, y: -41.479385}
+        - {x: 31.04541, y: -38.479385}
+        - {x: 31.04541, y: 12.520615}
+        - {x: 16.04541, y: 42.520615}
+    - name: orpheusSpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 6095
+        y: 4
+        width: 428
+        height: 617
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 12.008362, y: 44.060135}
+        - {x: -1.9916382, y: 44.060135}
+        - {x: -29.991638, y: -5.939865}
+        - {x: -29.991638, y: -30.939865}
+        - {x: -28.991638, y: -33.939865}
+        - {x: -12.991638, y: -42.939865}
+        - {x: 18.008362, y: -42.939865}
+        - {x: 21.008362, y: -41.939865}
+        - {x: 27.008362, y: -37.939865}
+        - {x: 31.008362, y: -30.939865}
+        - {x: 31.008362, y: -2.939865}
+    - name: orpheusSpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 6773
+        y: 18
+        width: 393
+        height: 589
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6.548462, y: 42.520615}
+        - {x: -27.548462, y: -5.4793854}
+        - {x: -27.548462, y: -41.479385}
+        - {x: 6.451538, y: -41.479385}
+        - {x: 27.451538, y: -25.479385}
+        - {x: 28.451538, y: -20.479385}
+        - {x: 28.451538, y: 42.520615}
+    - name: orpheusSpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 7387
+        y: 46
+        width: 472
+        height: 561
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -1.0675049, y: 40.441574}
+        - {x: -33.067505, y: 0.4415741}
+        - {x: -33.067505, y: -26.558426}
+        - {x: -31.067505, y: -31.558426}
+        - {x: -5.067505, y: -39.558426}
+        - {x: 33.932495, y: -39.558426}
+        - {x: 33.932495, y: 40.441574}
+    - name: orpheusSpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 8073
+        y: 11
+        width: 471
+        height: 596
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -2.0040283, y: 43.040375}
+        - {x: -33.00403, y: -15.959625}
+        - {x: -33.00403, y: -35.959625}
+        - {x: -31.004028, y: -35.959625}
+        - {x: -28.004028, y: -34.959625}
+        - {x: -23.004028, y: -41.959625}
+        - {x: 33.99597, y: -41.959625}
+        - {x: 33.99597, y: 7.0403748}
+        - {x: 14.995972, y: 43.040375}
+    - name: orpheusSpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 8737
+        y: 25
+        width: 471
+        height: 575
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 24.978638, y: -32.499146}
+        - {x: 23.978638, y: -33.499146}
+        - {x: 23.978638, y: -36.499146}
+        - {x: 22.978638, y: -38.499146}
+        - {x: 25.978638, y: -40.499146}
+        - {x: 30.978638, y: -39.499146}
+        - {x: 33.978638, y: -31.499146}
+        - {x: 33.978638, y: -8.4991455}
+        - {x: 17.978638, y: 35.500854}
+        - {x: 7.9786377, y: 41.500854}
+        - {x: -1.0213623, y: 41.500854}
+        - {x: -33.021362, y: -18.499146}
+        - {x: -33.021362, y: -36.499146}
+        - {x: -31.021362, y: -37.499146}
+        - {x: -28.021362, y: -36.499146}
+        - {x: -16.021362, y: -40.499146}
+        - {x: -3.0213623, y: -40.499146}
+        - {x: 2.9786377, y: -37.499146}
+        - {x: 20.978638, y: -37.499146}
+        - {x: 23.978638, y: -34.499146}
+        - {x: 24.978638, y: -30.499146}
+    - name: orpheusSpriteSheet_14
+      rect:
+        serializedVersion: 2
+        x: 9416
+        y: 11
+        width: 449
+        height: 596
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3.4381104, y: 43.040375}
+        - {x: -31.43811, y: 3.0403748}
+        - {x: -31.43811, y: -41.959625}
+        - {x: 32.56189, y: -41.959625}
+        - {x: 32.56189, y: 43.040375}
+    - name: orpheusSpriteSheet_15
+      rect:
+        serializedVersion: 2
+        x: 10080
+        y: 18
+        width: 450
+        height: 589
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0.54455566, y: 42.520615}
+        - {x: -4.4554443, y: 29.520615}
+        - {x: -27.455444, y: -4.4793854}
+        - {x: -31.455444, y: -14.479385}
+        - {x: -31.455444, y: -41.479385}
+        - {x: 32.544556, y: -41.479385}
+        - {x: 32.544556, y: 8.520615}
+        - {x: 12.544556, y: 42.520615}
+    - name: orpheusSpriteSheet_16
+      rect:
+        serializedVersion: 2
+        x: 10744
+        y: 18
+        width: 457
+        height: 589
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12.972778, y: 42.520615}
+        - {x: -31.972778, y: 23.520615}
+        - {x: -31.972778, y: -41.479385}
+        - {x: 24.027222, y: -41.479385}
+        - {x: 32.02722, y: -36.479385}
+        - {x: 33.02722, y: -33.479385}
+        - {x: 33.02722, y: -7.4793854}
+        - {x: 2.0272217, y: 42.520615}
+    - name: orpheusSpriteSheet_17
+      rect:
+        serializedVersion: 2
+        x: 11415
+        y: 11
+        width: 450
+        height: 596
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3.5097656, y: 43.040375}
+        - {x: -21.509766, y: 28.040375}
+        - {x: -28.509766, y: 16.040375}
+        - {x: -31.509766, y: -1.9596252}
+        - {x: -31.509766, y: -32.959625}
+        - {x: -24.509766, y: -33.959625}
+        - {x: -21.509766, y: -32.959625}
+        - {x: -17.509766, y: -41.959625}
+        - {x: 32.490234, y: -41.959625}
+        - {x: 32.490234, y: -12.959625}
+        - {x: 2.4902344, y: 43.040375}
+    - name: orpheusSpriteSheet_18
+      rect:
+        serializedVersion: 2
+        x: 12072
+        y: 11
+        width: 471
+        height: 596
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -1.0073242, y: 43.040375}
+        - {x: -17.007324, y: 43.040375}
+        - {x: -33.007324, y: -5.9596252}
+        - {x: -33.007324, y: -41.959625}
+        - {x: 33.992676, y: -41.959625}
+        - {x: 33.992676, y: -13.959625}
+        - {x: 0.9926758, y: 40.040375}
+    - name: orpheusSpriteSheet_19
+      rect:
+        serializedVersion: 2
+        x: 12736
+        y: 25
+        width: 471
+        height: 575
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 33.97534, y: -36.499146}
+        - {x: 33.97534, y: -16.499146}
+        - {x: 6.975342, y: 41.500854}
+        - {x: -11.024658, y: 41.500854}
+        - {x: -26.024658, y: 28.500854}
+        - {x: -33.02466, y: -17.499146}
+        - {x: -33.02466, y: -32.499146}
+        - {x: -25.024658, y: -40.499146}
+        - {x: -21.024658, y: -38.499146}
+        - {x: -7.024658, y: -40.499146}
+        - {x: 9.975342, y: -40.499146}
+        - {x: 10.975342, y: -39.499146}
+        - {x: 9.975342, y: -36.499146}
+        - {x: 30.975342, y: -37.499146}
+    - name: orpheusSpriteSheet_20
+      rect:
+        serializedVersion: 2
+        x: 13443
+        y: 25
+        width: 393
+        height: 582
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -27.520508, y: 42.000854}
+        - {x: -27.520508, y: -28.999146}
+        - {x: -4.520508, y: -40.999146}
+        - {x: 28.479492, y: -40.999146}
+        - {x: 28.479492, y: 15.0008545}
+        - {x: 0.4794922, y: 42.000854}
+    - name: orpheusSpriteSheet_21
+      rect:
+        serializedVersion: 2
+        x: 14086
+        y: 46
+        width: 478
+        height: 561
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -1.4785156, y: 40.441574}
+        - {x: -15.478516, y: 40.441574}
+        - {x: -21.478516, y: 38.441574}
+        - {x: -33.478516, y: 26.441574}
+        - {x: -33.478516, y: 4.441574}
+        - {x: -24.478516, y: -39.558426}
+        - {x: -4.4785156, y: -39.558426}
+        - {x: 28.521484, y: -23.558426}
+        - {x: 34.521484, y: -14.558426}
+        - {x: 34.521484, y: -6.558426}
+        - {x: 28.521484, y: -5.558426}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
