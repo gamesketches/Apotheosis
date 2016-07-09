@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<Character name="set">
+	<Character name="horus">
     <ProjectileType name="gator"> <!-- BLOCK blt count: 1,1,3,3,3,3,5,5-->
       <Volley>
         <!-- Volley #1 -->
@@ -171,6 +171,7 @@
         </Bullet>
       </Volley>
     </ProjectileType>
+    
 		<ProjectileType name="hippo"> <!-- BLOCK blt count: 1,2,3,5,9,13,15,20-->
       <Volley>
 					<Bullet>

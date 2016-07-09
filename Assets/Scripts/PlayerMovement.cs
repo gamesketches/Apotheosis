@@ -56,8 +56,8 @@ public class PlayerMovement : MonoBehaviour {
 					if(degrees < 0.0f) {
 						degrees += 360.0f;
 					}
-
-					if(((degrees >= 0.0f && degrees <= 22.5f) || (degrees > 337.5f && degrees <= 359.0f)) && direction != 0) {
+                Debug.Log("movement = " + rb2D.velocity + "degrees = " + degrees);
+                if (((degrees >= 0.0f && degrees <= 22.5f) || (degrees > 337.5f && degrees <= 359.0f)) && direction != 0) {
 						anim.SetTrigger("Walk East");
 						direction = 0;
 					} else if(degrees > 22.5f && degrees <= 67.5f && direction != 1) {
