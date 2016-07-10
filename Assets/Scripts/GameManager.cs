@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour {
 	#region CharacterSelect Vars
 	GameObject characterSelectElements;
 	Character p1Character, p2Character;
-	Sprite[] characterPortraits;
+	Sprite[] p1CharacterPortraits, p2CharacterPortraits;
 	#endregion
     SpriteRenderer titleLogo;
     SpriteRenderer infoScreen;
@@ -76,7 +76,8 @@ public class GameManager : MonoBehaviour {
         pressStart.enabled = true;
         currentUpdateFunction = TitleScreen;
 
-        characterPortraits = Resources.LoadAll<Sprite>("sprites/CharacterPortraits");
+        p1CharacterPortraits = Resources.LoadAll<Sprite>("characterSelect/p1/portraits");
+        p2CharacterPortraits = Resources.LoadAll<Sprite>("characterSelect/p2/portraits");
     }
 
     #region Pre-Battle
@@ -130,8 +131,8 @@ public class GameManager : MonoBehaviour {
     		p2Character = Character.Orpheus;
     	}
 
-    	UpdateInfoCharacterSelect(characterSelectElements.transform.GetChild(0).gameObject, p1Character);
-    	UpdateInfoCharacterSelect(characterSelectElements.transform.GetChild(1).gameObject, p2Character);
+    	UpdateInfoCharacterSelect(characterSelectElements.transform.GetChild(0).gameObject, p1Character, p1CharacterPortraits);
+    	UpdateInfoCharacterSelect(characterSelectElements.transform.GetChild(1).gameObject, p2Character, p2CharacterPortraits);
 
     	if(Input.GetButtonUp("ButtonA0")) {
 			titleLogo.enabled = false;
@@ -143,9 +144,9 @@ public class GameManager : MonoBehaviour {
 
     }
 
-    void UpdateInfoCharacterSelect(GameObject player, Character highlightedCharacter) {
+    void UpdateInfoCharacterSelect(GameObject player, Character highlightedCharacter, Sprite[] portraits) {
     	SpriteRenderer portrait = player.GetComponentInChildren<SpriteRenderer>();
-    	portrait.sprite = characterPortraits[(int)highlightedCharacter];
+    	portrait.sprite = portraits[(int)highlightedCharacter];
     	Text nameText = player.GetComponentInChildren<Text>();
     	nameText.text = highlightedCharacter.ToString();
     	Text[] bulletDescriptions = player.GetComponentsInChildren<Text>();
