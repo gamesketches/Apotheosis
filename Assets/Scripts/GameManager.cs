@@ -205,7 +205,7 @@ public class GameManager : MonoBehaviour {
 			player1Reticle = reticle.gameObject;
 		} else if(character == Character.Orpheus) {
 			temp.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/playerStillWhiteBlack");
-			tempMovement.SetAnimator(Resources.Load<RuntimeAnimatorController>("sprites/OrpheusAnimation/orpheusAnimation"));
+			tempMovement.SetAnimator(Resources.Load<RuntimeAnimatorController>("sprites/OrpheusAnimation/p1/PlayerAnimationController"));
 			tempStats.number = 1;
 			reticle.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/Khopesh/khopeshSet");
 			player2Reticle = reticle.gameObject;
