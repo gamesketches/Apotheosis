@@ -198,28 +198,6 @@ public class InputManager : MonoBehaviour {
 			theBulletType = BulletType.Hippo;
 		}
 
-        /*
-        bulletAngles.Add(0.0f);
-		bulletTypes.Insert(0, theBulletType);
-
-        
-		if(bulletNumber == mashBufferSize) {
-			bulletAngles.Add(90.0f);
-			bulletAngles.Add(-90.0f);
-			bulletTypes.Insert(0, theBulletType);
-			bulletTypes.Insert(0, theBulletType);
-		}
-        
-        if (bulletNumber > 1) {
-			for(int i = 0; i < bulletNumber - 1; i++) {
-				bulletAngles.Add(angleDifference * (i + 1));
-				bulletAngles.Add(-angleDifference * (i + 1));
-				bulletTypes.Add(theBulletType);
-				bulletTypes.Add(theBulletType);	
-			}
-		}
-        */
-
         for (int i = 0; i < bulletAngles.Count; i++) {
 			BulletDepot.Bullet bullet = bullets.types[(int)playerStats.character].projectileTypes[(int)bulletTypes[i]].volleys[0].volley[0];
 			bullet.angle = (int)bulletAngles[i];
