@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public enum Character {Flamel, Orpheus};
+public enum Character {Loholt, Orpheus};
 
 public class GameManager : MonoBehaviour {
 
@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour {
             pressStart.enabled = false;
 			background.enabled = true;
             characterSelectElements.SetActive(true);
-            p1Character = Character.Flamel;
+            p1Character = Character.Loholt;
             p2Character = Character.Orpheus;
             currentUpdateFunction = CharacterSelect;
         }
@@ -118,13 +118,13 @@ public class GameManager : MonoBehaviour {
     #region CharacterSelect
     void CharacterSelect() {
     	if(Input.GetAxis("Horizontal0") < 0) {
-    		p1Character = Character.Flamel;
+    		p1Character = Character.Loholt;
     	}
     	else if(Input.GetAxis("Horizontal0") > 0) {
     		p1Character = Character.Orpheus;
     	}
     	if(Input.GetAxis("Horizontal1") < 0) {
-    		p2Character = Character.Flamel;
+    		p2Character = Character.Loholt;
     	}
     	else if(Input.GetAxis("Horizontal1") > 0) {
     		p2Character = Character.Orpheus;
@@ -174,7 +174,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	GameObject CreatePlayer(string[] controls, Character character, Vector3 position){
-		Color color = character == Character.Flamel ? Color.blue : Color.red;
+		Color color = character == Character.Loholt ? Color.blue : Color.red;
 		GameObject temp = (GameObject)Instantiate(Resources.Load("prefabs/Player"), 
 												position, Quaternion.identity);
 		Reticle reticle = ((GameObject)Instantiate(Resources.Load("prefabs/Reticle"))).GetComponent<Reticle>();
@@ -197,9 +197,9 @@ public class GameManager : MonoBehaviour {
 		tempInputManager.InitializeControls(controls);
 		tempInputManager.reticle = reticle;
 
-		if(character == Character.Flamel) {
+		if(character == Character.Loholt) {
 			temp.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/playerStillBlackWhite");
-			tempMovement.SetAnimator(Resources.Load<RuntimeAnimatorController>("sprites/HorusAnimation/HorusAnimation_0"));
+			tempMovement.SetAnimator(Resources.Load<RuntimeAnimatorController>("sprites/LoholtAnimation/p1/PlayerAnimationController"));
 			tempStats.number = 0;
 			reticle.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/Khopesh/khopeshHorus");
 			player1Reticle = reticle.gameObject;

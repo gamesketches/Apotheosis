@@ -35,10 +35,10 @@ public class PlayerMovement : MonoBehaviour {
 		anim.speed = 0.6f;
 		if(playerStats.number == 0) {
 			radians = 0.0f;
-			anim.SetTrigger("Idle East");
+			//anim.SetTrigger("Idle East");
 		} else if(playerStats.number == 1) {
 			radians = Mathf.PI;
-			anim.SetTrigger("Idle West");
+			//anim.SetTrigger("Idle West");
 		}
 		degrees = radians * Mathf.Rad2Deg;
 		SetReticle();
@@ -51,6 +51,9 @@ public class PlayerMovement : MonoBehaviour {
 	void HandleMovement() {
 		if(!locked) {
 			rb2D.velocity = (new Vector2(Input.GetAxisRaw(horizontalAxis), Input.GetAxisRaw(verticalAxis))).normalized * speed;
+				anim.SetInteger("xAxis", (int) rb2D.velocity.x);
+				anim.SetInteger("yAxis", (int) rb2D.velocity.y);
+				Debug.Log(playerStats.number);
 				if(rb2D.velocity.x != 0.0f || rb2D.velocity.y != 0.0f) {
 					radians = Mathf.Atan2(rb2D.velocity.y, rb2D.velocity.x);
 					degrees = radians * Mathf.Rad2Deg;
@@ -58,7 +61,7 @@ public class PlayerMovement : MonoBehaviour {
 						degrees += 360.0f;
 					}
                 Debug.Log("movement = " + rb2D.velocity + "degrees = " + degrees);
-                if (((degrees >= 0.0f && degrees <= 22.5f) || (degrees > 337.5f && degrees <= 359.0f)) && direction != 0) {
+                /*if (((degrees >= 0.0f && degrees <= 22.5f) || (degrees > 337.5f && degrees <= 359.0f)) && direction != 0) {
 						anim.SetTrigger("Walk East");
 						direction = 0;
 					} else if(degrees > 22.5f && degrees <= 67.5f && direction != 1) {
@@ -82,10 +85,10 @@ public class PlayerMovement : MonoBehaviour {
 					} else if(degrees > 292.5f && degrees <= 337.5f && direction != 7) {
 						anim.SetTrigger("Walk Southeast");
 						direction = 7;
-					}
+					}*/
 					SetReticle();
 				} else {
-					if(direction == 0) {
+					/*if(direction == 0) {
 						anim.SetTrigger("Idle East");
 					} else if(direction == 1) {
 						anim.SetTrigger("Idle Northeast");
@@ -101,7 +104,7 @@ public class PlayerMovement : MonoBehaviour {
 						anim.SetTrigger("Idle South");
 					} else if(direction == 7) {
 						anim.SetTrigger("Idle Southeast");
-					}
+					}*/
 				}
 			}
 		else {
