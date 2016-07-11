@@ -18,25 +18,17 @@ public class BulletLogic : MonoBehaviour {
 	private Transform target;
 	private Vector3 targetPosition;
 	private float headingTime;
-    private Sprite[] animation;
+    private Sprite sprite;
     private int animFrame;
 	AudioSource audio;
 	SpriteRenderer renderer;
-
-    //animation codes: 2= full mouth, 1=bottom mouth, 0=topmouth 
-    private int[] animGatorR = new int[] {2,2,2, 2,2,2, 2,2,2, 2,2,2,
-                                            1,1,1, 1,1,1,
-                                            2,2,2, 2,2,2,
-                                            0,0,0, 0,0,0};
-    private int[] animGatorB = new int[] {2,2,2, 2,2,2, 2,2,2, 2,2,2, 2,2,2,
-                                            1,1,1,1, 1,1,1,1,
-                                            0,0,0,0, 0,0,0,0};
+	private Sprite[] animation; 
+   
     // Use this for initialization
     void Start () {
 		renderer = GetComponent<SpriteRenderer>();
 		audio = GetComponent<AudioSource>();
 		audio.clip = Resources.Load<AudioClip>("audio/soundEffects/rpsBulletCancel");
-		animFrame = 0;
     }
 	
 	// Update is called once per frame
@@ -47,13 +39,11 @@ public class BulletLogic : MonoBehaviour {
 		}
 		bulletFunction();
 		gameObject.transform.position += new Vector3(travelVector.x, travelVector.y) * Time.deltaTime;
-		renderer.sprite = animation[animFrame];
-
-        animFrame = animFrame + 1 >= animation.Length ? 0 : animFrame + 1;
   	}
 
 	public void Initialize(BulletType bulletType, int bulletDamage, float Velocity, float size,
-													float Lifetime, Color bulletColor, int playerNum){
+													float Lifetime, Color bulletColor, int playerNum,
+													Character character){
 		type = bulletType;
 		damage = bulletDamage;
 		transform.localScale = new Vector3(size, size, size);
@@ -70,19 +60,19 @@ public class BulletLogic : MonoBehaviour {
 		switch(type) {
 			case BulletType.Crane:
 				bulletFunction = IndirectLogic;
-			animation = Resources.LoadAll<Sprite>(string.Concat("sprites/craneAnimation", bulletColor == Color.blue ? "B" : "R"));
+				sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", character.ToString(), playerNum == 0 ? "" : "Alt", "/Boomerang"));
 				headingTime = 0f;
 				foreach(GameObject player in GameObject.FindGameObjectsWithTag("Player")){
 					if(player.layer != gameObject.layer) {
 						target = player.transform;
 						}
 				}
+
+				Debug.Log(renderer);
 				break;
 			case BulletType.Gator:
-                Sprite[] animTemp;
-                animTemp = Resources.LoadAll<Sprite>(string.Concat("sprites/gatorAnimation", bulletColor == Color.blue ? "B" : "R"));
-                animation = animTemp;
-                if (bulletColor == Color.red)
+                sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", character.ToString(), playerNum == 0 ? "" : "Alt", "/Knife"));
+				 /*if (bulletColor == Color.red)
                 {
                     animation = new Sprite[animGatorR.Length];
                     for (int i = 0; i < animGatorR.Length; i++)
@@ -97,7 +87,7 @@ public class BulletLogic : MonoBehaviour {
                     {
                         animation[i] = animTemp[animGatorB[i]];
                     }
-                }
+                }*/
                 // TODO: change this
                 transform.Rotate(new Vector3(0f, 0f, -90f));
 			bulletFunction = StraightLogic;
@@ -106,7 +96,7 @@ public class BulletLogic : MonoBehaviour {
 			 */ break;
 			// Hippo situation
 			default:
-			animation = new Sprite[1] {Resources.Load<Sprite>(string.Concat("sprites/hippo", bulletColor == Color.blue ? "B" : "R"))};
+			sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", character.ToString(), playerNum == 0 ? "" : "Alt", "/Shield"));
 				bulletFunction = SlowShotLogic;
 			velocity = 2.5f;
 			//lifetime = Lifetime / 2;
@@ -115,6 +105,7 @@ public class BulletLogic : MonoBehaviour {
 			travelVector = new Vector2(tempVector.x, tempVector.y);	
 			break;
 		}
+		GetComponent<SpriteRenderer>().sprite = sprite;
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {

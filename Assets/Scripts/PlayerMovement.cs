@@ -35,10 +35,8 @@ public class PlayerMovement : MonoBehaviour {
 		anim.speed = 0.6f;
 		if(playerStats.number == 0) {
 			radians = 0.0f;
-			//anim.SetTrigger("Idle East");
 		} else if(playerStats.number == 1) {
 			radians = Mathf.PI;
-			//anim.SetTrigger("Idle West");
 		}
 		degrees = radians * Mathf.Rad2Deg;
 		SetReticle();
@@ -53,7 +51,6 @@ public class PlayerMovement : MonoBehaviour {
 			rb2D.velocity = (new Vector2(Input.GetAxisRaw(horizontalAxis), Input.GetAxisRaw(verticalAxis))).normalized * speed;
 				anim.SetInteger("xAxis", (int) rb2D.velocity.x);
 				anim.SetInteger("yAxis", (int) rb2D.velocity.y);
-				Debug.Log(playerStats.number);
 				if(rb2D.velocity.x != 0.0f || rb2D.velocity.y != 0.0f) {
 					radians = Mathf.Atan2(rb2D.velocity.y, rb2D.velocity.x);
 					degrees = radians * Mathf.Rad2Deg;
