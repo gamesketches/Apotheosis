@@ -174,7 +174,7 @@ public class GameManager : MonoBehaviour {
 		StartRound();
 	}
 
-	GameObject CreatePlayer(string[] controls, Character character, Vector3 position){
+	GameObject CreatePlayer(string[] controls, Character character, Vector3 position, int number){
 		Color color = character == Character.Loholt ? Color.blue : Color.red;
 		GameObject temp = (GameObject)Instantiate(Resources.Load("prefabs/Player"), 
 												position, Quaternion.identity);
@@ -189,6 +189,7 @@ public class GameManager : MonoBehaviour {
 		tempStats.maxHealth = startingHealth;
 		tempStats.character = character;
 		tempStats.playerColor = color;
+		tempStats.number = number;
 		temp.GetComponent<PlayerMovement>().InitializeAxes(controls);
 
 		reticle.color = color;
@@ -198,17 +199,33 @@ public class GameManager : MonoBehaviour {
 		tempInputManager.InitializeControls(controls);
 		tempInputManager.reticle = reticle;
 
+		AnimatorOverrideController animationController = new AnimatorOverrideController();
+		animationController.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("sprites/LoholtAnimation/p1/PlayerAnimationController");
+		string resourcePath = string.Concat("sprites/", character.ToString(), "Animation/p", (number + 1).ToString());
+		foreach(AnimationClip clip in Resources.LoadAll<AnimationClip>(resourcePath)) {
+				animationController[clip.name] = clip;
+			}
+		tempMovement.SetAnimator(animationController);
 		if(character == Character.Loholt) {
-			temp.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/playerStillBlackWhite");
-			tempMovement.SetAnimator(Resources.Load<RuntimeAnimatorController>("sprites/LoholtAnimation/p1/PlayerAnimationController"));
+			/*temp.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/playerStillBlackWhite");
+			foreach(AnimationClip clip in Resources.LoadAll<AnimationClip>("sprites/LoholtAnimation/p2")) {
+				animationController[clip.name] = clip;
+			}
+			tempMovement.SetAnimator(animationController);
+			//tempMovement.SetAnimator(Resources.Load<AnimatorOverrideController>("sprites/LoholtAnimation/p2/LoholtAlt"));
 			tempStats.number = 0;
-			reticle.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/Khopesh/khopeshHorus");
+			*/reticle.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/Khopesh/khopeshHorus");
 			player1Reticle = reticle.gameObject;
 		} else if(character == Character.Orpheus) {
-			temp.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/playerStillWhiteBlack");
-			tempMovement.SetAnimator(Resources.Load<RuntimeAnimatorController>("sprites/OrpheusAnimation/p1/PlayerAnimationController"));
+			/*temp.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/playerStillWhiteBlack");
+			//tempMovement.SetAnimator(Resources.Load<RuntimeAnimatorController>("sprites/OrpheusAnimation/p1/PlayerAnimationController"));
+			foreach(AnimationClip clip in Resources.LoadAll<AnimationClip>("sprites/OrpheusAnimation/p1")) {
+				animationController[clip.name] = clip;
+			}
+			tempMovement.SetAnimator(animationController);
+			//tempMovement.SetAnimator(Resources.Load<AnimatorOverrideController>("sprites/LoholtAnimation/p2/LoholtAlt"));
 			tempStats.number = 1;
-			reticle.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/Khopesh/khopeshSet");
+			*/reticle.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/Khopesh/khopeshSet");
 			player2Reticle = reticle.gameObject;
 		}
 		return temp;
@@ -226,8 +243,8 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void StartRound() {
-		player1 = CreatePlayer(player1Controls, p1Character, player1Pos);
-		player2 = CreatePlayer(player2Controls, p2Character, player2Pos);
+		player1 = CreatePlayer(player1Controls, p1Character, player1Pos, 0);
+		player2 = CreatePlayer(player2Controls, p2Character, player2Pos, 1);
 		player1Stats = player1.GetComponent<PlayerStats>();
 		player2Stats = player2.GetComponent<PlayerStats>();
 		currentUpdateFunction = InGameUpdate;

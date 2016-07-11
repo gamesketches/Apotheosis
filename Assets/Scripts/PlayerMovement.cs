@@ -80,7 +80,8 @@ public class PlayerMovement : MonoBehaviour {
 		reticle.GetRigidbody2D().MoveRotation(degrees - 90.0f);
 	}
 
-	public void SetAnimator(RuntimeAnimatorController value) {
+	public void SetAnimator(AnimatorOverrideController value) {
+		Debug.Log(value.animationClips[0]);
 		anim = GetComponent<Animator>();
 		anim.runtimeAnimatorController = value;
 	}

@@ -1,9 +1,31 @@
 fileFormatVersion: 2
 guid: a817ba96bc51b49d69c6e4a29fb7df97
-timeCreated: 1468202681
+timeCreated: 1468204637
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: loholtSpriteFixedAlt_0
+    21300002: loholtSpriteFixedAlt_1
+    21300004: loholtSpriteFixedAlt_2
+    21300006: loholtSpriteFixedAlt_3
+    21300008: loholtSpriteFixedAlt_4
+    21300010: loholtSpriteFixedAlt_5
+    21300012: loholtSpriteFixedAlt_6
+    21300014: loholtSpriteFixedAlt_7
+    21300016: loholtSpriteFixedAlt_8
+    21300018: loholtSpriteFixedAlt_9
+    21300020: loholtSpriteFixedAlt_10
+    21300022: loholtSpriteFixedAlt_11
+    21300024: loholtSpriteFixedAlt_12
+    21300026: loholtSpriteFixedAlt_13
+    21300028: loholtSpriteFixedAlt_14
+    21300030: loholtSpriteFixedAlt_15
+    21300032: loholtSpriteFixedAlt_16
+    21300034: loholtSpriteFixedAlt_17
+    21300036: loholtSpriteFixedAlt_18
+    21300038: loholtSpriteFixedAlt_19
+    21300040: loholtSpriteFixedAlt_20
+    21300042: loholtSpriteFixedAlt_21
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,26 +52,450 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
-    wrapMode: -1
-  nPOTScale: 1
+    wrapMode: 1
+  nPOTScale: 0
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
-  alphaIsTransparency: 0
-  textureType: -1
+  alphaIsTransparency: 1
+  textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: loholtSpriteFixedAlt_0
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 109
+        width: 147
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20.536182, y: 22.799429}
+        - {x: -21.536182, y: 20.799429}
+        - {x: -21.536182, y: -13.200571}
+        - {x: -18.536182, y: -21.200571}
+        - {x: 16.463818, y: -21.200571}
+        - {x: 22.463818, y: -10.200571}
+        - {x: 22.463818, y: 20.799429}
+        - {x: 21.463818, y: 22.799429}
+    - name: loholtSpriteFixedAlt_1
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 9
+        width: 153
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12.347008, y: 43.12564}
+        - {x: -22.347008, y: 37.12564}
+        - {x: -22.347008, y: -41.87436}
+        - {x: 20.652992, y: -41.87436}
+        - {x: 23.652992, y: -20.87436}
+        - {x: 23.652992, y: 33.12564}
+        - {x: 4.6529922, y: 43.12564}
+    - name: loholtSpriteFixedAlt_2
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 9
+        width: 154
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3.5743713, y: 43.12564}
+        - {x: -22.574371, y: 20.12564}
+        - {x: -22.574371, y: -32.87436}
+        - {x: -18.574371, y: -41.87436}
+        - {x: 23.425629, y: -41.87436}
+        - {x: 23.425629, y: 38.12564}
+        - {x: 19.425629, y: 43.12564}
+    - name: loholtSpriteFixedAlt_3
+      rect:
+        serializedVersion: 2
+        x: 1033
+        y: 9
+        width: 154
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -4.6347656, y: 43.12564}
+        - {x: -22.634766, y: 27.12564}
+        - {x: -22.634766, y: -41.87436}
+        - {x: 18.365234, y: -41.87436}
+        - {x: 23.365234, y: -17.87436}
+        - {x: 23.365234, y: 22.12564}
+        - {x: 4.3652344, y: 43.12564}
+    - name: loholtSpriteFixedAlt_4
+      rect:
+        serializedVersion: 2
+        x: 1352
+        y: 6
+        width: 154
+        height: 289
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8.570374, y: 43.750427}
+        - {x: -22.570374, y: 23.750427}
+        - {x: -22.570374, y: -41.249573}
+        - {x: -16.570374, y: -42.249573}
+        - {x: 16.429626, y: -42.249573}
+        - {x: 23.429626, y: -10.249573}
+        - {x: 23.429626, y: 24.750427}
+        - {x: 1.4296265, y: 43.750427}
+    - name: loholtSpriteFixedAlt_5
+      rect:
+        serializedVersion: 2
+        x: 1681
+        y: 9
+        width: 137
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -1.088623, y: 43.12564}
+        - {x: -20.088623, y: 34.12564}
+        - {x: -20.088623, y: -41.87436}
+        - {x: 20.911377, y: -41.87436}
+        - {x: 20.911377, y: 36.12564}
+        - {x: 10.911377, y: 43.12564}
+    - name: loholtSpriteFixedAlt_6
+      rect:
+        serializedVersion: 2
+        x: 1987
+        y: 9
+        width: 154
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10.3168335, y: 43.12564}
+        - {x: -22.316833, y: 26.12564}
+        - {x: -22.316833, y: -31.87436}
+        - {x: -17.316833, y: -41.87436}
+        - {x: 6.6831665, y: -41.87436}
+        - {x: 23.683167, y: -33.87436}
+        - {x: 23.683167, y: 43.12564}
+    - name: loholtSpriteFixedAlt_7
+      rect:
+        serializedVersion: 2
+        x: 2309
+        y: 9
+        width: 137
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 15.122803, y: 43.12564}
+        - {x: 0.122802734, y: 43.12564}
+        - {x: -11.877197, y: 35.12564}
+        - {x: -19.877197, y: 5.125641}
+        - {x: -19.877197, y: -32.87436}
+        - {x: -14.877197, y: -41.87436}
+        - {x: 16.122803, y: -41.87436}
+        - {x: 21.122803, y: -30.87436}
+        - {x: 21.122803, y: 29.12564}
+    - name: loholtSpriteFixedAlt_8
+      rect:
+        serializedVersion: 2
+        x: 2645
+        y: 9
+        width: 133
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19.353271, y: -32.87436}
+        - {x: -16.353271, y: -41.87436}
+        - {x: 9.6467285, y: -41.87436}
+        - {x: 20.646729, y: -38.87436}
+        - {x: 20.646729, y: 3.1256409}
+        - {x: 15.6467285, y: 16.12564}
+        - {x: 1.6467285, y: 43.12564}
+        - {x: -6.3532715, y: 43.12564}
+        - {x: -19.353271, y: 35.12564}
+    - name: loholtSpriteFixedAlt_9
+      rect:
+        serializedVersion: 2
+        x: 2946
+        y: 9
+        width: 151
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -22.040222, y: 23.12564}
+        - {x: -22.040222, y: -32.87436}
+        - {x: -20.040222, y: -41.87436}
+        - {x: 14.959778, y: -41.87436}
+        - {x: 22.959778, y: -34.87436}
+        - {x: 22.959778, y: -10.874359}
+        - {x: 17.959778, y: 11.125641}
+        - {x: 2.9597778, y: 43.12564}
+        - {x: -5.040222, y: 43.12564}
+        - {x: -16.040222, y: 33.12564}
+    - name: loholtSpriteFixedAlt_10
+      rect:
+        serializedVersion: 2
+        x: 3255
+        y: 7
+        width: 188
+        height: 288
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 2.6068115, y: 42.542164}
+        - {x: -27.393188, y: 1.5421638}
+        - {x: -27.393188, y: -42.457836}
+        - {x: 13.606812, y: -42.457836}
+        - {x: 28.606812, y: -19.457836}
+        - {x: 28.606812, y: 40.542164}
+        - {x: 23.606812, y: 42.542164}
+    - name: loholtSpriteFixedAlt_11
+      rect:
+        serializedVersion: 2
+        x: 3549
+        y: 9
+        width: 233
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7.1221924, y: 43.12564}
+        - {x: -34.122192, y: -7.874359}
+        - {x: -34.122192, y: -35.87436}
+        - {x: 12.877808, y: -41.87436}
+        - {x: 34.877808, y: -41.87436}
+        - {x: 34.877808, y: 35.12564}
+        - {x: 25.877808, y: 43.12564}
+    - name: loholtSpriteFixedAlt_12
+      rect:
+        serializedVersion: 2
+        x: 3885
+        y: 9
+        width: 209
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 22.401733, y: 43.12564}
+        - {x: 4.4017334, y: 43.12564}
+        - {x: -30.598267, y: -8.874359}
+        - {x: -30.598267, y: -34.87436}
+        - {x: -25.598267, y: -36.87436}
+        - {x: -14.598267, y: -41.87436}
+        - {x: 27.401733, y: -41.87436}
+        - {x: 31.401733, y: -38.87436}
+        - {x: 31.401733, y: 29.12564}
+    - name: loholtSpriteFixedAlt_13
+      rect:
+        serializedVersion: 2
+        x: 4204
+        y: 9
+        width: 219
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 14.966064, y: 43.12564}
+        - {x: 5.9660645, y: 43.12564}
+        - {x: -0.033935547, y: 35.12564}
+        - {x: -32.033936, y: -16.87436}
+        - {x: -32.033936, y: -35.87436}
+        - {x: -30.033936, y: -40.87436}
+        - {x: -28.033936, y: -41.87436}
+        - {x: 29.966064, y: -41.87436}
+        - {x: 32.966064, y: -23.87436}
+        - {x: 32.966064, y: 20.12564}
+        - {x: 21.966064, y: 39.12564}
+    - name: loholtSpriteFixedAlt_14
+      rect:
+        serializedVersion: 2
+        x: 4537
+        y: 9
+        width: 188
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 14.614746, y: 43.12564}
+        - {x: 1.6147461, y: 43.12564}
+        - {x: -27.385254, y: 13.125641}
+        - {x: -27.385254, y: -41.87436}
+        - {x: 28.614746, y: -41.87436}
+        - {x: 28.614746, y: 34.12564}
+        - {x: 23.614746, y: 39.12564}
+    - name: loholtSpriteFixedAlt_15
+      rect:
+        serializedVersion: 2
+        x: 4855
+        y: 15
+        width: 206
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 17.887451, y: 41.87607}
+        - {x: 3.8874512, y: 41.87607}
+        - {x: -30.112549, y: -18.123932}
+        - {x: -30.112549, y: -38.12393}
+        - {x: -25.112549, y: -41.12393}
+        - {x: 17.887451, y: -41.12393}
+        - {x: 24.887451, y: -38.12393}
+        - {x: 30.887451, y: -18.123932}
+        - {x: 30.887451, y: 17.876068}
+    - name: loholtSpriteFixedAlt_16
+      rect:
+        serializedVersion: 2
+        x: 5174
+        y: 9
+        width: 189
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7.548218, y: 43.12564}
+        - {x: -14.548218, y: 43.12564}
+        - {x: -22.548218, y: 35.12564}
+        - {x: -27.548218, y: 20.12564}
+        - {x: -27.548218, y: -33.87436}
+        - {x: -26.548218, y: -41.87436}
+        - {x: 28.451782, y: -41.87436}
+        - {x: 28.451782, y: -15.874359}
+        - {x: -5.548218, y: 42.12564}
+    - name: loholtSpriteFixedAlt_17
+      rect:
+        serializedVersion: 2
+        x: 5479
+        y: 12
+        width: 205
+        height: 282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 30.931885, y: -30.999146}
+        - {x: 30.931885, y: -16.999146}
+        - {x: -3.0681152, y: 42.000854}
+        - {x: -30.068115, y: 42.000854}
+        - {x: -30.068115, y: -40.999146}
+        - {x: 13.931885, y: -40.999146}
+        - {x: 13.931885, y: -39.999146}
+        - {x: 12.931885, y: -35.999146}
+        - {x: 26.931885, y: -35.999146}
+        - {x: 29.931885, y: -34.999146}
+    - name: loholtSpriteFixedAlt_18
+      rect:
+        serializedVersion: 2
+        x: 5805
+        y: 9
+        width: 209
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -30.461548, y: -36.87436}
+        - {x: -29.461548, y: -41.87436}
+        - {x: 31.538452, y: -41.87436}
+        - {x: 31.538452, y: -14.874359}
+        - {x: 3.5384521, y: 43.12564}
+        - {x: -20.461548, y: 43.12564}
+        - {x: -30.461548, y: 22.12564}
+    - name: loholtSpriteFixedAlt_19
+      rect:
+        serializedVersion: 2
+        x: 6127
+        y: 9
+        width: 216
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20.521973, y: 43.12564}
+        - {x: -22.521973, y: 41.12564}
+        - {x: -31.521973, y: 6.125641}
+        - {x: -31.521973, y: -9.874359}
+        - {x: -30.521973, y: -9.874359}
+        - {x: -27.521973, y: -8.874359}
+        - {x: -23.521973, y: 0.12564087}
+        - {x: -25.521973, y: -41.87436}
+        - {x: 32.478027, y: -41.87436}
+        - {x: 32.478027, y: -9.874359}
+        - {x: 6.4780273, y: 43.12564}
+    - name: loholtSpriteFixedAlt_20
+      rect:
+        serializedVersion: 2
+        x: 6456
+        y: 9
+        width: 189
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14.540161, y: 43.12564}
+        - {x: -22.540161, y: 39.12564}
+        - {x: -27.540161, y: 25.12564}
+        - {x: -27.540161, y: 0.12564087}
+        - {x: -19.540161, y: -19.87436}
+        - {x: -4.540161, y: -41.87436}
+        - {x: 28.459839, y: -41.87436}
+        - {x: 28.459839, y: -5.874359}
+        - {x: 0.45983887, y: 43.12564}
+    - name: loholtSpriteFixedAlt_21
+      rect:
+        serializedVersion: 2
+        x: 6748
+        y: 9
+        width: 229
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 2.6472168, y: 43.12564}
+        - {x: -17.352783, y: 43.12564}
+        - {x: -27.352783, y: 40.12564}
+        - {x: -33.352783, y: 36.12564}
+        - {x: -33.352783, y: -41.87436}
+        - {x: -18.352783, y: -41.87436}
+        - {x: 34.647217, y: -25.87436}
+        - {x: 34.647217, y: -9.874359}
     outline: []
   spritePackingTag: 
   userData: 
