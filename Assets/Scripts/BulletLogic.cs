@@ -67,27 +67,9 @@ public class BulletLogic : MonoBehaviour {
 						target = player.transform;
 						}
 				}
-
-				Debug.Log(renderer);
 				break;
 			case BulletType.Gator:
                 sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", character.ToString(), playerNum == 0 ? "" : "Alt", "/Knife"));
-				 /*if (bulletColor == Color.red)
-                {
-                    animation = new Sprite[animGatorR.Length];
-                    for (int i = 0; i < animGatorR.Length; i++)
-                    {
-                        animation[i] = animTemp[animGatorR[i]];
-                    }
-                }
-                else if (bulletColor == Color.blue)
-                {
-                    animation = new Sprite[animGatorB.Length];
-                    for (int i = 0; i < animGatorB.Length; i++)
-                    {
-                        animation[i] = animTemp[animGatorB[i]];
-                    }
-                }*/
                 // TODO: change this
                 transform.Rotate(new Vector3(0f, 0f, -90f));
 			bulletFunction = StraightLogic;
