@@ -176,7 +176,6 @@ public class BulletLogic : MonoBehaviour {
 	}
 
 	void SlowShotLogic(){
-		transform.Rotate(new Vector3(0, 0, 1f));
 		renderer.transform.position += Vector3.one * shieldVelocity.Evaluate(shieldOscillationTime);
 		shieldOscillationTime += Time.deltaTime;
 		if(shieldOscillationTime > 1) {
