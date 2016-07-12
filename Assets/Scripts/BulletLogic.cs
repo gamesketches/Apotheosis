@@ -17,18 +17,26 @@ public class BulletLogic : MonoBehaviour {
 	private Vector2 travelVector;
 	private Transform target;
 	private Vector3 targetPosition;
-	private float headingTime;
+	private float headingTime, shieldOscillationTime;
     private Sprite sprite;
     private int animFrame;
 	AudioSource audio;
 	SpriteRenderer renderer;
 	private Sprite[] animation; 
+	AnimationCurve shieldVelocity;
    
     // Use this for initialization
     void Start () {
 		renderer = GetComponentInChildren<SpriteRenderer>();
 		audio = GetComponent<AudioSource>();
 		audio.clip = Resources.Load<AudioClip>("audio/soundEffects/rpsBulletCancel");
+		Keyframe[] keyFrames = new Keyframe[10];
+		float modulation = 0.1f;
+		for(int i = 0; i < keyFrames.Length; i++) {
+			keyFrames[i] = new Keyframe(0.1f * i, modulation);
+			modulation *= -1;
+		}
+		shieldVelocity = new AnimationCurve(keyFrames);
     }
 	
 	// Update is called once per frame
@@ -81,6 +89,7 @@ public class BulletLogic : MonoBehaviour {
 			sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", character.ToString(), playerNum == 0 ? "" : "Alt", "/Shield"));
 				bulletFunction = SlowShotLogic;
 			velocity = 2.5f;
+			shieldOscillationTime = 0;
 			//lifetime = Lifetime / 2;
 			lifetime = Lifetime / 0.25f;
 			tempVector = Quaternion.AngleAxis(gameObject.transform.rotation.eulerAngles.z, Vector3.forward) * new Vector3(velocity, 0, 0);
@@ -168,5 +177,10 @@ public class BulletLogic : MonoBehaviour {
 
 	void SlowShotLogic(){
 		transform.Rotate(new Vector3(0, 0, 1f));
+		renderer.transform.position += Vector3.one * shieldVelocity.Evaluate(shieldOscillationTime);
+		shieldOscillationTime += Time.deltaTime;
+		if(shieldOscillationTime > 1) {
+			shieldOscillationTime = 0;
+		}
 	}
 }

@@ -57,7 +57,6 @@ public class PlayerMovement : MonoBehaviour {
 					if(degrees < 0.0f) {
 						degrees += 360.0f;
 					}
-                Debug.Log("movement = " + rb2D.velocity + "degrees = " + degrees);
 					SetReticle();
 				}
 			}
