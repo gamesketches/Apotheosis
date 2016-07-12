@@ -21,8 +21,7 @@ public class GameManager : MonoBehaviour {
 	string[] player1Controls, player2Controls;
 	PlayerStats player1Stats, player2Stats;
 	BulletDepot bullets;
-	GameObject[] SetLifeBar;
-	GameObject[] HorusLifeBar;
+	GameObject p1LifeBar, p2LifeBar;
 	#endregion
 
 	#region CharacterSelect Vars
@@ -45,8 +44,6 @@ public class GameManager : MonoBehaviour {
         GameObject[] HorusWinsIcons;
         GameObject[] SetWinsIcons;
 
-        SetLifeBar = GameObject.FindGameObjectsWithTag("SetLifeBar");
-        HorusLifeBar = GameObject.FindGameObjectsWithTag("HorusLifeBar");
         SetWinsIcons = GameObject.FindGameObjectsWithTag("SetWinsIcon");
         HorusWinsIcons = GameObject.FindGameObjectsWithTag("HorusWinsIcon");
         HorusWinsIconsSR = new SpriteRenderer[HorusWinsIcons.Length];
@@ -161,8 +158,6 @@ public class GameManager : MonoBehaviour {
     #region Initialization Code
 
 	void InitializeGameSettings() {
-		SetLifeBar = GameObject.FindGameObjectsWithTag("SetLifeBar");
-		HorusLifeBar = GameObject.FindGameObjectsWithTag("HorusLifeBar");
 		player1RoundWins = 0;
 		player1Wins = 0;
 		player2RoundWins = 0;
@@ -207,14 +202,7 @@ public class GameManager : MonoBehaviour {
 			}
 		tempMovement.SetAnimator(animationController);
 		if(character == Character.Loholt) {
-			/*temp.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/playerStillBlackWhite");
-			foreach(AnimationClip clip in Resources.LoadAll<AnimationClip>("sprites/LoholtAnimation/p2")) {
-				animationController[clip.name] = clip;
-			}
-			tempMovement.SetAnimator(animationController);
-			//tempMovement.SetAnimator(Resources.Load<AnimatorOverrideController>("sprites/LoholtAnimation/p2/LoholtAlt"));
-			tempStats.number = 0;
-			*/reticle.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/Khopesh/khopeshHorus");
+			reticle.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/Khopesh/khopeshHorus");
 			player1Reticle = reticle.gameObject;
 		} else if(character == Character.Orpheus) {
 			/*temp.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/playerStillWhiteBlack");
@@ -243,8 +231,13 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void StartRound() {
+		Vector3 lifebarOffset = new Vector3(0, -2, 0);
 		player1 = CreatePlayer(player1Controls, p1Character, player1Pos, 0);
+		p1LifeBar = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SetLifeBar"), player1Pos + lifebarOffset, Quaternion.identity);
+		p1LifeBar.transform.parent = player1.transform;
 		player2 = CreatePlayer(player2Controls, p2Character, player2Pos, 1);
+		p2LifeBar = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SetLifeBar"), player2Pos + lifebarOffset, Quaternion.identity);
+		p2LifeBar.transform.parent = player2.transform;
 		player1Stats = player1.GetComponent<PlayerStats>();
 		player2Stats = player2.GetComponent<PlayerStats>();
 		currentUpdateFunction = InGameUpdate;
@@ -360,12 +353,8 @@ public class GameManager : MonoBehaviour {
 		else {
 			player2HealthProportion = 0;
 		}
-		SetLifeBar[0].transform.localScale = new Vector3(player1HealthProportion * 10f, 6, 1);
-		SetLifeBar[1].transform.localScale = new Vector3(player1HealthProportion * 10f, 6, 1);
-		SetLifeBar[2].transform.localScale = new Vector3(player1HealthProportion * 10.5062f, 6, 1);
-		HorusLifeBar[0].transform.localScale = new Vector3(player2HealthProportion * 10f, 6, 1);
-		HorusLifeBar[1].transform.localScale = new Vector3(player2HealthProportion * 10f, 6, 1);
-		HorusLifeBar[2].transform.localScale = new Vector3(player2HealthProportion * 10.5062f, 6, 1);
+		p1LifeBar.transform.localScale = new Vector3(player1HealthProportion * 0.5f, 1, 1);
+		p2LifeBar.transform.localScale = new Vector3(player2HealthProportion * 0.5f, 1, 1);
 	}
 
 	void FightIntro() {
