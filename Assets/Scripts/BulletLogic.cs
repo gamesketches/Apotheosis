@@ -26,7 +26,7 @@ public class BulletLogic : MonoBehaviour {
    
     // Use this for initialization
     void Start () {
-		renderer = GetComponent<SpriteRenderer>();
+		renderer = GetComponentInChildren<SpriteRenderer>();
 		audio = GetComponent<AudioSource>();
 		audio.clip = Resources.Load<AudioClip>("audio/soundEffects/rpsBulletCancel");
     }
@@ -55,14 +55,13 @@ public class BulletLogic : MonoBehaviour {
 		Vector3 tempVector = Quaternion.AngleAxis(gameObject.transform.rotation.eulerAngles.z, Vector3.forward) * new Vector3(velocity, 0, 0);
 		travelVector = new Vector2(tempVector.x, tempVector.y);
 		lifetime = Lifetime;
-		GetComponent<SpriteRenderer>().color = bulletColor;
+		//GetComponent<SpriteRenderer>().color = bulletColor;
 		gameObject.layer = 8 + playerNum;
 		switch(type) {
 			case BulletType.Crane:
 				bulletFunction = IndirectLogic;
 				sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", character.ToString(), playerNum == 0 ? "" : "Alt", "/Boomerang"));
 				headingTime = 0f;
-			Debug.Log(string.Concat("sprites/weapons/", character.ToString(), playerNum == 0 ? "" : "Alt", "/Boomerang"));
 				foreach(GameObject player in GameObject.FindGameObjectsWithTag("Player")){
 					if(player.layer != gameObject.layer) {
 						target = player.transform;
@@ -88,7 +87,8 @@ public class BulletLogic : MonoBehaviour {
 			travelVector = new Vector2(tempVector.x, tempVector.y);	
 			break;
 		}
-		GetComponent<SpriteRenderer>().sprite = sprite;
+		//renderer.sprite = sprite;
+		GetComponentInChildren<SpriteRenderer>().sprite = sprite;
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
@@ -99,6 +99,7 @@ public class BulletLogic : MonoBehaviour {
 		if(other.gameObject.layer != gameObject.layer) {
 			if(other.gameObject.tag == "Player") {
 					other.gameObject.GetComponent<PlayerStats>().health -= damage;
+					Debug.Log(other.gameObject.GetComponent<PlayerStats>().character);
 					string hitSparkSpritePath = string.Concat("sprites/hitSparks/hit", renderer.color == Color.blue ? "BR" : "RB");
 					GameObject sparks = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/HitSparks"), transform.position, Quaternion.identity);
 					sparks.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(hitSparkSpritePath);	
@@ -145,6 +146,7 @@ public class BulletLogic : MonoBehaviour {
 	}
 
 	void IndirectLogic(){
+		renderer.transform.Rotate(0, 0, 2);
 		if(headingTime < indirectHomingTime) {
 			targetPosition = target.position;
 		}
