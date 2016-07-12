@@ -62,6 +62,7 @@ public class BulletLogic : MonoBehaviour {
 				bulletFunction = IndirectLogic;
 				sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", character.ToString(), playerNum == 0 ? "" : "Alt", "/Boomerang"));
 				headingTime = 0f;
+			Debug.Log(string.Concat("sprites/weapons/", character.ToString(), playerNum == 0 ? "" : "Alt", "/Boomerang"));
 				foreach(GameObject player in GameObject.FindGameObjectsWithTag("Player")){
 					if(player.layer != gameObject.layer) {
 						target = player.transform;
