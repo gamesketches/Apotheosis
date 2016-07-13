@@ -77,12 +77,11 @@ public class BulletLogic : MonoBehaviour {
 				break;
 			case BulletType.Gator:
                 sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", character.ToString(), playerNum == 0 ? "" : "Alt", "/Knife"));
+			Debug.Log(string.Concat("sprites/weapons/", character.ToString(), playerNum == 0 ? "" : "Alt", "/Knife"));
                 // TODO: change this
                 transform.Rotate(new Vector3(0f, 0f, -90f));
-			bulletFunction = StraightLogic;
-
-			 /* bulletFunction = sineWaveLogic;
-			 */ break;
+				bulletFunction = StraightLogic;
+				break;
 			// Hippo situation
 			default:
 			sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", character.ToString(), playerNum == 0 ? "" : "Alt", "/Shield"));

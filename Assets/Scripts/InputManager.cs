@@ -63,6 +63,7 @@ public class InputManager : MonoBehaviour {
         meleeCooldownTimer -= Time.deltaTime;
 
         if (button == 'D' && meleeCooldownTimer <= 0) {
+			reticle.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", playerStats.character.ToString(), playerStats.number == 0 ? "" : "Alt", "/Melee"));
 			Melee();
 		} else if(button != '0' && exponentCooldownTimer <= 0 && !melee) {
 			shotCooldownTimer = shotCooldownTime;
@@ -249,6 +250,7 @@ public class InputManager : MonoBehaviour {
 		melee = false;
 		reticle.melee = false;
 		playerMovement.locked = false;
+		reticle.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/reticle-18");
     }
 
     IEnumerator Spin() {
@@ -271,6 +273,7 @@ public class InputManager : MonoBehaviour {
 		reticle.melee = false;
 		reticle.spinning = false;
 		playerMovement.locked = false;
+		reticle.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/reticle-18");
     }
 
     public void SetExponentCooldownTimer(float value) {
