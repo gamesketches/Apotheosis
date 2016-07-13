@@ -84,6 +84,7 @@ public class GameManager : MonoBehaviour {
         if (Input.GetButtonUp("ButtonA0"))
         {
             titleLogo.enabled = false;
+            titleLogo.transform.GetChild(0).gameObject.SetActive(false);
             pressStart.enabled = false;
 			background.enabled = true;
             characterSelectElements.SetActive(true);
@@ -321,6 +322,7 @@ public class GameManager : MonoBehaviour {
 				Destroy(player1);
 				Destroy(player2);
 				titleLogo.enabled = true;
+   		        titleLogo.transform.GetChild(0).gameObject.SetActive(true);
                 pressStart.enabled = true;
 				background.enabled = true;
 				roundTimer.enabled = false;
