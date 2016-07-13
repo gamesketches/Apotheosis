@@ -63,7 +63,6 @@ public class BulletLogic : MonoBehaviour {
 		Vector3 tempVector = Quaternion.AngleAxis(gameObject.transform.rotation.eulerAngles.z, Vector3.forward) * new Vector3(velocity, 0, 0);
 		travelVector = new Vector2(tempVector.x, tempVector.y);
 		lifetime = Lifetime;
-		//GetComponent<SpriteRenderer>().color = bulletColor;
 		gameObject.layer = 8 + playerNum;
 		switch(type) {
 			case BulletType.Crane:
@@ -89,6 +88,7 @@ public class BulletLogic : MonoBehaviour {
 			sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", character.ToString(), playerNum == 0 ? "" : "Alt", "/Shield"));
 				bulletFunction = SlowShotLogic;
 			velocity = 2.5f;
+			GetComponent<CircleCollider2D>().radius = 0.5f;
 			shieldOscillationTime = 0;
 			//lifetime = Lifetime / 2;
 			lifetime = Lifetime / 0.25f;
@@ -180,6 +180,7 @@ public class BulletLogic : MonoBehaviour {
 		shieldOscillationTime += Time.deltaTime;
 		if(shieldOscillationTime > 1) {
 			shieldOscillationTime = 0;
+			renderer.transform.localPosition = Vector3.zero;
 		}
 	}
 }
