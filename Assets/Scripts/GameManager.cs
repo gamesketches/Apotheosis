@@ -258,8 +258,8 @@ public class GameManager : MonoBehaviour {
 				yield return new WaitForSeconds(1.5f);
 				playerNum -= 2;
 			}
-	        victoryText.text = playerNum == 1 ? "<color=Blue>HORUS" : "<color=Red>SET";
-			victoryText.text += roundsWon == 3 ? "\n IS \n   VICTORIOUS</color>" : "\n</color>WINS";
+	        victoryText.text = playerNum == 1 ? player2Stats.character.ToString().ToUpper() : player1Stats.character.ToString().ToUpper();
+			victoryText.text += roundsWon == 3 ? "\n IS \n   VICTORIOUS" : "\nWINS";
 		}
 		victoryText.enabled = true;
         yield return new WaitForSeconds(3.0f);
@@ -379,7 +379,9 @@ public class GameManager : MonoBehaviour {
 		AudioSource audio = GetComponent<AudioSource>();
 		audio.clip = Resources.Load<AudioClip>("audio/soundEffects/swordSwing");
 		victoryText.enabled = true;
-		victoryText.text = "PREPARE \n YOURSELF";
+		if(player1RoundWins + player2RoundWins == 0) {
+			victoryText.text = "PREPARE \n YOURSELF";
+		}
 		yield return new WaitForSeconds(2.0f);
 		victoryText.text = "FIGHT";
 		yield return new WaitForSeconds(0.5f);
