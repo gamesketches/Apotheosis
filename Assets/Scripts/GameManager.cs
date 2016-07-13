@@ -361,6 +361,7 @@ public class GameManager : MonoBehaviour {
 
 	void FightIntro() {
 		LockPlayers();
+		StartCoroutine(ReadyFightMessageChange());
 		// Probably put some ready fight shit over here
 		Invoke("UnlockPlayers", 2.5f);
 		AudioSource backgroundMusic = Camera.main.GetComponent<AudioSource>();
@@ -376,6 +377,18 @@ public class GameManager : MonoBehaviour {
 	void UnlockPlayers() {
 		player1.GetComponent<PlayerMovement>().locked = false;
 		player2.GetComponent<PlayerMovement>().locked = false;
+	}
+
+	IEnumerator ReadyFightMessageChange() {
+		AudioSource audio = GetComponent<AudioSource>();
+		audio.clip = Resources.Load<AudioClip>("audio/soundEffects/rpsBulletCancel");
+		victoryText.enabled = true;
+		victoryText.text = "PREPARE \n YOURSELF";
+		yield return new WaitForSeconds(2.0f);
+		victoryText.text = "FIGHT";
+		yield return new WaitForSeconds(0.5f);
+		audio.Play();
+		victoryText.text = "";
 	}
 
 	void ClearBullets() {
