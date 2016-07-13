@@ -202,21 +202,9 @@ public class GameManager : MonoBehaviour {
 				animationController[clip.name] = clip;
 			}
 		tempMovement.SetAnimator(animationController);
-		if(character == Character.Loholt) {
-			reticle.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/Khopesh/khopeshHorus");
+		reticle.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/reticle-18");
 			player1Reticle = reticle.gameObject;
-		} else if(character == Character.Orpheus) {
-			/*temp.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/playerStillWhiteBlack");
-			//tempMovement.SetAnimator(Resources.Load<RuntimeAnimatorController>("sprites/OrpheusAnimation/p1/PlayerAnimationController"));
-			foreach(AnimationClip clip in Resources.LoadAll<AnimationClip>("sprites/OrpheusAnimation/p1")) {
-				animationController[clip.name] = clip;
-			}
-			tempMovement.SetAnimator(animationController);
-			//tempMovement.SetAnimator(Resources.Load<AnimatorOverrideController>("sprites/LoholtAnimation/p2/LoholtAlt"));
-			tempStats.number = 1;
-			*/reticle.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/Khopesh/khopeshSet");
-			player2Reticle = reticle.gameObject;
-		}
+
 		return temp;
 	}
 
