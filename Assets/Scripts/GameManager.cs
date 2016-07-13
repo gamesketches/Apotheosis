@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour {
 	#region CharacterSelect Vars
 	GameObject characterSelectElements;
 	Character p1Character, p2Character;
-	Sprite[] p1CharacterPortraits, p2CharacterPortraits;
+	Sprite[] p1CharacterPortraits, p2CharacterPortraits, p1InfoPanes, p2InfoPanes;
 	#endregion
     SpriteRenderer titleLogo;
     SpriteRenderer infoScreen;
@@ -74,7 +74,9 @@ public class GameManager : MonoBehaviour {
         currentUpdateFunction = TitleScreen;
 
         p1CharacterPortraits = Resources.LoadAll<Sprite>("characterSelect/p1/portraits");
+        p1InfoPanes = Resources.LoadAll<Sprite>("characterSelect/p1/summons");
         p2CharacterPortraits = Resources.LoadAll<Sprite>("characterSelect/p2/portraits");
+		p2InfoPanes = Resources.LoadAll<Sprite>("characterSelect/p2/summons");
     }
 
     #region Pre-Battle
@@ -129,8 +131,10 @@ public class GameManager : MonoBehaviour {
     		p2Character = Character.Orpheus;
     	}
 
-    	UpdateInfoCharacterSelect(characterSelectElements.transform.GetChild(0).gameObject, p1Character, p1CharacterPortraits);
-    	UpdateInfoCharacterSelect(characterSelectElements.transform.GetChild(1).gameObject, p2Character, p2CharacterPortraits);
+    	UpdateInfoCharacterSelect(characterSelectElements.transform.GetChild(0).gameObject,
+    										 p1Character, p1CharacterPortraits, p1InfoPanes);
+    	UpdateInfoCharacterSelect(characterSelectElements.transform.GetChild(1).gameObject,
+    										 p2Character, p2CharacterPortraits, p2InfoPanes);
 
     	if(Input.GetButtonUp("ButtonA0")) {
 			titleLogo.enabled = false;
@@ -142,9 +146,13 @@ public class GameManager : MonoBehaviour {
 
     }
 
-    void UpdateInfoCharacterSelect(GameObject player, Character highlightedCharacter, Sprite[] portraits) {
+    void UpdateInfoCharacterSelect(GameObject player, Character highlightedCharacter,
+    														 Sprite[] portraits,
+    														 Sprite[] infoPanes) {
     	SpriteRenderer portrait = player.GetComponentInChildren<SpriteRenderer>();
     	portrait.sprite = portraits[(int)highlightedCharacter];
+    	SpriteRenderer infoPane = player.GetComponentsInChildren<SpriteRenderer>()[2];
+    	infoPane.sprite = infoPanes[(int)highlightedCharacter];
     	Text nameText = player.GetComponentInChildren<Text>();
     	nameText.text = highlightedCharacter.ToString();
     	Text[] bulletDescriptions = player.GetComponentsInChildren<Text>();
@@ -369,7 +377,7 @@ public class GameManager : MonoBehaviour {
 
 	IEnumerator ReadyFightMessageChange() {
 		AudioSource audio = GetComponent<AudioSource>();
-		audio.clip = Resources.Load<AudioClip>("audio/soundEffects/rpsBulletCancel");
+		audio.clip = Resources.Load<AudioClip>("audio/soundEffects/swordSwing");
 		victoryText.enabled = true;
 		victoryText.text = "PREPARE \n YOURSELF";
 		yield return new WaitForSeconds(2.0f);
