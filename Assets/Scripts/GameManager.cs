@@ -157,9 +157,9 @@ public class GameManager : MonoBehaviour {
     	nameText.text = highlightedCharacter.ToString();
     	Text[] bulletDescriptions = player.GetComponentsInChildren<Text>();
     	int firstText = bulletDescriptions.Length - 3;
-    	for(int i = 0; i < 3; i++) {
-    		bulletDescriptions[firstText + i].text = bullets.types[(int)highlightedCharacter].projectileTypes[i].bulletDescription;
-    	}
+    	bulletDescriptions[firstText + 0].text = bullets.types[(int)highlightedCharacter].projectileTypes[1].bulletDescription;
+    	bulletDescriptions[firstText + 1].text = bullets.types[(int)highlightedCharacter].projectileTypes[2].bulletDescription;
+		bulletDescriptions[firstText + 2].text = bullets.types[(int)highlightedCharacter].projectileTypes[0].bulletDescription;   
     }
 
     #endregion
