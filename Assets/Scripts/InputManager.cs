@@ -141,13 +141,13 @@ public class InputManager : MonoBehaviour {
 		}
 		switch(type) {
 		case BulletType.Crane:
-			soundEffects.clip = Resources.Load<AudioClip>("audio/bulletSounds/craneSound");
+			soundEffects.clip = Resources.Load<AudioClip>("audio/soundEffects/boomerangSound");
 			break;
 		case BulletType.Gator:
-			soundEffects.clip = Resources.Load<AudioClip>("audio/bulletSounds/alligatorSound");
+			soundEffects.clip = Resources.Load<AudioClip>("audio/soundEffects/knifeSound");
 			break;
 		case BulletType.Hippo:
-			soundEffects.clip = Resources.Load<AudioClip>("audio/bulletSounds/hippoSound");
+			soundEffects.clip = Resources.Load<AudioClip>("audio/soundEffects/shieldSound");
 			break;
 		}
 		soundEffects.Play();
