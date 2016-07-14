@@ -14,8 +14,11 @@ public class Reticle : MonoBehaviour {
 
 	private Rigidbody2D rb2D;
 
+	AudioSource audio;
+
 	void Awake() {
 		rb2D = GetComponent<Rigidbody2D>();
+		audio = GetComponent<AudioSource>();
 	}
 
 	void OnTriggerEnter2D(Collider2D collider) {
@@ -39,6 +42,7 @@ public class Reticle : MonoBehaviour {
 					sparks.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/hitSparks/hitspark");	
 					Destroy(collider.gameObject);
 				}
+				audio.Play();
 			}
 		}
 	}
