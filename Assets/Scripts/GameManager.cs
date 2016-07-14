@@ -404,6 +404,9 @@ public class GameManager : MonoBehaviour {
 	void RoundReset() {
 		Destroy(player1Reticle);
 		Destroy(player2Reticle);
+		foreach(GameObject reticle in GameObject.FindGameObjectsWithTag("Reticle")) {
+			Destroy(reticle);
+		}
 		Destroy(player1);
 		Destroy(player2);
 		StartRound();
