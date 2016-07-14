@@ -109,6 +109,10 @@ public class BulletLogic : MonoBehaviour {
 					other.gameObject.GetComponent<PlayerStats>().health -= damage;
 					GameObject sparks = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/HitSparks"), transform.position, Quaternion.identity);
 					sparks.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/hitSparks/hitspark");	
+					if(GameObject.FindGameObjectsWithTag("SoundEffects").Length < 5) {
+					GameObject temp = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SoundEffectObject"), gameObject.transform.position, Quaternion.identity);
+					temp.GetComponent<SoundEffectObjectScript>().PlaySoundEffect("damageHit");
+					}
 					Destroy(gameObject);
 					return;
 			}
