@@ -258,7 +258,7 @@ public class GameManager : MonoBehaviour {
 				yield return new WaitForSeconds(1.5f);
 				playerNum -= 2;
 			}
-	        victoryText.text = playerNum == 1 ? player2Stats.character.ToString().ToUpper() : player1Stats.character.ToString().ToUpper();
+	        victoryText.text = playerNum == 0 ? player2Stats.character.ToString().ToUpper() : player1Stats.character.ToString().ToUpper();
 			victoryText.text += roundsWon == 3 ? "\n IS \n   VICTORIOUS" : "\nWINS";
 		}
 		victoryText.enabled = true;
