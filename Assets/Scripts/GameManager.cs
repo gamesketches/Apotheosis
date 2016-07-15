@@ -94,13 +94,13 @@ public class GameManager : MonoBehaviour {
             p2Character = Character.Orpheus;
             currentUpdateFunction = CharacterSelect;
         }
-        else if (Input.GetButtonUp("ButtonD0") || Input.GetButtonUp("ButtonC0") || Input.GetButtonUp("ButtonB0"))
+ /*       else if (Input.GetButtonUp("ButtonD0") || Input.GetButtonUp("ButtonC0") || Input.GetButtonUp("ButtonB0"))
         {
             titleLogo.enabled = false;
             pressStart.enabled = false;
             infoScreen.enabled = true;
             currentUpdateFunction = InfoScreen;
-        }
+        }*/
     }
 
     void InfoScreen()
@@ -314,7 +314,14 @@ public class GameManager : MonoBehaviour {
 
 	void RoundEndUpdate() {
 			if(player1RoundWins > 2 || player2RoundWins > 2){
-				Destroy(player1Reticle);
+				Invoke("ResetGame", 2.5f);
+				return;
+			}
+			RoundReset();
+	}
+
+	void ResetGame() {
+		Destroy(player1Reticle);
 				Destroy(player2Reticle);
 				// TODO ERASE THIS GARBAGE
 				foreach(GameObject reticle in GameObject.FindGameObjectsWithTag("Reticle")) {
@@ -337,9 +344,6 @@ public class GameManager : MonoBehaviour {
 				backgroundMusic.clip = Resources.Load<AudioClip>("audio/music/menu/LandOfTwoFields");
 				backgroundMusic.Play();
 				currentUpdateFunction = TitleScreen;
-				return;
-			}
-			RoundReset();
 	}
 
 	void UpdateLifeBars() {
