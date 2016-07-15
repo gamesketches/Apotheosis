@@ -315,6 +315,10 @@ public class GameManager : MonoBehaviour {
 			if(player1RoundWins > 2 || player2RoundWins > 2){
 				Destroy(player1Reticle);
 				Destroy(player2Reticle);
+				// TODO ERASE THIS GARBAGE
+				foreach(GameObject reticle in GameObject.FindGameObjectsWithTag("Reticle")) {
+					Destroy(reticle);
+				}
 				Destroy(player1);
 				Destroy(player2);
 				titleLogo.enabled = true;
