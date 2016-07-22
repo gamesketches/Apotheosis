@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour {
 		player2Controls = CreateControlScheme(1);
 		currentRoundTime = roundTime;
         titleLogo = GameObject.FindGameObjectWithTag("TitleLogo").GetComponent<SpriteRenderer>();
+        Debug.Break();
         pressStart = titleLogo.GetComponent<Text>();
         infoScreen = GameObject.FindGameObjectWithTag("InfoScreen").GetComponent<SpriteRenderer>();
 		background = GameObject.FindGameObjectWithTag("Background").GetComponent<SpriteRenderer>();
@@ -69,8 +70,10 @@ public class GameManager : MonoBehaviour {
         victoryText = GameObject.FindGameObjectWithTag("VictoryText").GetComponent<Text>();
         characterSelectElements = GameObject.Find("CharacterSelectElements");
         characterSelectElements.SetActive(false);
+        Debug.Log(pressStart);
         titleLogo.enabled = true;
         pressStart.enabled = true;
+        Debug.Log("hey");
         currentUpdateFunction = TitleScreen;
 
         p1CharacterPortraits = Resources.LoadAll<Sprite>("characterSelect/p1/portraits");
@@ -83,7 +86,9 @@ public class GameManager : MonoBehaviour {
 
     void TitleScreen()
     {
-        if (Input.GetButtonUp("ButtonA0"))
+		if (Input.GetButtonUp("ButtonA0") || Input.GetButtonUp("ButtonB0") || Input.GetButtonUp("ButtonC0") 
+			|| Input.GetButtonUp("ButtonD0") || Input.GetButtonUp("ButtonA1") || Input.GetButtonUp("ButtonB1")
+			|| Input.GetButtonUp("ButtonC1") || Input.GetButtonUp("ButtonD1"))
         {
             titleLogo.enabled = false;
             titleLogo.transform.GetChild(0).gameObject.SetActive(false);
@@ -136,7 +141,7 @@ public class GameManager : MonoBehaviour {
     	UpdateInfoCharacterSelect(characterSelectElements.transform.GetChild(1).gameObject,
     										 p2Character, p2CharacterPortraits, p2InfoPanes);
 
-    	if(Input.GetButtonUp("ButtonA0")) {
+    	if(Input.GetButtonUp("ButtonB0")) {
 			titleLogo.enabled = false;
             pressStart.enabled = false;
 			background.enabled = true;
@@ -157,9 +162,9 @@ public class GameManager : MonoBehaviour {
     	nameText.text = highlightedCharacter.ToString();
     	Text[] bulletDescriptions = player.GetComponentsInChildren<Text>();
     	int firstText = bulletDescriptions.Length - 3;
-    	bulletDescriptions[firstText + 0].text = bullets.types[(int)highlightedCharacter].projectileTypes[1].bulletDescription;
-    	bulletDescriptions[firstText + 1].text = bullets.types[(int)highlightedCharacter].projectileTypes[2].bulletDescription;
-		bulletDescriptions[firstText + 2].text = bullets.types[(int)highlightedCharacter].projectileTypes[0].bulletDescription;   
+		bulletDescriptions[firstText + 0].text = "Shield for blocking";//bullets.types[(int)highlightedCharacter].projectileTypes[1].bulletDescription;
+		bulletDescriptions[firstText + 1].text = "Tracks enemy";//bullets.types[(int)highlightedCharacter].projectileTypes[2].bulletDescription;
+		bulletDescriptions[firstText + 2].text = "A piercing summon";//bullets.types[(int)highlightedCharacter].projectileTypes[0].bulletDescription;   
     }
 
     #endregion
