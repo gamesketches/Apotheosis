@@ -7,6 +7,9 @@ using System.IO;
 
 public class BulletDepot : ScriptableObject {
 
+	List<GameObject> bulletPool;
+	GameObject bulletPrefab;
+
 	public class Bullet{
 		public float size;
 		public float speed;
@@ -51,5 +54,27 @@ public class BulletDepot : ScriptableObject {
 		bulletData = Resources.Load("orpheusBullets") as TextAsset;
 		reader = new StringReader(bulletData.text);
 		types[1] = (Character)serializer.Deserialize(reader);
+		bulletPool = new List<GameObject>();
+		bulletPrefab = Resources.Load<GameObject>("prefabs/Bullet");
+	}
+
+	public GameObject GetBullet () {
+		GameObject obj;
+		int lastAvailableIndex = bulletPool.Count - 1;
+		if (lastAvailableIndex >= 0) {
+			obj = bulletPool[lastAvailableIndex];
+			bulletPool.RemoveAt(lastAvailableIndex);
+			obj.gameObject.SetActive(true);
+		}
+		else {
+			obj = Instantiate<GameObject>(bulletPrefab);
+			obj.GetComponent<BulletLogic>().theDepot = this;
+			}
+		return obj;
+	}
+
+	public void AddObject (GameObject obj) {
+		obj.gameObject.SetActive(false);
+		bulletPool.Add(obj);
 	}
 }

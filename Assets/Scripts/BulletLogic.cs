@@ -24,6 +24,7 @@ public class BulletLogic : MonoBehaviour {
 	SpriteRenderer renderer;
 	private Sprite[] animation; 
 	AnimationCurve shieldVelocity;
+	public BulletDepot theDepot;
    
     // Use this for initialization
     void Start () {
@@ -43,7 +44,7 @@ public class BulletLogic : MonoBehaviour {
 	void Update () {
 		lifetime -= Time.deltaTime;
 		if(lifetime <= 0f) {
-			Destroy(gameObject);
+			theDepot.AddObject(gameObject);
 		}
 		bulletFunction();
 		gameObject.transform.position += new Vector3(travelVector.x, travelVector.y) * Time.deltaTime;
@@ -101,7 +102,7 @@ public class BulletLogic : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if(other.gameObject.tag == "Boundary") {
-			Destroy(gameObject);
+			theDepot.AddObject(gameObject);
 			return;
 		}
 		if(other.gameObject.layer != gameObject.layer) {
@@ -113,7 +114,7 @@ public class BulletLogic : MonoBehaviour {
 					GameObject temp = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SoundEffectObject"), gameObject.transform.position, Quaternion.identity);
 					temp.GetComponent<SoundEffectObjectScript>().PlaySoundEffect("damageHit");
 					}
-					Destroy(gameObject);
+					theDepot.AddObject(gameObject);
 					return;
 			}
 			else if(other.gameObject.tag == "Reticle") {
@@ -125,8 +126,8 @@ public class BulletLogic : MonoBehaviour {
 			if(opposingType == type){
 				GameObject temp = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SoundEffectObject"), gameObject.transform.position, Quaternion.identity);
 				temp.GetComponent<SoundEffectObjectScript>().PlaySoundEffect("identicalBulletCancel");
-				Destroy(other.gameObject);
-				Destroy(gameObject);
+				theDepot.AddObject(other.gameObject);
+				theDepot.AddObject(gameObject);
 
 			}
             else if ((int)type == System.Enum.GetValues(typeof(BulletType)).Length - 1)
@@ -136,7 +137,7 @@ public class BulletLogic : MonoBehaviour {
             else if((int)opposingType == System.Enum.GetValues(typeof(BulletType)).Length - 1 && (int)type == 0) {
 				GameObject temp = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SoundEffectObject"), gameObject.transform.position, Quaternion.identity);
 				temp.GetComponent<SoundEffectObjectScript>().PlaySoundEffect("rpsBulletCancel");
-				Destroy(gameObject);
+				theDepot.AddObject(gameObject);
 				GameObject sparks = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/HitSparks"), transform.position, Quaternion.identity);
 				sparks.transform.localScale = new Vector3(10f, 10f, 10f);
 				sparks.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/hitSparks/hitspark");	
@@ -148,7 +149,7 @@ public class BulletLogic : MonoBehaviour {
 				GameObject temp = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SoundEffectObject"), gameObject.transform.position, Quaternion.identity);
 				temp.GetComponent<SoundEffectObjectScript>().PlaySoundEffect("rpsBulletCancel");
 				GameObject destroyedObject = opposingType > type ? other.gameObject : gameObject;
-				Destroy(destroyedObject);
+				theDepot.AddObject(destroyedObject);
 			}
 		}
 	}

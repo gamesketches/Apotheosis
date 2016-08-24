@@ -82,6 +82,8 @@ public class InputManager : MonoBehaviour {
             if (bufferIter >= mashBufferSize) {
 				Fire();
 				GameObject temp = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SoundEffectObject"), gameObject.transform.position, Quaternion.identity);
+				temp.transform.position = gameObject.transform.position;
+				temp.transform.rotation = Quaternion.identity;
 				temp.GetComponent<SoundEffectObjectScript>().PlaySoundEffect("bufferFull");
 			}
 		} else if(mashing && button == '0' && !melee ){
@@ -207,7 +209,10 @@ public class InputManager : MonoBehaviour {
 
 	public void CreateBullet(BulletDepot.Bullet bullet, BulletType type = BulletType.Gator) {
 		int angle = bullet.angle + (int)playerMovement.CurrentShotAngle();
-		BulletLogic bulletLogic = ((GameObject)Instantiate(bulletPrefab, gameObject.transform.position, Quaternion.Euler(0, 0, angle))).GetComponent<BulletLogic>();
+		GameObject newBullet = bullets.GetBullet();
+		newBullet.transform.position = gameObject.transform.position;
+		newBullet.transform.rotation = Quaternion.Euler(0, 0, angle);
+		BulletLogic bulletLogic = newBullet.GetComponent<BulletLogic>();//((GameObject)Instantiate(bulletPrefab, gameObject.transform.position, Quaternion.Euler(0, 0, angle))).GetComponent<BulletLogic>();
 		bulletLogic.Initialize(type, bullet.damage, bullet.speed, bullet.size, 5, playerStats.playerColor, playerStats.number, playerStats.character);
 	}
 
