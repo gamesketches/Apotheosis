@@ -48,10 +48,10 @@ public class BulletDepot : ScriptableObject {
 	public void Load () {
 		types = new Character[2];
 		var serializer = new XmlSerializer(typeof(Character));
-		TextAsset bulletData = Resources.Load("orpheusBullets") as TextAsset;
+		TextAsset bulletData = Resources.Load("flamelBullets") as TextAsset;
 		TextReader reader = new StringReader(bulletData.text);
 		types[0] = (Character)serializer.Deserialize(reader);
-		bulletData = Resources.Load("orpheusBullets") as TextAsset;
+		bulletData = Resources.Load("flamelBullets") as TextAsset;
 		reader = new StringReader(bulletData.text);
 		types[1] = (Character)serializer.Deserialize(reader);
 		bulletPool = new List<GameObject>();
