@@ -8,7 +8,7 @@ public class BulletLogic : MonoBehaviour {
 	public BulletType type;
 	int damage;
 	float velocity;
-	float lifetime;
+	public float lifetime;
 	public float velocityMultiplier = 10f;
 	public float indirectCorrectionSpeed = 5f;
 	public float indirectHomingTime = 0.5f;
@@ -78,8 +78,7 @@ public class BulletLogic : MonoBehaviour {
 				break;
 			case BulletType.Gator:
                 sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", character.ToString(), playerNum == 0 ? "" : "Alt", "/Knife"));
-			Debug.Log(string.Concat("sprites/weapons/", character.ToString(), playerNum == 0 ? "" : "Alt", "/Knife"));
-                // TODO: change this
+			     // TODO: change this
                 transform.Rotate(new Vector3(0f, 0f, -90f));
 				bulletFunction = StraightLogic;
 				break;

@@ -26,6 +26,7 @@ public class InputManager : MonoBehaviour {
 	private float shotCooldownTimer;
 	private float meleeCooldownTimer;
 	private float exponentCooldownTimer;
+	private float bulletLifetime = 5;
 
 	private string buttonA;
 	private string buttonB;
@@ -69,23 +70,29 @@ public class InputManager : MonoBehaviour {
 			shotCooldownTimer = shotCooldownTime;
             if (button != 'D') // threw everything in here to get this cooldown not to interfere with sword. works.
             {
-                gameObject.transform.localScale = Vector3.Lerp(new Vector3(1f, 1f, 1f), new Vector3(fullBufferScale, fullBufferScale, fullBufferScale),(float)bufferIter / (float)mashBufferSize);
-                mashBuffer.SetValue(button, bufferIter);
-            
-			    if(!mashing) {
-				    mashing = true;
-			    }
-			    ExponentShot();
-			    bufferIter++;
+				if (bufferIter >= mashBufferSize - 1) {
+    	        	if(playerStats.character.ToString() == "Loholt") {
+						Fire();
+						GameObject temp = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SoundEffectObject"), gameObject.transform.position, Quaternion.identity);
+						temp.transform.position = gameObject.transform.position;
+						temp.transform.rotation = Quaternion.identity;
+						temp.GetComponent<SoundEffectObjectScript>().PlaySoundEffect("bufferFull");
+						}
+					else {
+						RecallShot();
+					}
+				}
+				else {
+	                gameObject.transform.localScale = Vector3.Lerp(new Vector3(1f, 1f, 1f), new Vector3(fullBufferScale, fullBufferScale, fullBufferScale),(float)bufferIter / (float)mashBufferSize);
+   	           		mashBuffer.SetValue(button, bufferIter);
+   	         
+				    if(!mashing) {
+					    mashing = true;
+				    }
+			  	    ExponentShot();
+				    bufferIter++;
             }
-            //playerMovement.PassBufferToReticle(bufferIter, mashBufferSize);
-            if (bufferIter >= mashBufferSize) {
-				Fire();
-				GameObject temp = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SoundEffectObject"), gameObject.transform.position, Quaternion.identity);
-				temp.transform.position = gameObject.transform.position;
-				temp.transform.rotation = Quaternion.identity;
-				temp.GetComponent<SoundEffectObjectScript>().PlaySoundEffect("bufferFull");
-			}
+           }
 		} else if(mashing && button == '0' && !melee ){
 			shotCooldownTimer -= Time.deltaTime;
 
@@ -153,6 +160,38 @@ public class InputManager : MonoBehaviour {
 			break;
 		}
 		soundEffects.Play();
+	}
+
+	void RecallShot() {
+		GameObject[] activeBullets = GameObject.FindGameObjectsWithTag("Gator");
+
+		float maxDistance = 0;
+		for(int i = 0; i < activeBullets.Length; i++) {
+			if(activeBullets[i].layer == gameObject.layer) {
+				float distance = Vector3.Distance(transform.position, activeBullets[i].transform.position);
+				if(distance > maxDistance) {
+					maxDistance = distance;
+				}
+			}
+		}
+
+		for(int i = 0; i < activeBullets.Length; i++) {
+			if(activeBullets[i].layer == gameObject.layer && Vector3.Distance(transform.position, activeBullets[i].transform.position) == maxDistance) {
+				StartCoroutine(BulletRecall(activeBullets[i].transform, transform.position));
+			}
+		}
+	}
+
+	IEnumerator BulletRecall(Transform bullet, Vector3 endPosition) {
+		float t = 0;
+		Vector3 startPosition = bullet.position;
+		BulletLogic stats = bullet.GetComponent<BulletLogic>();
+		while(t < 1) {
+			stats.lifetime = bulletLifetime;
+			bullet.position = Vector3.Lerp(startPosition, endPosition, t);
+			t += Time.deltaTime;
+			yield return null;
+		}
 	}
 
 	void Fire() {

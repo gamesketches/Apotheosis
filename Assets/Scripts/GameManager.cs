@@ -62,7 +62,6 @@ public class GameManager : MonoBehaviour {
 		player2Controls = CreateControlScheme(1);
 		currentRoundTime = roundTime;
         titleLogo = GameObject.FindGameObjectWithTag("TitleLogo").GetComponent<SpriteRenderer>();
-        Debug.Break();
         pressStart = titleLogo.GetComponent<Text>();
         infoScreen = GameObject.FindGameObjectWithTag("InfoScreen").GetComponent<SpriteRenderer>();
 		background = GameObject.FindGameObjectWithTag("Background").GetComponent<SpriteRenderer>();
