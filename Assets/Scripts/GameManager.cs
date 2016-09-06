@@ -25,9 +25,7 @@ public class GameManager : MonoBehaviour {
 	#endregion
 
 	#region CharacterSelect Vars
-	GameObject characterSelectElements;
-	Character p1Character, p2Character;
-	Sprite[] p1CharacterPortraits, p2CharacterPortraits, p1InfoPanes, p2InfoPanes;
+	CharacterSelectManager characterSelectManager;
 	#endregion
     SpriteRenderer titleLogo;
     SpriteRenderer infoScreen;
@@ -67,18 +65,14 @@ public class GameManager : MonoBehaviour {
 		background = GameObject.FindGameObjectWithTag("Background").GetComponent<SpriteRenderer>();
         roundTimer = GameObject.FindGameObjectWithTag("RoundTimer").GetComponent<Text>();
         victoryText = GameObject.FindGameObjectWithTag("VictoryText").GetComponent<Text>();
-        characterSelectElements = GameObject.Find("CharacterSelectElements");
-        characterSelectElements.SetActive(false);
+       
         Debug.Log(pressStart);
         titleLogo.enabled = true;
         pressStart.enabled = true;
         Debug.Log("hey");
         currentUpdateFunction = TitleScreen;
 
-        p1CharacterPortraits = Resources.LoadAll<Sprite>("characterSelect/p1/portraits");
-        p1InfoPanes = Resources.LoadAll<Sprite>("characterSelect/p1/summons");
-        p2CharacterPortraits = Resources.LoadAll<Sprite>("characterSelect/p2/portraits");
-		p2InfoPanes = Resources.LoadAll<Sprite>("characterSelect/p2/summons");
+        characterSelectManager = GetComponent<CharacterSelectManager>();
     }
 
     #region Pre-Battle
@@ -93,9 +87,7 @@ public class GameManager : MonoBehaviour {
             titleLogo.transform.GetChild(0).gameObject.SetActive(false);
             pressStart.enabled = false;
 			background.enabled = true;
-            characterSelectElements.SetActive(true);
-            p1Character = Character.Loholt;
-            p2Character = Character.Orpheus;
+            characterSelectManager.Reset();
             currentUpdateFunction = CharacterSelect;
         }
  /*       else if (Input.GetButtonUp("ButtonD0") || Input.GetButtonUp("ButtonC0") || Input.GetButtonUp("ButtonB0"))
@@ -122,48 +114,13 @@ public class GameManager : MonoBehaviour {
 
     #region CharacterSelect
     void CharacterSelect() {
-    	if(Input.GetAxis("Horizontal0") < 0) {
-    		p1Character = Character.Loholt;
-    	}
-    	else if(Input.GetAxis("Horizontal0") > 0) {
-    		p1Character = Character.Orpheus;
-    	}
-    	if(Input.GetAxis("Horizontal1") < 0) {
-    		p2Character = Character.Loholt;
-    	}
-    	else if(Input.GetAxis("Horizontal1") > 0) {
-    		p2Character = Character.Orpheus;
-    	}
-
-    	UpdateInfoCharacterSelect(characterSelectElements.transform.GetChild(0).gameObject,
-    										 p1Character, p1CharacterPortraits, p1InfoPanes);
-    	UpdateInfoCharacterSelect(characterSelectElements.transform.GetChild(1).gameObject,
-    										 p2Character, p2CharacterPortraits, p2InfoPanes);
-
-    	if(Input.GetButtonUp("ButtonB0")) {
+    	characterSelectManager.CharacterSelectUpdate();
+    	if(characterSelectManager.charactersSelected) {
 			titleLogo.enabled = false;
             pressStart.enabled = false;
 			background.enabled = true;
-			characterSelectElements.SetActive(false);
             InitializeGameSettings();
     	}
-
-    }
-
-    void UpdateInfoCharacterSelect(GameObject player, Character highlightedCharacter,
-    														 Sprite[] portraits,
-    														 Sprite[] infoPanes) {
-    	SpriteRenderer portrait = player.GetComponentInChildren<SpriteRenderer>();
-    	portrait.sprite = portraits[(int)highlightedCharacter];
-    	SpriteRenderer infoPane = player.GetComponentsInChildren<SpriteRenderer>()[2];
-    	infoPane.sprite = infoPanes[(int)highlightedCharacter];
-    	Text nameText = player.GetComponentInChildren<Text>();
-    	nameText.text = highlightedCharacter.ToString();
-    	Text[] bulletDescriptions = player.GetComponentsInChildren<Text>();
-    	int firstText = bulletDescriptions.Length - 3;
-		bulletDescriptions[firstText + 0].text = "Shield for blocking";//bullets.types[(int)highlightedCharacter].projectileTypes[1].bulletDescription;
-		bulletDescriptions[firstText + 1].text = "Tracks enemy";//bullets.types[(int)highlightedCharacter].projectileTypes[2].bulletDescription;
-		bulletDescriptions[firstText + 2].text = "A piercing summon";//bullets.types[(int)highlightedCharacter].projectileTypes[0].bulletDescription;   
     }
 
     #endregion
@@ -233,10 +190,10 @@ public class GameManager : MonoBehaviour {
 
 	void StartRound() {
 		Vector3 lifebarOffset = new Vector3(0, -2, 0);
-		player1 = CreatePlayer(player1Controls, p1Character, player1Pos, 0);
+		player1 = CreatePlayer(player1Controls, characterSelectManager.p1Character, player1Pos, 0);
 		p1LifeBar = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SetLifeBar"), player1Pos + lifebarOffset, Quaternion.identity);
 		p1LifeBar.transform.parent = player1.transform;
-		player2 = CreatePlayer(player2Controls, p2Character, player2Pos, 1);
+		player2 = CreatePlayer(player2Controls, characterSelectManager.p2Character, player2Pos, 1);
 		p2LifeBar = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SetLifeBar"), player2Pos + lifebarOffset, Quaternion.identity);
 		p2LifeBar.transform.parent = player2.transform;
 		player1Stats = player1.GetComponent<PlayerStats>();
