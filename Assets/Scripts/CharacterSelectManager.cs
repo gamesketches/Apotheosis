@@ -8,8 +8,11 @@ public class CharacterSelectManager : MonoBehaviour {
 	public Character p1Character, p2Character;
 	Sprite[] p1CharacterPortraits, p2CharacterPortraits, p1InfoPanes, p2InfoPanes;
 	public bool charactersSelected;
+	private bool p1Selected, p2Selected;
 	// Use this for initialization
 	void Start () {
+		p1Selected = false;
+		p2Selected = false;
 		charactersSelected = false;
 		characterSelectElements = GameObject.Find("CharacterSelectElements");
         characterSelectElements.SetActive(false);
@@ -27,30 +30,37 @@ public class CharacterSelectManager : MonoBehaviour {
 	}
 
 	public void CharacterSelectUpdate() {
-    	if(Input.GetAxis("Horizontal0") < 0) {
-    		p1Character = Character.Loholt;
+		if(!p1Selected) {
+	    	if(Input.GetAxis("Horizontal0") < 0) {
+   		 		p1Character = Character.Loholt;
+   		 	}
+    		else if(Input.GetAxis("Horizontal0") > 0) {
+    			p1Character = Character.Orpheus;
+    		}
     	}
-    	else if(Input.GetAxis("Horizontal0") > 0) {
-    		p1Character = Character.Orpheus;
+    	if(!p2Selected) {
+	    	if(Input.GetAxis("Horizontal1") < 0) {
+   		 		p2Character = Character.Loholt;
+    		}
+    		else if(Input.GetAxis("Horizontal1") > 0) {
+    			p2Character = Character.Orpheus;
+    		}
     	}
-    	if(Input.GetAxis("Horizontal1") < 0) {
-    		p2Character = Character.Loholt;
-    	}
-    	else if(Input.GetAxis("Horizontal1") > 0) {
-    		p2Character = Character.Orpheus;
-    	}
-
     	UpdateInfoCharacterSelect(characterSelectElements.transform.GetChild(0).gameObject,
     										 p1Character, p1CharacterPortraits, p1InfoPanes);
     	UpdateInfoCharacterSelect(characterSelectElements.transform.GetChild(1).gameObject,
     										 p2Character, p2CharacterPortraits, p2InfoPanes);
 
     	if(Input.GetButtonUp("ButtonB0")) {
-
+			p1Selected = true;
+    	}
+    	if(Input.GetButtonUp("ButtonB1")) {
+    		p2Selected = true;
+    	}
+    	if(p1Selected && p2Selected) {
 			characterSelectElements.SetActive(false);
 			charactersSelected = true;
     	}
-
     }
 
     void UpdateInfoCharacterSelect(GameObject player, Character highlightedCharacter,
