@@ -360,13 +360,13 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void ClearBullets() {
-		foreach(GameObject bullet in GameObject.FindGameObjectsWithTag("Gator")) {
+		foreach(GameObject bullet in GameObject.FindGameObjectsWithTag("Knife")) {
 			Destroy(bullet);
 		}
-		foreach(GameObject bullet in GameObject.FindGameObjectsWithTag("Hippo")) {
+		foreach(GameObject bullet in GameObject.FindGameObjectsWithTag("Shield")) {
 			Destroy(bullet);
 		}
-		foreach(GameObject bullet in GameObject.FindGameObjectsWithTag("Crane")) {
+		foreach(GameObject bullet in GameObject.FindGameObjectsWithTag("Boomerang")) {
 			Destroy(bullet);
 		}
 	}

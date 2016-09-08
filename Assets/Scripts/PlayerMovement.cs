@@ -5,6 +5,7 @@ public class PlayerMovement : MonoBehaviour {
 	public float speed;
 	public float reticleRadius;
 	public bool locked;
+	public int bufferIter;
 
 	public Reticle reticle;
 
@@ -29,6 +30,7 @@ public class PlayerMovement : MonoBehaviour {
 	void Start() {
 		playerStats = GetComponent<PlayerStats>();
 		gameObject.layer = playerStats.number + 8;
+		bufferIter = 0;
 
 		reticle.gameObject.layer = gameObject.layer;
 		rb2D = GetComponent<Rigidbody2D>();
@@ -48,7 +50,8 @@ public class PlayerMovement : MonoBehaviour {
 
 	void HandleMovement() {
 		if(!locked) {
-			rb2D.velocity = (new Vector2(Input.GetAxisRaw(horizontalAxis), Input.GetAxisRaw(verticalAxis))).normalized * speed;
+			float computedSpeed =  speed * (float)(1 - 0.1 * bufferIter);
+			rb2D.velocity = (new Vector2(Input.GetAxisRaw(horizontalAxis), Input.GetAxisRaw(verticalAxis))).normalized * (float)computedSpeed;
 				anim.SetInteger("xAxis", (int) rb2D.velocity.x);
 				anim.SetInteger("yAxis", (int) rb2D.velocity.y);
 				if(rb2D.velocity.x != 0.0f || rb2D.velocity.y != 0.0f) {

@@ -57,6 +57,7 @@ public class InputManager : MonoBehaviour {
 	}
 
 	void Update() {
+		playerMovement.bufferIter = bufferIter;
 		if(playerMovement.locked) {
 			return;
 		}
