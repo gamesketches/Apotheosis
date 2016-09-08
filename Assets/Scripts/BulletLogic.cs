@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum BulletType {Gator, Hippo, Crane};
+public enum BulletType {Knife, Shield, Boomerang};
 
 public class BulletLogic : MonoBehaviour {
 
@@ -66,7 +66,7 @@ public class BulletLogic : MonoBehaviour {
 		lifetime = Lifetime;
 		gameObject.layer = 8 + playerNum;
 		switch(type) {
-			case BulletType.Crane:
+			case BulletType.Boomerang:
 				bulletFunction = IndirectLogic;
 				sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", character.ToString(), playerNum == 0 ? "" : "Alt", "/Boomerang"));
 				headingTime = 0f;
@@ -76,13 +76,13 @@ public class BulletLogic : MonoBehaviour {
 						}
 				}
 				break;
-			case BulletType.Gator:
+			case BulletType.Knife:
                 sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", character.ToString(), playerNum == 0 ? "" : "Alt", "/Knife"));
 			     // TODO: change this
                 transform.Rotate(new Vector3(0f, 0f, -90f));
 				bulletFunction = StraightLogic;
 				break;
-			// Hippo situation
+			// Shield situation
 			default:
 			sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", character.ToString(), playerNum == 0 ? "" : "Alt", "/Shield"));
 				bulletFunction = SlowShotLogic;

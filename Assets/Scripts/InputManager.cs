@@ -129,16 +129,16 @@ public class InputManager : MonoBehaviour {
 	}
 
 	void ExponentShot() {
-		BulletType type = BulletType.Gator;
+		BulletType type = BulletType.Knife;
 		switch(GetButtonPress()) {
 			case 'A':
-				type = BulletType.Gator;
+				type = BulletType.Knife;
 				break;
 			case 'B':
-				type = BulletType.Crane;
+				type = BulletType.Boomerang;
 				break;
 			case 'C':
-				type = BulletType.Hippo;
+				type = BulletType.Shield;
 				break;
 			case 'D':
 				return;
@@ -149,13 +149,13 @@ public class InputManager : MonoBehaviour {
 			CreateBullet(bullet, type);
 		}
 		switch(type) {
-		case BulletType.Crane:
+		case BulletType.Boomerang:
 			soundEffects.clip = Resources.Load<AudioClip>("audio/soundEffects/boomerangSound");
 			break;
-		case BulletType.Gator:
+		case BulletType.Knife:
 			soundEffects.clip = Resources.Load<AudioClip>("audio/soundEffects/knifeSound");
 			break;
-		case BulletType.Hippo:
+		case BulletType.Shield:
 			soundEffects.clip = Resources.Load<AudioClip>("audio/soundEffects/shieldSound");
 			break;
 		}
@@ -163,7 +163,7 @@ public class InputManager : MonoBehaviour {
 	}
 
 	void RecallShot() {
-		GameObject[] activeBullets = GameObject.FindGameObjectsWithTag("Gator");
+		GameObject[] activeBullets = GameObject.FindGameObjectsWithTag("Knife");
 
 		float maxDistance = 0;
 		for(int i = 0; i < activeBullets.Length; i++) {
@@ -232,11 +232,11 @@ public class InputManager : MonoBehaviour {
 		}
 		char bulletTypeChar = meaningfulInput[meaningfulInput.Count - 1];
 		if(bulletTypeChar == 'A') {
-			theBulletType = BulletType.Gator;
+			theBulletType = BulletType.Knife;
 		} else if(bulletTypeChar == 'B') {
-			theBulletType = BulletType.Crane;
+			theBulletType = BulletType.Boomerang;
 		} else {
-			theBulletType = BulletType.Hippo;
+			theBulletType = BulletType.Shield;
 		}
 
         for (int i = 0; i < bulletAngles.Count; i++) {
@@ -246,7 +246,7 @@ public class InputManager : MonoBehaviour {
 		}
 	}
 
-	public void CreateBullet(BulletDepot.Bullet bullet, BulletType type = BulletType.Gator) {
+	public void CreateBullet(BulletDepot.Bullet bullet, BulletType type = BulletType.Knife) {
 		int angle = bullet.angle + (int)playerMovement.CurrentShotAngle();
 		GameObject newBullet = bullets.GetBullet();
 		newBullet.transform.position = gameObject.transform.position;
