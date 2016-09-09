@@ -51,7 +51,7 @@ public class BulletDepot : ScriptableObject {
 		TextAsset bulletData = Resources.Load("flamelBullets") as TextAsset;
 		TextReader reader = new StringReader(bulletData.text);
 		types[0] = (Character)serializer.Deserialize(reader);
-		bulletData = Resources.Load("flamelBullets") as TextAsset;
+		bulletData = Resources.Load("orpheusBullets") as TextAsset;
 		reader = new StringReader(bulletData.text);
 		types[1] = (Character)serializer.Deserialize(reader);
 		bulletPool = new List<GameObject>();
