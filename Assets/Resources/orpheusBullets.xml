@@ -2,6 +2,7 @@
 <Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<Character name="orpheus">
     <ProjectileType name="gator" desc="A piercing summon">
+      <Volley>
       <!-- BLOCK blt count: 1,1,1,1,2,2,2,3 -->
           <!-- Volley #1 -->
         <Bullet>
@@ -102,7 +103,7 @@
           <angle>-30</angle>
         </Bullet>
       </Volley>
-    
+    </ProjectileType>
     
 		<ProjectileType name="hippo" desc="Shield for blocking"> <!-- BLOCK blt count: 1,2,3,5,9,13,15,20-->
       <Volley>

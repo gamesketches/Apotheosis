@@ -53,10 +53,12 @@ public class CharacterSelectManager : MonoBehaviour {
 
     	if(Input.GetButtonUp("ButtonB0")) {
 			p1Selected = true;
-    	}
+            Debug.Log("P1 Selected");
+        }
     	if(Input.GetButtonUp("ButtonB1")) {
     		p2Selected = true;
-    	}
+            Debug.Log("P2 Selected");
+        }
     	if(p1Selected && p2Selected) {
 			characterSelectElements.SetActive(false);
 			charactersSelected = true;

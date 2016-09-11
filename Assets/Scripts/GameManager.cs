@@ -54,9 +54,10 @@ public class GameManager : MonoBehaviour {
             j++;
         }
 
-		bullets = new BulletDepot();
+		//bullets = new BulletDepot(); // clearing a warning w/next line - ski
+        bullets = ScriptableObject.CreateInstance<BulletDepot>();
 		bullets.Load();
-		player1Controls = CreateControlScheme(0);
+        player1Controls = CreateControlScheme(0);
 		player2Controls = CreateControlScheme(1);
 		currentRoundTime = roundTime;
         titleLogo = GameObject.FindGameObjectWithTag("TitleLogo").GetComponent<SpriteRenderer>();
@@ -132,8 +133,10 @@ public class GameManager : MonoBehaviour {
 		player1Wins = 0;
 		player2RoundWins = 0;
 		player2Wins = 0;
-		bullets = new BulletDepot();
-		bullets.Load();
+        //bullets = new BulletDepot(); //clearing warning with next line - ski
+        bullets = ScriptableObject.CreateInstance<BulletDepot>();
+
+        bullets.Load();
 		player1Controls = CreateControlScheme(0);
 		player2Controls = CreateControlScheme(1);
 		StartRound();
