@@ -34,7 +34,7 @@ public class BulletDepot : ScriptableObject {
 	}
 
 	[XmlRoot("Root")]
-	public class Character {
+	public class CharacterData {
 		[XmlArray("Character")]
 		[XmlArrayItem("ProjectileType")]
 		public List<ProjectileType> projectileTypes = new List<ProjectileType>();
@@ -43,17 +43,18 @@ public class BulletDepot : ScriptableObject {
 		public string characterName;
 	}
 
-	public Character[] types;
+	public CharacterData[] types;
 	// Use this for initialization
 	public void Load () {
-		types = new Character[2];
-		var serializer = new XmlSerializer(typeof(Character));
-		TextAsset bulletData = Resources.Load("flamelBullets") as TextAsset;
-		TextReader reader = new StringReader(bulletData.text);
-		types[0] = (Character)serializer.Deserialize(reader);
-		bulletData = Resources.Load("orpheusBullets") as TextAsset;
-		reader = new StringReader(bulletData.text);
-		types[1] = (Character)serializer.Deserialize(reader);
+		string[] characterNames = System.Enum.GetNames(typeof(Character));
+		types = new CharacterData[characterNames.Length];
+		var serializer = new XmlSerializer(typeof(CharacterData));
+		for(int i = 0; i <  characterNames.Length; i++) {
+			TextAsset bulletData = Resources.Load(string.Concat(characterNames[i].ToLower(), "Bullets")) as TextAsset;
+			Debug.Log(string.Concat(characterNames[i].ToLower(), "Bullets"));
+			TextReader reader = new StringReader(bulletData.text);
+			types[i] = (CharacterData)serializer.Deserialize(reader);
+		}
 		bulletPool = new List<GameObject>();
 		bulletPrefab = Resources.Load<GameObject>("prefabs/Bullet");
 	}
