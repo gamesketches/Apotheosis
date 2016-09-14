@@ -3,6 +3,7 @@ using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
 
+
 public class SpriteSheetGenerator : MonoBehaviour {
 
 	static int frameRate = 12;
@@ -10,7 +11,9 @@ public class SpriteSheetGenerator : MonoBehaviour {
 	static int spriteHeight = 64;
 	static void SliceSprite(string name) {
 
-		Texture2D myTexture = (Texture2D)Resources.Load<Texture2D>(string.Concat("sprites/", name, "Animation/p1/", name));
+		string filename = string.Concat("SpriteSheet", name);
+		Debug.Log(filename);
+		Texture2D myTexture = (Texture2D)Resources.Load<Texture2D>(string.Concat("sprites/", name, "Animation/p1/", filename));
  
          string path = AssetDatabase.GetAssetPath(myTexture);
          TextureImporter ti = AssetImporter.GetAtPath(path) as TextureImporter;
@@ -40,7 +43,10 @@ public class SpriteSheetGenerator : MonoBehaviour {
          AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceUpdate);
      }
 
-	static void GenerateSpriteSheet(string characterName) {
+	static void GenerateSpriteSheet() {
+		string[] cmdArgs = System.Environment.GetCommandLineArgs();
+		string characterName = cmdArgs[cmdArgs.Length - 1];
+		Debug.Log(characterName);
 		SliceSprite(characterName);
 		Sprite[] sprites = Resources.LoadAll<Sprite>(string.Concat("sprites/", characterName, "Animation/p1/", characterName)); // load all sprites in "assets/Resources/sprite" folder
    		AnimationClip animClip = new AnimationClip();
