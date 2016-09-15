@@ -89,8 +89,8 @@ public class BulletLogic : MonoBehaviour {
 			velocity = 2.5f;
 			GetComponent<CircleCollider2D>().radius = 0.5f;
 			shieldOscillationTime = 0;
-			//lifetime = Lifetime / 2;
-			lifetime = Lifetime / 0.25f;
+			lifetime = Lifetime / 2;
+			//lifetime = Lifetime / 0.25f;
 			tempVector = Quaternion.AngleAxis(gameObject.transform.rotation.eulerAngles.z, Vector3.forward) * new Vector3(velocity, 0, 0);
 			travelVector = new Vector2(tempVector.x, tempVector.y);	
 			break;
