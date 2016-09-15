@@ -67,7 +67,12 @@ public class BulletLogic : MonoBehaviour {
 		gameObject.layer = 8 + playerNum;
 		switch(type) {
 			case BulletType.Boomerang:
-				bulletFunction = IndirectLogic;
+				if(character == Character.Orpheus) { 
+					bulletFunction = StraightLogic;
+					transform.Rotate(new Vector3(0f, 0f, -90f));
+					travelVector *= -1;
+					}
+				else bulletFunction = IndirectLogic;
 				sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", character.ToString(), playerNum == 0 ? "" : "Alt", "/Boomerang"));
 				headingTime = 0f;
 				foreach(GameObject player in GameObject.FindGameObjectsWithTag("Player")){

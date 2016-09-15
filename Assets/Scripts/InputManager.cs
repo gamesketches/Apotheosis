@@ -164,7 +164,7 @@ public class InputManager : MonoBehaviour {
 	}
 
 	void RecallShot() {
-		GameObject[] activeBullets = GameObject.FindGameObjectsWithTag("Knife");
+		GameObject[] activeBullets = GameObject.FindGameObjectsWithTag("Boomerang");
 
 		float maxDistance = 0;
 		for(int i = 0; i < activeBullets.Length; i++) {
