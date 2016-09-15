@@ -8,11 +8,14 @@ public class CharacterSelectManager : MonoBehaviour {
 	public Character p1Character, p2Character;
 	Sprite[] p1CharacterPortraits, p2CharacterPortraits, p1InfoPanes, p2InfoPanes;
 	public bool charactersSelected;
-	private bool p1Selected, p2Selected;
+	private bool p1Selected, p2Selected, p1ButtonDown, p2ButtonDown;
+	private int numCharacters;
 	// Use this for initialization
 	void Start () {
 		p1Selected = false;
 		p2Selected = false;
+		p1ButtonDown = true;
+		p2ButtonDown = true;
 		charactersSelected = false;
 		characterSelectElements = GameObject.Find("CharacterSelectElements");
         characterSelectElements.SetActive(false);
@@ -20,6 +23,7 @@ public class CharacterSelectManager : MonoBehaviour {
         p1InfoPanes = Resources.LoadAll<Sprite>("characterSelect/p1/summons");
         p2CharacterPortraits = Resources.LoadAll<Sprite>("characterSelect/p2/portraits");
 		p2InfoPanes = Resources.LoadAll<Sprite>("characterSelect/p2/summons");
+		numCharacters = System.Enum.GetValues(typeof(Character)).Length;
 	}
 
 	public void Reset() {
@@ -30,21 +34,14 @@ public class CharacterSelectManager : MonoBehaviour {
 	}
 
 	public void CharacterSelectUpdate() {
-		if(!p1Selected) {
-	    	if(Input.GetAxis("Horizontal0") < 0) {
-   		 		p1Character = Character.Loholt;
-   		 	}
-    		else if(Input.GetAxis("Horizontal0") > 0) {
-    			p1Character = Character.Orpheus;
-    		}
+		CheckDirectionals();
+		if(!p1Selected && Input.GetAxis("Horizontal0") != 0 && !p1ButtonDown) {
+			p1ButtonDown = true;
+    		p1Character = CycleThroughCharacters(p1Character, "Horizontal0");
     	}
-    	if(!p2Selected) {
-	    	if(Input.GetAxis("Horizontal1") < 0) {
-   		 		p2Character = Character.Loholt;
-    		}
-    		else if(Input.GetAxis("Horizontal1") > 0) {
-    			p2Character = Character.Orpheus;
-    		}
+		if(!p2Selected && Input.GetAxis("Horizontal1") != 0 && !p2ButtonDown) {
+			p2ButtonDown = true;
+    		p2Character = CycleThroughCharacters(p2Character, "Horizontal1");
     	}
     	UpdateInfoCharacterSelect(characterSelectElements.transform.GetChild(0).gameObject,
     										 p1Character, p1CharacterPortraits, p1InfoPanes);
@@ -79,5 +76,33 @@ public class CharacterSelectManager : MonoBehaviour {
 		bulletDescriptions[firstText + 0].text = "Shield for blocking";//bullets.types[(int)highlightedCharacter].projectileTypes[1].bulletDescription;
 		bulletDescriptions[firstText + 1].text = "Tracks enemy";//bullets.types[(int)highlightedCharacter].projectileTypes[2].bulletDescription;
 		bulletDescriptions[firstText + 2].text = "A piercing summon";//bullets.types[(int)highlightedCharacter].projectileTypes[0].bulletDescription;   
+    }
+
+    Character CycleThroughCharacters(Character character, string axis) {
+		if(Input.GetAxisRaw(axis) < 0) {
+				int temp = (int)character;
+				temp -= 1;
+   		 		if(temp < 0) {
+   		 			temp = numCharacters -1;
+   		 		}
+				return (Character)temp;//System.Enum.GetValues(typeof(Character)).GetValue(temp);
+
+   		 	}
+    	else if(Input.GetAxisRaw(axis) > 0) {
+    			character += 1;
+    			if((int)character == numCharacters) {
+    				return (Character)System.Enum.GetValues(typeof(Character)).GetValue(0);
+    			}
+    		}
+    	return character;
+    }
+
+    void CheckDirectionals() {
+    	if(Input.GetAxis("Horizontal0") == 0) {
+    		p1ButtonDown = false;
+    	}
+    	if(Input.GetAxis("Horizontal1") == 0) {
+    		p2ButtonDown = false;
+    	}
     }
 }

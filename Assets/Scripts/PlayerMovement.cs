@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour {
 	private Animator anim;
 
 	private PlayerStats playerStats;
+	private SpriteRenderer renderer;
 
 	void Awake() {
 		locked = false;
@@ -42,6 +43,7 @@ public class PlayerMovement : MonoBehaviour {
 		}
 		degrees = radians * Mathf.Rad2Deg;
 		SetReticle();
+		renderer = GetComponent<SpriteRenderer>();
 	}
 
 	void Update() {
@@ -54,6 +56,9 @@ public class PlayerMovement : MonoBehaviour {
 			rb2D.velocity = (new Vector2(Input.GetAxisRaw(horizontalAxis), Input.GetAxisRaw(verticalAxis))).normalized * (float)computedSpeed;
 				anim.SetInteger("xAxis", (int) rb2D.velocity.x);
 				anim.SetInteger("yAxis", (int) rb2D.velocity.y);
+				if(playerStats.character == Character.Hiruko) {
+					renderer.flipX = rb2D.velocity.x < 0 ? true : false;
+				}
 				if(rb2D.velocity.x != 0.0f || rb2D.velocity.y != 0.0f) {
 					radians = Mathf.Atan2(rb2D.velocity.y, rb2D.velocity.x);
 					degrees = radians * Mathf.Rad2Deg;

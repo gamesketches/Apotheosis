@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public enum Character {Loholt, Orpheus};
+public enum Character {Hiruko, Loholt, Orpheus};
 
 public class GameManager : MonoBehaviour {
 
@@ -168,11 +168,17 @@ public class GameManager : MonoBehaviour {
 		tempInputManager.reticle = reticle;
 
 		AnimatorOverrideController animationController = new AnimatorOverrideController();
-		animationController.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("sprites/LoholtAnimation/p1/PlayerAnimationController");
-		string resourcePath = string.Concat("sprites/", character.ToString(), "Animation/p", (number + 1).ToString());
-		foreach(AnimationClip clip in Resources.LoadAll<AnimationClip>(resourcePath)) {
-				animationController[clip.name] = clip;
-			}
+
+		if(character != Character.Hiruko) {
+			animationController.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("sprites/LoholtAnimation/p1/PlayerAnimationController");
+			string resourcePath = string.Concat("sprites/", character.ToString(), "Animation/p", (number + 1).ToString());
+			foreach(AnimationClip clip in Resources.LoadAll<AnimationClip>(resourcePath)) {
+					animationController[clip.name] = clip;
+				}
+		}
+		else {
+			animationController.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("sprites/HirukoAnimation/p1/OptimizedAnimationController");
+		}
 		tempMovement.SetAnimator(animationController);
 		reticle.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/reticle-18");
 			player1Reticle = reticle.gameObject;

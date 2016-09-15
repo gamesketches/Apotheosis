@@ -12,9 +12,8 @@ public class SpriteSheetGenerator : MonoBehaviour {
 	static void SliceSprite(string name) {
 
 		string filename = string.Concat("SpriteSheet", name);
-		Debug.Log(filename);
 		Texture2D myTexture = (Texture2D)Resources.Load<Texture2D>(string.Concat("sprites/", name, "Animation/p1/", filename));
- 
+
          string path = AssetDatabase.GetAssetPath(myTexture);
          TextureImporter ti = AssetImporter.GetAtPath(path) as TextureImporter;
          ti.isReadable = true;
