@@ -250,7 +250,9 @@ public class InputManager : MonoBehaviour {
 
 	public void CreateBullet(BulletDepot.Bullet bullet, BulletType type = BulletType.Knife) {
 		int angle = bullet.angle + (int)playerMovement.CurrentShotAngle();
-		GameObject newBullet = bullets.GetBullet();
+        Debug.Log("CreateBullet(): angle =" + angle + " playerMovement.CurrentShotAngle = " + (int)playerMovement.CurrentShotAngle());
+
+        GameObject newBullet = bullets.GetBullet();
 		newBullet.transform.position = gameObject.transform.position;
 		newBullet.transform.rotation = Quaternion.Euler(0, 0, angle);
 		BulletLogic bulletLogic = newBullet.GetComponent<BulletLogic>();//((GameObject)Instantiate(bulletPrefab, gameObject.transform.position, Quaternion.Euler(0, 0, angle))).GetComponent<BulletLogic>();

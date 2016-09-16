@@ -91,13 +91,49 @@ public class GameManager : MonoBehaviour {
             characterSelectManager.Reset();
             currentUpdateFunction = CharacterSelect;
         }
- /*       else if (Input.GetButtonUp("ButtonD0") || Input.GetButtonUp("ButtonC0") || Input.GetButtonUp("ButtonB0"))
+        /*       else if (Input.GetButtonUp("ButtonD0") || Input.GetButtonUp("ButtonC0") || Input.GetButtonUp("ButtonB0"))
+               {
+                   titleLogo.enabled = false;
+                   pressStart.enabled = false;
+                   infoScreen.enabled = true;
+                   currentUpdateFunction = InfoScreen;
+               }*/
+
+        //ski 
+        if (Input.GetKeyUp(KeyCode.Alpha7))
         {
+            //debug to start round directly
             titleLogo.enabled = false;
+            titleLogo.transform.GetChild(0).gameObject.SetActive(false);
             pressStart.enabled = false;
-            infoScreen.enabled = true;
-            currentUpdateFunction = InfoScreen;
-        }*/
+            background.enabled = true;
+            characterSelectManager.p1Character = Character.Loholt;
+            characterSelectManager.p2Character = Character.Orpheus;
+            InitializeGameSettings();
+        }
+        else if (Input.GetKeyUp(KeyCode.Alpha8))
+        {
+            //debug to start round directly
+            titleLogo.enabled = false;
+            titleLogo.transform.GetChild(0).gameObject.SetActive(false);
+            pressStart.enabled = false;
+            background.enabled = true;
+            characterSelectManager.p1Character = Character.Orpheus;
+            characterSelectManager.p2Character = Character.Hiruko;
+            InitializeGameSettings();
+        }
+        else if (Input.GetKeyUp(KeyCode.Alpha9))
+        {
+            //debug to start round directly
+            titleLogo.enabled = false;
+            titleLogo.transform.GetChild(0).gameObject.SetActive(false);
+            pressStart.enabled = false;
+            background.enabled = true;
+            characterSelectManager.p1Character = Character.Hiruko;
+            characterSelectManager.p2Character = Character.Loholt;
+            InitializeGameSettings();
+        }
+
     }
 
     void InfoScreen()

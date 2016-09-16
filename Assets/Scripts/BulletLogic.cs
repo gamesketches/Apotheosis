@@ -184,8 +184,11 @@ public class BulletLogic : MonoBehaviour {
 	void SlowShotLogic(){
 		renderer.transform.position += Vector3.one * shieldVelocity.Evaluate(shieldOscillationTime);
 		shieldOscillationTime += Time.deltaTime;
-		if(shieldOscillationTime > 1) {
-			shieldOscillationTime = 0;
+		//slowing shots in motion
+        travelVector *= 0.98f; //ski
+        //Debug.Log("sloweing. shieldOscillationTime = " + shieldOscillationTime);
+        if (shieldOscillationTime > 1) {
+            shieldOscillationTime = 0;
 			renderer.transform.localPosition = Vector3.zero;
 		}
 	}
