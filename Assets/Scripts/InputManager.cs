@@ -49,7 +49,7 @@ public class InputManager : MonoBehaviour {
 		playerStats = GetComponent<PlayerStats>();
 		playerMovement = GetComponent<PlayerMovement>();
 		renderer = GetComponent<SpriteRenderer>();
-		mashBufferSize = 8;
+		//mashBufferSize = 8;
 		mashBuffer = new char[mashBufferSize];
 		for(int i = 0; i < mashBufferSize; i++){
 			mashBuffer.SetValue('*', i);
@@ -146,6 +146,7 @@ public class InputManager : MonoBehaviour {
 				break;
 		}
 		BulletDepot.Volley volley = bullets.types[(int)playerStats.character].projectileTypes[(int)type].volleys[bufferIter];
+        Debug.Log(" volley = " + bufferIter); //ski
 		foreach(BulletDepot.Bullet bullet in volley.volley) {
 			CreateBullet(bullet, type);
 		}
