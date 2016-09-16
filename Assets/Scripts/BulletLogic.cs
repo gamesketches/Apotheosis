@@ -91,7 +91,7 @@ public class BulletLogic : MonoBehaviour {
 			default:
 			sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", character.ToString(), playerNum == 0 ? "" : "Alt", "/Shield"));
 				bulletFunction = SlowShotLogic;
-			velocity = 2.5f;
+			//velocity = 2.5f;
 			GetComponent<CircleCollider2D>().radius = 0.5f;
 			shieldOscillationTime = 0;
 			lifetime = Lifetime / 2;
@@ -113,8 +113,10 @@ public class BulletLogic : MonoBehaviour {
 			if(other.gameObject.tag == "Player") {
 					other.gameObject.GetComponent<PlayerStats>().health -= damage;
 					GameObject sparks = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/HitSparks"), transform.position, Quaternion.identity);
-					sparks.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/hitSparks/hitspark");	
-					if(GameObject.FindGameObjectsWithTag("SoundEffects").Length < 5) {
+					sparks.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/hitSparks/hitspark");
+                    sparks.transform.localScale = new Vector3(damage * 2, damage * 2, damage * 2);
+                    Debug.Log("hit spark 0");
+                    if (GameObject.FindGameObjectsWithTag("SoundEffects").Length < 5) {
 					GameObject temp = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SoundEffectObject"), gameObject.transform.position, Quaternion.identity);
 					temp.GetComponent<SoundEffectObjectScript>().PlaySoundEffect("damageHit");
 					}
@@ -143,13 +145,13 @@ public class BulletLogic : MonoBehaviour {
 				temp.GetComponent<SoundEffectObjectScript>().PlaySoundEffect("rpsBulletCancel");
 				theDepot.AddObject(gameObject);
 				GameObject sparks = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/HitSparks"), transform.position, Quaternion.identity);
-				sparks.transform.localScale = new Vector3(10f, 10f, 10f);
-				sparks.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/hitSparks/hitspark");	
+                sparks.transform.localScale = new Vector3(10f, 10f, 10f);
+                sparks.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/hitSparks/hitspark");	
 			}
 			else {
 				GameObject sparks = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/HitSparks"), transform.position, Quaternion.identity);
 				sparks.transform.localScale = new Vector3(10f, 10f, 10f);
-				sparks.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/hitSparks/hitspark");	
+                sparks.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/hitSparks/hitspark");	
 				GameObject temp = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SoundEffectObject"), gameObject.transform.position, Quaternion.identity);
 				temp.GetComponent<SoundEffectObjectScript>().PlaySoundEffect("rpsBulletCancel");
 				GameObject destroyedObject = opposingType > type ? other.gameObject : gameObject;

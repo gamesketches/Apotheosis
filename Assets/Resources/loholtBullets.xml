@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<Character name="flamel">
+	<Character name="loholt">
     <ProjectileType name="gator" desc="A piercing summon"> <!-- BLOCK blt count: 1,1,1,1,2,2,2,3 (T1)-->
       <Volley>
         <!-- Volley #1 -->
         <Bullet>
           <size>0.5</size>
-          <speed>1</speed>
+          <speed>7</speed>
           <damage>1</damage>
           <angle>0</angle>
         </Bullet>
@@ -15,7 +15,7 @@
         <!-- Volley #2 -->
         <Bullet>
           <size>0.5</size>
-          <speed>1</speed>
+          <speed>2</speed>
           <damage>1</damage>
           <angle>0</angle>
         </Bullet>
@@ -24,7 +24,7 @@
         <!-- Volley #3 -->
         <Bullet>
           <size>1</size>
-          <speed>1</speed>
+          <speed>2</speed>
           <damage>1</damage>
           <angle>0</angle>
         </Bullet>
@@ -33,7 +33,7 @@
         <!-- Volley #4 -->
         <Bullet>
           <size>0.5</size>
-          <speed>1</speed>
+          <speed>2</speed>
           <damage>1</damage>
           <angle>0</angle>
         </Bullet>
@@ -42,26 +42,26 @@
         <!-- Volley #5 -->
         <Bullet>
           <size>1</size>
-          <speed>1</speed>
+          <speed>2</speed>
           <damage>5</damage>
           <angle>15</angle>
         </Bullet>
         <Bullet>
           <size>1</size>
-          <speed>1</speed>
+          <speed>2</speed>
           <damage>8</damage>
           <angle>-15</angle>
         </Bullet>
         <!-- Volley #6 -->
         <Bullet>
           <size>1</size>
-          <speed>1</speed>
+          <speed>2</speed>
           <damage>8</damage>
           <angle>20</angle>
         </Bullet>
         <Bullet>
           <size>1</size>
-          <speed>1</speed>
+          <speed>2</speed>
           <damage>8</damage>
           <angle>-20</angle>
         </Bullet>
@@ -70,13 +70,13 @@
         <!-- Volley #7 3 big 2 small -->
         <Bullet>
           <size>1</size>
-          <speed>1</speed>
+          <speed>2</speed>
           <damage>1</damage>
           <angle>20</angle>
         </Bullet>
         <Bullet>
           <size>1</size>
-          <speed>1</speed>
+          <speed>2</speed>
           <damage>8</damage>
           <angle>-25</angle>
         </Bullet>
@@ -85,19 +85,19 @@
         <!-- Volley #8 3 -->
         <Bullet>
           <size>1</size>
-          <speed>1</speed>
+          <speed>2</speed>
           <damage>5</damage>
           <angle>30</angle>
         </Bullet>
         <Bullet>
           <size>1</size>
-          <speed>1</speed>
+          <speed>2</speed>
           <damage>8</damage>
           <angle>0</angle>
         </Bullet>
         <Bullet>
           <size>1</size>
-          <speed>1</speed>
+          <speed>2</speed>
           <damage>8</damage>
           <angle>-30</angle>
         </Bullet>
@@ -109,7 +109,7 @@
       <Volley>
 					<Bullet>
 						<size>2</size>
-						<speed>1</speed>
+						<speed>3</speed>
 						<damage>1</damage>
 						<angle>0</angle>
 					</Bullet>
@@ -118,7 +118,7 @@
           <!-- Volley #2  -->
           <Bullet>
 						<size>2</size>
-						<speed>1</speed>
+						<speed>3</speed>
 						<damage>1</damage>
 						<angle>180</angle>
 					</Bullet>
@@ -127,7 +127,7 @@
           <!-- Volley #3 -->
 					<Bullet>
 						<size>2</size>
-						<speed>1</speed>
+						<speed>3</speed>
 						<damage>1</damage>
 						<angle>90</angle>
 					</Bullet>
@@ -136,7 +136,7 @@
           <!-- Volley #4 1 bullets -->
           <Bullet>
 						<size>2</size>
-						<speed>1</speed>
+						<speed>3</speed>
 						<damage>1</damage>
 						<angle>-90</angle>
 					</Bullet>
