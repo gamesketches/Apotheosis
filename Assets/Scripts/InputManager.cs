@@ -39,7 +39,7 @@ public class InputManager : MonoBehaviour {
 	private bool melee;
 
 	private PlayerStats playerStats;
-	private SpriteRenderer renderer;
+    private new SpriteRenderer renderer;
 	private PlayerMovement playerMovement;
 	private AudioSource soundEffects;
 
@@ -142,7 +142,6 @@ public class InputManager : MonoBehaviour {
 				type = BulletType.Shield;
 				break;
 			case 'D':
-				return;
 				break;
 		}
 		BulletDepot.Volley volley = bullets.types[(int)playerStats.character].projectileTypes[(int)type].volleys[bufferIter];
@@ -217,7 +216,7 @@ public class InputManager : MonoBehaviour {
 	}
 
 	public void InputEqualsNumber() {
-		int bulletNumber = 0;
+        int bulletNumber = 0;
 		List<char> meaningfulInput = new List<char>();
 		for(int i = 0; i < mashBufferSize; i++) {
 			if(mashBuffer[i] != '*') {
@@ -228,11 +227,15 @@ public class InputManager : MonoBehaviour {
 		float angleDifference = 90.0f / mashBufferSize;
 		List<float> bulletAngles = new List<float>();
 		List<BulletType> bulletTypes = new List<BulletType>();
-		BulletType theBulletType;
+		//BulletType theBulletType;
 		if(meaningfulInput.Count <= 0) {
 			return;
 		}
+
+        /*
+        //commented is currently never runs. debug? ski
 		char bulletTypeChar = meaningfulInput[meaningfulInput.Count - 1];
+        
 		if(bulletTypeChar == 'A') {
 			theBulletType = BulletType.Knife;
 		} else if(bulletTypeChar == 'B') {
@@ -240,6 +243,7 @@ public class InputManager : MonoBehaviour {
 		} else {
 			theBulletType = BulletType.Shield;
 		}
+        */
 
         for (int i = 0; i < bulletAngles.Count; i++) {
 			BulletDepot.Bullet bullet = bullets.types[(int)playerStats.character].projectileTypes[(int)bulletTypes[i]].volleys[0].volley[0];

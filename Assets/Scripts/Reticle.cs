@@ -14,7 +14,7 @@ public class Reticle : MonoBehaviour {
 
 	private Rigidbody2D rb2D;
 
-	AudioSource audio;
+    new AudioSource audio;
 
 	void Awake() {
 		rb2D = GetComponent<Rigidbody2D>();

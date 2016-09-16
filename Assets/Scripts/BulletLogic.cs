@@ -20,9 +20,9 @@ public class BulletLogic : MonoBehaviour {
 	private float headingTime, shieldOscillationTime;
     private Sprite sprite;
     private int animFrame;
-	AudioSource audio;
-	SpriteRenderer renderer;
-	private Sprite[] animation; 
+    new AudioSource audio;
+    new SpriteRenderer renderer;
+	private new Sprite[] animation; 
 	AnimationCurve shieldVelocity;
 	public BulletDepot theDepot;
    

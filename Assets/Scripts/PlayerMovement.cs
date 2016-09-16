@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour {
 	private Animator anim;
 
 	private PlayerStats playerStats;
-	private SpriteRenderer renderer;
+	private new SpriteRenderer renderer;
 
 	void Awake() {
 		locked = false;

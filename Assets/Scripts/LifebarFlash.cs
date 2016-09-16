@@ -4,7 +4,7 @@ using System.Collections;
 public class LifebarFlash : MonoBehaviour {
 
 	private Vector3 scaleLastFrame;
-	private SpriteRenderer renderer;
+	private new SpriteRenderer renderer;
 	private Color startColor;
 	public Color flashColor;
 	// Use this for initialization
