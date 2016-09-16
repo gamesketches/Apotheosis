@@ -84,8 +84,9 @@ public class InputManager : MonoBehaviour {
 					}
 				}
 				else {
-	                gameObject.transform.localScale = Vector3.Lerp(new Vector3(1f, 1f, 1f), new Vector3(fullBufferScale, fullBufferScale, fullBufferScale),(float)bufferIter / (float)mashBufferSize);
-   	           		mashBuffer.SetValue(button, bufferIter);
+	                //gameObject.transform.localScale = Vector3.Lerp(new Vector3(1f, 1f, 1f), new Vector3(fullBufferScale, fullBufferScale, fullBufferScale),(float)bufferIter / (float)mashBufferSize);
+	                gameObject.transform.localScale = Vector3.Lerp(gameObject.transform.localScale, new Vector3(fullBufferScale, fullBufferScale, fullBufferScale),(float)bufferIter / (float)mashBufferSize);
+                    mashBuffer.SetValue(button, bufferIter);
    	         
 				    if(!mashing) {
 					    mashing = true;
@@ -145,7 +146,7 @@ public class InputManager : MonoBehaviour {
 				break;
 		}
 		BulletDepot.Volley volley = bullets.types[(int)playerStats.character].projectileTypes[(int)type].volleys[bufferIter];
-        Debug.Log(" volley = " + bufferIter); //ski
+        //Debug.Log(" volley = " + bufferIter); //ski
 		foreach(BulletDepot.Bullet bullet in volley.volley) {
 			CreateBullet(bullet, type);
 		}
@@ -254,14 +255,16 @@ public class InputManager : MonoBehaviour {
 
 	public void CreateBullet(BulletDepot.Bullet bullet, BulletType type = BulletType.Knife) {
 		int angle = bullet.angle + (int)playerMovement.CurrentShotAngle();
-        Debug.Log("CreateBullet(): angle =" + angle + " playerMovement.CurrentShotAngle = " + (int)playerMovement.CurrentShotAngle());
+        //Debug.Log("CreateBullet(): angle =" + angle + " playerMovement.CurrentShotAngle = " + (int)playerMovement.CurrentShotAngle());  //ski
 
         GameObject newBullet = bullets.GetBullet();
 		newBullet.transform.position = gameObject.transform.position;
 		newBullet.transform.rotation = Quaternion.Euler(0, 0, angle);
 		BulletLogic bulletLogic = newBullet.GetComponent<BulletLogic>();//((GameObject)Instantiate(bulletPrefab, gameObject.transform.position, Quaternion.Euler(0, 0, angle))).GetComponent<BulletLogic>();
 		bulletLogic.Initialize(type, bullet.damage, bullet.speed, bullet.size, 5, playerStats.playerColor, playerStats.number, playerStats.character);
-	}
+        newBullet.GetComponentInChildren<SpriteRenderer>().sortingOrder = 9 - bufferIter;
+        Debug.Log("Sorting layer debug thing " + newBullet.GetComponentInChildren<SpriteRenderer>().sortingOrder);
+    }
 
 	public void InitializeControls(string[] controls) {
 		buttonA = controls[2];

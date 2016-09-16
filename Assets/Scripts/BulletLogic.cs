@@ -150,6 +150,7 @@ public class BulletLogic : MonoBehaviour {
 			}
 			else {
 				GameObject sparks = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/HitSparks"), transform.position, Quaternion.identity);
+                //scaling hitsparkst test -ski
 				sparks.transform.localScale = new Vector3(10f, 10f, 10f);
                 sparks.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/hitSparks/hitspark");	
 				GameObject temp = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SoundEffectObject"), gameObject.transform.position, Quaternion.identity);
@@ -185,7 +186,7 @@ public class BulletLogic : MonoBehaviour {
 		renderer.transform.position += Vector3.one * shieldVelocity.Evaluate(shieldOscillationTime);
 		shieldOscillationTime += Time.deltaTime;
 		//slowing shots in motion
-        travelVector *= 0.98f; //ski
+        travelVector *= 0.97f; //ski
         //Debug.Log("sloweing. shieldOscillationTime = " + shieldOscillationTime);
         if (shieldOscillationTime > 1) {
             shieldOscillationTime = 0;

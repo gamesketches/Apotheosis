@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour {
         HorusWinsIcons = GameObject.FindGameObjectsWithTag("HorusWinsIcon");
         HorusWinsIconsSR = new SpriteRenderer[HorusWinsIcons.Length];
         SetWinsIconsSR = new SpriteRenderer[SetWinsIcons.Length];
+        player1Wins = 0;
+        player2Wins = 0;
         int j = 0;
         for (int i = 2; i >= 0; i--)
         {
@@ -166,9 +168,7 @@ public class GameManager : MonoBehaviour {
 
 	void InitializeGameSettings() {
 		player1RoundWins = 0;
-		player1Wins = 0;
 		player2RoundWins = 0;
-		player2Wins = 0;
         //bullets = new BulletDepot(); //clearing warning with next line - ski
         bullets = ScriptableObject.CreateInstance<BulletDepot>();
 
@@ -178,7 +178,7 @@ public class GameManager : MonoBehaviour {
 		StartRound();
 	}
 
-	GameObject CreatePlayer(string[] controls, Character character, Vector3 position, int number){
+    	GameObject CreatePlayer(string[] controls, Character character, Vector3 position, int number){
 		Color color = character == Character.Loholt ? Color.blue : Color.red;
 		GameObject temp = (GameObject)Instantiate(Resources.Load("prefabs/Player"), 
 												position, Quaternion.identity);
@@ -219,7 +219,9 @@ public class GameManager : MonoBehaviour {
 		reticle.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/reticle-18");
 			player1Reticle = reticle.gameObject;
 
-		return temp;
+        Debug.Log("P1 Wins: " + player1Wins + " P2 Wins:" + player2Wins);
+
+        return temp;
 	}
 
 	string[] CreateControlScheme(int playerNum) {
@@ -232,7 +234,7 @@ public class GameManager : MonoBehaviour {
 		controlArray[5] = string.Concat("ButtonD", playerNum.ToString());
 		return controlArray;
 	}
-
+    
 	void StartRound() {
 		Vector3 lifebarOffset = new Vector3(0, -2, 0);
 		player1 = CreatePlayer(player1Controls, characterSelectManager.p1Character, player1Pos, 0);
@@ -320,6 +322,8 @@ public class GameManager : MonoBehaviour {
 
 	void RoundEndUpdate() {
 			if(player1RoundWins > 2 || player2RoundWins > 2){
+            if (player1RoundWins > 2) player1Wins++;
+            else player2Wins++;
 				Invoke("ResetGame", 2.5f);
 				return;
 			}
