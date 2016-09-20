@@ -274,6 +274,8 @@ public class GameManager : MonoBehaviour {
         yield return new WaitForSeconds(3.0f);
         victoryText.enabled = false;
         victoryText.text = "";
+
+		RoundReset();
     }
 
     /*	// Use this for initialization
@@ -322,12 +324,11 @@ public class GameManager : MonoBehaviour {
 
 	void RoundEndUpdate() {
 			if(player1RoundWins > 2 || player2RoundWins > 2){
-            if (player1RoundWins > 2) player1Wins++;
-            else player2Wins++;
+          	  if (player1RoundWins > 2) player1Wins++;
+            	else player2Wins++;
 				Invoke("ResetGame", 2.5f);
 				return;
 			}
-			RoundReset();
 	}
 
 	void ResetGame() {
