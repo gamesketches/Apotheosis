@@ -26,10 +26,10 @@ public class Reticle : MonoBehaviour {
 			if(collider.gameObject.layer != gameObject.layer) {
 				if(collider.gameObject.tag == "Player") {
 					if(spinning) {
-						collider.gameObject.GetComponent<PlayerMovement>().Knockback(transform, spinDamage);
+						collider.gameObject.GetComponent<PlayerMovement>().StartKnockback(transform, spinDamage);
 						collider.gameObject.GetComponent<InputManager>().SetExponentCooldownTimer(spinCooldown);
 					} else {
-						collider.gameObject.GetComponent<PlayerMovement>().Knockback(transform, jabDamage);
+						collider.gameObject.GetComponent<PlayerMovement>().StartKnockback(transform, jabDamage);
 						collider.gameObject.GetComponent<InputManager>().SetExponentCooldownTimer(jabCooldown);
                         Debug.Log("cooldown now");
 					}

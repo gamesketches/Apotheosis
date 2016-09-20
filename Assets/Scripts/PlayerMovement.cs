@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour {
 	public float speed;
 	public float reticleRadius;
+	public float knockbackTime;
 	public bool locked;
 	public int bufferIter;
 
@@ -57,12 +58,8 @@ public class PlayerMovement : MonoBehaviour {
 	void HandleMovement() {
 		if(!locked) {
 			if(knockbackVector != Vector2.zero) {
-				rb2D.velocity = knockbackVector;
-				knockbackVector.x *= 0.95f;
-				knockbackVector.y *= 0.95f;
-				if(knockbackVector.magnitude < 0.3) {
-					knockbackVector = Vector2.zero;
-				}
+				SetReticle();
+				return;
 			}
 			else {
 				float computedSpeed =  speed * (float)(1 - 0.1 * bufferIter);
@@ -111,12 +108,23 @@ public class PlayerMovement : MonoBehaviour {
 		return rb2D;
 	}
 
-	public void Knockback(Transform obj, float damage) {
+	public void StartKnockback(Transform obj, float damage) {
 		Vector3 translation = transform.position - obj.position;
 		knockbackVector = translation;
 		knockbackVector.Normalize();
-		knockbackVector.x *= 10;
-		knockbackVector.y *= 10;
+		knockbackVector.x *= 20;
+		knockbackVector.y *= 20;
 		playerStats.health -= damage;
+		StartCoroutine(Knockback());
+	}
+
+	IEnumerator Knockback() {
+		float t = 0;
+		while(t < knockbackTime) {
+			rb2D.velocity = knockbackVector;
+			t += Time.fixedDeltaTime;
+			yield return null;
+		}
+		knockbackVector = Vector2.zero;
 	}
 }
