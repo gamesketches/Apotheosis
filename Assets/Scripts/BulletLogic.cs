@@ -106,7 +106,9 @@ public class BulletLogic : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if(other.gameObject.tag == "Boundary") {
-			theDepot.AddObject(gameObject);
+			if(lifetime < 5) {
+				theDepot.AddObject(gameObject);
+			}
 			return;
 		}
 		if(other.gameObject.layer != gameObject.layer) {

@@ -164,6 +164,45 @@ public class InputManager : MonoBehaviour {
 		soundEffects.Play();
 	}
 
+	void OffScreenShot() {
+		for(int i = 0; i < 4; i++) {
+			GameObject newBullet = bullets.GetBullet();
+			newBullet.transform.position = new Vector3(-30 + (15 * i), 20, 0);
+			newBullet.transform.rotation = Quaternion.Euler(0f,0f,270f);
+			BulletLogic bulletLogic = newBullet.GetComponent<BulletLogic>();
+			// just values I'm making up
+			bulletLogic.Initialize(BulletType.Boomerang, 10, 20, 2, 10, playerStats.playerColor, playerStats.number, playerStats.character);
+			newBullet.GetComponentInChildren<SpriteRenderer>().sortingOrder = 9 - bufferIter;
+		}
+		for(int i = 0; i < 4; i++) {
+			GameObject newBullet = bullets.GetBullet();
+			newBullet.transform.position = new Vector3(-30 + (15 * i), -20, 0);
+			newBullet.transform.rotation = Quaternion.Euler(0f,0f,90f);
+			BulletLogic bulletLogic = newBullet.GetComponent<BulletLogic>();
+			// just values I'm making up
+			bulletLogic.Initialize(BulletType.Boomerang, 10, 20, 2, 10, playerStats.playerColor, playerStats.number, playerStats.character);
+			newBullet.GetComponentInChildren<SpriteRenderer>().sortingOrder = 9 - bufferIter;
+		}
+		for(int i = 0; i < 4; i++) {
+			GameObject newBullet = bullets.GetBullet();
+			newBullet.transform.position = new Vector3(-35, -15 + (i * 8), 0);
+			newBullet.transform.rotation = Quaternion.Euler(0f,0f,0f);
+			BulletLogic bulletLogic = newBullet.GetComponent<BulletLogic>();
+			// just values I'm making up
+			bulletLogic.Initialize(BulletType.Boomerang, 10, 20, 2, 10, playerStats.playerColor, playerStats.number, playerStats.character);
+			newBullet.GetComponentInChildren<SpriteRenderer>().sortingOrder = 9 - bufferIter;
+		}
+		for(int i = 0; i < 4; i++) {
+			GameObject newBullet = bullets.GetBullet();
+			newBullet.transform.position = new Vector3(35, -15 + (i * 8), 0);
+			newBullet.transform.rotation = Quaternion.Euler(0f,0f,0f);
+			BulletLogic bulletLogic = newBullet.GetComponent<BulletLogic>();
+			// just values I'm making up
+			bulletLogic.Initialize(BulletType.Boomerang, 10, 20, 2, 10, playerStats.playerColor, playerStats.number, playerStats.character);
+			newBullet.GetComponentInChildren<SpriteRenderer>().sortingOrder = 9 - bufferIter;
+		}
+	}
+
 	void RecallShot() {
 		GameObject[] activeBullets = GameObject.FindGameObjectsWithTag("Boomerang");
 
@@ -199,7 +238,12 @@ public class InputManager : MonoBehaviour {
 	void Fire() {
 		//playerMovement.ResetReticle();
 		if(exponentCooldownTimer <= 0) {
-			InputEqualsNumber();
+			if(playerStats.character == Character.Hiruko) {
+				OffScreenShot();
+			}
+			else {
+				InputEqualsNumber();
+			}
 		}
 		for(int i = 0; i < mashBufferSize; i++){
 			mashBuffer.SetValue('*', i);
