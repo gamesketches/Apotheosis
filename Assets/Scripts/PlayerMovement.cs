@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour {
 	private PlayerStats playerStats;
 	private new SpriteRenderer renderer;
 
+	private Vector2 knockbackVector;
+
 	void Awake() {
 		locked = false;
 	}
@@ -32,6 +34,8 @@ public class PlayerMovement : MonoBehaviour {
 		playerStats = GetComponent<PlayerStats>();
 		gameObject.layer = playerStats.number + 8;
 		bufferIter = 0;
+
+		knockbackVector = Vector2.zero;
 
 		reticle.gameObject.layer = gameObject.layer;
 		rb2D = GetComponent<Rigidbody2D>();
@@ -52,21 +56,31 @@ public class PlayerMovement : MonoBehaviour {
 
 	void HandleMovement() {
 		if(!locked) {
-			float computedSpeed =  speed * (float)(1 - 0.1 * bufferIter);
-			rb2D.velocity = (new Vector2(Input.GetAxisRaw(horizontalAxis), Input.GetAxisRaw(verticalAxis))).normalized * (float)computedSpeed;
-				anim.SetInteger("xAxis", (int) rb2D.velocity.x);
-				anim.SetInteger("yAxis", (int) rb2D.velocity.y);
-				if(playerStats.character == Character.Hiruko) {
-					renderer.flipX = rb2D.velocity.x < 0 ? true : false;
+			if(knockbackVector != Vector2.zero) {
+				rb2D.velocity = knockbackVector;
+				knockbackVector.x *= 0.95f;
+				knockbackVector.y *= 0.95f;
+				if(knockbackVector.magnitude < 0.3) {
+					knockbackVector = Vector2.zero;
 				}
-				if(rb2D.velocity.x != 0.0f || rb2D.velocity.y != 0.0f) {
-					radians = Mathf.Atan2(rb2D.velocity.y, rb2D.velocity.x);
-					degrees = radians * Mathf.Rad2Deg;
-					if(degrees < 0.0f) {
-						degrees += 360.0f;
+			}
+			else {
+				float computedSpeed =  speed * (float)(1 - 0.1 * bufferIter);
+				rb2D.velocity = (new Vector2(Input.GetAxisRaw(horizontalAxis), Input.GetAxisRaw(verticalAxis))).normalized * (float)computedSpeed;
+					anim.SetInteger("xAxis", (int) rb2D.velocity.x);
+					anim.SetInteger("yAxis", (int) rb2D.velocity.y);
+					if(playerStats.character == Character.Hiruko) {
+						renderer.flipX = rb2D.velocity.x < 0 ? true : false;
 					}
-					SetReticle();
-				}
+					if(rb2D.velocity.x != 0.0f || rb2D.velocity.y != 0.0f) {
+						radians = Mathf.Atan2(rb2D.velocity.y, rb2D.velocity.x);
+						degrees = radians * Mathf.Rad2Deg;
+						if(degrees < 0.0f) {
+							degrees += 360.0f;
+						}
+						SetReticle();
+					}
+					}
 			}
 		else {
 			rb2D.velocity = Vector2.zero;
@@ -95,5 +109,14 @@ public class PlayerMovement : MonoBehaviour {
 
 	public Rigidbody2D GetRigidbody2D() {
 		return rb2D;
+	}
+
+	public void Knockback(Transform obj, float damage) {
+		Vector3 translation = transform.position - obj.position;
+		knockbackVector = translation;
+		knockbackVector.Normalize();
+		knockbackVector.x *= 10;
+		knockbackVector.y *= 10;
+		playerStats.health -= damage;
 	}
 }

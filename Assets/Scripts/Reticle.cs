@@ -26,7 +26,8 @@ public class Reticle : MonoBehaviour {
 			if(collider.gameObject.layer != gameObject.layer) {
 				if(collider.gameObject.tag == "Player") {
 					if(spinning) {
-						collider.gameObject.GetComponent<PlayerStats>().health -= spinDamage;
+						//collider.gameObject.GetComponent<PlayerStats>().health -= spinDamage;
+						collider.gameObject.GetComponent<PlayerMovement>().Knockback(transform, spinDamage);
 						collider.gameObject.GetComponent<InputManager>().SetExponentCooldownTimer(spinCooldown);
 					} else {
 						collider.gameObject.GetComponent<PlayerStats>().health -= jabDamage;
@@ -37,7 +38,7 @@ public class Reticle : MonoBehaviour {
 					GameObject sparks = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/HitSparks"), transform.position, Quaternion.identity);
 					sparks.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/hitSparks/hitspark");	
 					return;
-				} else if(collider.gameObject.tag == "Hippo" || collider.gameObject.tag == "Crane" || collider.gameObject.tag == "Gator") {
+				} else if(collider.gameObject.tag != "Reticle"){
 					GameObject sparks = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/HitSparks"), transform.position, Quaternion.identity);
 					sparks.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/hitSparks/hitspark");	
 					Destroy(collider.gameObject);

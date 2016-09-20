@@ -431,6 +431,4 @@ public class GameManager : MonoBehaviour {
 		Destroy(player2);
 		StartRound();
 	}
-
-
 }
