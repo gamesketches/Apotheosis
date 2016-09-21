@@ -76,6 +76,7 @@ public class GameManager : MonoBehaviour {
         currentUpdateFunction = TitleScreen;
 
         characterSelectManager = GetComponent<CharacterSelectManager>();
+
     }
 
     #region Pre-Battle
@@ -256,13 +257,26 @@ public class GameManager : MonoBehaviour {
 
     IEnumerator DisplayVictoryText(int playerNum, int roundsWon)
     {
-		if(playerNum == 5) {
-			victoryText.text = "DRAW\nGAME";
+
+        if (roundTimer.text == "0")
+        {
+            Debug.Log("time over");
+            victoryText.text = "TIME'S\nUP";
+            victoryText.enabled = true;
+            yield return new WaitForSeconds(1.5f);
+            victoryText.text = "";
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        if (playerNum == 5) {
+            Debug.Log("time over + playerNum =" + playerNum);
+            victoryText.text = "DRAW\nGAME";
 		}
 		else {
-			if(playerNum == 4 || playerNum == 3) {
-				victoryText.text = "DRAW\nGAME";
-				victoryText.enabled = true;
+         
+            if (playerNum == 4 || playerNum == 3) {
+                victoryText.text = "DRAW\nGAME";
+                victoryText.enabled = true;
 				yield return new WaitForSeconds(1.5f);
 				playerNum -= 2;
 			}
@@ -400,10 +414,20 @@ public class GameManager : MonoBehaviour {
 		audio.clip = Resources.Load<AudioClip>("audio/soundEffects/swordSwing");
 		victoryText.enabled = true;
 		if(player1RoundWins + player2RoundWins == 0) {
-			victoryText.text = "PREPARE \n YOURSELF";
-		}
-		yield return new WaitForSeconds(2.0f);
-		victoryText.text = "FIGHT";
+            victoryText.text = "PREPARE \n YOURSELF";
+            yield return new WaitForSeconds(1.0f);
+            victoryText.text = "";
+            yield return new WaitForSeconds(0.2f);
+        }
+
+        int currentRound = (player1RoundWins + player2RoundWins + 1);
+        //victoryText.text = ("ROUND " + (player1RoundWins + player2RoundWins + 1.0f).ToString());
+        victoryText.text = "ROUND " + currentRound.ToString() + currentRound + (player1RoundWins + player2RoundWins + 1).ToString();
+        Debug.Log("GameManager.cs: ROUND NUMBER = " + (player1RoundWins + player2RoundWins + 1).ToString());
+        yield return new WaitForSeconds(1.0f);
+        victoryText.text = "";
+        yield return new WaitForSeconds(0.2f);
+        victoryText.text = "FIGHT!";
 		yield return new WaitForSeconds(0.5f);
 		audio.Play();
 		victoryText.text = "";

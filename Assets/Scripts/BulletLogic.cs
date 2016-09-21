@@ -148,14 +148,18 @@ public class BulletLogic : MonoBehaviour {
 				theDepot.AddObject(gameObject);
 				GameObject sparks = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/HitSparks"), transform.position, Quaternion.identity);
                 sparks.transform.localScale = new Vector3(10f, 10f, 10f);
+                Debug.Log("hit spark 2");
                 sparks.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/hitSparks/hitspark");	
 			}
 			else {
 				GameObject sparks = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/HitSparks"), transform.position, Quaternion.identity);
                 //scaling hitsparkst test -ski
 				sparks.transform.localScale = new Vector3(10f, 10f, 10f);
-                sparks.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/hitSparks/hitspark");	
-				GameObject temp = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SoundEffectObject"), gameObject.transform.position, Quaternion.identity);
+                sparks.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/hitSparks/hitspark");
+                //dynamic hitspark color test -ski
+                Debug.Log("hit spark 1");
+                //if(gameObject.tag == "Reticle" && )
+                GameObject temp = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SoundEffectObject"), gameObject.transform.position, Quaternion.identity);
 				temp.GetComponent<SoundEffectObjectScript>().PlaySoundEffect("rpsBulletCancel");
 				GameObject destroyedObject = opposingType > type ? other.gameObject : gameObject;
 				theDepot.AddObject(destroyedObject);
