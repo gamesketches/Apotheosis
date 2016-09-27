@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour {
 	int player1RoundWins, player1Wins, player2RoundWins, player2Wins;
 	public float roundTime;
 	private float currentRoundTime;
+	private bool timerStarted;
 	public Vector3 player1Pos, player2Pos;
 	public int startingHealth;
 	string[] player1Controls, player2Controls;
@@ -56,6 +57,8 @@ public class GameManager : MonoBehaviour {
             j++;
         }
 
+        timerStarted = false;
+
 		//bullets = new BulletDepot(); // clearing a warning w/next line - ski
         bullets = ScriptableObject.CreateInstance<BulletDepot>();
 		bullets.Load();
@@ -69,10 +72,8 @@ public class GameManager : MonoBehaviour {
         roundTimer = GameObject.FindGameObjectWithTag("RoundTimer").GetComponent<Text>();
         victoryText = GameObject.FindGameObjectWithTag("VictoryText").GetComponent<Text>();
        
-        Debug.Log(pressStart);
         titleLogo.enabled = true;
         pressStart.enabled = true;
-        Debug.Log("hey");
         currentUpdateFunction = TitleScreen;
 
         characterSelectManager = GetComponent<CharacterSelectManager>();
@@ -228,8 +229,6 @@ public class GameManager : MonoBehaviour {
 		reticle.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/reticle-18");
 			player1Reticle = reticle.gameObject;
 
-        Debug.Log("P1 Wins: " + player1Wins + " P2 Wins:" + player2Wins);
-
         return temp;
 	}
 
@@ -318,8 +317,10 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void InGameUpdate(){
-		currentRoundTime -= Time.deltaTime;
-        roundTimer.text = Mathf.RoundToInt(currentRoundTime).ToString();
+		if(timerStarted) {
+			currentRoundTime -= Time.deltaTime;
+   	     roundTimer.text = Mathf.RoundToInt(currentRoundTime).ToString();
+   	     }
 
 		UpdateLifeBars();
 
@@ -410,11 +411,13 @@ public class GameManager : MonoBehaviour {
 	void LockPlayers() {
 		player1.GetComponent<PlayerMovement>().locked = true;
 		player2.GetComponent<PlayerMovement>().locked = true;
+		timerStarted = false;
 	}
 
 	void UnlockPlayers() {
 		player1.GetComponent<PlayerMovement>().locked = false;
 		player2.GetComponent<PlayerMovement>().locked = false;
+		timerStarted = true;
 	}
 
 	IEnumerator ReadyFightMessageChange() {
