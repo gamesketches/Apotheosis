@@ -17,33 +17,33 @@ public class InputManager : MonoBehaviour {
 
 	public Reticle reticle;
 
-	private GameObject bulletPrefab;
+	protected GameObject bulletPrefab;
 
 	public BulletDepot bullets;
 
-	private int bufferIter = 0;
+	protected int bufferIter = 0;
 
-	private float shotCooldownTimer;
-	private float meleeCooldownTimer;
-	private float exponentCooldownTimer;
-	private float bulletLifetime = 5;
+	protected float shotCooldownTimer;
+	protected float meleeCooldownTimer;
+	protected float exponentCooldownTimer;
+	protected float bulletLifetime = 5;
 
-	private string buttonA;
-	private string buttonB;
-	private string buttonC;
-	private string buttonD;
+	protected string buttonA;
+	protected string buttonB;
+	protected string buttonC;
+	protected string buttonD;
 
-	private char[] mashBuffer;
+	protected char[] mashBuffer;
 
-	private bool mashing;
-	private bool melee;
+	protected bool mashing;
+	protected bool melee;
 
-	private PlayerStats playerStats;
-    private new SpriteRenderer renderer;
-	private PlayerMovement playerMovement;
-	private AudioSource soundEffects;
+	protected PlayerStats playerStats;
+    protected new SpriteRenderer renderer;
+	protected PlayerMovement playerMovement;
+	protected AudioSource soundEffects;
 
-	void Start() {
+	public void Start() {
 		soundEffects = GetComponent<AudioSource>();
 		bulletPrefab = Resources.Load<GameObject>("prefabs/Bullet");
 		playerStats = GetComponent<PlayerStats>();
@@ -56,7 +56,7 @@ public class InputManager : MonoBehaviour {
 		}
 	}
 
-	void Update() {
+	public void Update() {
 		playerMovement.bufferIter = bufferIter;
 		if(playerMovement.locked) {
 			return;
@@ -72,7 +72,7 @@ public class InputManager : MonoBehaviour {
             if (button != 'D') // threw everything in here to get this cooldown not to interfere with sword. works.
             {
 				if (bufferIter >= mashBufferSize - 1) {
-    	        	if(playerStats.character.ToString() != "Orpheus") {
+    	        	/*if(playerStats.character.ToString() != "Orpheus") {
 						Fire();
 						GameObject temp = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SoundEffectObject"), gameObject.transform.position, Quaternion.identity);
 						temp.transform.position = gameObject.transform.position;
@@ -81,7 +81,9 @@ public class InputManager : MonoBehaviour {
 						}
 					else {
 						RecallShot();
-					}
+					}*/
+					Debug.Log("bufferIter = wha");
+					Fire();
 				}
 				else {
 	                //gameObject.transform.localScale = Vector3.Lerp(new Vector3(1f, 1f, 1f), new Vector3(fullBufferScale, fullBufferScale, fullBufferScale),(float)bufferIter / (float)mashBufferSize);
@@ -112,7 +114,7 @@ public class InputManager : MonoBehaviour {
 		}
 	}
 
-	char GetButtonPress() {
+	public char GetButtonPress() {
 		if(Input.GetButtonDown(buttonA)) {
 			return 'A';
 		}
@@ -130,7 +132,7 @@ public class InputManager : MonoBehaviour {
 		}
 	}
 
-	void ExponentShot() {
+	public void ExponentShot() {
 		BulletType type = BulletType.Knife;
 		switch(GetButtonPress()) {
 			case 'A':
@@ -162,45 +164,6 @@ public class InputManager : MonoBehaviour {
 			break;
 		}
 		soundEffects.Play();
-	}
-
-	void OffScreenShot() {
-		for(int i = 0; i < 4; i++) {
-			GameObject newBullet = bullets.GetBullet();
-			newBullet.transform.position = new Vector3(-30 + (15 * i), 20, 0);
-			newBullet.transform.rotation = Quaternion.Euler(0f,0f,270f);
-			BulletLogic bulletLogic = newBullet.GetComponent<BulletLogic>();
-			// just values I'm making up
-			bulletLogic.Initialize(BulletType.Boomerang, 10, 20, 2, 10, playerStats.playerColor, playerStats.number, playerStats.character);
-			newBullet.GetComponentInChildren<SpriteRenderer>().sortingOrder = 9 - bufferIter;
-		}
-		for(int i = 0; i < 4; i++) {
-			GameObject newBullet = bullets.GetBullet();
-			newBullet.transform.position = new Vector3(-30 + (15 * i), -20, 0);
-			newBullet.transform.rotation = Quaternion.Euler(0f,0f,90f);
-			BulletLogic bulletLogic = newBullet.GetComponent<BulletLogic>();
-			// just values I'm making up
-			bulletLogic.Initialize(BulletType.Boomerang, 10, 20, 2, 10, playerStats.playerColor, playerStats.number, playerStats.character);
-			newBullet.GetComponentInChildren<SpriteRenderer>().sortingOrder = 9 - bufferIter;
-		}
-		for(int i = 0; i < 4; i++) {
-			GameObject newBullet = bullets.GetBullet();
-			newBullet.transform.position = new Vector3(-35, -15 + (i * 8), 0);
-			newBullet.transform.rotation = Quaternion.Euler(0f,0f,0f);
-			BulletLogic bulletLogic = newBullet.GetComponent<BulletLogic>();
-			// just values I'm making up
-			bulletLogic.Initialize(BulletType.Boomerang, 10, 20, 2, 10, playerStats.playerColor, playerStats.number, playerStats.character);
-			newBullet.GetComponentInChildren<SpriteRenderer>().sortingOrder = 9 - bufferIter;
-		}
-		for(int i = 0; i < 4; i++) {
-			GameObject newBullet = bullets.GetBullet();
-			newBullet.transform.position = new Vector3(35, -15 + (i * 8), 0);
-			newBullet.transform.rotation = Quaternion.Euler(0f,0f,0f);
-			BulletLogic bulletLogic = newBullet.GetComponent<BulletLogic>();
-			// just values I'm making up
-			bulletLogic.Initialize(BulletType.Boomerang, 10, 20, 2, 10, playerStats.playerColor, playerStats.number, playerStats.character);
-			newBullet.GetComponentInChildren<SpriteRenderer>().sortingOrder = 9 - bufferIter;
-		}
 	}
 
 	void RecallShot() {
@@ -235,15 +198,10 @@ public class InputManager : MonoBehaviour {
 		}
 	}
 
-	void Fire() {
+	public virtual void Fire() {
 		//playerMovement.ResetReticle();
 		if(exponentCooldownTimer <= 0) {
-			if(playerStats.character == Character.Hiruko) {
-				OffScreenShot();
-			}
-			else {
 				InputEqualsNumber();
-			}
 		}
 		for(int i = 0; i < mashBufferSize; i++){
 			mashBuffer.SetValue('*', i);
@@ -317,7 +275,7 @@ public class InputManager : MonoBehaviour {
 		buttonD = controls[5];
 	}
 
-	void Melee() {
+	public void Melee() {
 		if(melee && !playerMovement.locked) {
 			StopCoroutine("MeleeWindow");
 			StartCoroutine("Spin");
@@ -326,7 +284,7 @@ public class InputManager : MonoBehaviour {
 		}
 	}
 
-	IEnumerator MeleeWindow() {
+	public IEnumerator MeleeWindow() {
 		melee = true;
 		float windowTimer = meleePressWindow;
 		while(windowTimer > 0.0f) {
@@ -336,7 +294,7 @@ public class InputManager : MonoBehaviour {
 		StartCoroutine("Jab");
 	}
 
-	IEnumerator Jab() {
+	public IEnumerator Jab() {
 		playerMovement.GetRigidbody2D().velocity = Vector2.zero;
 		playerMovement.locked = true;
 		reticle.melee = true;
@@ -352,7 +310,7 @@ public class InputManager : MonoBehaviour {
 		reticle.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/reticle-18");
     }
 
-    IEnumerator Spin() {
+    public IEnumerator Spin() {
 		playerMovement.GetRigidbody2D().velocity = Vector2.zero;
 		playerMovement.locked = true;
 		reticle.melee = true;
