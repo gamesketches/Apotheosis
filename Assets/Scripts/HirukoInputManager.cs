@@ -35,19 +35,7 @@ public class HirukoInputManager : InputManager {
 		if(exponentCooldownTimer <= 0) {
 				OffScreenShot();
 		}
-		for(int i = 0; i < mashBufferSize; i++){
-			mashBuffer.SetValue('*', i);
-		}
-		// This will be the hardest part to get right
-		int lockFrames = (bufferIter * (bufferIter + 1));
-		if(bufferIter < mashBufferSize) {
-			lockFrames = lockFrames / 2;
-		}
-		// TODO: CHANGE THIS TO SOMETHIGN REAL
-		exponentCooldownTimer = lockFrames * Time.deltaTime;
-		bufferIter = 0;
-		mashing = false;
-		gameObject.transform.localScale = new Vector3(1, 1, 1);
+		base.ResetBuffer();
 	}
 
 	void OffScreenShot() {

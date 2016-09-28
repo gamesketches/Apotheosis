@@ -72,16 +72,6 @@ public class InputManager : MonoBehaviour {
             if (button != 'D') // threw everything in here to get this cooldown not to interfere with sword. works.
             {
 				if (bufferIter >= mashBufferSize - 1) {
-    	        	/*if(playerStats.character.ToString() != "Orpheus") {
-						Fire();
-						GameObject temp = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SoundEffectObject"), gameObject.transform.position, Quaternion.identity);
-						temp.transform.position = gameObject.transform.position;
-						temp.transform.rotation = Quaternion.identity;
-						temp.GetComponent<SoundEffectObjectScript>().PlaySoundEffect("bufferFull");
-						}
-					else {
-						RecallShot();
-					}*/
 					Fire();
 				}
 				else {
@@ -202,6 +192,9 @@ public class InputManager : MonoBehaviour {
 		if(exponentCooldownTimer <= 0) {
 				InputEqualsNumber();
 		}
+	}
+
+	public void ResetBuffer() {
 		for(int i = 0; i < mashBufferSize; i++){
 			mashBuffer.SetValue('*', i);
 		}

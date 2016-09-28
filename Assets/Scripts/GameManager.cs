@@ -190,11 +190,20 @@ public class GameManager : MonoBehaviour {
 		PlayerStats tempStats = temp.GetComponent<PlayerStats>();
 		PlayerMovement tempMovement = temp.GetComponent<PlayerMovement>();
 		InputManager tempInputManager = temp.GetComponent<InputManager>();
-		if(character == Character.Hiruko) {
-			temp.AddComponent<HirukoInputManager>();
-			tempInputManager = temp.GetComponent<HirukoInputManager>();
-			Destroy(temp.GetComponent<InputManager>());
-		}
+		switch(character) {
+			case Character.Orpheus:
+				break;
+			case Character.Hiruko: 
+				temp.AddComponent<HirukoInputManager>();
+				tempInputManager = temp.GetComponent<HirukoInputManager>();
+				Destroy(temp.GetComponent<InputManager>());
+				break;
+			case Character.Loholt:
+				temp.AddComponent<LoholtInputManager>();
+				tempInputManager = temp.GetComponent<LoholtInputManager>();
+				Destroy(temp.GetComponent<InputManager>());
+				break;
+		};
 
 		tempStats.health = startingHealth;
 		tempStats.maxHealth = startingHealth;
