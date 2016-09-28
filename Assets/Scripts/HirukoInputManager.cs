@@ -5,7 +5,18 @@ public class HirukoInputManager : InputManager {
 
 	// Use this for initialization
 	void Start () {
-	base.Start();
+		mashBufferSize = 9;
+		shotCooldownTime = 0.25f;
+		exponentCooldownTime = 0.1f;
+		meleePressWindow = 0.25f;
+		jabTime = 0.08f;
+		jabSpeed = 150f;
+		spinTime = 0.75f;
+		spinSpeed = 1155.27f;
+		spinRadius = 2.5f;
+		fullBufferScale = 2f;
+		base.Start();
+
 	}
 	
 	// Update is called once per frame
@@ -15,6 +26,11 @@ public class HirukoInputManager : InputManager {
 
 	public override void Fire ()
 	{
+		GameObject temp = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SoundEffectObject"), gameObject.transform.position, Quaternion.identity);
+		temp.transform.position = gameObject.transform.position;
+		temp.transform.rotation = Quaternion.identity;
+		temp.GetComponent<SoundEffectObjectScript>().PlaySoundEffect("bufferFull");
+
 		//playerMovement.ResetReticle();
 		if(exponentCooldownTimer <= 0) {
 				OffScreenShot();

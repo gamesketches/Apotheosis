@@ -189,14 +189,11 @@ public class GameManager : MonoBehaviour {
 		//temp.GetComponent<Renderer>() = color;
 		PlayerStats tempStats = temp.GetComponent<PlayerStats>();
 		PlayerMovement tempMovement = temp.GetComponent<PlayerMovement>();
-		InputManager tempInputManager;
+		InputManager tempInputManager = temp.GetComponent<InputManager>();
 		if(character == Character.Hiruko) {
-			Destroy(temp.GetComponent<InputManager>());
 			temp.AddComponent<HirukoInputManager>();
 			tempInputManager = temp.GetComponent<HirukoInputManager>();
-		}
-		else {
-			tempInputManager = temp.GetComponent<InputManager>();
+			Destroy(temp.GetComponent<InputManager>());
 		}
 
 		tempStats.health = startingHealth;

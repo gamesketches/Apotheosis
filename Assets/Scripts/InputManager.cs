@@ -82,7 +82,6 @@ public class InputManager : MonoBehaviour {
 					else {
 						RecallShot();
 					}*/
-					Debug.Log("bufferIter = wha");
 					Fire();
 				}
 				else {
