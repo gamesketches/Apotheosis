@@ -444,7 +444,7 @@ public class GameManager : MonoBehaviour {
 
         int currentRound = (player1RoundWins + player2RoundWins + 1);
         //victoryText.text = ("ROUND " + (player1RoundWins + player2RoundWins + 1.0f).ToString());
-        victoryText.text = "ROUND " + currentRound.ToString() + currentRound + (player1RoundWins + player2RoundWins + 1).ToString();
+        victoryText.text = "ROUND " + currentRound.ToString();
         Debug.Log("GameManager.cs: ROUND NUMBER = " + (player1RoundWins + player2RoundWins + 1).ToString());
         yield return new WaitForSeconds(1.0f);
         victoryText.text = "";
