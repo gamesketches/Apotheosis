@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HirukoInputManager : InputManager {
+public class OffscreenShot : InputManager {
 
 	// Use this for initialization
 	void Start () {

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LoholtInputManager : InputManager {
+public class RecallShot : InputManager {
 
 	// Use this for initialization
 	void Start () {

@@ -194,13 +194,13 @@ public class GameManager : MonoBehaviour {
 			case Character.Orpheus:
 				break;
 			case Character.Hiruko: 
-				temp.AddComponent<HirukoInputManager>();
-				tempInputManager = temp.GetComponent<HirukoInputManager>();
+				temp.AddComponent<OffscreenShot>();
+				tempInputManager = temp.GetComponent<OffscreenShot>();
 				Destroy(temp.GetComponent<InputManager>());
 				break;
 			case Character.Loholt:
-				temp.AddComponent<LoholtInputManager>();
-				tempInputManager = temp.GetComponent<LoholtInputManager>();
+				temp.AddComponent<RecallShot>();
+				tempInputManager = temp.GetComponent<RecallShot>();
 				Destroy(temp.GetComponent<InputManager>());
 				break;
 		};
