@@ -302,7 +302,12 @@ public class GameManager : MonoBehaviour {
         victoryText.enabled = false;
         victoryText.text = "";
 
-		RoundReset();
+		if(player1RoundWins > 2 || player2RoundWins > 2) {
+			ResetGame();
+		}
+		else {
+			RoundReset();
+		}
     }
 
     /*	// Use this for initialization
@@ -355,7 +360,7 @@ public class GameManager : MonoBehaviour {
 			if(player1RoundWins > 2 || player2RoundWins > 2){
           	  if (player1RoundWins > 2) player1Wins++;
             	else player2Wins++;
-				Invoke("ResetGame", 2.5f);
+				Invoke("ResetGame", 3f);
 				return;
 			}
 	}
