@@ -221,7 +221,7 @@ public class InputManager : MonoBehaviour {
 			}
 		}
 		float angleDifference = 90.0f / mashBufferSize;
-		List<float> bulletAngles = new List<float>();
+        List<float> bulletAngles = new List<float>();
 		List<BulletType> bulletTypes = new List<BulletType>();
 		//BulletType theBulletType;
 		if(meaningfulInput.Count <= 0) {
