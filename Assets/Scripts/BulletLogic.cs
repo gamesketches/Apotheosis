@@ -67,7 +67,7 @@ public class BulletLogic : MonoBehaviour {
 		gameObject.layer = 8 + playerNum;
 		switch(type) {
 			case BulletType.Boomerang:
-				if(character == Character.Orpheus) { 
+				if(character == Character.Loholt) { 
 					bulletFunction = StraightLogic;
 					transform.Rotate(new Vector3(0f, 0f, -90f));
 					travelVector *= -1;
