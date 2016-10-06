@@ -192,6 +192,7 @@ public class InputManager : MonoBehaviour {
 		if(exponentCooldownTimer <= 0) {
 				InputEqualsNumber();
 		}
+		ResetBuffer();
 	}
 
 	public void ResetBuffer() {
