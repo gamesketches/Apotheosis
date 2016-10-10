@@ -21,7 +21,55 @@ public class OffscreenShot : InputManager {
 	
 	// Update is called once per frame
 	void Update () {
-	base.Update();
+		playerMovement.bufferIter = bufferIter;
+		if(playerMovement.locked) {
+			return;
+		}
+		char button = GetButtonPress();
+        meleeCooldownTimer -= Time.deltaTime;
+
+        if (button == 'D' && meleeCooldownTimer <= 0) {
+			reticle.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", playerStats.character.ToString(), playerStats.number == 0 ? "" : "Alt", "/Melee"));
+			Melee();
+		} else if(button != '0' && exponentCooldownTimer <= 0 && !melee) {
+			shotCooldownTimer = shotCooldownTime;
+            if (button != 'D') // threw everything in here to get this cooldown not to interfere with sword. works.
+            {
+				if (bufferIter >= mashBufferSize - 1) {
+					Fire();
+				}
+				else {
+	                //gameObject.transform.localScale = Vector3.Lerp(new Vector3(1f, 1f, 1f), new Vector3(fullBufferScale, fullBufferScale, fullBufferScale),(float)bufferIter / (float)mashBufferSize);
+	                gameObject.transform.localScale = Vector3.Lerp(gameObject.transform.localScale, new Vector3(fullBufferScale, fullBufferScale, fullBufferScale),(float)bufferIter / (float)mashBufferSize);
+                    mashBuffer.SetValue(button, bufferIter);
+   	         
+				    if(!mashing) {
+					    mashing = true;
+				    }
+				    if(button != 'B') {
+			  	    	ExponentShot();
+			  	    }
+			  	    else {
+			  	    	OffScreenShot();
+			  	    }
+				    bufferIter++;
+            }
+           }
+		} else if(mashing && button == '0' && !melee ){
+			shotCooldownTimer -= Time.deltaTime;
+
+            if (shotCooldownTimer <= 0.0f) {
+				Fire();
+			}
+		}
+
+		if(exponentCooldownTimer > 0) { 
+			exponentCooldownTimer -= Time.deltaTime;
+			renderer.color = new Color(0.5f, 0.5f, 0.5f);
+		}
+		else {
+			renderer.color = new Color(1f, 1f, 1f);
+		}
 	}
 
 	public override void Fire ()
@@ -39,6 +87,47 @@ public class OffscreenShot : InputManager {
 	}
 
 	void OffScreenShot() {
+		BulletType type = BulletType.Boomerang;
+		Rigidbody2D rb = playerMovement.GetRigidbody2D();
+		BulletDepot.Volley volley = bullets.types[(int)playerStats.character].projectileTypes[(int)type].volleys[bufferIter];
+
+
+		for(int i = 0; i < volley.volley.Length; i++) {
+			BulletDepot.Bullet bullet = volley.volley[i];
+		//foreach(BulletDepot.Bullet bullet in volley.volley) {
+			CreateBullet(bullet, type);
+			int angle = bullet.angle + (int)playerMovement.CurrentShotAngle();	
+	   	    GameObject newBullet = bullets.GetBullet();
+	   	    if(rb.velocity.x != 0){
+	   	    	if(rb.velocity.x > 0) {
+				newBullet.transform.position = new Vector3(-35, -15 + (60 / volley.volley.Length) * i, 0);
+				}
+				else if(rb.velocity.x != 0 && rb.velocity.x < 0) {
+					newBullet.transform.position = new Vector3(35, -15 + (60 / volley.volley.Length) * i, 0);
+				}
+			}
+			else{
+				if(rb.velocity.y > 0) {
+				newBullet.transform.position = new Vector3(-30 + (60 / volley.volley.Length) * i, 20, 0);
+				}
+				else if(rb.velocity.x != 0 && rb.velocity.x < 0) {
+					newBullet.transform.position = new Vector3(-30 + (60 / volley.volley.Length) * i, -20, 0);
+				
+				}
+			}
+			newBullet.transform.rotation = Quaternion.Euler(0, 0, angle);
+			BulletLogic bulletLogic = newBullet.GetComponent<BulletLogic>();//((GameObject)Instantiate(bulletPrefab, gameObject.transform.position, Quaternion.Euler(0, 0, angle))).GetComponent<BulletLogic>();
+			bulletLogic.Initialize(type, bullet.damage, bullet.speed, bullet.size, 5, playerStats.playerColor, playerStats.number, playerStats.character);
+   	   		newBullet.GetComponentInChildren<SpriteRenderer>().sortingOrder = 9 - bufferIter;
+	  
+		}
+		soundEffects.clip = Resources.Load<AudioClip>("audio/soundEffects/boomerangSound");
+		soundEffects.Play();
+	}
+
+
+	void OffScreenFinalShot() {
+		Debug.Log("why is this being called");
 		for(int i = 0; i < 4; i++) {
 			GameObject newBullet = bullets.GetBullet();
 			newBullet.transform.position = new Vector3(-30 + (15 * i), 20, 0);
