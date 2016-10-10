@@ -14,6 +14,7 @@ public class InputManager : MonoBehaviour {
 	public float spinSpeed;
 	public float spinRadius;
 	public float fullBufferScale = 2f;
+	private float baseScale;
 
 	public Reticle reticle;
 
@@ -44,6 +45,7 @@ public class InputManager : MonoBehaviour {
 	protected AudioSource soundEffects;
 
 	public void Start() {
+		baseScale = transform.localScale.x;
 		soundEffects = GetComponent<AudioSource>();
 		bulletPrefab = Resources.Load<GameObject>("prefabs/Bullet");
 		playerStats = GetComponent<PlayerStats>();
@@ -208,7 +210,7 @@ public class InputManager : MonoBehaviour {
 		exponentCooldownTimer = lockFrames * Time.deltaTime;
 		bufferIter = 0;
 		mashing = false;
-		gameObject.transform.localScale = new Vector3(1, 1, 1);
+		gameObject.transform.localScale = new Vector3(baseScale, baseScale, baseScale);
 	}
 
 	public void InputEqualsNumber() {
