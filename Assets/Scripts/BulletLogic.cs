@@ -113,7 +113,7 @@ public class BulletLogic : MonoBehaviour {
 		}
 		if(other.gameObject.layer != gameObject.layer) {
 			if(other.gameObject.tag == "Player") {
-					other.gameObject.GetComponent<PlayerStats>().health -= damage;
+					other.gameObject.GetComponent<PlayerStats>().TakeDamage(damage);
 					GameObject sparks = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/HitSparks"), transform.position, Quaternion.identity);
 					sparks.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/hitSparks/hitspark");
                     sparks.transform.localScale = new Vector3(damage * 2, damage * 2, damage * 2);

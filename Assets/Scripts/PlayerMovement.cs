@@ -114,7 +114,7 @@ public class PlayerMovement : MonoBehaviour {
 		knockbackVector.Normalize();
 		knockbackVector.x *= 20;
 		knockbackVector.y *= 20;
-		playerStats.health -= damage;
+		playerStats.TakeDamage(damage);
 		StartCoroutine(Knockback());
 	}
 

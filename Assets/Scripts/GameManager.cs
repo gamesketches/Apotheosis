@@ -258,7 +258,9 @@ public class GameManager : MonoBehaviour {
 		p2LifeBar = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SetLifeBar"), player2Pos + lifebarOffset, Quaternion.identity);
 		p2LifeBar.transform.parent = player2.transform;
 		player1Stats = player1.GetComponent<PlayerStats>();
+		player1Stats.lifeBar = p1LifeBar;
 		player2Stats = player2.GetComponent<PlayerStats>();
+		player2Stats.lifeBar = p2LifeBar;
 		currentUpdateFunction = InGameUpdate;
 		currentRoundTime = roundTime;	
         roundTimer = GameObject.FindGameObjectWithTag("RoundTimer").GetComponent<Text>();
@@ -333,8 +335,6 @@ public class GameManager : MonoBehaviour {
    	     roundTimer.text = Mathf.RoundToInt(currentRoundTime).ToString();
    	     }
 
-		UpdateLifeBars();
-
 		if(player1Stats.health <= 0 || player2Stats.health <= 0 || currentRoundTime <= 0) {
 			LockPlayers();
 			if(player1Stats.health <= 0 && player2Stats.health <= 0 ||
@@ -391,23 +391,7 @@ public class GameManager : MonoBehaviour {
 				currentUpdateFunction = TitleScreen;
 	}
 
-	void UpdateLifeBars() {
-		float player1HealthProportion, player2HealthProportion;
-		if(player1Stats.health > 0) {
-			player1HealthProportion = (player1Stats.health / player1Stats.maxHealth);
-		}
-		else {
-			player1HealthProportion = 0;
-		}
-		if(player2Stats.health > 0) {
-			player2HealthProportion = (player2Stats.health / player2Stats.maxHealth);
-		}
-		else {
-			player2HealthProportion = 0;
-		}
-		p1LifeBar.transform.localScale = new Vector3(player1HealthProportion * 0.5f, 1, 1);
-		p2LifeBar.transform.localScale = new Vector3(player2HealthProportion * 0.5f, 1, 1);
-	}
+
 
 	void FightIntro() {
 		LockPlayers();
