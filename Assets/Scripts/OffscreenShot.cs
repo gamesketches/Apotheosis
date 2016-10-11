@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
-
 public class OffscreenShot : InputManager {
 
 	// Use this for initialization
 	void Start () {
-		mashBufferSize = 9;
+		mashBufferSize = 8;
 		shotCooldownTime = 0.25f;
 		exponentCooldownTime = 0.1f;
 		meleePressWindow = 0.25f;
@@ -88,33 +87,29 @@ public class OffscreenShot : InputManager {
 
 	void OffScreenShot() {
 		BulletType type = BulletType.Boomerang;
-		Rigidbody2D rb = playerMovement.GetRigidbody2D();
+		Direction dir = playerMovement.lastDirection;
 		BulletDepot.Volley volley = bullets.types[(int)playerStats.character].projectileTypes[(int)type].volleys[bufferIter];
 
 
 		for(int i = 0; i < volley.volley.Length; i++) {
 			BulletDepot.Bullet bullet = volley.volley[i];
-		//foreach(BulletDepot.Bullet bullet in volley.volley) {
-			CreateBullet(bullet, type);
 			int angle = bullet.angle + (int)playerMovement.CurrentShotAngle();	
 	   	    GameObject newBullet = bullets.GetBullet();
-	   	    if(rb.velocity.x != 0){
-	   	    	if(rb.velocity.x > 0) {
-				newBullet.transform.position = new Vector3(-35, -15 + (60 / volley.volley.Length) * i, 0);
-				}
-				else if(rb.velocity.x != 0 && rb.velocity.x < 0) {
-					newBullet.transform.position = new Vector3(35, -15 + (60 / volley.volley.Length) * i, 0);
-				}
-			}
-			else{
-				if(rb.velocity.y > 0) {
-				newBullet.transform.position = new Vector3(-30 + (60 / volley.volley.Length) * i, 20, 0);
-				}
-				else if(rb.velocity.x != 0 && rb.velocity.x < 0) {
-					newBullet.transform.position = new Vector3(-30 + (60 / volley.volley.Length) * i, -20, 0);
-				
-				}
-			}
+	   	    switch(dir) {
+	   	    	case Direction.Right:
+					newBullet.transform.position = new Vector3(42, -25 + (60 / volley.volley.Length) * i, 0);
+					break;
+				case Direction.Left:
+					newBullet.transform.position = new Vector3(-42, -25 + (60 / volley.volley.Length) * i, 0);
+					break;
+				case Direction.Down:
+					newBullet.transform.position = new Vector3(-42 + (60 / volley.volley.Length) * i, -25, 0);
+					break;
+				case Direction.Up:
+					newBullet.transform.position = new Vector3(-42 + (60 / volley.volley.Length) * i, 25, 0);
+					break;
+	   	    }
+
 			newBullet.transform.rotation = Quaternion.Euler(0, 0, angle);
 			BulletLogic bulletLogic = newBullet.GetComponent<BulletLogic>();//((GameObject)Instantiate(bulletPrefab, gameObject.transform.position, Quaternion.Euler(0, 0, angle))).GetComponent<BulletLogic>();
 			bulletLogic.Initialize(type, bullet.damage, bullet.speed, bullet.size, 5, playerStats.playerColor, playerStats.number, playerStats.character);
@@ -127,7 +122,6 @@ public class OffscreenShot : InputManager {
 
 
 	void OffScreenFinalShot() {
-		Debug.Log("why is this being called");
 		for(int i = 0; i < 4; i++) {
 			GameObject newBullet = bullets.GetBullet();
 			newBullet.transform.position = new Vector3(-30 + (15 * i), 20, 0);

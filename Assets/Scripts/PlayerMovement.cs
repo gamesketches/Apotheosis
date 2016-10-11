@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum Direction {Right, Up, Left, Down};
+
 public class PlayerMovement : MonoBehaviour {
 	public float speed;
 	public float reticleRadius;
 	public float knockbackTime;
 	public bool locked;
 	public int bufferIter;
+	public Direction lastDirection;
 
 	public Reticle reticle;
 
@@ -43,8 +46,10 @@ public class PlayerMovement : MonoBehaviour {
 		anim.speed = 0.6f;
 		if(playerStats.number == 0) {
 			radians = 0.0f;
+			lastDirection = Direction.Right;
 		} else if(playerStats.number == 1) {
 			radians = Mathf.PI;
+			lastDirection = Direction.Left;
 		}
 		degrees = radians * Mathf.Rad2Deg;
 		SetReticle();
@@ -53,6 +58,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	void Update() {
 		HandleMovement();
+		lastDirection = (Direction)(int)((degrees + 45) / 90);
 	}
 
 	void HandleMovement() {
