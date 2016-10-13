@@ -14,18 +14,14 @@ public class PlayerStats : MonoBehaviour {
 
 
 	public void TakeDamage(float damage) {
-
 		health -= damage;
 		if(health > 0) {
-			lifeBar.transform.localScale = new Vector3((health / maxHealth) * 0.5f, 1f, 1f);
+			lifeBar.GetComponent<BarController>().LerpLifeChange(health / maxHealth);
 
 		}
 		else {
 			health = 0;
 		}
-
-		lifeBar.GetComponent<LifebarFlash>().Flash();
-	
 	}
 
 }
