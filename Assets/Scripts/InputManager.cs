@@ -44,6 +44,8 @@ public class InputManager : MonoBehaviour {
 	protected PlayerMovement playerMovement;
 	protected AudioSource soundEffects;
 
+    private bool debug_on = false;
+
 	public void Start() {
 		baseScale = transform.localScale.x;
 		soundEffects = GetComponent<AudioSource>();
@@ -260,7 +262,7 @@ public class InputManager : MonoBehaviour {
 		BulletLogic bulletLogic = newBullet.GetComponent<BulletLogic>();//((GameObject)Instantiate(bulletPrefab, gameObject.transform.position, Quaternion.Euler(0, 0, angle))).GetComponent<BulletLogic>();
 		bulletLogic.Initialize(type, bullet.damage, bullet.speed, bullet.size, 5, playerStats.playerColor, playerStats.number, playerStats.character);
         newBullet.GetComponentInChildren<SpriteRenderer>().sortingOrder = 9 - bufferIter;
-        Debug.Log("Sorting layer debug thing " + newBullet.GetComponentInChildren<SpriteRenderer>().sortingOrder);
+        //Debug.Log("Sorting layer debug thing " + newBullet.GetComponentInChildren<SpriteRenderer>().sortingOrder);
     }
 
 	public void InitializeControls(string[] controls) {

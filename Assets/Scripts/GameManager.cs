@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour {
     SpriteRenderer[] HorusWinsIconsSR;
     SpriteRenderer[] SetWinsIconsSR;
 
+    private bool debug_on;
+
     // Use this for initialization
     void Start () {
         GameObject[] HorusWinsIcons;
@@ -258,10 +260,13 @@ public class GameManager : MonoBehaviour {
 		p2LifeBar = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SetLifeBar"), player2Pos + lifebarOffset, Quaternion.identity);
 		p2LifeBar.transform.parent = player2.transform;
 		player1Stats = player1.GetComponent<PlayerStats>();
-		player1Stats.lifeBar = p1LifeBar;
-		player2Stats = player2.GetComponent<PlayerStats>();
+        player1Stats.lifeBar = p1LifeBar;
+        player2Stats = player2.GetComponent<PlayerStats>();
 		player2Stats.lifeBar = p2LifeBar;
-		currentUpdateFunction = InGameUpdate;
+        //hacky shit to fix the lifebar position on bigger character -ski
+        if (characterSelectManager.p1Character == Character.Hiruko) p1LifeBar.transform.position += new Vector3(0, p1LifeBar.transform.position.y, 0);
+        if (characterSelectManager.p2Character == Character.Hiruko) p2LifeBar.transform.position += new Vector3(0, p1LifeBar.transform.position.y, 0);
+        currentUpdateFunction = InGameUpdate;
 		currentRoundTime = roundTime;	
         roundTimer = GameObject.FindGameObjectWithTag("RoundTimer").GetComponent<Text>();
         roundTimer.enabled = true;
@@ -295,7 +300,7 @@ public class GameManager : MonoBehaviour {
 				yield return new WaitForSeconds(1.5f);
 				playerNum -= 2;
 			}
-			Debug.Log(playerNum);
+			if (debug_on) Debug.Log(playerNum);
 	        victoryText.text = playerNum == 2 ? "Player Two" : "Player One";
 			victoryText.text += roundsWon == 3 ? "\n IS \n   VICTORIOUS" : "\nWINS";
 		}

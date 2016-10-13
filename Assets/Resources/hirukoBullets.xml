@@ -6,8 +6,8 @@
       <!-- BLOCK blt count: 1,1,1,1,2,2,2,3 -->
           <!-- Volley #1 -->
         <Bullet>
-          <size>0.5</size>
-          <speed>1</speed>
+          <size>2.0</size>
+          <speed>4</speed>
           <damage>1</damage>
           <angle>0</angle>
         </Bullet>
@@ -15,7 +15,7 @@
       <Volley>
         <!-- Volley #2 -->
         <Bullet>
-          <size>0.5</size>
+          <size>1.0</size>
           <speed>1</speed>
           <damage>1</damage>
           <angle>0</angle>
@@ -33,7 +33,7 @@
       <Volley>
         <!-- Volley #4 -->
         <Bullet>
-          <size>0.5</size>
+          <size>1.0</size>
           <speed>1</speed>
           <damage>1</damage>
           <angle>0</angle>
@@ -533,13 +533,13 @@
 				</Volley>
 
 		</ProjectileType>
-		<ProjectileType name="crane" desc="Tracks enemies"> <!-- ROUNDABOUT blt count: 1,2,4,6,6,10,10,10-->
+		<ProjectileType name="crane" desc="Offscreen shot"> <!-- ROUNDABOUT blt count: 1,2,4,6,6,10,10,10-->
 				<Volley>
           <!-- Volley #1 1 bullets 4dmg  -->
           <Bullet>
 						<size>1</size>
-						<speed>1</speed>
-						<damage>4</damage>
+						<speed>3</speed>
+						<damage>1</damage>
 						<angle>180</angle>
 					</Bullet>
 				</Volley>
@@ -547,13 +547,13 @@
           <!-- Volley #2 2 bullets 4dmg  -->
           <Bullet>
 						<size>1</size>
-						<speed>1</speed>
-						<damage>2</damage>
+						<speed>3</speed>
+						<damage>1</damage>
 						<angle>160</angle>
 					</Bullet>
 					<Bullet>
 						<size>1</size>
-						<speed>1</speed>
+						<speed>3</speed>
 						<damage>2</damage>
 						<angle>200</angle>
 					</Bullet>

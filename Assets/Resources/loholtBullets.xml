@@ -5,8 +5,8 @@
       <Volley>
         <!-- Volley #1 -->
         <Bullet>
-          <size>1.0</size>
-          <speed>7</speed>
+          <size>1.5</size>
+          <speed>5</speed>
           <damage>1</damage>
           <angle>0</angle>
         </Bullet>

@@ -2,8 +2,11 @@
 using System.Collections;
 public class OffscreenShot : InputManager {
 
-	// Use this for initialization
-	void Start () {
+
+    private float lifetime;
+
+    // Use this for initialization
+    void Start () {
 		mashBufferSize = 8;
 		shotCooldownTime = 0.25f;
 		exponentCooldownTime = 0.1f;
@@ -16,7 +19,9 @@ public class OffscreenShot : InputManager {
 		fullBufferScale = 2f;
 		base.Start();
 
-	}
+
+        lifetime = 5.8f; 
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -91,6 +96,7 @@ public class OffscreenShot : InputManager {
 		BulletDepot.Volley volley = bullets.types[(int)playerStats.character].projectileTypes[(int)type].volleys[bufferIter];
 
 
+
 		for(int i = 0; i < volley.volley.Length; i++) {
 			BulletDepot.Bullet bullet = volley.volley[i];
 			int angle = bullet.angle + (int)playerMovement.CurrentShotAngle();	
@@ -112,9 +118,9 @@ public class OffscreenShot : InputManager {
 
 			newBullet.transform.rotation = Quaternion.Euler(0, 0, angle);
 			BulletLogic bulletLogic = newBullet.GetComponent<BulletLogic>();//((GameObject)Instantiate(bulletPrefab, gameObject.transform.position, Quaternion.Euler(0, 0, angle))).GetComponent<BulletLogic>();
-			bulletLogic.Initialize(type, bullet.damage, bullet.speed, bullet.size, 5, playerStats.playerColor, playerStats.number, playerStats.character);
+			bulletLogic.Initialize(type, bullet.damage, bullet.speed, bullet.size, lifetime, playerStats.playerColor, playerStats.number, playerStats.character);
    	   		newBullet.GetComponentInChildren<SpriteRenderer>().sortingOrder = 9 - bufferIter;
-	  
+            	  
 		}
 		soundEffects.clip = Resources.Load<AudioClip>("audio/soundEffects/boomerangSound");
 		soundEffects.Play();

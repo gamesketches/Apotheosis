@@ -25,7 +25,8 @@ public class BulletLogic : MonoBehaviour {
 	private new Sprite[] animation; 
 	AnimationCurve shieldVelocity;
 	public BulletDepot theDepot;
-   
+
+    private bool debug_on = false; 
     // Use this for initialization
     void Start () {
 		renderer = GetComponentInChildren<SpriteRenderer>();
@@ -117,7 +118,7 @@ public class BulletLogic : MonoBehaviour {
 					GameObject sparks = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/HitSparks"), transform.position, Quaternion.identity);
 					sparks.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/hitSparks/hitspark");
                     sparks.transform.localScale = new Vector3(damage * 2, damage * 2, damage * 2);
-                    Debug.Log("hit spark 0");
+                    //if (debug_on) Debug.Log("hit spark 0");
                     if (GameObject.FindGameObjectsWithTag("SoundEffects").Length < 5) {
 					GameObject temp = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SoundEffectObject"), gameObject.transform.position, Quaternion.identity);
 					temp.GetComponent<SoundEffectObjectScript>().PlaySoundEffect("damageHit");
@@ -148,7 +149,7 @@ public class BulletLogic : MonoBehaviour {
 				theDepot.AddObject(gameObject);
 				GameObject sparks = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/HitSparks"), transform.position, Quaternion.identity);
                 sparks.transform.localScale = new Vector3(10f, 10f, 10f);
-                Debug.Log("hit spark 2");
+                //Debug.Log("hit spark 2");
                 sparks.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/hitSparks/hitspark");	
 			}
 			else {
@@ -157,7 +158,7 @@ public class BulletLogic : MonoBehaviour {
 				sparks.transform.localScale = new Vector3(10f, 10f, 10f);
                 sparks.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/hitSparks/hitspark");
                 //dynamic hitspark color test -ski
-                Debug.Log("hit spark 1");
+                if (debug_on) Debug.Log("hit spark 1");
                 //if(gameObject.tag == "Reticle" && )
                 GameObject temp = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SoundEffectObject"), gameObject.transform.position, Quaternion.identity);
 				temp.GetComponent<SoundEffectObjectScript>().PlaySoundEffect("rpsBulletCancel");
