@@ -14,6 +14,8 @@ public class InputManager : MonoBehaviour {
 	public float spinSpeed;
 	public float spinRadius;
 	public float fullBufferScale = 2f;
+	public bool poweredUpBuffer;
+	public bool poweredUpBullets;
 	private float baseScale;
 
 	public Reticle reticle;
@@ -47,6 +49,8 @@ public class InputManager : MonoBehaviour {
     private bool debug_on = false;
 
 	public void Start() {
+		poweredUpBuffer = false;
+		poweredUpBullets = false;
 		baseScale = transform.localScale.x;
 		soundEffects = GetComponent<AudioSource>();
 		bulletPrefab = Resources.Load<GameObject>("prefabs/Bullet");
@@ -87,7 +91,9 @@ public class InputManager : MonoBehaviour {
 					    mashing = true;
 				    }
 			  	    ExponentShot();
-				    bufferIter++;
+			  	    if(!poweredUpBuffer || bufferIter < mashBufferSize - 2) {
+					    bufferIter++;
+					   }
             }
            }
 		} else if(mashing && button == '0' && !melee ){
@@ -260,7 +266,12 @@ public class InputManager : MonoBehaviour {
 		newBullet.transform.position = gameObject.transform.position;
 		newBullet.transform.rotation = Quaternion.Euler(0, 0, angle);
 		BulletLogic bulletLogic = newBullet.GetComponent<BulletLogic>();//((GameObject)Instantiate(bulletPrefab, gameObject.transform.position, Quaternion.Euler(0, 0, angle))).GetComponent<BulletLogic>();
-		bulletLogic.Initialize(type, bullet.damage, bullet.speed, bullet.size, 5, playerStats.playerColor, playerStats.number, playerStats.character);
+		if(poweredUpBullets) {
+			bulletLogic.Initialize(type, bullet.damage * 2, bullet.speed, bullet.size, 5, playerStats.playerColor, playerStats.number, playerStats.character);
+		}
+		else {
+			bulletLogic.Initialize(type, bullet.damage, bullet.speed, bullet.size, 5, playerStats.playerColor, playerStats.number, playerStats.character);
+		}
         newBullet.GetComponentInChildren<SpriteRenderer>().sortingOrder = 9 - bufferIter;
         //Debug.Log("Sorting layer debug thing " + newBullet.GetComponentInChildren<SpriteRenderer>().sortingOrder);
     }

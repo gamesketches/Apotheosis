@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour {
 	private bool timerStarted;
 	public Vector3 player1Pos, player2Pos;
 	public int startingHealth;
+	public Vector3 powerUpZonePosition;
 	string[] player1Controls, player2Controls;
 	PlayerStats player1Stats, player2Stats;
 	BulletDepot bullets;
@@ -270,6 +271,8 @@ public class GameManager : MonoBehaviour {
 		currentRoundTime = roundTime;	
         roundTimer = GameObject.FindGameObjectWithTag("RoundTimer").GetComponent<Text>();
         roundTimer.enabled = true;
+
+        Instantiate(Resources.Load<GameObject>("prefabs/PowerUpZone"), powerUpZonePosition, Quaternion.identity);
         FightIntro();
     }
 
