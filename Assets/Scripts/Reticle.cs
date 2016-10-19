@@ -6,6 +6,8 @@ public class Reticle : MonoBehaviour {
 	public float spinDamage;
 	public float jabCooldown;
 	public float spinCooldown;
+	public float jabHitStun = 0.1f;
+	public float spinHitStun = 0.2f;
 
 	public Color color;
 
@@ -26,9 +28,11 @@ public class Reticle : MonoBehaviour {
 			if(collider.gameObject.layer != gameObject.layer) {
 				if(collider.gameObject.tag == "Player") {
 					if(spinning) {
+						StartCoroutine(Hitstop(spinHitStun));
 						collider.gameObject.GetComponent<PlayerMovement>().StartKnockback(transform, spinDamage);
 						collider.gameObject.GetComponent<InputManager>().SetExponentCooldownTimer(spinCooldown);
 					} else {
+						StartCoroutine(Hitstop(jabHitStun));
 						collider.gameObject.GetComponent<PlayerMovement>().StartKnockback(transform, jabDamage);
 						collider.gameObject.GetComponent<InputManager>().SetExponentCooldownTimer(jabCooldown);
                         Debug.Log("cooldown now");
@@ -57,5 +61,16 @@ public class Reticle : MonoBehaviour {
 
 	public Rigidbody2D GetRigidbody2D() {
 		return rb2D;
+	}
+
+	IEnumerator Hitstop(float hitStun) {
+		float startTime = Time.realtimeSinceStartup;
+		Time.timeScale = 0;
+		while(Time.realtimeSinceStartup < startTime + hitStun) {
+			Debug.Log(Time.timeSinceLevelLoad);
+			Debug.Log(startTime + hitStun);
+			yield return null;
+		}
+		Time.timeScale = 1;
 	}
 }
