@@ -183,7 +183,7 @@ public class GameManager : MonoBehaviour {
 		StartRound();
 	}
 
-    	GameObject CreatePlayer(string[] controls, Character character, Vector3 position, int number){
+    GameObject CreatePlayer(string[] controls, Character character, Vector3 position, int number){
 		Color color = character == Character.Loholt ? Color.blue : Color.red;
 		GameObject temp = (GameObject)Instantiate(Resources.Load("prefabs/Player"), 
 												position, Quaternion.identity);
@@ -225,7 +225,8 @@ public class GameManager : MonoBehaviour {
 		AnimatorOverrideController animationController = new AnimatorOverrideController();
 
 		if(character != Character.Hiruko) {
-			animationController.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("sprites/LoholtAnimation/p1/PlayerAnimationController");
+			//animationController.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("sprites/LoholtAnimation/p1/PlayerAnimationController");
+			animationController.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("sprites/HirukoAnimation/p1/OptimizedAnimationController");
 			string resourcePath = string.Concat("sprites/", character.ToString(), "Animation/p", (number + 1).ToString());
 			foreach(AnimationClip clip in Resources.LoadAll<AnimationClip>(resourcePath)) {
 					animationController[clip.name] = clip;

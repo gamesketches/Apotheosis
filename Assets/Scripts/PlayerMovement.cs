@@ -72,14 +72,14 @@ public class PlayerMovement : MonoBehaviour {
 				rb2D.velocity = (new Vector2(Input.GetAxisRaw(horizontalAxis), Input.GetAxisRaw(verticalAxis))).normalized * (float)computedSpeed;
 					anim.SetInteger("xAxis", (int) rb2D.velocity.x);
 					anim.SetInteger("yAxis", (int) rb2D.velocity.y);
-					if(playerStats.character == Character.Hiruko) {
+					//if(playerStats.character == Character.Hiruko) {
 						if(rb2D.velocity.x < 0) {
 							renderer.flipX = true;
 						}
 						else if(rb2D.velocity.x > 0) {
 							renderer.flipX = false;
 						}
-					}
+					//}
 					if(rb2D.velocity.x != 0.0f || rb2D.velocity.y != 0.0f) {
 						radians = Mathf.Atan2(rb2D.velocity.y, rb2D.velocity.x);
 						degrees = radians * Mathf.Rad2Deg;
