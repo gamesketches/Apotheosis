@@ -85,7 +85,12 @@ public class OffscreenShot : InputManager {
 
 		//playerMovement.ResetReticle();
 		if(exponentCooldownTimer <= 0) {
+			if(mashBuffer[bufferIter] == 'B') {
 				OffScreenShot();
+			}
+			else {
+				base.InputEqualsNumber();
+			}
 		}
 		base.ResetBuffer();
 	}
