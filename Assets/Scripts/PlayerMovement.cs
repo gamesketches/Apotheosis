@@ -73,7 +73,12 @@ public class PlayerMovement : MonoBehaviour {
 					anim.SetInteger("xAxis", (int) rb2D.velocity.x);
 					anim.SetInteger("yAxis", (int) rb2D.velocity.y);
 					if(playerStats.character == Character.Hiruko) {
-						renderer.flipX = rb2D.velocity.x < 0 ? true : false;
+						if(rb2D.velocity.x < 0) {
+							renderer.flipX = true;
+						}
+						else if(rb2D.velocity.x > 0) {
+							renderer.flipX = false;
+						}
 					}
 					if(rb2D.velocity.x != 0.0f || rb2D.velocity.y != 0.0f) {
 						radians = Mathf.Atan2(rb2D.velocity.y, rb2D.velocity.x);
