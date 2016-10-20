@@ -30,4 +30,5 @@ public class LifebarFlash : MonoBehaviour {
 	public void Flash() {
 		flashTimer = flashTime;
 	}
+
 }

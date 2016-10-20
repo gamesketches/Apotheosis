@@ -32,7 +32,7 @@ public class BarController : MonoBehaviour {
 	}
 
 	public void LerpLifeChange(float newScale) {
-		if(newScale < transform.localScale.x) {
+        if (newScale < transform.localScale.x) {
 			StartCoroutine(ChangeLifeValue(newScale));
 			Flash(damageColor);
 		}
@@ -48,4 +48,10 @@ public class BarController : MonoBehaviour {
 			yield return null;
 		}
 	}
+
+
+    public void changeLifebarColor(Color newColor)
+    {
+        startColor = newColor;
+    }
 }

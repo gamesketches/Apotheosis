@@ -258,10 +258,12 @@ public class GameManager : MonoBehaviour {
 		player1 = CreatePlayer(player1Controls, characterSelectManager.p1Character, player1Pos, 0);
 		p1LifeBar = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SetLifeBar"), player1Pos + lifebarOffset, Quaternion.identity);
 		p1LifeBar.transform.parent = player1.transform;
-		player2 = CreatePlayer(player2Controls, characterSelectManager.p2Character, player2Pos, 1);
+        p1LifeBar.transform.localScale = Vector3.one; //ski
+        player2 = CreatePlayer(player2Controls, characterSelectManager.p2Character, player2Pos, 1);
 		p2LifeBar = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SetLifeBar"), player2Pos + lifebarOffset, Quaternion.identity);
 		p2LifeBar.transform.parent = player2.transform;
-		player1Stats = player1.GetComponent<PlayerStats>();
+        p2LifeBar.transform.localScale = Vector3.one; //ski
+        player1Stats = player1.GetComponent<PlayerStats>();
         player1Stats.lifeBar = p1LifeBar;
         player2Stats = player2.GetComponent<PlayerStats>();
 		player2Stats.lifeBar = p2LifeBar;

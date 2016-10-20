@@ -42,6 +42,8 @@ public class Reticle : MonoBehaviour {
 					sparks.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/hitSparks/hitspark");
                     return;
 				} else if(collider.gameObject.tag != "Reticle"){
+                    //ski turn off sword dominance 10/20/2016
+                    /*
 					GameObject sparks = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/HitSparks"), transform.position, Quaternion.identity);
 					sparks.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/hitSparks/hitspark");
                     if (gameObject.layer == 8) {
@@ -53,6 +55,7 @@ public class Reticle : MonoBehaviour {
                     }
                     sparks.transform.localScale = new Vector3(5.0f, 5.0f, 5.0f);
                     Destroy(collider.gameObject);
+                    */
 				}
 				audio.Play();
 			}

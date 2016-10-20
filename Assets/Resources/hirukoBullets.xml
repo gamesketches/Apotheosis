@@ -8,7 +8,7 @@
         <Bullet>
           <size>2.0</size>
           <speed>4</speed>
-          <damage>1</damage>
+          <damage>10</damage>
           <angle>0</angle>
         </Bullet>
       </Volley>
