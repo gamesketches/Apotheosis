@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour {
 	PlayerStats player1Stats, player2Stats;
 	BulletDepot bullets;
 	GameObject p1LifeBar, p2LifeBar;
+    private int roundsToWin;
 	#endregion
 
 	#region CharacterSelect Vars
@@ -52,6 +53,8 @@ public class GameManager : MonoBehaviour {
         SetWinsIconsSR = new SpriteRenderer[SetWinsIcons.Length];
         player1Wins = 0;
         player2Wins = 0;
+        roundsToWin = 2;
+
         int j = 0;
         for (int i = 2; i >= 0; i--)
         {
@@ -275,7 +278,8 @@ public class GameManager : MonoBehaviour {
         roundTimer = GameObject.FindGameObjectWithTag("RoundTimer").GetComponent<Text>();
         roundTimer.enabled = true;
 
-        Instantiate(Resources.Load<GameObject>("prefabs/PowerUpZone"), powerUpZonePosition, Quaternion.identity);
+        //Instantiate(Resources.Load<GameObject>("prefabs/PowerUpZone"), powerUpZonePosition, Quaternion.identity);
+        
         FightIntro();
     }
 
@@ -308,14 +312,15 @@ public class GameManager : MonoBehaviour {
 			}
 			if (debug_on) Debug.Log(playerNum);
 	        victoryText.text = playerNum == 2 ? "Player Two" : "Player One";
-			victoryText.text += roundsWon == 3 ? "\n IS \n   VICTORIOUS" : "\nWINS";
+			victoryText.text += roundsWon == roundsToWin ? "\n IS \n   VICTORIOUS" : "\nWINS";
 		}
 		victoryText.enabled = true;
         yield return new WaitForSeconds(3.0f);
         victoryText.enabled = false;
         victoryText.text = "";
 
-		if(player1RoundWins > 2 || player2RoundWins > 2) {
+		if(player1RoundWins >= roundsToWin || player2RoundWins >= roundsToWin)
+        {
 			ResetGame();
 		}
 		else {
