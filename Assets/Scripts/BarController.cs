@@ -32,14 +32,14 @@ public class BarController : MonoBehaviour {
 		flashTimer = flashTime;
 	}
 
-	public void LerpLifeChange(float newScale) {
+	public void LerpChange(float newScale) {
         if (newScale < transform.localScale.x) {
-			StartCoroutine(ChangeLifeValue(newScale));
+			StartCoroutine(ChangeValue(newScale));
 			Flash(damageColor);
 		}
 	}
 
-	private IEnumerator ChangeLifeValue(float newScale) {
+	private IEnumerator ChangeValue(float newScale) {
 		float t = 0;
 		Vector3 startingScale = transform.localScale;
 		Vector3 endingScale = new Vector3(newScale, startingScale.y, startingScale.z);
@@ -54,7 +54,7 @@ public class BarController : MonoBehaviour {
 	}
 
 
-    public void changeLifebarColor(Color newColor)
+    public void changeBarColor(Color newColor)
     {
         startColor = newColor;
     }

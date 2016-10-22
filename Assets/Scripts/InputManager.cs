@@ -86,7 +86,6 @@ public class InputManager : MonoBehaviour {
 	                //gameObject.transform.localScale = Vector3.Lerp(new Vector3(1f, 1f, 1f), new Vector3(fullBufferScale, fullBufferScale, fullBufferScale),(float)bufferIter / (float)mashBufferSize);
 	                gameObject.transform.localScale = Vector3.Lerp(gameObject.transform.localScale, new Vector3(fullBufferScale, fullBufferScale, fullBufferScale),(float)bufferIter / (float)mashBufferSize);
                     mashBuffer.SetValue(button, bufferIter);
-   	         
 				    if(!mashing) {
 					    mashing = true;
 				    }
@@ -111,6 +110,8 @@ public class InputManager : MonoBehaviour {
 		else {
 			renderer.color = new Color(1f, 1f, 1f);
 		}
+
+   	    playerStats.bufferBar.transform.localScale = new Vector3(1 * bufferIter + 1, 6, 1);
 	}
 
 	public char GetButtonPress() {

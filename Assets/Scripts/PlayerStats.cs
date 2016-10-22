@@ -11,17 +11,18 @@ public class PlayerStats : MonoBehaviour {
 	public int number;
 	public Character character;
 	public GameObject lifeBar;
+	public GameObject bufferBar;
 
 
 	public void TakeDamage(float damage) {
 		health -= damage;
 
         if (health > 0) {
-			lifeBar.GetComponent<BarController>().LerpLifeChange(health / maxHealth);
+			lifeBar.GetComponent<BarController>().LerpChange(health / maxHealth);
 
 		}
 		else {
-            lifeBar.GetComponent<BarController>().LerpLifeChange(0);
+            lifeBar.GetComponent<BarController>().LerpChange(0);
             health = 0;
         }
 	}
