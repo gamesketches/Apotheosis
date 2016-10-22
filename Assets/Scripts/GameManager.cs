@@ -274,6 +274,15 @@ public class GameManager : MonoBehaviour {
 		player2Stats.lifeBar = p2LifeBar;
 		player2Stats.bufferBar = p2BufferBar;
 	}
+
+	void CreateObstacles() {
+		// We gon do this real shitty for now. The obstacles are just blocks.
+		// Create them wherever you'd like using code like this:
+		GameObject obstacle = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/Obstacle"), Vector3.zero, Quaternion.identity);
+		// obstacle.transform.localScale = whatever box shape you want!
+			
+	}
+
 	string[] CreateControlScheme(int playerNum) {
 		string[] controlArray = new string[6];
 		controlArray[0] = string.Concat("Horizontal", playerNum.ToString());
@@ -290,6 +299,7 @@ public class GameManager : MonoBehaviour {
         player2 = CreatePlayer(player2Controls, characterSelectManager.p2Character, player2Pos, 1);
 
         CreateBars();
+        CreateObstacles();
         currentUpdateFunction = InGameUpdate;
 		currentRoundTime = roundTime;	
         roundTimer = GameObject.FindGameObjectWithTag("RoundTimer").GetComponent<Text>();
