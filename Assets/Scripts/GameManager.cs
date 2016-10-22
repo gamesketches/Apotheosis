@@ -257,22 +257,21 @@ public class GameManager : MonoBehaviour {
 	}
     
 	void StartRound() {
-		Vector3 lifebarOffset = new Vector3(0, -2, 0);
+		Vector3 lifebarOffset = new Vector3(-5, 20, 0);
 		player1 = CreatePlayer(player1Controls, characterSelectManager.p1Character, player1Pos, 0);
 		p1LifeBar = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SetLifeBar"), player1Pos + lifebarOffset, Quaternion.identity);
-		p1LifeBar.transform.parent = player1.transform;
-        p1LifeBar.transform.localScale = Vector3.one; //ski
+        p1LifeBar.transform.localScale = new Vector3(10, 4, 1);
+        p1LifeBar.GetComponent<BarController>().changeDirection = 1;
         player2 = CreatePlayer(player2Controls, characterSelectManager.p2Character, player2Pos, 1);
 		p2LifeBar = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SetLifeBar"), player2Pos + lifebarOffset, Quaternion.identity);
-		p2LifeBar.transform.parent = player2.transform;
-        p2LifeBar.transform.localScale = Vector3.one; //ski
+		p2LifeBar.transform.localScale = new Vector3(10, 4, 1);
+		p2LifeBar.transform.position += new Vector3(10, -1, 0);
+		p2LifeBar.transform.Rotate(0f, 0f, 180f);
+		p2LifeBar.GetComponent<BarController>().changeDirection = -1;
         player1Stats = player1.GetComponent<PlayerStats>();
         player1Stats.lifeBar = p1LifeBar;
         player2Stats = player2.GetComponent<PlayerStats>();
 		player2Stats.lifeBar = p2LifeBar;
-        //hacky shit to fix the lifebar position on bigger character -ski
-        if (characterSelectManager.p1Character == Character.Hiruko) p1LifeBar.transform.position += new Vector3(0, p1LifeBar.transform.position.y, 0);
-        if (characterSelectManager.p2Character == Character.Hiruko) p2LifeBar.transform.position += new Vector3(0, p1LifeBar.transform.position.y, 0);
         currentUpdateFunction = InGameUpdate;
 		currentRoundTime = roundTime;	
         roundTimer = GameObject.FindGameObjectWithTag("RoundTimer").GetComponent<Text>();

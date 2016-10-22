@@ -8,6 +8,7 @@ public class BarController : MonoBehaviour {
 	public Color damageColor;
 	public float flashTime;
 	public float changeSpeed;
+	public int changeDirection;
 	private float flashTimer;
 
 	void Start () {
@@ -42,8 +43,11 @@ public class BarController : MonoBehaviour {
 		float t = 0;
 		Vector3 startingScale = transform.localScale;
 		Vector3 endingScale = new Vector3(newScale, startingScale.y, startingScale.z);
+		Vector3 startPos = transform.position;
+		Vector3 endPos = new Vector3(startPos.x + (startingScale.x - newScale) * changeDirection, startPos.y, startPos.z);
 		while(t < changeSpeed) {
 			transform.localScale = Vector3.Lerp(startingScale, endingScale, t / changeSpeed);
+			transform.localPosition = Vector3.Lerp(startPos, endPos, t / changeSpeed);
 			t += Time.deltaTime;
 			yield return null;
 		}
