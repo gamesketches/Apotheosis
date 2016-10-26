@@ -249,22 +249,18 @@ public class GameManager : MonoBehaviour {
 		Vector3 lifebarOffset = new Vector3(-5, 20, 0);
 		Vector3 bufferBarOffset = new Vector3(-10, 20, 0);
 		p1LifeBar = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/LifeBar"), player1Pos + lifebarOffset, Quaternion.identity);
-        p1LifeBar.transform.localScale = new Vector3(10, 4, 1);
         p1LifeBar.GetComponent<BarController>().changeDirection = 1;
 
-		p1BufferBar = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/BufferBar"), new Vector3(-36f, 19f, -1f), Quaternion.identity);
-        p1BufferBar.transform.localScale = new Vector3(1, 4, 1);
+		p1BufferBar = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/BufferBar"), new Vector3(-30f, 19f, -1f), Quaternion.identity);
         p1BufferBar.GetComponent<BarController>().changeDirection = -1;
 
 		p2LifeBar = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/LifeBar"), player2Pos + lifebarOffset, Quaternion.identity);
-		p2LifeBar.transform.localScale = new Vector3(10, 4, 1);
-		p2LifeBar.transform.position += new Vector3(10, -1, 0);
-		p2LifeBar.transform.Rotate(0f, 0f, 180f);
+		p2LifeBar.GetComponent<SpriteRenderer>().flipY = true;
+		p2LifeBar.transform.position += new Vector3(10, 0, 0);
 		p2LifeBar.GetComponent<BarController>().changeDirection = -1;
 
-		p2BufferBar = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/BufferBar"), new Vector3(36f, 19f, -1f), Quaternion.identity);
-        p2BufferBar.transform.localScale = new Vector3(1, 4, 1);
-        p2BufferBar.transform.Rotate(0f, 0f, 180f);
+		p2BufferBar = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/BufferBar"), new Vector3(30f, 19f, -1f), Quaternion.identity);
+		p2BufferBar.GetComponent<SpriteRenderer>().flipY = true;
         p2BufferBar.GetComponent<BarController>().changeDirection = 1;
 
         player1Stats = player1.GetComponent<PlayerStats>();

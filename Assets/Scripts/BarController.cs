@@ -37,6 +37,9 @@ public class BarController : MonoBehaviour {
 			StartCoroutine(ChangeValue(newScale));
 			Flash(damageColor);
 		}
+		else if(newScale > transform.localScale.x) {
+			StartCoroutine(ChangeValue(newScale));
+			}
 	}
 
 	private IEnumerator ChangeValue(float newScale) {
