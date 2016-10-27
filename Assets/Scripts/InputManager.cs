@@ -111,7 +111,8 @@ public class InputManager : MonoBehaviour {
 			renderer.color = new Color(1f, 1f, 1f);
 		}
 
-   	    playerStats.bufferBar.transform.localScale = new Vector3(1 * bufferIter + 1, 1, 1);
+   	    //playerStats.bufferBar.transform.localScale = new Vector3(1 * bufferIter + 1, 1, 1);
+   	    playerStats.UpdateBufferBar(0.4f * bufferIter + 1);
 		}
 
 	public char GetButtonPress() {

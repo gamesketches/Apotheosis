@@ -12,7 +12,11 @@ public class PlayerStats : MonoBehaviour {
 	public Character character;
 	public GameObject lifeBar;
 	public GameObject bufferBar;
+	private BarController bufferBarController;
 
+	void Start() {
+		bufferBarController = bufferBar.GetComponent<BarController>();
+	}
 
 	public void TakeDamage(float damage) {
 		health -= damage;
@@ -27,4 +31,7 @@ public class PlayerStats : MonoBehaviour {
         }
 	}
 
+	public void UpdateBufferBar(float scale) {
+		bufferBarController.LerpChange(scale);
+	}
 }
