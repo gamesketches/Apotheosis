@@ -50,7 +50,9 @@ public class BarController : MonoBehaviour {
 		Vector3 endingScale = new Vector3(newScale, startingScale.y, startingScale.z);
 		Vector3 startPos = transform.position;
 		Vector3 endPos = new Vector3(startPosition.x + (endingScale.x) * changeDirection, startPos.y, startPos.z);
-		while(t < changeSpeed) {
+        //Debug.Log("vector info. startingscale:" + startingScale + "endingscale:" + endingScale + "startpos:" + startPos + "endpos:" + endPos);
+
+        while (t < changeSpeed) {
 			transform.localScale = Vector3.Lerp(startingScale, endingScale, t / changeSpeed);
 			//transform.localPosition = Vector3.Lerp(startPos, endPos, t / changeSpeed);
 			t += Time.deltaTime;

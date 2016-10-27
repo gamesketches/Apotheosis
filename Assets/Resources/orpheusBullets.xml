@@ -53,6 +53,8 @@
           <damage>8</damage>
           <angle>-15</angle>
         </Bullet>
+       </Volley>
+      <Volley>
         <!-- Volley #6 -->
         <Bullet>
           <size>1</size>

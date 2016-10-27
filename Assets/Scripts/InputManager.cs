@@ -46,6 +46,10 @@ public class InputManager : MonoBehaviour {
 	protected PlayerMovement playerMovement;
 	protected AudioSource soundEffects;
 
+
+    public enum BarLerpStyle { grow, shrink };
+    BarLerpStyle buffer_style;
+
     private bool debug_on = false;
 
 	public void Start() {
@@ -62,60 +66,92 @@ public class InputManager : MonoBehaviour {
 		for(int i = 0; i < mashBufferSize; i++){
 			mashBuffer.SetValue('*', i);
 		}
-	}
 
-	public void Update() {
-		playerMovement.bufferIter = bufferIter;
-		if(playerMovement.locked) {
-			return;
-		}
-		char button = GetButtonPress();
+        buffer_style = BarLerpStyle.shrink;
+
+    }
+
+    public void Update()
+    {
+        playerMovement.bufferIter = bufferIter;
+        if (bufferIter > 1)
+        {
+            Debug.Log("buffer iter: " + bufferIter);
+        }
+        if (playerMovement.locked)
+        {
+            return;
+        }
+        char button = GetButtonPress();
         meleeCooldownTimer -= Time.deltaTime;
 
-        if (button == 'D' && meleeCooldownTimer <= 0) {
-			reticle.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", playerStats.character.ToString(), playerStats.number == 0 ? "" : "Alt", "/Melee"));
-			Melee();
-		} else if(button != '0' && exponentCooldownTimer <= 0 && !melee) {
-			shotCooldownTimer = shotCooldownTime;
+        if (button == 'D' && meleeCooldownTimer <= 0)
+        {
+            reticle.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", playerStats.character.ToString(), playerStats.number == 0 ? "" : "Alt", "/Melee"));
+            Melee();
+        }
+        else if (button != '0' && exponentCooldownTimer <= 0 && !melee)
+        {
+            shotCooldownTimer = shotCooldownTime;
             if (button != 'D') // threw everything in here to get this cooldown not to interfere with sword. works.
             {
-				if (bufferIter >= mashBufferSize - 1) {
-					Fire();
-				}
-				else {
-	                //gameObject.transform.localScale = Vector3.Lerp(new Vector3(1f, 1f, 1f), new Vector3(fullBufferScale, fullBufferScale, fullBufferScale),(float)bufferIter / (float)mashBufferSize);
-	                gameObject.transform.localScale = Vector3.Lerp(gameObject.transform.localScale, new Vector3(fullBufferScale, fullBufferScale, fullBufferScale),(float)bufferIter / (float)mashBufferSize);
+                if (bufferIter >= mashBufferSize - 1)
+                {
+                    Fire();
+                }
+                else
+                {
+                    //gameObject.transform.localScale = Vector3.Lerp(new Vector3(1f, 1f, 1f), new Vector3(fullBufferScale, fullBufferScale, fullBufferScale),(float)bufferIter / (float)mashBufferSize);
+                    gameObject.transform.localScale = Vector3.Lerp(gameObject.transform.localScale, new Vector3(fullBufferScale, fullBufferScale, fullBufferScale), (float)bufferIter / (float)mashBufferSize);
                     mashBuffer.SetValue(button, bufferIter);
-				    if(!mashing) {
-					    mashing = true;
-				    }
-			  	    ExponentShot();
-			  	    if(!poweredUpBuffer || bufferIter < mashBufferSize - 2) {
-					    bufferIter++;
-					   }
+                    if (!mashing)
+                    {
+                        mashing = true;
+                    }
+                    ExponentShot();
+                    if (!poweredUpBuffer || bufferIter < mashBufferSize - 2)
+                    {
+                        bufferIter++;
+                    }
+                }
             }
-           }
-		} else if(mashing && button == '0' && !melee ){
-			shotCooldownTimer -= Time.deltaTime;
+        }
+        else if (mashing && button == '0' && !melee)
+        {
+            shotCooldownTimer -= Time.deltaTime;
 
-            if (shotCooldownTimer <= 0.0f) {
-				Fire();
-			}
-		}
+            if (shotCooldownTimer <= 0.0f)
+            {
+                Fire();
+            }
+        }
 
-		if(exponentCooldownTimer > 0) { 
-			exponentCooldownTimer -= Time.deltaTime;
-			renderer.color = new Color(0.5f, 0.5f, 0.5f);
-		}
-		else {
-			renderer.color = new Color(1f, 1f, 1f);
-		}
+        if (exponentCooldownTimer > 0)
+        {
+            exponentCooldownTimer -= Time.deltaTime;
+            renderer.color = new Color(0.5f, 0.5f, 0.5f);
+        }
+        else
+        {
+            renderer.color = new Color(1f, 1f, 1f);
+        }
 
-   	    //playerStats.bufferBar.transform.localScale = new Vector3(1 * bufferIter + 1, 1, 1);
-   	    playerStats.UpdateBufferBar(0.4f * bufferIter + 1);
-		}
+        //playerStats.bufferBar.transform.localScale = new Vector3(1 * bufferIter + 1, 1, 1);
+        switch (buffer_style)
+        {
+            case BarLerpStyle.shrink:
+                playerStats.UpdateBufferBar(0.4f * (mashBufferSize - bufferIter + 1));
+                break;
+            case BarLerpStyle.grow:
+                playerStats.UpdateBufferBar(0.4f * bufferIter + 1);
+                break;
+            default:
+                playerStats.UpdateBufferBar(0.4f * bufferIter + 1);
+                break;
+        }
+    }
 
-	public char GetButtonPress() {
+    public char GetButtonPress() {
 		if(Input.GetButtonDown(buttonA)) {
 			return 'A';
 		}
