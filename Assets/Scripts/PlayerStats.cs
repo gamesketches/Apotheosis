@@ -23,6 +23,7 @@ public class PlayerStats : MonoBehaviour {
 
         if (health > 0) {
 			lifeBar.GetComponent<BarController>().LerpChange(health / maxHealth);
+            StartCoroutine(ShakeCamera(damage));
 
 		}
 		else {
@@ -34,4 +35,23 @@ public class PlayerStats : MonoBehaviour {
 	public void UpdateBufferBar(float scale) {
 		bufferBarController.LerpChange(scale);
 	}
+
+    IEnumerator ShakeCamera(float damage)
+    {
+        if(damage >= 4.0) // starting with shaking camera yes/no at 4 damage or higher. later we'l try more dynamism
+        {
+            Camera.main.transform += 4.0f;
+            yield return WaitForSeconds(0.25f);
+            Camera.main.transform -= 8.0f;
+            yield return WaitForSeconds(0.25f);
+            Camera.main.transform -= 8.0f;
+            yield return WaitForSeconds(0.25f);
+            Camera.main.transform += 8.0f;
+            yield return WaitForSeconds(0.25f);
+            Camera.main.transform -= 4.0f;
+            yield return null;
+            //shake camera
+        }
+    }
+
 }
