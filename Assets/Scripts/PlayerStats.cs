@@ -14,6 +14,8 @@ public class PlayerStats : MonoBehaviour {
 	public GameObject bufferBar;
 	private BarController bufferBarController;
 
+    public float screenShake;
+
 	void Start() {
 		bufferBarController = bufferBar.GetComponent<BarController>();
 	}
@@ -38,17 +40,20 @@ public class PlayerStats : MonoBehaviour {
 
     IEnumerator ShakeCamera(float damage)
     {
-        if(damage >= 4.0) // starting with shaking camera yes/no at 4 damage or higher. later we'l try more dynamism
+        if(damage >= 4.0f) // starting with shaking camera yes/no at 4 damage or higher. later we'l try more dynamism
         {
-            Camera.main.transform += 4.0f;
-            yield return WaitForSeconds(0.25f);
-            Camera.main.transform -= 8.0f;
-            yield return WaitForSeconds(0.25f);
-            Camera.main.transform -= 8.0f;
-            yield return WaitForSeconds(0.25f);
-            Camera.main.transform += 8.0f;
-            yield return WaitForSeconds(0.25f);
-            Camera.main.transform -= 4.0f;
+            float shakeScale = Mathf.Pow(2.0f, damage - 4.0f)/4.0f;
+            Vector3 shakeX = new Vector3(screenShake * shakeScale, 0, 0);
+            Debug.Log("Screen shake: " + shakeX + " shakeScale :" + shakeScale + "damage: " + damage);
+            Camera.main.transform.position += shakeX/2.0f;
+            yield return new WaitForSeconds(0.05f);
+            Camera.main.transform.position -= shakeX;
+            yield return new WaitForSeconds(0.05f);
+            Camera.main.transform.position += shakeX;
+            yield return new WaitForSeconds(0.05f);
+            Camera.main.transform.position -= shakeX;
+            yield return new WaitForSeconds(0.05f);
+            Camera.main.transform.position += shakeX/2.0f;
             yield return null;
             //shake camera
         }

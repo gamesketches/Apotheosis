@@ -14,8 +14,8 @@ public class GameManager : MonoBehaviour {
 	GameObject player1Reticle;
 	GameObject player2Reticle;
 	int player1RoundWins, player1Wins, player2RoundWins, player2Wins;
-	public float roundTime;
-	private float currentRoundTime;
+    public float roundTime;
+    private float currentRoundTime;
 	private bool timerStarted;
 	public Vector3 player1Pos, player2Pos;
 	public int startingHealth;
@@ -25,10 +25,11 @@ public class GameManager : MonoBehaviour {
 	BulletDepot bullets;
 	GameObject p1LifeBar, p2LifeBar, p1BufferBar, p2BufferBar;
     private int roundsToWin;
-	#endregion
+    public float screenShake;
+    #endregion
 
-	#region CharacterSelect Vars
-	CharacterSelectManager characterSelectManager;
+    #region CharacterSelect Vars
+    CharacterSelectManager characterSelectManager;
 	#endregion
     SpriteRenderer titleLogo;
     SpriteRenderer infoScreen;
@@ -217,7 +218,7 @@ public class GameManager : MonoBehaviour {
 		tempStats.playerColor = color;
 		tempStats.number = number;
 		temp.GetComponent<PlayerMovement>().InitializeAxes(controls);
-
+        tempStats.screenShake = screenShake;
 		reticle.color = color;
 		tempMovement.reticle = reticle;
 
