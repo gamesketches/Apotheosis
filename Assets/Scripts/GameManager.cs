@@ -262,9 +262,8 @@ public class GameManager : MonoBehaviour {
 		p2LifeBar.transform.position += new Vector3(-18f, 0, 0);
 		p2LifeBar.GetComponent<BarController>().changeDirection = -1;
 
-		p2BufferBar = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/BufferBar"), new Vector3(36.3f, 18.7f, -1f), Quaternion.identity);
+		p2BufferBar = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/BufferBar"), new Vector3(36f, 18.7f, -1f), Quaternion.identity);
 		p2BufferBar.GetComponent<SpriteRenderer>().flipX = true;
-		p2BufferBar.GetComponent<SpriteRenderer>().flipY = true;
         p2BufferBar.GetComponent<BarController>().changeDirection = -1;
 
         player1Stats = player1.GetComponent<PlayerStats>();
