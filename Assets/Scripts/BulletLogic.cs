@@ -46,8 +46,9 @@ public class BulletLogic : MonoBehaviour {
 		lifetime -= Time.deltaTime;
 		if(lifetime <= 0f) {
 			theDepot.AddObject(gameObject);
-		}
-		bulletFunction();
+            Debug.Log("Added depot code 1");
+        }
+        bulletFunction();
 		gameObject.transform.position += new Vector3(travelVector.x, travelVector.y) * Time.deltaTime;
 
         //make the hippos crawl.
@@ -70,7 +71,8 @@ public class BulletLogic : MonoBehaviour {
 		travelVector = new Vector2(tempVector.x, tempVector.y);
 		lifetime = Lifetime;
 		gameObject.layer = 8 + playerNum;
-		switch(type) {
+    
+        switch (type) {
 			case BulletType.Boomerang:
 				if(character == Character.Loholt) { 
 					bulletFunction = StraightLogic;
@@ -85,13 +87,15 @@ public class BulletLogic : MonoBehaviour {
 						target = player.transform;
 						}
 				}
-				break;
+                break;
 			case BulletType.Knife:
                 sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", character.ToString(), playerNum == 0 ? "" : "Alt", "/Knife"));
-			     // TODO: change this
+                // TODO: change this
                 transform.Rotate(new Vector3(0f, 0f, -90f));
+                //transform.rotation = new Vector3(0f, 0f, -90.0f);
 				bulletFunction = StraightLogic;
-				break;
+                Debug.Log("in here");
+                break;
 			// Shield situation
 			default:
 			sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", character.ToString(), playerNum == 0 ? "" : "Alt", "/Shield"));
@@ -105,16 +109,17 @@ public class BulletLogic : MonoBehaviour {
 			travelVector = new Vector2(tempVector.x, tempVector.y);	
 			break;
 		}
-		//renderer.sprite = sprite;
-		GetComponentInChildren<SpriteRenderer>().sprite = sprite;
+        //renderer.sprite = sprite;
+        GetComponentInChildren<SpriteRenderer>().sprite = sprite;
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if(other.gameObject.tag == "Boundary") {
 			if(lifetime < 5) {
 				theDepot.AddObject(gameObject);
-			}
-			return;
+                Debug.Log("Added depot code 2");
+            }
+            return;
 		}
 		if(other.gameObject.layer != gameObject.layer) {
 			if(other.gameObject.tag == "Player") {
@@ -128,7 +133,8 @@ public class BulletLogic : MonoBehaviour {
 					temp.GetComponent<SoundEffectObjectScript>().PlaySoundEffect("damageHit");
 					}
 					theDepot.AddObject(gameObject);
-					return;
+                    Debug.Log("Added depot code 3");
+                return;
 			}
 			else if(other.gameObject.tag == "Reticle") {
 				return;
@@ -141,8 +147,9 @@ public class BulletLogic : MonoBehaviour {
 				temp.GetComponent<SoundEffectObjectScript>().PlaySoundEffect("identicalBulletCancel");
 				theDepot.AddObject(other.gameObject);
 				theDepot.AddObject(gameObject);
+                Debug.Log("Added depot code 4");
 
-			}
+            }
             else if ((int)type == System.Enum.GetValues(typeof(BulletType)).Length - 1)
             {
                 return;
@@ -151,7 +158,8 @@ public class BulletLogic : MonoBehaviour {
 				GameObject temp = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SoundEffectObject"), gameObject.transform.position, Quaternion.identity);
 				temp.GetComponent<SoundEffectObjectScript>().PlaySoundEffect("rpsBulletCancel");
 				theDepot.AddObject(gameObject);
-				GameObject sparks = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/HitSparks"), transform.position, Quaternion.identity);
+                Debug.Log("Added depot code 5");
+                GameObject sparks = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/HitSparks"), transform.position, Quaternion.identity);
                 sparks.transform.localScale = new Vector3(10f, 10f, 10f);
                 //Debug.Log("hit spark 2");
                 sparks.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/hitSparks/hitspark");	
@@ -168,8 +176,9 @@ public class BulletLogic : MonoBehaviour {
 				temp.GetComponent<SoundEffectObjectScript>().PlaySoundEffect("rpsBulletCancel");
 				GameObject destroyedObject = opposingType > type ? other.gameObject : gameObject;
 				theDepot.AddObject(destroyedObject);
-			}
-		}
+                Debug.Log("Added depot code 6");
+            }
+        }
 	}
 
 	void IndirectLogic(){

@@ -76,7 +76,7 @@ public class InputManager : MonoBehaviour {
         playerMovement.bufferIter = bufferIter;
         if (bufferIter > 1)
         {
-            Debug.Log("buffer iter: " + bufferIter);
+            //Debug.Log("buffer iter: " + bufferIter);
         }
         if (playerMovement.locked)
         {
@@ -188,8 +188,9 @@ public class InputManager : MonoBehaviour {
         //Debug.Log(" volley = " + bufferIter); //ski
 		foreach(BulletDepot.Bullet bullet in volley.volley) {
 			CreateBullet(bullet, type);
-		}
-		switch(type) {
+            Debug.Log("creating 20");
+        }
+        switch (type) {
 		case BulletType.Boomerang:
 			soundEffects.clip = Resources.Load<AudioClip>("audio/soundEffects/boomerangSound");
 			break;
@@ -293,8 +294,8 @@ public class InputManager : MonoBehaviour {
 			BulletDepot.Bullet bullet = bullets.types[(int)playerStats.character].projectileTypes[(int)bulletTypes[i]].volleys[0].volley[0];
 			bullet.angle = (int)bulletAngles[i];
 			CreateBullet(bullet, bulletTypes[i]);
-		}
-	}
+        }
+    }
 
 	public void CreateBullet(BulletDepot.Bullet bullet, BulletType type = BulletType.Knife) {
 		int angle = bullet.angle + (int)playerMovement.CurrentShotAngle();
@@ -312,6 +313,7 @@ public class InputManager : MonoBehaviour {
 		}
         newBullet.GetComponentInChildren<SpriteRenderer>().sortingOrder = 9 - bufferIter;
         //Debug.Log("Sorting layer debug thing " + newBullet.GetComponentInChildren<SpriteRenderer>().sortingOrder);
+        Debug.Log("bullet " + newBullet.gameObject.name + " rotation = " + newBullet.transform.rotation);
     }
 
 	public void InitializeControls(string[] controls) {
