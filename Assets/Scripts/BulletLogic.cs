@@ -45,7 +45,9 @@ public class BulletLogic : MonoBehaviour {
 	void Update () {
 		lifetime -= Time.deltaTime;
 		if(lifetime <= 0f) {
-			theDepot.AddObject(gameObject);
+			//theDepot.AddObject(gameObject);
+			killBullet();
+			return;
             Debug.Log("Added depot code 1");
         }
         bulletFunction();
@@ -116,7 +118,8 @@ public class BulletLogic : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		if(other.gameObject.tag == "Boundary") {
 			if(lifetime < 5) {
-				theDepot.AddObject(gameObject);
+				killBullet();
+				//theDepot.AddObject(gameObject);
                 Debug.Log("Added depot code 2");
             }
             return;
@@ -132,7 +135,8 @@ public class BulletLogic : MonoBehaviour {
 					GameObject temp = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SoundEffectObject"), gameObject.transform.position, Quaternion.identity);
 					temp.GetComponent<SoundEffectObjectScript>().PlaySoundEffect("damageHit");
 					}
-					theDepot.AddObject(gameObject);
+					killBullet();
+					//theDepot.AddObject(gameObject);
                     Debug.Log("Added depot code 3");
                 return;
 			}
@@ -146,7 +150,8 @@ public class BulletLogic : MonoBehaviour {
 				GameObject temp = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SoundEffectObject"), gameObject.transform.position, Quaternion.identity);
 				temp.GetComponent<SoundEffectObjectScript>().PlaySoundEffect("identicalBulletCancel");
 				theDepot.AddObject(other.gameObject);
-				theDepot.AddObject(gameObject);
+				killBullet();
+				//theDepot.AddObject(gameObject);
                 Debug.Log("Added depot code 4");
 
             }
@@ -157,12 +162,13 @@ public class BulletLogic : MonoBehaviour {
             else if((int)opposingType == System.Enum.GetValues(typeof(BulletType)).Length - 1 && (int)type == 0) {
 				GameObject temp = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SoundEffectObject"), gameObject.transform.position, Quaternion.identity);
 				temp.GetComponent<SoundEffectObjectScript>().PlaySoundEffect("rpsBulletCancel");
-				theDepot.AddObject(gameObject);
+				//theDepot.AddObject(gameObject);
                 Debug.Log("Added depot code 5");
                 GameObject sparks = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/HitSparks"), transform.position, Quaternion.identity);
                 sparks.transform.localScale = new Vector3(10f, 10f, 10f);
                 //Debug.Log("hit spark 2");
-                sparks.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/hitSparks/hitspark");	
+                sparks.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/hitSparks/hitspark");
+				killBullet();	
 			}
 			else {
 				GameObject sparks = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/HitSparks"), transform.position, Quaternion.identity);
@@ -175,13 +181,16 @@ public class BulletLogic : MonoBehaviour {
                 GameObject temp = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SoundEffectObject"), gameObject.transform.position, Quaternion.identity);
 				temp.GetComponent<SoundEffectObjectScript>().PlaySoundEffect("rpsBulletCancel");
 				GameObject destroyedObject = opposingType > type ? other.gameObject : gameObject;
-				theDepot.AddObject(destroyedObject);
+				//theDepot.AddObject(destroyedObject);
+				// THis sucks
+				destroyedObject.GetComponent<BulletLogic>().killBullet();
                 Debug.Log("Added depot code 6");
             }
         }
 	}
 
 	void IndirectLogic(){
+		Debug.Log("indirect logic");
 		renderer.transform.Rotate(0, 0, 2);
 		if(headingTime < indirectHomingTime) {
 			targetPosition = target.position;
@@ -212,5 +221,11 @@ public class BulletLogic : MonoBehaviour {
             shieldOscillationTime = 0;
 			renderer.transform.localPosition = Vector3.zero;
 		}
+	}
+
+	public void killBullet() {
+		transform.rotation = Quaternion.identity;
+		renderer.transform.rotation = Quaternion.identity;
+		theDepot.AddObject(gameObject);
 	}
 }
