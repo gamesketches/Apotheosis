@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour {
 	public float speed;
 	public float reticleRadius;
 	public float knockbackTime;
+    public float slowFactor;
 	public bool locked;
 	public int bufferIter;
 	public Direction lastDirection;
@@ -68,7 +69,7 @@ public class PlayerMovement : MonoBehaviour {
 				return;
 			}
 			else {
-				float computedSpeed =  speed * (float)(1 - 0.1 * bufferIter);
+				float computedSpeed =  speed * (float)(1 - slowFactor * bufferIter);
 				rb2D.velocity = (new Vector2(Input.GetAxisRaw(horizontalAxis), Input.GetAxisRaw(verticalAxis))).normalized * (float)computedSpeed;
 					anim.SetInteger("xAxis", (int) rb2D.velocity.x);
 					anim.SetInteger("yAxis", (int) rb2D.velocity.y);

@@ -16,11 +16,12 @@ public class PlayerStats : MonoBehaviour {
 
     public float screenShake;
 
-	void Start() {
-		bufferBarController = bufferBar.GetComponent<BarController>();
-	}
+    
+    void Start() {
+        bufferBarController = bufferBar.GetComponent<BarController>();
+    }
 
-	public void TakeDamage(float damage) {
+    public void TakeDamage(float damage) {
 		health -= damage;
 
         if (health > 0) {
@@ -45,7 +46,7 @@ public class PlayerStats : MonoBehaviour {
             float shakeScale = Mathf.Pow(2.0f, damage - 4.0f)/4.0f;
             Vector3 shakeX = new Vector3(screenShake * shakeScale, 0, 0);
             Debug.Log("Screen shake: " + shakeX + " shakeScale :" + shakeScale + "damage: " + damage);
-            Camera.main.transform.position += shakeX/2.0f;
+            Camera.main.transform.position += shakeX / 2.0f;
             yield return new WaitForSeconds(0.05f);
             Camera.main.transform.position -= shakeX;
             yield return new WaitForSeconds(0.05f);
@@ -53,7 +54,7 @@ public class PlayerStats : MonoBehaviour {
             yield return new WaitForSeconds(0.05f);
             Camera.main.transform.position -= shakeX;
             yield return new WaitForSeconds(0.05f);
-            Camera.main.transform.position += shakeX/2.0f;
+            Camera.main.transform.position += shakeX / 2.0f;
             yield return null;
             //shake camera
         }

@@ -15,92 +15,92 @@
       <Volley>
         <!-- Volley #2 -->
         <Bullet>
-          <size>1.0</size>
+          <size>2.5</size>
           <speed>3.0</speed>
-          <damage>1</damage>
+          <damage>5</damage>
           <angle>0</angle>
         </Bullet>
       </Volley>
       <Volley>
         <!-- Volley #3 -->
         <Bullet>
-          <size>1</size>
-          <speed>3.0</speed>
-          <damage>1</damage>
+          <size>3.0</size>
+          <speed>3.1</speed>
+          <damage>6</damage>
           <angle>0</angle>
         </Bullet>
       </Volley>
       <Volley>
         <!-- Volley #4 -->
         <Bullet>
-          <size>1.0</size>
-          <speed>3.0</speed>
-          <damage>1</damage>
+          <size>3.0</size>
+          <speed>3.1</speed>
+          <damage>6</damage>
           <angle>0</angle>
         </Bullet>
       </Volley>
       <Volley>
         <!-- Volley #5 -->
         <Bullet>
-          <size>1</size>
+          <size>3.5</size>
           <speed>3.0</speed>
-          <damage>5</damage>
-          <angle>15</angle>
+          <damage>7</damage>
+          <angle>5</angle>
         </Bullet>
         <Bullet>
-          <size>1</size>
+          <size>3.5</size>
           <speed>3.0</speed>
           <damage>8</damage>
-          <angle>-15</angle>
+          <angle>-5</angle>
         </Bullet>
         <!-- Volley #6 -->
         <Bullet>
-          <size>1</size>
+          <size>5</size>
           <speed>3.0</speed>
           <damage>8</damage>
-          <angle>20</angle>
+          <angle>7</angle>
         </Bullet>
         <Bullet>
-          <size>1</size>
+          <size>5</size>
           <speed>3.0</speed>
           <damage>8</damage>
-          <angle>-20</angle>
+          <angle>-7</angle>
         </Bullet>
       </Volley>
       <Volley>
-        <!-- Volley #7 3 big 2 small -->
+        <!-- Volley #7  -->
         <Bullet>
-          <size>1</size>
+          <size>5</size>
           <speed>3.0</speed>
           <damage>1</damage>
-          <angle>20</angle>
+          <angle>9</angle>
         </Bullet>
         <Bullet>
           <size>1</size>
           <speed>3.0</speed>
           <damage>8</damage>
-          <angle>-25</angle>
+          <angle>-9</angle>
         </Bullet>
       </Volley>
       <Volley>
         <!-- Volley #8 3 -->
         <Bullet>
-          <size>1</size>
-          <speed>3.0</speed>
-          <damage>5</damage>
-          <angle>30</angle>
-        </Bullet>
-        <Bullet>
-          <size>1</size>
+          <size>3.5</size>
           <speed>3.0</speed>
           <damage>8</damage>
+          <angle>10</angle>
+        </Bullet>
+        <Bullet>
+          <size>8</size>
+          <speed>3.0</speed>
+          <damage>10</damage>
           <angle>0</angle>
         </Bullet>
         <Bullet>
-          <size>1</size>
+          <size>3.5</size>
           <speed>3.0</speed>
           <damage>8</damage>
-          <angle>-30</angle>
+          <angle>-10</angle>
         </Bullet>
       </Volley>
     </ProjectileType>
