@@ -188,7 +188,6 @@ public class InputManager : MonoBehaviour {
         //Debug.Log(" volley = " + bufferIter); //ski
 		foreach(BulletDepot.Bullet bullet in volley.volley) {
 			CreateBullet(bullet, type);
-            Debug.Log("creating 20");
         }
         switch (type) {
 		case BulletType.Boomerang:

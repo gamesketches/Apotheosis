@@ -47,8 +47,8 @@ public class BulletLogic : MonoBehaviour {
 		if(lifetime <= 0f) {
 			//theDepot.AddObject(gameObject);
 			killBullet();
-			return;
-            Debug.Log("Added depot code 1");
+            //Debug.Log("Added depot code 1");
+            return;
         }
         bulletFunction();
 		gameObject.transform.position += new Vector3(travelVector.x, travelVector.y) * Time.deltaTime;
@@ -96,7 +96,7 @@ public class BulletLogic : MonoBehaviour {
                 transform.Rotate(new Vector3(0f, 0f, -90f));
                 //transform.rotation = new Vector3(0f, 0f, -90.0f);
 				bulletFunction = StraightLogic;
-                Debug.Log("in here");
+                //Debug.Log("in here");
                 break;
 			// Shield situation
 			default:
@@ -120,7 +120,7 @@ public class BulletLogic : MonoBehaviour {
 			if(lifetime < 5) {
 				killBullet();
 				//theDepot.AddObject(gameObject);
-                Debug.Log("Added depot code 2");
+                //Debug.Log("Added depot code 2");
             }
             return;
 		}
@@ -137,7 +137,7 @@ public class BulletLogic : MonoBehaviour {
 					}
 					killBullet();
 					//theDepot.AddObject(gameObject);
-                    Debug.Log("Added depot code 3");
+                    //Debug.Log("Added depot code 3");
                 return;
 			}
 			else if(other.gameObject.tag == "Reticle") {
@@ -152,7 +152,7 @@ public class BulletLogic : MonoBehaviour {
 				theDepot.AddObject(other.gameObject);
 				killBullet();
 				//theDepot.AddObject(gameObject);
-                Debug.Log("Added depot code 4");
+                //Debug.Log("Added depot code 4");
 
             }
             else if ((int)type == System.Enum.GetValues(typeof(BulletType)).Length - 1)
@@ -184,13 +184,13 @@ public class BulletLogic : MonoBehaviour {
 				//theDepot.AddObject(destroyedObject);
 				// THis sucks
 				destroyedObject.GetComponent<BulletLogic>().killBullet();
-                Debug.Log("Added depot code 6");
+                //Debug.Log("Added depot code 6");
             }
         }
 	}
 
 	void IndirectLogic(){
-		Debug.Log("indirect logic");
+		//Debug.Log("indirect logic");
 		renderer.transform.Rotate(0, 0, 2);
 		if(headingTime < indirectHomingTime) {
 			targetPosition = target.position;
