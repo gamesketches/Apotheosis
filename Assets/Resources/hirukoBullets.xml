@@ -3,8 +3,8 @@
 	<Character name="hiruko">
     <ProjectileType name="gator" desc="A piercing summon">
       <Volley>
-      <!-- BLOCK blt count: 1,1,1,1,2,2,2,3 -->
-          <!-- Volley #1 -->
+        <!-- BLOCK blt count: 1,1,1,1,2,2,2,3 -->
+        <!-- Volley #1 -->
         <Bullet>
           <size>2.0</size>
           <speed>4</speed>
@@ -72,11 +72,11 @@
         <Bullet>
           <size>5</size>
           <speed>3.0</speed>
-          <damage>1</damage>
+          <damage>8</damage>
           <angle>9</angle>
         </Bullet>
         <Bullet>
-          <size>1</size>
+          <size>5</size>
           <speed>3.0</speed>
           <damage>8</damage>
           <angle>-9</angle>

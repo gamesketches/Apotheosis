@@ -11,8 +11,9 @@ public class BulletLogic : MonoBehaviour {
 	public float lifetime;
 	public float velocityMultiplier = 10f;
 	public float indirectCorrectionSpeed = 5f;
-	public float indirectHomingTime = 0.5f;
-	delegate void BulletFunction();
+    public float indirectHomingTime = 0.5f;
+    public float indirectHomingLimit = 100.0f;
+    delegate void BulletFunction();
 	BulletFunction bulletFunction;
 	private Vector2 travelVector;
 	private Transform target;
@@ -84,6 +85,8 @@ public class BulletLogic : MonoBehaviour {
 				else bulletFunction = IndirectLogic;
 				sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", character.ToString(), playerNum == 0 ? "" : "Alt", "/Boomerang"));
 				headingTime = 0f;
+                indirectHomingTime = 1000f;
+                indirectHomingLimit = 1000f;
 				foreach(GameObject player in GameObject.FindGameObjectsWithTag("Player")){
 					if(player.layer != gameObject.layer) {
 						target = player.transform;
@@ -196,16 +199,16 @@ public class BulletLogic : MonoBehaviour {
 			targetPosition = target.position;
 		}
 		// Might be better to handle this shit as a rotation
-		if(headingTime < 1f) {
-		Vector3 startVector = Quaternion.AngleAxis(gameObject.transform.rotation.eulerAngles.z, Vector3.forward) * new Vector3(velocity, 0, 0);
-		Vector3 temp = Vector3.Lerp(startVector, targetPosition - gameObject.transform.position, 
-			headingTime);
-		travelVector.x = temp.x;
-		travelVector.y = temp.y;
-		headingTime += indirectCorrectionSpeed / (indirectCorrectionSpeed * 60);
+		if(headingTime < indirectHomingLimit) {
+		    Vector3 startVector = Quaternion.AngleAxis(gameObject.transform.rotation.eulerAngles.z, Vector3.forward) * new Vector3(velocity, 0, 0);
+		    Vector3 temp = Vector3.Lerp(startVector, targetPosition - gameObject.transform.position, 
+			    headingTime);
+		    travelVector.x = temp.x;
+		    travelVector.y = temp.y;
+		    headingTime += indirectCorrectionSpeed / (indirectCorrectionSpeed * 60);
 		}
 
-	}
+    }
 
 	void StraightLogic(){
 		//travelVector = new Vector2(velocity, 0f);

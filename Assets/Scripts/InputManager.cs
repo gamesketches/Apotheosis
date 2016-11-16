@@ -313,7 +313,7 @@ public class InputManager : MonoBehaviour {
 		}
         newBullet.GetComponentInChildren<SpriteRenderer>().sortingOrder = 9 - bufferIter;
         //Debug.Log("Sorting layer debug thing " + newBullet.GetComponentInChildren<SpriteRenderer>().sortingOrder);
-        Debug.Log("bullet " + newBullet.gameObject.name + " rotation = " + newBullet.transform.rotation);
+        //Debug.Log("bullet " + newBullet.gameObject.name + " rotation = " + newBullet.transform.rotation);
     }
 
 	public void InitializeControls(string[] controls) {

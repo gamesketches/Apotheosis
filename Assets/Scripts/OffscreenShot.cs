@@ -99,7 +99,7 @@ public class OffscreenShot : InputManager {
 		BulletType type = BulletType.Boomerang;
 		Direction dir = playerMovement.lastDirection;
 		BulletDepot.Volley volley = bullets.types[(int)playerStats.character].projectileTypes[(int)type].volleys[bufferIter];
-
+        
 
 
 		for(int i = 0; i < volley.volley.Length; i++) {
@@ -123,8 +123,10 @@ public class OffscreenShot : InputManager {
 
 			newBullet.transform.rotation = Quaternion.Euler(0, 0, angle);
 			BulletLogic bulletLogic = newBullet.GetComponent<BulletLogic>();//((GameObject)Instantiate(bulletPrefab, gameObject.transform.position, Quaternion.Euler(0, 0, angle))).GetComponent<BulletLogic>();
-			bulletLogic.Initialize(type, bullet.damage, bullet.speed, bullet.size, lifetime, playerStats.playerColor, playerStats.number, playerStats.character);
-   	   		newBullet.GetComponentInChildren<SpriteRenderer>().sortingOrder = 9 - bufferIter;
+            bulletLogic.Initialize(type, bullet.damage, bullet.speed, bullet.size, lifetime, playerStats.playerColor, playerStats.number, playerStats.character);
+            bulletLogic.indirectHomingTime = 10.5f;
+            bulletLogic.indirectHomingLimit = 1.0f;
+            newBullet.GetComponentInChildren<SpriteRenderer>().sortingOrder = 9 - bufferIter;
             	  
 		}
 		soundEffects.clip = Resources.Load<AudioClip>("audio/soundEffects/boomerangSound");
