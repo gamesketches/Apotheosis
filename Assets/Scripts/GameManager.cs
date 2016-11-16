@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour {
 
         characterSelectManager = GetComponent<CharacterSelectManager>();
 
+        AnalyticsEngine.Initialize(new string[] {"LoholtBulletsFired", "OrpheusBulletsFired", "HirukoBulletsFired"});
     }
 
     #region Pre-Battle
@@ -395,6 +396,7 @@ public class GameManager : MonoBehaviour {
 			}
 			currentUpdateFunction = RoundEndUpdate;
 			ClearBullets();
+			AnalyticsEngine.PrintRow();
 		}
 	}
 

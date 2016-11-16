@@ -98,6 +98,7 @@ public class InputManager : MonoBehaviour {
                 if (bufferIter >= mashBufferSize - 1)
                 {
                     Fire();
+                    AnalyticsEngine.Increment(string.Concat(playerStats.character.ToString(), "BulletsFired"));
                 }
                 else
                 {
