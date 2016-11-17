@@ -198,8 +198,9 @@ public class BulletLogic : MonoBehaviour {
 		if(headingTime < indirectHomingTime) {
 			targetPosition = target.position;
 		}
-		// Might be better to handle this shit as a rotation
-		if(headingTime < indirectHomingLimit) {
+        // Might be better to handle this shit as a rotation
+        //if(headingTime < 1.0f) {
+        if (headingTime < indirectHomingLimit) {
 		    Vector3 startVector = Quaternion.AngleAxis(gameObject.transform.rotation.eulerAngles.z, Vector3.forward) * new Vector3(velocity, 0, 0);
 		    Vector3 temp = Vector3.Lerp(startVector, targetPosition - gameObject.transform.position, 
 			    headingTime);
