@@ -206,7 +206,7 @@ public class BulletLogic : MonoBehaviour {
 			    headingTime);
 		    travelVector.x = temp.x;
 		    travelVector.y = temp.y;
-		    headingTime += indirectCorrectionSpeed / (indirectCorrectionSpeed * 60);
+		    headingTime += indirectCorrectionSpeed / (indirectCorrectionSpeed * 45);
 		}
 
     }
