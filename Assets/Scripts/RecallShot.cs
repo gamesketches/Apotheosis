@@ -3,6 +3,9 @@ using System.Collections;
 
 public class RecallShot : InputManager {
 
+	float recallButtonHoldTime = 0.5f;
+	float recallButtonHeldTimer = 0f;
+
 	// Use this for initialization
 	void Start () {
 		mashBufferSize = 8;
@@ -22,12 +25,24 @@ public class RecallShot : InputManager {
 	// Update is called once per frame
 	void Update () {
 		base.Update();
+		if(Input.GetButton(buttonB)) {
+			if(recallButtonHeldTimer < recallButtonHoldTime) {
+				recallButtonHeldTimer += Time.fixedDeltaTime;
+			}
+			else {
+				Fire();
+				recallButtonHeldTimer = 0;
+			}
+		}
 	}
 
 	public override void Fire ()
 	{
 		if (shotCooldownTimer <= 0.0f) {
 				base.ResetBuffer();
+		}
+		if(recallButtonHeldTimer < recallButtonHoldTime) {
+			return;
 		}
 		GameObject[] activeBullets = GameObject.FindGameObjectsWithTag("Boomerang");
 
