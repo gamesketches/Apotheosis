@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class RecallShot : InputManager {
 
@@ -46,18 +47,13 @@ public class RecallShot : InputManager {
 		}
 		GameObject[] activeBullets = GameObject.FindGameObjectsWithTag("Boomerang");
 
-		float maxDistance = 0;
-		for(int i = 0; i < activeBullets.Length; i++) {
-			if(activeBullets[i].layer == gameObject.layer) {
-				float distance = Vector3.Distance(transform.position, activeBullets[i].transform.position);
-				if(distance > maxDistance) {
-					maxDistance = distance;
-				}
-			}
-		}
+		Array.Sort(activeBullets, delegate(GameObject bulletX, GameObject bulletY){
+										float myDist = Vector3.Distance(transform.position, bulletX.transform.position);
+										float theirDist = Vector3.Distance(transform.position, bulletY.transform.position);
+										return myDist.CompareTo(theirDist);});
 
-		for(int i = 0; i < activeBullets.Length; i++) {
-			if(activeBullets[i].layer == gameObject.layer && Vector3.Distance(transform.position, activeBullets[i].transform.position) == maxDistance) {
+		for(int i = (int)(activeBullets.Length *  0.7f); i < activeBullets.Length; i++) {
+			if(activeBullets[i].layer == gameObject.layer) {
 				StartCoroutine(BulletRecall(activeBullets[i].transform, transform.position));
 			}
 		}
