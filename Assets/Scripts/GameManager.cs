@@ -229,17 +229,12 @@ public class GameManager : MonoBehaviour {
 
 		AnimatorOverrideController animationController = new AnimatorOverrideController();
 
-		if(character != Character.Hiruko) {
-			//animationController.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("sprites/LoholtAnimation/p1/PlayerAnimationController");
-			animationController.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("sprites/HirukoAnimation/p1/OptimizedAnimationController");
-			string resourcePath = string.Concat("sprites/", character.ToString(), "Animation/p", (number + 1).ToString());
-			foreach(AnimationClip clip in Resources.LoadAll<AnimationClip>(resourcePath)) {
-					animationController[clip.name] = clip;
-				}
-		}
-		else {
-			animationController.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("sprites/HirukoAnimation/p1/OptimizedAnimationController");
-		}
+		animationController.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("sprites/OptimizedAnimationController");
+		string resourcePath = string.Concat("sprites/", character.ToString(), "Animation/p", (number + 1).ToString());
+		foreach(AnimationClip clip in Resources.LoadAll<AnimationClip>(resourcePath)) {
+				animationController[clip.name] = clip;
+			}
+	
 		tempMovement.SetAnimator(animationController);
 		reticle.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/reticle-18");
 			player1Reticle = reticle.gameObject;

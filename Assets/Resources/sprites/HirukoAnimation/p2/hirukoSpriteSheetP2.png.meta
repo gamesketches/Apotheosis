@@ -1,9 +1,36 @@
 fileFormatVersion: 2
 guid: 71604e92f6e5b354388486f8ebab93a9
-timeCreated: 1479421837
+timeCreated: 1479439938
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: hirukoSpriteSheetP2_0
+    21300002: hirukoSpriteSheetP2_1
+    21300004: deleteMe5
+    21300006: hirukoSpriteSheetP2_3
+    21300008: deleteme4
+    21300010: hirukoSpriteSheetP2_5
+    21300012: hirukoSpriteSheetP2_6
+    21300014: hirukoSpriteSheetP2_7
+    21300016: hirukoSpriteSheetP2_8
+    21300018: hirukoSpriteSheetP2_9
+    21300020: hirukoSpriteSheetP2_10
+    21300022: hirukoSpriteSheetP2_11
+    21300024: hirukoSpriteSheetP2_12
+    21300026: hirukoSpriteSheetP2_13
+    21300028: hirukoSpriteSheetP2_14
+    21300030: hirukoSpriteSheetP2_15
+    21300032: hirukoSpriteSheetP2_16
+    21300034: hirukoSpriteSheetP2_17
+    21300036: hirukoSpriteSheetP2_18
+    21300038: hirukoSpriteSheetP2_19
+    21300040: hirukoSpriteSheetP2_20
+    21300042: hirukoSpriteSheetP2_21
+    21300044: hirukoSpriteSheetP2_22
+    21300046: hirukoSpriteSheetP2_23
+    21300048: deleteMe2
+    21300050: deleteMe
+    21300052: deleteme3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,28 +57,314 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
-    wrapMode: -1
-  nPOTScale: 1
+    wrapMode: 1
+  nPOTScale: 0
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: -1
+  textureType: 8
   buildTargetSettings: []
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: hirukoSpriteSheetP2_0
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 9
+        width: 289
+        height: 281
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hirukoSpriteSheetP2_1
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 9
+        width: 289
+        height: 281
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hirukoSpriteSheetP2_3
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 9
+        width: 289
+        height: 281
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hirukoSpriteSheetP2_5
+      rect:
+        serializedVersion: 2
+        x: 968
+        y: 9
+        width: 281
+        height: 289
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hirukoSpriteSheetP2_6
+      rect:
+        serializedVersion: 2
+        x: 1287
+        y: 9
+        width: 281
+        height: 289
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hirukoSpriteSheetP2_7
+      rect:
+        serializedVersion: 2
+        x: 1670
+        y: 0
+        width: 155
+        height: 295
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hirukoSpriteSheetP2_8
+      rect:
+        serializedVersion: 2
+        x: 1994
+        y: 2
+        width: 147
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hirukoSpriteSheetP2_9
+      rect:
+        serializedVersion: 2
+        x: 2315
+        y: 2
+        width: 144
+        height: 296
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hirukoSpriteSheetP2_10
+      rect:
+        serializedVersion: 2
+        x: 2638
+        y: 2
+        width: 140
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hirukoSpriteSheetP2_11
+      rect:
+        serializedVersion: 2
+        x: 2957
+        y: 2
+        width: 140
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hirukoSpriteSheetP2_12
+      rect:
+        serializedVersion: 2
+        x: 3241
+        y: 2
+        width: 215
+        height: 296
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hirukoSpriteSheetP2_13
+      rect:
+        serializedVersion: 2
+        x: 3546
+        y: 2
+        width: 246
+        height: 276
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hirukoSpriteSheetP2_14
+      rect:
+        serializedVersion: 2
+        x: 3916
+        y: 0
+        width: 144
+        height: 295
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hirukoSpriteSheetP2_15
+      rect:
+        serializedVersion: 2
+        x: 4235
+        y: 2
+        width: 144
+        height: 298
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hirukoSpriteSheetP2_16
+      rect:
+        serializedVersion: 2
+        x: 4550
+        y: 2
+        width: 155
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hirukoSpriteSheetP2_17
+      rect:
+        serializedVersion: 2
+        x: 4869
+        y: 2
+        width: 154
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hirukoSpriteSheetP2_18
+      rect:
+        serializedVersion: 2
+        x: 5126
+        y: 2
+        width: 281
+        height: 289
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hirukoSpriteSheetP2_19
+      rect:
+        serializedVersion: 2
+        x: 5496
+        y: 0
+        width: 182
+        height: 298
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hirukoSpriteSheetP2_20
+      rect:
+        serializedVersion: 2
+        x: 5822
+        y: 2
+        width: 171
+        height: 296
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hirukoSpriteSheetP2_21
+      rect:
+        serializedVersion: 2
+        x: 6120
+        y: 2
+        width: 214
+        height: 296
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hirukoSpriteSheetP2_22
+      rect:
+        serializedVersion: 2
+        x: 6436
+        y: 2
+        width: 226
+        height: 298
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hirukoSpriteSheetP2_23
+      rect:
+        serializedVersion: 2
+        x: 6808
+        y: 2
+        width: 114
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
     outline: []
   spritePackingTag: 
   userData: 
