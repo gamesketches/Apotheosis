@@ -52,6 +52,10 @@ public class GameManager : MonoBehaviour {
         HorusWinsIcons = GameObject.FindGameObjectsWithTag("HorusWinsIcon");
         HorusWinsIconsSR = new SpriteRenderer[HorusWinsIcons.Length];
         SetWinsIconsSR = new SpriteRenderer[SetWinsIcons.Length];
+        p1LifeBar = GameObject.Find("P1LifeBar");
+        p1LifeBar.SetActive(false);
+        p2LifeBar = GameObject.Find("P2LifeBar");
+        p2LifeBar.SetActive(false);
         player1Wins = 0;
         player2Wins = 0;
         roundsToWin = 2;
@@ -245,18 +249,9 @@ public class GameManager : MonoBehaviour {
 	void CreateBars() {
 		Vector3 lifebarOffset = new Vector3(9f, 19.6f, 0);
 		Vector3 bufferBarOffset = new Vector3(-10, 20, 0);
-		p1LifeBar = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/LifeBar"), player1Pos + lifebarOffset, Quaternion.identity);
-		p1LifeBar.GetComponent<SpriteRenderer>().flipX = true;
-		p1LifeBar.GetComponent<SpriteRenderer>().flipY = true;
-        p1LifeBar.GetComponent<BarController>().changeDirection = 1;
 
 		p1BufferBar = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/BufferBar"), new Vector3(-36f, 18.7f, -1f), Quaternion.identity);
         p1BufferBar.GetComponent<BarController>().changeDirection = 1;
-
-		p2LifeBar = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/LifeBar"), player2Pos + lifebarOffset, Quaternion.identity);
-		p2LifeBar.GetComponent<SpriteRenderer>().flipY = true;
-		p2LifeBar.transform.position += new Vector3(-18f, 0, 0);
-		p2LifeBar.GetComponent<BarController>().changeDirection = -1;
 
 		p2BufferBar = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/BufferBar"), new Vector3(36f, 18.7f, -1f), Quaternion.identity);
 		p2BufferBar.GetComponent<SpriteRenderer>().flipX = true;
@@ -264,9 +259,14 @@ public class GameManager : MonoBehaviour {
 
         player1Stats = player1.GetComponent<PlayerStats>();
         player1Stats.lifeBar = p1LifeBar;
+        p1LifeBar.SetActive(true);
+        p1LifeBar.transform.localScale = Vector3.one;
         player1Stats.bufferBar = p1BufferBar;
+
         player2Stats = player2.GetComponent<PlayerStats>();
 		player2Stats.lifeBar = p2LifeBar;
+		p2LifeBar.SetActive(true);
+		p2LifeBar.transform.localScale = Vector3.one;
 		player2Stats.bufferBar = p2BufferBar;
 	}
 

@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class BarController : MonoBehaviour {
 
-	private new SpriteRenderer renderer;
+	private new Image renderer;
 	public Color startColor;
 	public Color damageColor;
 	public float flashTime;
@@ -15,7 +16,7 @@ public class BarController : MonoBehaviour {
 	void Start () {
 		startPosition = transform.position;
 		flashTimer = 0;
-		renderer = GetComponent<SpriteRenderer>();
+		renderer = GetComponent<Image>();
 		startColor = renderer.color;
 	}
 	
