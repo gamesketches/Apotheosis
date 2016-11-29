@@ -6,15 +6,6 @@ public class PlayerInitializer : MonoBehaviour {
 	public int startingHealth;
 	public float screenShake;
 	public BulletDepot bullets;
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	public GameObject CreatePlayer(string[] controls, Character character, Vector3 position, int number){
 		Color color = character == Character.Loholt ? Color.blue : Color.red;
