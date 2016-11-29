@@ -18,9 +18,9 @@ public class GameManager : MonoBehaviour {
     private float currentRoundTime;
 	private bool timerStarted;
 	public Vector3 player1Pos, player2Pos;
-	public int startingHealth;
 	public Vector3 powerUpZonePosition;
 	string[] player1Controls, player2Controls;
+	PlayerInitializer playerFactory;
 	PlayerStats player1Stats, player2Stats;
 	BulletDepot bullets;
 	GameObject p1LifeBar, p2LifeBar, p1BufferBar, p2BufferBar;
@@ -77,6 +77,9 @@ public class GameManager : MonoBehaviour {
 		//bullets = new BulletDepot(); // clearing a warning w/next line - ski
         bullets = ScriptableObject.CreateInstance<BulletDepot>();
 		bullets.Load();
+
+		playerFactory = GetComponent<PlayerInitializer>();
+    	playerFactory.bullets = bullets;
         player1Controls = CreateControlScheme(0);
 		player2Controls = CreateControlScheme(1);
 		currentRoundTime = roundTime;
@@ -196,70 +199,11 @@ public class GameManager : MonoBehaviour {
 		StartRound();
 	}
 
-    GameObject CreatePlayer(string[] controls, Character character, Vector3 position, int number){
-		Color color = character == Character.Loholt ? Color.blue : Color.red;
-		GameObject temp = (GameObject)Instantiate(Resources.Load("prefabs/Player"), 
-												position, Quaternion.identity);
-		Reticle reticle = ((GameObject)Instantiate(Resources.Load("prefabs/Reticle"))).GetComponent<Reticle>();
-		//SetControls(temp);
-		//temp.GetComponent<Renderer>() = color;
-		PlayerStats tempStats = temp.GetComponent<PlayerStats>();
-		PlayerMovement tempMovement = temp.GetComponent<PlayerMovement>();
-		InputManager tempInputManager = temp.GetComponent<InputManager>();
-		switch(character) {
-			case Character.Orpheus:
-				break;
-			case Character.Hiruko: 
-				temp.AddComponent<OffscreenShot>();
-				tempInputManager = temp.GetComponent<OffscreenShot>();
-				Destroy(temp.GetComponent<InputManager>());
-				break;
-			case Character.Loholt:
-				temp.AddComponent<RecallShot>();
-				tempInputManager = temp.GetComponent<RecallShot>();
-				Destroy(temp.GetComponent<InputManager>());
-				break;
-		};
-
-		tempStats.health = startingHealth;
-		tempStats.maxHealth = startingHealth;
-		tempStats.character = character;
-		tempStats.playerColor = color;
-		tempStats.number = number;
-		temp.GetComponent<PlayerMovement>().InitializeAxes(controls);
-        tempStats.screenShake = screenShake;
-		reticle.color = color;
-		tempMovement.reticle = reticle;
-
-		tempInputManager.bullets = bullets;
-		tempInputManager.InitializeControls(controls);
-		tempInputManager.reticle = reticle;
-
-		AnimatorOverrideController animationController = new AnimatorOverrideController();
-
-		animationController.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("sprites/OptimizedAnimationController");
-		string resourcePath = string.Concat("sprites/", character.ToString(), "Animation/p", (number + 1).ToString());
-		foreach(AnimationClip clip in Resources.LoadAll<AnimationClip>(resourcePath)) {
-				animationController[clip.name] = clip;
-			}
-	
-		tempMovement.SetAnimator(animationController);
-		reticle.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/reticle-18");
-			player1Reticle = reticle.gameObject;
-
-        return temp;
-	}
+  
 
 	void CreateBars() {
 		Vector3 lifebarOffset = new Vector3(9f, 19.6f, 0);
 		Vector3 bufferBarOffset = new Vector3(-10, 20, 0);
-
-		/*p1BufferBar = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/BufferBar"), new Vector3(-36f, 18.7f, -1f), Quaternion.identity);
-        p1BufferBar.GetComponent<BarController>().changeDirection = 1;
-
-		p2BufferBar = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/BufferBar"), new Vector3(36f, 18.7f, -1f), Quaternion.identity);
-		p2BufferBar.GetComponent<SpriteRenderer>().flipX = true;
-        p2BufferBar.GetComponent<BarController>().changeDirection = -1;*/
 
         player1Stats = player1.GetComponent<PlayerStats>();
         player1Stats.lifeBar = p1LifeBar;
@@ -299,8 +243,8 @@ public class GameManager : MonoBehaviour {
 	}
     
 	void StartRound() {
-		player1 = CreatePlayer(player1Controls, characterSelectManager.p1Character, player1Pos, 0);
-        player2 = CreatePlayer(player2Controls, characterSelectManager.p2Character, player2Pos, 1);
+		player1 = playerFactory.CreatePlayer(player1Controls, characterSelectManager.p1Character, player1Pos, 0);
+        player2 = playerFactory.CreatePlayer(player2Controls, characterSelectManager.p2Character, player2Pos, 1);
 
         CreateBars();
         CreateObstacles();
