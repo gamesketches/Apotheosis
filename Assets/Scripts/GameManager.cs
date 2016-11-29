@@ -54,8 +54,12 @@ public class GameManager : MonoBehaviour {
         SetWinsIconsSR = new SpriteRenderer[SetWinsIcons.Length];
         p1LifeBar = GameObject.Find("P1LifeBar");
         p1LifeBar.SetActive(false);
+        p1BufferBar = GameObject.Find("P1BufferBar");
+        p1BufferBar.SetActive(false);
         p2LifeBar = GameObject.Find("P2LifeBar");
         p2LifeBar.SetActive(false);
+		p2BufferBar = GameObject.Find("P2BufferBar");
+        p2BufferBar.SetActive(false);
         player1Wins = 0;
         player2Wins = 0;
         roundsToWin = 2;
@@ -250,24 +254,29 @@ public class GameManager : MonoBehaviour {
 		Vector3 lifebarOffset = new Vector3(9f, 19.6f, 0);
 		Vector3 bufferBarOffset = new Vector3(-10, 20, 0);
 
-		p1BufferBar = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/BufferBar"), new Vector3(-36f, 18.7f, -1f), Quaternion.identity);
+		/*p1BufferBar = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/BufferBar"), new Vector3(-36f, 18.7f, -1f), Quaternion.identity);
         p1BufferBar.GetComponent<BarController>().changeDirection = 1;
 
 		p2BufferBar = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/BufferBar"), new Vector3(36f, 18.7f, -1f), Quaternion.identity);
 		p2BufferBar.GetComponent<SpriteRenderer>().flipX = true;
-        p2BufferBar.GetComponent<BarController>().changeDirection = -1;
+        p2BufferBar.GetComponent<BarController>().changeDirection = -1;*/
 
         player1Stats = player1.GetComponent<PlayerStats>();
         player1Stats.lifeBar = p1LifeBar;
         p1LifeBar.SetActive(true);
         p1LifeBar.transform.localScale = Vector3.one;
         player1Stats.bufferBar = p1BufferBar;
+        p1BufferBar.SetActive(true);
+        p1BufferBar.transform.localScale = Vector3.one;
 
         player2Stats = player2.GetComponent<PlayerStats>();
 		player2Stats.lifeBar = p2LifeBar;
 		p2LifeBar.SetActive(true);
 		p2LifeBar.transform.localScale = Vector3.one;
 		player2Stats.bufferBar = p2BufferBar;
+		p2BufferBar.SetActive(true);
+        p2BufferBar.transform.localScale = Vector3.one;
+
 	}
 
 	void CreateObstacles() {
