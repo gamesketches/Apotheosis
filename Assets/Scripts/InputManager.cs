@@ -141,13 +141,13 @@ public class InputManager : MonoBehaviour {
         switch (buffer_style)
         {
             case BarLerpStyle.shrink:
-                playerStats.UpdateBufferBar(0.4f * (mashBufferSize - bufferIter + 1));
+                playerStats.UpdateBufferBar((1 / (float)mashBufferSize) * (mashBufferSize - bufferIter));
                 break;
             case BarLerpStyle.grow:
-                playerStats.UpdateBufferBar(0.4f * bufferIter + 1);
+			playerStats.UpdateBufferBar((1 / (float)mashBufferSize) * bufferIter + 1);
                 break;
             default:
-                playerStats.UpdateBufferBar(0.4f * bufferIter + 1);
+			playerStats.UpdateBufferBar((1 / (float)mashBufferSize) * bufferIter + 1);
                 break;
         }
     }
