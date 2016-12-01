@@ -126,6 +126,7 @@ public class OffscreenShot : InputManager {
             bulletLogic.Initialize(type, bullet.damage, bullet.speed, bullet.size, lifetime, playerStats.playerColor, playerStats.number, playerStats.character);
             bulletLogic.indirectHomingTime = 10.5f;
             bulletLogic.indirectHomingLimit = 1.0f;
+            bulletLogic.indirectCorrectionSpeed = 1.5f;
             newBullet.GetComponentInChildren<SpriteRenderer>().sortingOrder = 9 - bufferIter;
             	  
 		}

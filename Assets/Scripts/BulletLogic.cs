@@ -85,9 +85,11 @@ public class BulletLogic : MonoBehaviour {
 				else bulletFunction = IndirectLogic;
 				sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", character.ToString(), playerNum == 0 ? "" : "Alt", "/Boomerang"));
 				headingTime = 0f;
-                indirectHomingTime = 1000f;
-                indirectHomingLimit = 1000f;
-				foreach(GameObject player in GameObject.FindGameObjectsWithTag("Player")){
+                //indirectHomingTime = 1000f;
+                //indirectHomingLimit = 1000f;
+                indirectHomingTime = 50.5f; // how long it updates
+                indirectHomingLimit = 10f; // how long it tracks
+                foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")){
 					if(player.layer != gameObject.layer) {
 						target = player.transform;
 						}
@@ -198,7 +200,11 @@ public class BulletLogic : MonoBehaviour {
 		if(headingTime < indirectHomingTime) {
 			targetPosition = target.position;
 		}
+
+        //Debug.Log("indirect logic: velocity = " + velocity);
+
         // Might be better to handle this shit as a rotation
+        // i changed this to homing limit to accomdate offscreen shots - ski
         //if(headingTime < 1.0f) {
         if (headingTime < indirectHomingLimit) {
 		    Vector3 startVector = Quaternion.AngleAxis(gameObject.transform.rotation.eulerAngles.z, Vector3.forward) * new Vector3(velocity, 0, 0);
@@ -206,12 +212,12 @@ public class BulletLogic : MonoBehaviour {
 			    headingTime);
 		    travelVector.x = temp.x;
 		    travelVector.y = temp.y;
-		    headingTime += indirectCorrectionSpeed / (indirectCorrectionSpeed * 45);
-		}
-
+		    //headingTime += indirectCorrectionSpeed / (indirectCorrectionSpeed * 60);
+		    headingTime += indirectCorrectionSpeed / 60.0f  ;
+        }
     }
 
-	void StraightLogic(){
+    void StraightLogic(){
 		//travelVector = new Vector2(velocity, 0f);
 	}
 
