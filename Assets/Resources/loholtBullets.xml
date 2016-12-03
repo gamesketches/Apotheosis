@@ -180,7 +180,7 @@
 				</Volley>
 
 		</ProjectileType>
-		<ProjectileType name="crane" desc="Tracks enemies"> <!-- ROUNDABOUT blt count: 1,2,4,6,6,10,10,10-->
+		<ProjectileType name="crane" desc="Recalls When Held"> <!-- ROUNDABOUT blt count: 1,2,4,6,6,10,10,10-->
 				<Volley>
           <!-- Volley #1 1 bullets 4dmg  -->
           <Bullet>

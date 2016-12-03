@@ -10,6 +10,7 @@ public class CharacterSelectManager : MonoBehaviour {
 	public bool charactersSelected;
 	private bool p1Selected, p2Selected, p1ButtonDown, p2ButtonDown;
 	private int numCharacters;
+	private string[,] bulletDescriptions;
 	// Use this for initialization
 	void Start () {
 		p1Selected = false;
@@ -24,6 +25,10 @@ public class CharacterSelectManager : MonoBehaviour {
         p2CharacterPortraits = Resources.LoadAll<Sprite>("characterSelect/p2/portraits");
 		p2InfoPanes = Resources.LoadAll<Sprite>("characterSelect/p2/summons");
 		numCharacters = System.Enum.GetValues(typeof(Character)).Length;
+	}
+
+	public void SetBulletDescriptions(string[,] descriptions) {
+		bulletDescriptions = descriptions;
 	}
 
 	public void Reset() {
@@ -71,11 +76,11 @@ public class CharacterSelectManager : MonoBehaviour {
     	infoPane.sprite = infoPanes[(int)highlightedCharacter];
     	Text nameText = player.GetComponentInChildren<Text>();
     	nameText.text = highlightedCharacter.ToString();
-    	Text[] bulletDescriptions = player.GetComponentsInChildren<Text>();
-    	int firstText = bulletDescriptions.Length - 3;
-		bulletDescriptions[firstText + 0].text = "Shield for blocking";//bullets.types[(int)highlightedCharacter].projectileTypes[1].bulletDescription;
-		bulletDescriptions[firstText + 1].text = "Tracks enemy";//bullets.types[(int)highlightedCharacter].projectileTypes[2].bulletDescription;
-		bulletDescriptions[firstText + 2].text = "A piercing summon";//bullets.types[(int)highlightedCharacter].projectileTypes[0].bulletDescription;   
+    	Text[] bulletDescriptionSlots = player.GetComponentsInChildren<Text>();
+    	int firstText = bulletDescriptionSlots.Length - 3;
+		bulletDescriptionSlots[firstText + 0].text = bulletDescriptions[(int)highlightedCharacter,0];
+		bulletDescriptionSlots[firstText + 1].text = bulletDescriptions[(int)highlightedCharacter,1];
+		bulletDescriptionSlots[firstText + 2].text = bulletDescriptions[(int)highlightedCharacter,2];  
     }
 
     Character CycleThroughCharacters(Character character, string axis) {
