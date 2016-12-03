@@ -53,13 +53,10 @@ public class GameManager : MonoBehaviour {
         HorusWinsIconsSR = new SpriteRenderer[HorusWinsIcons.Length];
         SetWinsIconsSR = new SpriteRenderer[SetWinsIcons.Length];
         p1LifeBar = GameObject.Find("P1LifeBar");
-        p1LifeBar.SetActive(false);
         p1BufferBar = GameObject.Find("P1BufferBar");
-        p1BufferBar.SetActive(false);
         p2LifeBar = GameObject.Find("P2LifeBar");
-        p2LifeBar.SetActive(false);
 		p2BufferBar = GameObject.Find("P2BufferBar");
-        p2BufferBar.SetActive(false);
+        ToggleUI(false);
         player1Wins = 0;
         player2Wins = 0;
         roundsToWin = 2;
@@ -213,20 +210,17 @@ public class GameManager : MonoBehaviour {
 		Vector3 lifebarOffset = new Vector3(9f, 19.6f, 0);
 		Vector3 bufferBarOffset = new Vector3(-10, 20, 0);
 
+		ToggleUI(true);
         player1Stats = player1.GetComponent<PlayerStats>();
         player1Stats.lifeBar = p1LifeBar;
-        p1LifeBar.SetActive(true);
         p1LifeBar.transform.localScale = Vector3.one;
         player1Stats.bufferBar = p1BufferBar;
-        p1BufferBar.SetActive(true);
         p1BufferBar.transform.localScale = Vector3.one;
 
         player2Stats = player2.GetComponent<PlayerStats>();
 		player2Stats.lifeBar = p2LifeBar;
-		p2LifeBar.SetActive(true);
 		p2LifeBar.transform.localScale = Vector3.one;
 		player2Stats.bufferBar = p2BufferBar;
-		p2BufferBar.SetActive(true);
         p2BufferBar.transform.localScale = Vector3.one;
 
 	}
@@ -367,28 +361,29 @@ public class GameManager : MonoBehaviour {
 
 	void ResetGame() {
 		Destroy(player1Reticle);
-				Destroy(player2Reticle);
-				// TODO ERASE THIS GARBAGE
-				foreach(GameObject reticle in GameObject.FindGameObjectsWithTag("Reticle")) {
-					Destroy(reticle);
-				}
-				Destroy(player1);
-				Destroy(player2);
-				titleLogo.enabled = true;
-   		        titleLogo.transform.GetChild(0).gameObject.SetActive(true);
-                pressStart.enabled = true;
-				background.enabled = true;
-				roundTimer.enabled = false;
-				foreach(SpriteRenderer renderer in HorusWinsIconsSR) {
-					renderer.enabled = false;
-				}
-				foreach(SpriteRenderer renderer in SetWinsIconsSR) {
-					renderer.enabled = false;
-				}
-				AudioSource backgroundMusic = Camera.main.GetComponent<AudioSource>();
-				backgroundMusic.clip = Resources.Load<AudioClip>("audio/music/menu/LandOfTwoFields");
-				backgroundMusic.Play();
-				currentUpdateFunction = TitleScreen;
+		Destroy(player2Reticle);
+		// TODO ERASE THIS GARBAGE
+		foreach(GameObject reticle in GameObject.FindGameObjectsWithTag("Reticle")) {
+			Destroy(reticle);
+		}
+		Destroy(player1);
+		Destroy(player2);
+		titleLogo.enabled = true;
+   		titleLogo.transform.GetChild(0).gameObject.SetActive(true);
+        pressStart.enabled = true;
+		background.enabled = true;
+		roundTimer.enabled = false;
+		foreach(SpriteRenderer renderer in HorusWinsIconsSR) {
+			renderer.enabled = false;
+		}
+		foreach(SpriteRenderer renderer in SetWinsIconsSR) {
+			renderer.enabled = false;
+		}
+		AudioSource backgroundMusic = Camera.main.GetComponent<AudioSource>();
+		backgroundMusic.clip = Resources.Load<AudioClip>("audio/music/menu/LandOfTwoFields");
+		backgroundMusic.Play();
+		currentUpdateFunction = TitleScreen;
+		ToggleUI(false);
 	}
 
 
@@ -460,5 +455,12 @@ public class GameManager : MonoBehaviour {
 		Destroy(player1);
 		Destroy(player2);
 		StartRound();
+	}
+
+	void ToggleUI(bool mode) {
+		p1LifeBar.SetActive(mode);
+		p1BufferBar.SetActive(mode);
+		p2LifeBar.SetActive(mode);
+		p2BufferBar.SetActive(mode);
 	}
 }

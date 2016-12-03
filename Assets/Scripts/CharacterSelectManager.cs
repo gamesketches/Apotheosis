@@ -32,6 +32,10 @@ public class CharacterSelectManager : MonoBehaviour {
 	}
 
 	public void Reset() {
+		p1Selected = false;
+		p2Selected = false;
+		p1ButtonDown = true;
+		p2ButtonDown = true;
 		charactersSelected = false;
 		characterSelectElements.SetActive(true);
         p1Character = Character.Loholt;
