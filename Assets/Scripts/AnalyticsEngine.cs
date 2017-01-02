@@ -17,6 +17,7 @@ public class AnalyticsEngine : ScriptableObject {
 	}
 	
 	public static void Initialize(string[] counterNameList) {
+		#if capturing
 		if(!Initialized) {
 			DirectoryInfo dir = System.IO.Directory.CreateDirectory(Application.dataPath + "/data/" + System.DateTime.Now.ToString("yy-MMM-dd"));
 			filename = Application.dataPath + "/data/" + dir.Name + "/" + System.DateTime.Now.ToString("hh_mm_ss");
@@ -33,13 +34,17 @@ public class AnalyticsEngine : ScriptableObject {
 			outputStream.Close();
 			Initialized = true;
 		}
+		#endif
 	}
 
 	public static void Increment(string counterName) {
+		#if capturing
 		counters[counterName] += 1;
+		#endif
 	}
 
 	public static void PrintRow() {
+		#if capturing
 		string output = "";
 		foreach(string counter in counterNames) {
 			output = string.Concat(output, counters[counter].ToString(), "\t");
@@ -51,9 +56,11 @@ public class AnalyticsEngine : ScriptableObject {
 		outputStream = new StreamWriter(filename, true);
 		outputStream.WriteLine(output);
 		outputStream.Close();
+		#endif
 	}
 
 	static void OnApplicationQuit() {
+		#if capturing
 		Debug.Log("printing analytics data");
 
 		foreach(string dataPoint in DataRows) {
@@ -61,5 +68,6 @@ public class AnalyticsEngine : ScriptableObject {
 		}
 
 		outputStream.Close();
+		#endif
 	}
 }
