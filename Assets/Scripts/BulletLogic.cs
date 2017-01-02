@@ -154,6 +154,9 @@ public class BulletLogic : MonoBehaviour {
 			if(opposingType == type){
 				GameObject temp = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/SoundEffectObject"), gameObject.transform.position, Quaternion.identity);
 				temp.GetComponent<SoundEffectObjectScript>().PlaySoundEffect("identicalBulletCancel");
+				GameObject sparks = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/HitSparks"), transform.position, Quaternion.identity);
+                sparks.transform.localScale = new Vector3(10f, 10f, 10f);
+                sparks.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/hitSparks/hitspark");
 				theDepot.AddObject(other.gameObject);
 				killBullet();
 				//theDepot.AddObject(gameObject);
