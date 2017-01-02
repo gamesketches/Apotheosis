@@ -111,7 +111,6 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public void SetAnimator(AnimatorOverrideController value) {
-		Debug.Log(value.animationClips[0]);
 		anim = GetComponent<Animator>();
 		anim.runtimeAnimatorController = value;
 	}

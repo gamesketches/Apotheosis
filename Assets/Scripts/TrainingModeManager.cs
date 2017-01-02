@@ -29,12 +29,12 @@ public class TrainingModeManager : MonoBehaviour {
     #region CharacterSelect Vars
     CharacterSelectManager characterSelectManager;
 	#endregion
-    SpriteRenderer titleLogo;
-    SpriteRenderer infoScreen;
 	SpriteRenderer background;
     Text pressStart;
     Text roundTimer;
     Text victoryText;
+
+    MenuController menuController;
 
     SpriteRenderer[] HorusWinsIconsSR;
     SpriteRenderer[] SetWinsIconsSR;
@@ -72,6 +72,8 @@ public class TrainingModeManager : MonoBehaviour {
         AnalyticsEngine.Initialize(new string[] {"LoholtBulletsFired", "OrpheusBulletsFired", "HirukoBulletsFired"});
 		characterSelectManager.Reset();
         currentUpdateFunction = CharacterSelect;
+        menuController = GameObject.Find("Canvas").GetComponent<MenuController>();
+        //menuController.Toggle();
     }
 
     #region CharacterSelect
@@ -210,6 +212,15 @@ public class TrainingModeManager : MonoBehaviour {
 		if(player2Stats.health <= 0) {
 			player2Stats.TakeDamage(-playerFactory.startingHealth);
 		}
+		if(Input.GetKeyDown(KeyCode.Return)) {
+			if(menuController.active) {
+				UnlockPlayers();
+			}
+			else {
+				LockPlayers();
+			}
+			menuController.Toggle();
+		}
 	}
 
 	void ResetGame() {
@@ -298,5 +309,25 @@ public class TrainingModeManager : MonoBehaviour {
 		p1BufferBar.SetActive(mode);
 		p2LifeBar.SetActive(mode);
 		p2BufferBar.SetActive(mode);
+	}
+
+	public void ChangeCharacter() {
+		player1Pos = player1.transform.position;
+		characterSelectManager.p1Character += 1;
+		if((int)characterSelectManager.p1Character == System.Enum.GetValues(typeof(Character)).Length) {
+				characterSelectManager.p1Character = (Character)System.Enum.GetValues(typeof(Character)).GetValue(0);
+			}
+		Destroy(player1Reticle);
+		Destroy(player1);
+		player1 = playerFactory.CreatePlayer(player1Controls, characterSelectManager.p1Character, player1Pos, 0);
+		player1Stats = player1.GetComponent<PlayerStats>();
+        player1Stats.lifeBar = p1LifeBar;
+        p1LifeBar.transform.localScale = Vector3.one;
+        player1Stats.bufferBar = p1BufferBar;
+        p1BufferBar.transform.localScale = Vector3.one;
+	}
+
+	public void MainMenu() {
+		SceneManager.LoadScene(0);
 	}
 }
