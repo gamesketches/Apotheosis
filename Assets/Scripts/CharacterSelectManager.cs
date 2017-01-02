@@ -12,7 +12,7 @@ public class CharacterSelectManager : MonoBehaviour {
 	private int numCharacters;
 	private string[,] bulletDescriptions;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		p1Selected = false;
 		p2Selected = false;
 		p1ButtonDown = true;
@@ -69,6 +69,37 @@ public class CharacterSelectManager : MonoBehaviour {
 			characterSelectElements.SetActive(false);
 			charactersSelected = true;
     	}
+    }
+
+    public void TrainingModeCharacterSelectUpdate() {
+    	CheckDirectionals();
+    		if(Input.GetAxis("Horizontal0") != 0 && !p1ButtonDown) {
+    			p1ButtonDown = true;
+    			if(p1Selected) {
+					p2Character = CycleThroughCharacters(p2Character, "Horizontal0");
+    			}
+    			else {
+	    			p1Character = CycleThroughCharacters(p1Character, "Horizontal0");
+	    		}
+    		}
+
+		if(Input.GetButtonUp("ButtonB0")) {
+			if(p1Selected) {
+				p2Selected = true;
+			}
+			else { 
+				p1Selected = true;
+			}
+        }
+		UpdateInfoCharacterSelect(characterSelectElements.transform.GetChild(0).gameObject,
+    										 p1Character, p1CharacterPortraits, p1InfoPanes);
+    	UpdateInfoCharacterSelect(characterSelectElements.transform.GetChild(1).gameObject,
+    										 p2Character, p2CharacterPortraits, p2InfoPanes);
+
+        if(p1Selected && p2Selected) {
+        	characterSelectElements.SetActive(false);
+        	charactersSelected = true;
+        }
     }
 
     void UpdateInfoCharacterSelect(GameObject player, Character highlightedCharacter,
