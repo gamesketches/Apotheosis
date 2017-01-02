@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour {
     SpriteRenderer[] SetWinsIconsSR;
 
     private bool debug_on;
+    public float attractModeTimer;
 
     // Use this for initialization
     void Start () {
@@ -118,6 +119,11 @@ public class GameManager : MonoBehaviour {
 			background.enabled = true;
             characterSelectManager.Reset();
             currentUpdateFunction = CharacterSelect;
+        }
+
+        attractModeTimer -= Time.deltaTime;
+        if(attractModeTimer < 0) {
+        	SceneManager.LoadScene(1);
         }
         /*       else if (Input.GetButtonUp("ButtonD0") || Input.GetButtonUp("ButtonC0") || Input.GetButtonUp("ButtonB0"))
                {
