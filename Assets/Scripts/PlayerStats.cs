@@ -45,6 +45,9 @@ public class PlayerStats : MonoBehaviour {
         {
             float shakeScale = Mathf.Pow(2.0f, damage - 4.0f)/4.0f;
             Vector3 shakeX = new Vector3(screenShake * shakeScale, 0, 0);
+           	if(shakeX.x > 4) {
+           		shakeX.x = 4;
+           	}
             Debug.Log("Screen shake: " + shakeX + " shakeScale :" + shakeScale + "damage: " + damage);
             Camera.main.transform.position += shakeX / 2.0f;
             yield return new WaitForSeconds(0.05f);
