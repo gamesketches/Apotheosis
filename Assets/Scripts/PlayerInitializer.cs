@@ -16,19 +16,19 @@ public class PlayerInitializer : MonoBehaviour {
 		//temp.GetComponent<Renderer>() = color;
 		PlayerStats tempStats = temp.GetComponent<PlayerStats>();
 		PlayerMovement tempMovement = temp.GetComponent<PlayerMovement>();
-		InputManager tempInputManager = temp.GetComponent<InputManager>();
+		InputInterpretter tempInputManager = temp.GetComponent<InputInterpretter>();
 		switch(character) {
 			case Character.Orpheus:
 				break;
 			case Character.Hiruko: 
 				temp.AddComponent<OffscreenShot>();
 				tempInputManager = temp.GetComponent<OffscreenShot>();
-				Destroy(temp.GetComponent<InputManager>());
+				Destroy(temp.GetComponent<InputInterpretter>());
 				break;
 			case Character.Loholt:
 				temp.AddComponent<RecallShot>();
 				tempInputManager = temp.GetComponent<RecallShot>();
-				Destroy(temp.GetComponent<InputManager>());
+				Destroy(temp.GetComponent<InputInterpretter>());
 				break;
 		};
 

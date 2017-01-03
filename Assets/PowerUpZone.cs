@@ -17,10 +17,10 @@ public class PowerUpZone : MonoBehaviour {
 		if(other.tag == "Player") {
 			switch(PowerUpType) {
 				case PowerZoneTypes.Buffer:
-					other.gameObject.GetComponent<InputManager>().poweredUpBuffer = true;
+					other.gameObject.GetComponent<InputInterpretter>().poweredUpBuffer = true;
 					break;
 				case PowerZoneTypes.Damage:
-					other.gameObject.GetComponent<InputManager>().poweredUpBullets = true;
+					other.gameObject.GetComponent<InputInterpretter>().poweredUpBullets = true;
 					break;
 				case PowerZoneTypes.Speed:
 					other.gameObject.GetComponent<PlayerMovement>().speed *= 2;
@@ -33,10 +33,10 @@ public class PowerUpZone : MonoBehaviour {
 		if(other.tag == "Player") {
 			switch(PowerUpType) {
 				case PowerZoneTypes.Buffer:
-					other.gameObject.GetComponent<InputManager>().poweredUpBuffer = false;
+					other.gameObject.GetComponent<InputInterpretter>().poweredUpBuffer = false;
 					break;
 				case PowerZoneTypes.Damage:
-					other.gameObject.GetComponent<InputManager>().poweredUpBullets = false;
+					other.gameObject.GetComponent<InputInterpretter>().poweredUpBullets = false;
 					break;
 				case PowerZoneTypes.Speed:
 					StartCoroutine(SpeedBoost(other.gameObject.GetComponent<PlayerMovement>()));

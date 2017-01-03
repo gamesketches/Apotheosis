@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class RecallShot : InputManager {
+public class RecallShot : InputInterpretter {
 
 	float recallButtonHoldTime = 0.5f;
 	float recallButtonHeldTimer = 0f;
