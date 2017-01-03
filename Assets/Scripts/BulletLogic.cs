@@ -84,6 +84,12 @@ public class BulletLogic : MonoBehaviour {
 					transform.Rotate(new Vector3(0f, 0f, -90f));
 					travelVector *= -1;
 					}
+				else if(character == Character.Bastet) {
+					bulletFunction = StraightLogic;
+					reflectiveShot = true;
+					travelVector *= -1;
+					Lifetime = 100;
+				}
 				else bulletFunction = IndirectLogic;
 				sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", character.ToString(), playerNum == 0 ? "" : "Alt", "/Boomerang"));
 				headingTime = 0f;
@@ -124,6 +130,10 @@ public class BulletLogic : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if(other.gameObject.tag == "Boundary") {
+			if(reflectiveShot) {
+        		travelVector *= -1;
+        		return;
+        	}
 			if(lifetime < 5) {
 				killBullet();
 				//theDepot.AddObject(gameObject);
