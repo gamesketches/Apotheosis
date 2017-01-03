@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour {
 	public Vector3 player1Pos, player2Pos;
 	public Vector3 powerUpZonePosition;
 	string[] player1Controls, player2Controls;
+	InputDevice player1Controller, player2Controller;
 	PlayerInitializer playerFactory;
 	PlayerStats player1Stats, player2Stats;
 	BulletDepot bullets;
@@ -111,10 +112,13 @@ public class GameManager : MonoBehaviour {
 
     void TitleScreen()
     {
-		if (Input.GetButtonUp("ButtonA0") || Input.GetButtonUp("ButtonB0") || Input.GetButtonUp("ButtonC0") 
-			|| Input.GetButtonUp("ButtonD0") || Input.GetButtonUp("ButtonA1") || Input.GetButtonUp("ButtonB1")
-			|| Input.GetButtonUp("ButtonC1") || Input.GetButtonUp("ButtonD1"))
-        {
+    	if(InputManager.Devices.Count < 1) {
+    		pressStart.transform.GetChild(0).GetComponent<Text>().text = "<color=White>Please Attach Two Controllers</color>";
+    	}
+    	else {
+			pressStart.transform.GetChild(0).GetComponent<Text>().text = "<color=White>Press Any Button to Start</color>";
+    	}
+    	if(InputManager.ActiveDevice != null && InputManager.ActiveDevice.AnyButton) {
             titleLogo.enabled = false;
             titleLogo.transform.GetChild(0).gameObject.SetActive(false);
             pressStart.enabled = false;
@@ -134,41 +138,6 @@ public class GameManager : MonoBehaviour {
                    infoScreen.enabled = true;
                    currentUpdateFunction = InfoScreen;
                }*/
-
-        //ski 
-        if (Input.GetKeyUp(KeyCode.Alpha7))
-        {
-            //debug to start round directly
-            titleLogo.enabled = false;
-            titleLogo.transform.GetChild(0).gameObject.SetActive(false);
-            pressStart.enabled = false;
-            background.enabled = true;
-            characterSelectManager.p1Character = Character.Loholt;
-            characterSelectManager.p2Character = Character.Orpheus;
-            InitializeGameSettings();
-        }
-        else if (Input.GetKeyUp(KeyCode.Alpha8))
-        {
-            //debug to start round directly
-            titleLogo.enabled = false;
-            titleLogo.transform.GetChild(0).gameObject.SetActive(false);
-            pressStart.enabled = false;
-            background.enabled = true;
-            characterSelectManager.p1Character = Character.Orpheus;
-            characterSelectManager.p2Character = Character.Hiruko;
-            InitializeGameSettings();
-        }
-        else if (Input.GetKeyUp(KeyCode.Alpha9))
-        {
-            //debug to start round directly
-            titleLogo.enabled = false;
-            titleLogo.transform.GetChild(0).gameObject.SetActive(false);
-            pressStart.enabled = false;
-            background.enabled = true;
-            characterSelectManager.p1Character = Character.Hiruko;
-            characterSelectManager.p2Character = Character.Loholt;
-            InitializeGameSettings();
-        }
 
     }
 
