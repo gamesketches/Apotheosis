@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
+using InControl;
 
 public class InputInterpretter : MonoBehaviour {
 	public int mashBufferSize;
@@ -35,6 +37,8 @@ public class InputInterpretter : MonoBehaviour {
 	protected string buttonB;
 	protected string buttonC;
 	protected string buttonD;
+
+	protected InputDevice inputDevice;
 
 	protected char[] mashBuffer;
 

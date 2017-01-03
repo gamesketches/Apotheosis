@@ -119,6 +119,12 @@ public class GameManager : MonoBehaviour {
 			pressStart.transform.GetChild(0).GetComponent<Text>().text = "<color=White>Press Any Button to Start</color>";
     	}
     	if(InputManager.ActiveDevice != null && InputManager.ActiveDevice.AnyButton) {
+    		player1Controller = InputManager.ActiveDevice;
+    		foreach(InputDevice controller in InputManager.Devices) {
+    			if(controller != InputManager.ActiveDevice) {
+    				player2Controller = controller;
+    			}
+    		}
             titleLogo.enabled = false;
             titleLogo.transform.GetChild(0).gameObject.SetActive(false);
             pressStart.enabled = false;
