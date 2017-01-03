@@ -1,0 +1,367 @@
+fileFormatVersion: 2
+guid: 6a2dfe6092f894f5197a19d7b86f83e9
+timeCreated: 1468202837
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: SpriteSheetLoholt_0
+    21300002: SpriteSheetLoholt_1
+    21300004: SpriteSheetLoholt_2
+    21300006: SpriteSheetLoholt_3
+    21300008: SpriteSheetLoholt_4
+    21300010: SpriteSheetLoholt_5
+    21300012: SpriteSheetLoholt_6
+    21300014: SpriteSheetLoholt_7
+    21300016: SpriteSheetLoholt_8
+    21300018: SpriteSheetLoholt_9
+    21300020: SpriteSheetLoholt_10
+    21300022: SpriteSheetLoholt_11
+    21300024: SpriteSheetLoholt_12
+    21300026: SpriteSheetLoholt_13
+    21300028: SpriteSheetLoholt_14
+    21300030: SpriteSheetLoholt_15
+    21300032: SpriteSheetLoholt_16
+    21300034: SpriteSheetLoholt_17
+    21300036: SpriteSheetLoholt_18
+    21300038: SpriteSheetLoholt_19
+    21300040: SpriteSheetLoholt_20
+    21300042: SpriteSheetLoholt_21
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SpriteSheetLoholt_0
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 108
+        width: 147
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: SpriteSheetLoholt_1
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 5
+        width: 153
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: SpriteSheetLoholt_2
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 5
+        width: 154
+        height: 288
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: SpriteSheetLoholt_3
+      rect:
+        serializedVersion: 2
+        x: 1033
+        y: 5
+        width: 154
+        height: 289
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: SpriteSheetLoholt_4
+      rect:
+        serializedVersion: 2
+        x: 1352
+        y: 5
+        width: 154
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: SpriteSheetLoholt_5
+      rect:
+        serializedVersion: 2
+        x: 1681
+        y: 5
+        width: 137
+        height: 289
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: SpriteSheetLoholt_6
+      rect:
+        serializedVersion: 2
+        x: 1990
+        y: 9
+        width: 151
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: SpriteSheetLoholt_7
+      rect:
+        serializedVersion: 2
+        x: 2309
+        y: 5
+        width: 137
+        height: 289
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: SpriteSheetLoholt_8
+      rect:
+        serializedVersion: 2
+        x: 2645
+        y: 9
+        width: 133
+        height: 284
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: SpriteSheetLoholt_9
+      rect:
+        serializedVersion: 2
+        x: 2946
+        y: 9
+        width: 151
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: SpriteSheetLoholt_10
+      rect:
+        serializedVersion: 2
+        x: 3255
+        y: 5
+        width: 188
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: SpriteSheetLoholt_11
+      rect:
+        serializedVersion: 2
+        x: 3546
+        y: 9
+        width: 236
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: SpriteSheetLoholt_12
+      rect:
+        serializedVersion: 2
+        x: 3885
+        y: 9
+        width: 209
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: SpriteSheetLoholt_13
+      rect:
+        serializedVersion: 2
+        x: 4204
+        y: 5
+        width: 219
+        height: 288
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: SpriteSheetLoholt_14
+      rect:
+        serializedVersion: 2
+        x: 4537
+        y: 6
+        width: 188
+        height: 289
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: SpriteSheetLoholt_15
+      rect:
+        serializedVersion: 2
+        x: 4855
+        y: 15
+        width: 206
+        height: 278
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: SpriteSheetLoholt_16
+      rect:
+        serializedVersion: 2
+        x: 5178
+        y: 5
+        width: 185
+        height: 288
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: SpriteSheetLoholt_17
+      rect:
+        serializedVersion: 2
+        x: 5479
+        y: 12
+        width: 205
+        height: 279
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: SpriteSheetLoholt_18
+      rect:
+        serializedVersion: 2
+        x: 5805
+        y: 6
+        width: 209
+        height: 288
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: SpriteSheetLoholt_19
+      rect:
+        serializedVersion: 2
+        x: 6127
+        y: 5
+        width: 216
+        height: 288
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: SpriteSheetLoholt_20
+      rect:
+        serializedVersion: 2
+        x: 6456
+        y: 5
+        width: 189
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: SpriteSheetLoholt_21
+      rect:
+        serializedVersion: 2
+        x: 6748
+        y: 9
+        width: 233
+        height: 284
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

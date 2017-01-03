@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public enum Character {Hiruko, Loholt, Orpheus};
+public enum Character {Bastet, Hiruko, Loholt, Orpheus};
 
 public class GameManager : MonoBehaviour {
 
@@ -94,6 +94,7 @@ public class GameManager : MonoBehaviour {
 
         characterSelectManager = GetComponent<CharacterSelectManager>();
         int numCharacters = System.Enum.GetNames(typeof(Character)).Length;
+        Debug.Log(numCharacters);
 		string[,] bulletDescriptions = new string[numCharacters, numCharacters];
         for(int i = 0; i < numCharacters; i++){
 			bulletDescriptions[i,0] = bullets.types[i].projectileTypes[1].bulletDescription;

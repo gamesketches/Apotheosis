@@ -21,6 +21,7 @@ public class BulletLogic : MonoBehaviour {
 	private float headingTime, shieldOscillationTime;
     private Sprite sprite;
     private int animFrame;
+    private bool reflectiveShot;
     new AudioSource audio;
     new SpriteRenderer renderer;
 	private new Sprite[] animation; 
@@ -30,6 +31,7 @@ public class BulletLogic : MonoBehaviour {
     private bool debug_on = false; 
     // Use this for initialization
     void Start () {
+    	reflectiveShot = false;
 		renderer = GetComponentInChildren<SpriteRenderer>();
 		audio = GetComponent<AudioSource>();
 		audio.clip = Resources.Load<AudioClip>("audio/soundEffects/rpsBulletCancel");
