@@ -300,16 +300,26 @@ public class GameManager : MonoBehaviour {
 		}
 		victoryText.enabled = true;
         yield return new WaitForSeconds(3.0f);
-        victoryText.enabled = false;
-        victoryText.text = "";
 
 		if(player1RoundWins >= roundsToWin || player2RoundWins >= roundsToWin)
         {
-			ResetGame();
+        	victoryText.text = "X For Rematch\n O to Quit";
+        	while(!Input.GetButtonUp("ButtonB0") && !Input.GetButtonUp("ButtonC0")) {
+        		yield return null;
+        	}
+        	if(Input.GetButtonUp("ButtonB0")) {
+        		ClearObjects();
+        		InitializeGameSettings();
+        	}
+        	else {
+				ResetGame();
+			}
 		}
 		else {
 			RoundReset();
 		}
+		victoryText.enabled = false;
+        victoryText.text = "";
     }
 
     /*	// Use this for initialization
@@ -362,11 +372,26 @@ public class GameManager : MonoBehaviour {
           	  if (player1RoundWins > 2) player1Wins++;
             	else player2Wins++;
 				Invoke("ResetGame", 3f);
+				Debug.Log("Called in RoundEndUpdate");
 				return;
 			}
 	}
 
 	void ResetGame() {
+		ClearObjects();
+		titleLogo.enabled = true;
+   		titleLogo.transform.GetChild(0).gameObject.SetActive(true);
+        pressStart.enabled = true;
+		background.enabled = true;
+		roundTimer.enabled = false;
+		AudioSource backgroundMusic = Camera.main.GetComponent<AudioSource>();
+		backgroundMusic.clip = Resources.Load<AudioClip>("audio/music/menu/LandOfTwoFields");
+		backgroundMusic.Play();
+		currentUpdateFunction = TitleScreen;
+		ToggleUI(false);
+	}
+
+	void ClearObjects() {
 		Destroy(player1Reticle);
 		Destroy(player2Reticle);
 		// TODO ERASE THIS GARBAGE
@@ -375,25 +400,14 @@ public class GameManager : MonoBehaviour {
 		}
 		Destroy(player1);
 		Destroy(player2);
-		titleLogo.enabled = true;
-   		titleLogo.transform.GetChild(0).gameObject.SetActive(true);
-        pressStart.enabled = true;
-		background.enabled = true;
-		roundTimer.enabled = false;
+
 		foreach(SpriteRenderer renderer in HorusWinsIconsSR) {
 			renderer.enabled = false;
 		}
 		foreach(SpriteRenderer renderer in SetWinsIconsSR) {
 			renderer.enabled = false;
 		}
-		AudioSource backgroundMusic = Camera.main.GetComponent<AudioSource>();
-		backgroundMusic.clip = Resources.Load<AudioClip>("audio/music/menu/LandOfTwoFields");
-		backgroundMusic.Play();
-		currentUpdateFunction = TitleScreen;
-		ToggleUI(false);
 	}
-
-
 
 	void FightIntro() {
 		LockPlayers();
