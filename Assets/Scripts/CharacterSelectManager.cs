@@ -1,6 +1,9 @@
-﻿using UnityEngine;
+﻿#define RELEASE
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using InControl;
+using System;
 
 public class CharacterSelectManager : MonoBehaviour {
 
@@ -11,6 +14,7 @@ public class CharacterSelectManager : MonoBehaviour {
 	private bool p1Selected, p2Selected, p1ButtonDown, p2ButtonDown;
 	private int numCharacters;
 	private string[,] bulletDescriptions;
+	InputDevice player1Controller, player2Controller;
 	// Use this for initialization
 	void Awake () {
 		p1Selected = false;
@@ -42,6 +46,7 @@ public class CharacterSelectManager : MonoBehaviour {
         p2Character = Character.Orpheus;
 	}
 
+	#if DEV
 	public void CharacterSelectUpdate() {
 		CheckDirectionals();
 		if(!p1Selected && Input.GetAxis("Horizontal0") != 0 && !p1ButtonDown) {
@@ -71,7 +76,7 @@ public class CharacterSelectManager : MonoBehaviour {
     	}
     }
 
-    public void TrainingModeCharacterSelectUpdate() {
+	public void TrainingModeCharacterSelectUpdate() {
     	CheckDirectionals();
     		if(Input.GetAxis("Horizontal0") != 0 && !p1ButtonDown) {
     			p1ButtonDown = true;
@@ -102,23 +107,16 @@ public class CharacterSelectManager : MonoBehaviour {
         }
     }
 
-    void UpdateInfoCharacterSelect(GameObject player, Character highlightedCharacter,
-    														 Sprite[] portraits,
-    														 Sprite[] infoPanes) {
-    	SpriteRenderer portrait = player.GetComponentInChildren<SpriteRenderer>();
-    	portrait.sprite = portraits[(int)highlightedCharacter];
-    	SpriteRenderer infoPane = player.GetComponentsInChildren<SpriteRenderer>()[2];
-    	infoPane.sprite = infoPanes[(int)highlightedCharacter];
-    	Text nameText = player.GetComponentInChildren<Text>();
-    	nameText.text = highlightedCharacter.ToString();
-    	Text[] bulletDescriptionSlots = player.GetComponentsInChildren<Text>();
-    	int firstText = bulletDescriptionSlots.Length - 3;
-		bulletDescriptionSlots[firstText + 0].text = bulletDescriptions[(int)highlightedCharacter,0];
-		bulletDescriptionSlots[firstText + 1].text = bulletDescriptions[(int)highlightedCharacter,1];
-		bulletDescriptionSlots[firstText + 2].text = bulletDescriptions[(int)highlightedCharacter,2];  
+	void CheckDirectionals() {
+    	if(Input.GetAxis("Horizontal0") == 0) {
+    		p1ButtonDown = false;
+    	}
+    	if(Input.GetAxis("Horizontal1") == 0) {
+    		p2ButtonDown = false;
+    	}
     }
 
-    Character CycleThroughCharacters(Character character, string axis) {
+	Character CycleThroughCharacters(Character character, string axis) {
 		if(Input.GetAxisRaw(axis) < 0) {
 				int temp = (int)character;
 				temp -= 1;
@@ -136,13 +134,118 @@ public class CharacterSelectManager : MonoBehaviour {
     		}
     	return character;
     }
+    #elif RELEASE
+	public void CharacterSelectUpdate() {
+		CheckDirectionals();
+		if(!p1Selected && player1Controller.Direction.X != 0 && !p1ButtonDown) {
+			p1ButtonDown = true;
+    		p1Character = CycleThroughCharacters(p1Character, player1Controller.Direction.X);
+    	}
+		if(!p2Selected && player2Controller.Direction.X != 0 && !p2ButtonDown) {
+			p2ButtonDown = true;
+    		p2Character = CycleThroughCharacters(p2Character, player2Controller.Direction.X);
+    	}
+    	UpdateInfoCharacterSelect(characterSelectElements.transform.GetChild(0).gameObject,
+    										 p1Character, p1CharacterPortraits, p1InfoPanes);
+    	UpdateInfoCharacterSelect(characterSelectElements.transform.GetChild(1).gameObject,
+    										 p2Character, p2CharacterPortraits, p2InfoPanes);
 
-    void CheckDirectionals() {
-    	if(Input.GetAxis("Horizontal0") == 0) {
+    	if(Input.GetButtonUp("ButtonB0")) {
+			p1Selected = true;
+            Debug.Log("P1 Selected");
+        }
+    	if(Input.GetButtonUp("ButtonB1")) {
+    		p2Selected = true;
+            Debug.Log("P2 Selected");
+        }
+    	if(p1Selected && p2Selected) {
+			characterSelectElements.SetActive(false);
+			charactersSelected = true;
+    	}
+    }
+
+	public void TrainingModeCharacterSelectUpdate() {
+    	CheckDirectionals();
+    		if(player1Controller.Direction.X != 0 && !p1ButtonDown) {
+    			p1ButtonDown = true;
+    			if(p1Selected) {
+					p2Character = CycleThroughCharacters(p2Character, player1Controller.Direction.X);
+    			}
+    			else {
+	    			p1Character = CycleThroughCharacters(p1Character, player1Controller.Direction.X);
+	    		}
+    		}
+
+		if(Input.GetButtonUp("ButtonB0")) {
+			if(p1Selected) {
+				p2Selected = true;
+			}
+			else { 
+				p1Selected = true;
+			}
+        }
+		UpdateInfoCharacterSelect(characterSelectElements.transform.GetChild(0).gameObject,
+    										 p1Character, p1CharacterPortraits, p1InfoPanes);
+    	UpdateInfoCharacterSelect(characterSelectElements.transform.GetChild(1).gameObject,
+    										 p2Character, p2CharacterPortraits, p2InfoPanes);
+
+        if(p1Selected && p2Selected) {
+        	characterSelectElements.SetActive(false);
+        	charactersSelected = true;
+        }
+    }
+
+	void CheckDirectionals() {
+    	if(player1Controller.Direction.X == 0) {
     		p1ButtonDown = false;
     	}
-    	if(Input.GetAxis("Horizontal1") == 0) {
+    	if(player2Controller.Direction.X == 0) {
     		p2ButtonDown = false;
     	}
+    }
+
+	Character CycleThroughCharacters(Character character, float xVal) {
+		if(xVal < 0) {
+				int temp = (int)character;
+				temp -= 1;
+   		 		if(temp < 0) {
+   		 			temp = numCharacters -1;
+   		 		}
+				return (Character)temp;//System.Enum.GetValues(typeof(Character)).GetValue(temp);
+
+   		 	}
+    	else if(xVal > 0) {
+    			character += 1;
+    			if((int)character == numCharacters) {
+    				return (Character)System.Enum.GetValues(typeof(Character)).GetValue(0);
+    			}
+    		}
+    	return character;
+    }
+    #else
+    public void CharacterSelectUpdate() {
+    	Debug.LogError("No Preprocessor directive defined for character select");
+    }
+    #endif
+
+    void UpdateInfoCharacterSelect(GameObject player, Character highlightedCharacter,
+    														 Sprite[] portraits,
+    														 Sprite[] infoPanes) {
+    	SpriteRenderer portrait = player.GetComponentInChildren<SpriteRenderer>();
+    	portrait.sprite = portraits[(int)highlightedCharacter];
+    	SpriteRenderer infoPane = player.GetComponentsInChildren<SpriteRenderer>()[2];
+    	infoPane.sprite = infoPanes[(int)highlightedCharacter];
+    	Text nameText = player.GetComponentInChildren<Text>();
+    	nameText.text = highlightedCharacter.ToString();
+    	Text[] bulletDescriptionSlots = player.GetComponentsInChildren<Text>();
+    	int firstText = bulletDescriptionSlots.Length - 3;
+		bulletDescriptionSlots[firstText + 0].text = bulletDescriptions[(int)highlightedCharacter,0];
+		bulletDescriptionSlots[firstText + 1].text = bulletDescriptions[(int)highlightedCharacter,1];
+		bulletDescriptionSlots[firstText + 2].text = bulletDescriptions[(int)highlightedCharacter,2];  
+    }
+
+    public void SetControllers(InputDevice player1, InputDevice player2) {
+    	player1Controller = player1;
+    	player2Controller = player2;
     }
 }

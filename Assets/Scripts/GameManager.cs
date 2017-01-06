@@ -130,6 +130,7 @@ public class GameManager : MonoBehaviour {
             pressStart.enabled = false;
 			background.enabled = true;
             characterSelectManager.Reset();
+            characterSelectManager.SetControllers(player1Controller, player2Controller);
             currentUpdateFunction = CharacterSelect;
         }
 
