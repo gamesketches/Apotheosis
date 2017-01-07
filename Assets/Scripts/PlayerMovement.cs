@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿#define RELEASE
+using UnityEngine;
 using System.Collections;
+using InControl;
 
 public enum Direction {Right, Up, Left, Down};
 
@@ -21,6 +23,8 @@ public class PlayerMovement : MonoBehaviour {
 
 	private string horizontalAxis;
 	private string verticalAxis;
+
+	private InputDevice controller;
 
 	private Rigidbody2D rb2D;
 
@@ -70,7 +74,13 @@ public class PlayerMovement : MonoBehaviour {
 			}
 			else {
 				float computedSpeed =  speed * (float)(1 - slowFactor * bufferIter);
+				#if DEV
 				rb2D.velocity = (new Vector2(Input.GetAxisRaw(horizontalAxis), Input.GetAxisRaw(verticalAxis))).normalized * (float)computedSpeed;
+				#elif RELEASE
+				rb2D.velocity = (new Vector2(controller.DPad.X, controller.DPad.Y)).normalized * (float)computedSpeed;
+				#else
+				Debug.LogError("Preprocessor directive not defined for Player Movement");
+				#endif
 					anim.SetInteger("xAxis", (int) rb2D.velocity.x);
 					anim.SetInteger("yAxis", (int) rb2D.velocity.y);
 					//if(playerStats.character == Character.Hiruko) {
@@ -103,6 +113,10 @@ public class PlayerMovement : MonoBehaviour {
 	public void InitializeAxes(string[] controls) {
 		horizontalAxis = controls[0];
 		verticalAxis = controls[1];
+	}
+
+	public void InitializeController(InputDevice newController) {
+		controller = newController;
 	}
 
 	public void SetReticle() {

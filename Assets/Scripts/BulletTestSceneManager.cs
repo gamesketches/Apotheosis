@@ -15,8 +15,10 @@ public class BulletTestSceneManager : MonoBehaviour {
 
 		playerFactory = GetComponent<PlayerInitializer>();
     	playerFactory.bullets = bullets;
+    	#if DEV
 		player1 = playerFactory.CreatePlayer(CreateControlScheme(0), character, player1Pos, 0);
 		playerFactory.CreatePlayer(CreateControlScheme(1), Character.Orpheus, new Vector3(10, 0, 0), 1);
+		#endif
 	}
 	
 	// Update is called once per frame

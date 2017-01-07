@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#define RELEASE
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -229,9 +230,15 @@ public class GameManager : MonoBehaviour {
 	}
     
 	void StartRound() {
+		#if DEV
 		player1 = playerFactory.CreatePlayer(player1Controls, characterSelectManager.p1Character, player1Pos, 0);
         player2 = playerFactory.CreatePlayer(player2Controls, characterSelectManager.p2Character, player2Pos, 1);
-
+        #elif RELEASE
+		player1 = playerFactory.CreatePlayer(player1Controller, characterSelectManager.p1Character, player1Pos, 0);
+        player2 = playerFactory.CreatePlayer(player2Controller, characterSelectManager.p2Character, player2Pos, 1);
+        #else
+        Debug.LogError("Preprocessor directive not defined for GameManager");
+        #endif
         CreateBars();
         CreateObstacles();
         currentUpdateFunction = InGameUpdate;

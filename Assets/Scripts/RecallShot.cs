@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿#define RELEASE
+using UnityEngine;
 using System.Collections;
 using System;
+using InControl;
 
 public class RecallShot : InputInterpretter {
 
@@ -26,7 +28,11 @@ public class RecallShot : InputInterpretter {
 	// Update is called once per frame
 	void Update () {
 		base.Update();
+		#if DEV
 		if(Input.GetButton(buttonB)) {
+		#elif RELEASE
+		if(inputDevice.Action1.State) {
+		#endif
 			if(recallButtonHeldTimer < recallButtonHoldTime) {
 				recallButtonHeldTimer += Time.fixedDeltaTime;
 			}

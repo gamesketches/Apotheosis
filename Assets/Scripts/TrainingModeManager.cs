@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using InControl;
 
 public class TrainingModeManager : MonoBehaviour {
 
@@ -24,6 +25,7 @@ public class TrainingModeManager : MonoBehaviour {
 	GameObject p1LifeBar, p2LifeBar, p1BufferBar, p2BufferBar;
     private int roundsToWin;
     public float screenShake;
+    InputDevice player1Controller, player2Controller;
     #endregion
 
     #region CharacterSelect Vars
@@ -73,6 +75,12 @@ public class TrainingModeManager : MonoBehaviour {
 		characterSelectManager.Reset();
         currentUpdateFunction = CharacterSelect;
         menuController = GameObject.Find("Canvas").GetComponent<MenuController>();
+		player1Controller = InputManager.ActiveDevice;
+    	foreach(InputDevice controller in InputManager.Devices) {
+    		if(controller != InputManager.ActiveDevice) {
+    			player2Controller = controller;
+    		}
+    	}
         //menuController.Toggle();
     }
 
@@ -141,8 +149,8 @@ public class TrainingModeManager : MonoBehaviour {
 	}
     
 	void StartRound() {
-		player1 = playerFactory.CreatePlayer(player1Controls, characterSelectManager.p1Character, player1Pos, 0);
-        player2 = playerFactory.CreatePlayer(player2Controls, characterSelectManager.p2Character, player2Pos, 1);
+		player1 = playerFactory.CreatePlayer(player1Controller, characterSelectManager.p1Character, player1Pos, 0);
+        player2 = playerFactory.CreatePlayer(player2Controller, characterSelectManager.p2Character, player2Pos, 1);
 
         CreateBars();
         CreateObstacles();
@@ -319,7 +327,7 @@ public class TrainingModeManager : MonoBehaviour {
 			}
 		Destroy(player1Reticle);
 		Destroy(player1);
-		player1 = playerFactory.CreatePlayer(player1Controls, characterSelectManager.p1Character, player1Pos, 0);
+		player1 = playerFactory.CreatePlayer(player1Controller, characterSelectManager.p1Character, player1Pos, 0);
 		player1Stats = player1.GetComponent<PlayerStats>();
         player1Stats.lifeBar = p1LifeBar;
         p1LifeBar.transform.localScale = Vector3.one;
