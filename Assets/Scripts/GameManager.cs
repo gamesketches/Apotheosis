@@ -169,6 +169,18 @@ public class GameManager : MonoBehaviour {
             InitializeGameSettings();
         }
 
+        else if (Input.GetKeyUp(KeyCode.Alpha0))
+        {
+            //debug to start round directly
+            titleLogo.enabled = false;
+            titleLogo.transform.GetChild(0).gameObject.SetActive(false);
+            pressStart.enabled = false;
+            background.enabled = true;
+            characterSelectManager.p1Character = Character.Orpheus;
+            characterSelectManager.p2Character = Character.Bastet;
+            InitializeGameSettings();
+        }
+
     }
 
     void InfoScreen()
