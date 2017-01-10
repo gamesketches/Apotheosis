@@ -104,7 +104,7 @@
         </Bullet>
       </Volley>
     </ProjectileType>
-		<ProjectileType name="hippo" desc="Shield for blocking"> <!-- BLOCK blt count: 1,2,3,5,9,13,15,20-->
+		<ProjectileType name="hippo" desc="Shield for blocking"> <!-- BLOCK blt count: 1,0,2,0,2,0,2,3-->
       <Volley>
 					<Bullet>
 						<size>2</size>

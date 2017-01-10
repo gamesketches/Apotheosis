@@ -100,7 +100,7 @@ public class InputInterpretter : MonoBehaviour {
             shotCooldownTimer = shotCooldownTime;
             if (button != 'D') // threw everything in here to get this cooldown not to interfere with sword. works.
             {
-                if (bufferIter >= mashBufferSize - 1)
+                if (bufferIter >= mashBufferSize)
                 {
                     Fire();
                     AnalyticsEngine.Increment(string.Concat(playerStats.character.ToString(), "BulletsFired"));
@@ -210,6 +210,7 @@ public class InputInterpretter : MonoBehaviour {
 			case 'D':
 				break;
 		}
+
 		BulletDepot.Volley volley = bullets.types[(int)playerStats.character].projectileTypes[(int)type].volleys[bufferIter];
         //Debug.Log(" volley = " + bufferIter); //ski
 		foreach(BulletDepot.Bullet bullet in volley.volley) {

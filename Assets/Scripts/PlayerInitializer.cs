@@ -8,6 +8,10 @@ public class PlayerInitializer : MonoBehaviour {
 	public int startingHealth;
 	public float screenShake;
 	public BulletDepot bullets;
+	public float orpheusSpeed;
+	public float loholtSpeed;
+	public float hirukoSpeed;
+	public float bastetSpeed;
 
 	#if DEV
 	public GameObject CreatePlayer(string[] controls, Character character, Vector3 position, int number){
@@ -22,16 +26,22 @@ public class PlayerInitializer : MonoBehaviour {
 		InputInterpretter tempInputManager = temp.GetComponent<InputInterpretter>();
 		switch(character) {
 			case Character.Orpheus:
+				tempMovement.speed = orpheusSpeed;
 				break;
 			case Character.Hiruko: 
+				tempMovement.speed = hirukoSpeed;
 				temp.AddComponent<OffscreenShot>();
 				tempInputManager = temp.GetComponent<OffscreenShot>();
 				Destroy(temp.GetComponent<InputInterpretter>());
 				break;
 			case Character.Loholt:
+				tempMovement.speed = loholtSpeed;
 				temp.AddComponent<RecallShot>();
 				tempInputManager = temp.GetComponent<RecallShot>();
 				Destroy(temp.GetComponent<InputInterpretter>());
+				break;
+			case Character.Bastet:
+				tempMovement.speed = bastetSpeed;
 				break;
 		};
 
@@ -45,6 +55,11 @@ public class PlayerInitializer : MonoBehaviour {
 		reticle.color = color;
 		tempMovement.reticle = reticle;
 
+		for(int i = 0; i < System.Enum.GetValues(typeof(BulletType)).Length; i++) {
+			if(bullets.types[(int)character].projectileTypes[i].volleys.Length != tempInputManager.mashBufferSize) {
+				Debug.LogError("Mismatch between MashBufferSize and number of volleys specified for character " + character.ToString());
+			}
+		}
 		tempInputManager.bullets = bullets;
 		tempInputManager.InitializeControls(controls);
 		tempInputManager.reticle = reticle;
