@@ -66,6 +66,7 @@ public class BulletLogic : MonoBehaviour {
 													Character character){
 		type = bulletType;
 		damage = bulletDamage;
+		reflectiveShot = false;
 		transform.localScale = new Vector3(size, size, size);
 		gameObject.tag = bulletType.ToString();
 		velocity = Velocity * velocityMultiplier;
