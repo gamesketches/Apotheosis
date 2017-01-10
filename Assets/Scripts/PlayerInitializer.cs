@@ -6,6 +6,10 @@ public class PlayerInitializer : MonoBehaviour {
 	public int startingHealth;
 	public float screenShake;
 	public BulletDepot bullets;
+	public float orpheusSpeed;
+	public float loholtSpeed;
+	public float hirukoSpeed;
+	public float bastetSpeed;
 
 	public GameObject CreatePlayer(string[] controls, Character character, Vector3 position, int number){
 		Color color = character == Character.Loholt ? Color.blue : Color.red;
@@ -19,16 +23,22 @@ public class PlayerInitializer : MonoBehaviour {
 		InputManager tempInputManager = temp.GetComponent<InputManager>();
 		switch(character) {
 			case Character.Orpheus:
+				tempMovement.speed = orpheusSpeed;
 				break;
 			case Character.Hiruko: 
+				tempMovement.speed = hirukoSpeed;
 				temp.AddComponent<OffscreenShot>();
 				tempInputManager = temp.GetComponent<OffscreenShot>();
 				Destroy(temp.GetComponent<InputManager>());
 				break;
 			case Character.Loholt:
+				tempMovement.speed = loholtSpeed;
 				temp.AddComponent<RecallShot>();
 				tempInputManager = temp.GetComponent<RecallShot>();
 				Destroy(temp.GetComponent<InputManager>());
+				break;
+			case Character.Bastet:
+				tempMovement.speed = bastetSpeed;
 				break;
 		};
 
