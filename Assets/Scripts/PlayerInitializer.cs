@@ -42,6 +42,11 @@ public class PlayerInitializer : MonoBehaviour {
 		reticle.color = color;
 		tempMovement.reticle = reticle;
 
+		for(int i = 0; i < System.Enum.GetValues(typeof(BulletType)).Length; i++) {
+			if(bullets.types[(int)character].projectileTypes[i].volleys.Length != tempInputManager.mashBufferSize) {
+				Debug.LogError("Mismatch between MashBufferSize and number of volleys specified for character " + character.ToString());
+			}
+		}
 		tempInputManager.bullets = bullets;
 		tempInputManager.InitializeControls(controls);
 		tempInputManager.reticle = reticle;
