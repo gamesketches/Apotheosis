@@ -158,41 +158,40 @@ public class InputInterpretter : MonoBehaviour {
     }
 
     public char GetButtonPress() {
-    	#if DEV
-		if(Input.GetButtonDown(buttonA)) {
-			return 'A';
-		}
-		else if(Input.GetButtonDown(buttonB)) {
-			return 'B';
-		}
-		else if(Input.GetButtonDown(buttonC)) {
-			return 'C';
-		}
-		else if(Input.GetButtonDown(buttonD)) {
-			return 'D';
-		}
-		else {
-			return '0';
-		}
-		#elif RELEASE
-		if(inputDevice.Action3.HasChanged && inputDevice.Action3.State) {
-			return 'A';
-		}
-		else if(inputDevice.Action1.HasChanged && inputDevice.Action1.State) {
-			return 'B';
-		}
-		else if(inputDevice.Action2.HasChanged && inputDevice.Action2.State) {
-			return 'C';
-		}
-		else if(inputDevice.Action4.HasChanged && inputDevice.Action4.State) {
-			return 'D';
+    	if(Application.isEditor) {
+			if(Input.GetButtonDown(buttonA)) {
+				return 'A';
+			}
+			else if(Input.GetButtonDown(buttonB)) {
+				return 'B';
+			}
+			else if(Input.GetButtonDown(buttonC)) {
+				return 'C';
+			}
+			else if(Input.GetButtonDown(buttonD)) {
+				return 'D';
+			}
+			else {
+				return '0';
+			}
 		}
 		else {
-			return '0';
+			if(inputDevice.Action3.HasChanged && inputDevice.Action3.State) {
+				return 'A';
+			}
+			else if(inputDevice.Action1.HasChanged && inputDevice.Action1.State) {
+				return 'B';
+			}
+			else if(inputDevice.Action2.HasChanged && inputDevice.Action2.State) {
+				return 'C';
+			}
+			else if(inputDevice.Action4.HasChanged && inputDevice.Action4.State) {
+				return 'D';
+			}
+			else {
+				return '0';
+			}
 		}
-		#else
-			Debug.LogError("No Preprocessor directive defined for input interpretter");
-		#endif
 	}
 
 	public void ExponentShot() {
@@ -342,18 +341,16 @@ public class InputInterpretter : MonoBehaviour {
         //Debug.Log("bullet " + newBullet.gameObject.name + " rotation = " + newBullet.transform.rotation);
     }
 
-    #if DEV
 	public void InitializeControls(string[] controls) {
 		buttonA = controls[2];
 		buttonB = controls[3];
 		buttonC = controls[4];
 		buttonD = controls[5];
 	}
-	#elif RELEASE
+
 	public void InitializeControls(InputDevice controls){ 
 		inputDevice = controls;
 		}
-	#endif
 
 	public void Melee() {
 		if(melee && !playerMovement.locked) {

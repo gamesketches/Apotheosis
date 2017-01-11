@@ -46,27 +46,26 @@ public class CharacterSelectManager : MonoBehaviour {
         p2Character = Character.Orpheus;
 	}
 
-	#if DEV
 	public void CharacterSelectUpdate() {
 		CheckDirectionals();
-		if(!p1Selected && Input.GetAxis("Horizontal0") != 0 && !p1ButtonDown) {
+		if(!p1Selected && GetPlayer1XAxis() != 0 && !p1ButtonDown) {
 			p1ButtonDown = true;
-    		p1Character = CycleThroughCharacters(p1Character, "Horizontal0");
+    		p1Character = CycleThroughCharacters(p1Character, GetPlayer1XAxis());
     	}
-		if(!p2Selected && Input.GetAxis("Horizontal1") != 0 && !p2ButtonDown) {
+		if(!p2Selected && GetPlayer2XAxis() != 0 && !p2ButtonDown) {
 			p2ButtonDown = true;
-    		p2Character = CycleThroughCharacters(p2Character, "Horizontal1");
+    		p2Character = CycleThroughCharacters(p2Character, GetPlayer2XAxis());
     	}
     	UpdateInfoCharacterSelect(characterSelectElements.transform.GetChild(0).gameObject,
     										 p1Character, p1CharacterPortraits, p1InfoPanes);
     	UpdateInfoCharacterSelect(characterSelectElements.transform.GetChild(1).gameObject,
     										 p2Character, p2CharacterPortraits, p2InfoPanes);
 
-    	if(Input.GetButtonUp("ButtonB0")) {
+    	if(GetPlayer1ConfirmButton()) {
 			p1Selected = true;
             Debug.Log("P1 Selected");
         }
-    	if(Input.GetButtonUp("ButtonB1")) {
+    	if(GetPlayer2ConfirmButton()) {
     		p2Selected = true;
             Debug.Log("P2 Selected");
         }
@@ -78,17 +77,17 @@ public class CharacterSelectManager : MonoBehaviour {
 
 	public void TrainingModeCharacterSelectUpdate() {
     	CheckDirectionals();
-    		if(Input.GetAxis("Horizontal0") != 0 && !p1ButtonDown) {
+    		if(GetPlayer1XAxis() != 0 && !p1ButtonDown) {
     			p1ButtonDown = true;
     			if(p1Selected) {
-					p2Character = CycleThroughCharacters(p2Character, "Horizontal0");
+					p2Character = CycleThroughCharacters(p2Character, GetPlayer1XAxis());
     			}
     			else {
-	    			p1Character = CycleThroughCharacters(p1Character, "Horizontal0");
+					p1Character = CycleThroughCharacters(p1Character, GetPlayer1XAxis());
 	    		}
     		}
 
-		if(Input.GetButtonUp("ButtonB0")) {
+		if(GetPlayer1ConfirmButton()) {
 			if(p1Selected) {
 				p2Selected = true;
 			}
@@ -108,99 +107,47 @@ public class CharacterSelectManager : MonoBehaviour {
     }
 
 	void CheckDirectionals() {
-    	if(Input.GetAxis("Horizontal0") == 0) {
+    	if(GetPlayer1XAxis() == 0) {
     		p1ButtonDown = false;
     	}
-    	if(Input.GetAxis("Horizontal1") == 0) {
+    	if(GetPlayer2XAxis() == 0) {
     		p2ButtonDown = false;
     	}
     }
 
-	Character CycleThroughCharacters(Character character, string axis) {
-		if(Input.GetAxisRaw(axis) < 0) {
-				int temp = (int)character;
-				temp -= 1;
-   		 		if(temp < 0) {
-   		 			temp = numCharacters -1;
-   		 		}
-				return (Character)temp;//System.Enum.GetValues(typeof(Character)).GetValue(temp);
-
-   		 	}
-    	else if(Input.GetAxisRaw(axis) > 0) {
-    			character += 1;
-    			if((int)character == numCharacters) {
-    				return (Character)System.Enum.GetValues(typeof(Character)).GetValue(0);
-    			}
-    		}
-    	return character;
-    }
-    #elif RELEASE
-	public void CharacterSelectUpdate() {
-		CheckDirectionals();
-		if(!p1Selected && player1Controller.Direction.X != 0 && !p1ButtonDown) {
-			p1ButtonDown = true;
-    		p1Character = CycleThroughCharacters(p1Character, player1Controller.Direction.X);
+    float GetPlayer1XAxis() {
+    	if(Application.isEditor) {
+    		return Input.GetAxis("Horizontal0");
     	}
-		if(!p2Selected && player2Controller.Direction.X != 0 && !p2ButtonDown) {
-			p2ButtonDown = true;
-    		p2Character = CycleThroughCharacters(p2Character, player2Controller.Direction.X);
-    	}
-    	UpdateInfoCharacterSelect(characterSelectElements.transform.GetChild(0).gameObject,
-    										 p1Character, p1CharacterPortraits, p1InfoPanes);
-    	UpdateInfoCharacterSelect(characterSelectElements.transform.GetChild(1).gameObject,
-    										 p2Character, p2CharacterPortraits, p2InfoPanes);
-
-    	if(Input.GetButtonUp("ButtonB0")) {
-			p1Selected = true;
-            Debug.Log("P1 Selected");
-        }
-    	if(Input.GetButtonUp("ButtonB1")) {
-    		p2Selected = true;
-            Debug.Log("P2 Selected");
-        }
-    	if(p1Selected && p2Selected) {
-			characterSelectElements.SetActive(false);
-			charactersSelected = true;
+    	else {
+    		return player1Controller.Direction.X;
     	}
     }
 
-	public void TrainingModeCharacterSelectUpdate() {
-    	CheckDirectionals();
-    		if(player1Controller.Direction.X != 0 && !p1ButtonDown) {
-    			p1ButtonDown = true;
-    			if(p1Selected) {
-					p2Character = CycleThroughCharacters(p2Character, player1Controller.Direction.X);
-    			}
-    			else {
-	    			p1Character = CycleThroughCharacters(p1Character, player1Controller.Direction.X);
-	    		}
-    		}
-
-		if(Input.GetButtonUp("ButtonB0")) {
-			if(p1Selected) {
-				p2Selected = true;
-			}
-			else { 
-				p1Selected = true;
-			}
-        }
-		UpdateInfoCharacterSelect(characterSelectElements.transform.GetChild(0).gameObject,
-    										 p1Character, p1CharacterPortraits, p1InfoPanes);
-    	UpdateInfoCharacterSelect(characterSelectElements.transform.GetChild(1).gameObject,
-    										 p2Character, p2CharacterPortraits, p2InfoPanes);
-
-        if(p1Selected && p2Selected) {
-        	characterSelectElements.SetActive(false);
-        	charactersSelected = true;
-        }
+    float GetPlayer2XAxis(){
+		if(Application.isEditor) {
+    		return Input.GetAxis("Horizontal1");
+    	}
+    	else {
+    		return player2Controller.Direction.X;
+    	}
     }
 
-	void CheckDirectionals() {
-    	if(player1Controller.Direction.X == 0) {
-    		p1ButtonDown = false;
+    bool GetPlayer1ConfirmButton() {
+    	if(Application.isEditor) {
+    		return Input.GetButtonUp("ButtonB0");
     	}
-    	if(player2Controller.Direction.X == 0) {
-    		p2ButtonDown = false;
+    	else {
+    		return player1Controller.Action1.State;
+    	}
+    }
+
+    bool GetPlayer2ConfirmButton() {
+    	if(Application.isEditor) {
+    		return Input.GetButtonUp("ButtonB1");
+    	}
+    	else {
+    		return player2Controller.Action2.State;
     	}
     }
 
@@ -222,11 +169,6 @@ public class CharacterSelectManager : MonoBehaviour {
     		}
     	return character;
     }
-    #else
-    public void CharacterSelectUpdate() {
-    	Debug.LogError("No Preprocessor directive defined for character select");
-    }
-    #endif
 
     void UpdateInfoCharacterSelect(GameObject player, Character highlightedCharacter,
     														 Sprite[] portraits,

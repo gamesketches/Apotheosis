@@ -113,39 +113,43 @@ public class GameManager : MonoBehaviour {
 
     void TitleScreen()
     {
-    	if(InputManager.Devices.Count < 1) {
-    		pressStart.transform.GetChild(0).GetComponent<Text>().text = "<color=White>Please Attach Two Controllers</color>";
+    	if(Application.isEditor) {
+    		if(Input.anyKeyDown) {
+    			MoveToCharacterSelect();
+    		}
     	}
     	else {
-			pressStart.transform.GetChild(0).GetComponent<Text>().text = "<color=White>Press Any Button to Start</color>";
-    	}
-    	if(InputManager.ActiveDevice != null && InputManager.ActiveDevice.AnyButton) {
-    		player1Controller = InputManager.ActiveDevice;
-    		foreach(InputDevice controller in InputManager.Devices) {
-    			if(controller != InputManager.ActiveDevice) {
-    				player2Controller = controller;
-    			}
-    		}
-            titleLogo.enabled = false;
-            titleLogo.transform.GetChild(0).gameObject.SetActive(false);
-            pressStart.enabled = false;
-			background.enabled = true;
-            characterSelectManager.Reset();
-            characterSelectManager.SetControllers(player1Controller, player2Controller);
-            currentUpdateFunction = CharacterSelect;
-        }
+	    	if(InputManager.Devices.Count < 1) {
+	    		pressStart.transform.GetChild(0).GetComponent<Text>().text = "<color=White>Please Attach Two Controllers</color>";
+	    	}
+	    	else {
+				pressStart.transform.GetChild(0).GetComponent<Text>().text = "<color=White>Press Any Button to Start</color>";
+	    	}
+	    	if(InputManager.ActiveDevice != null && InputManager.ActiveDevice.AnyButton) {
+	    		player1Controller = InputManager.ActiveDevice;
+	    		foreach(InputDevice controller in InputManager.Devices) {
+	    			if(controller != InputManager.ActiveDevice) {
+	    				player2Controller = controller;
+	    			}
+	    		}
+	    		MoveToCharacterSelect();
+	        }
+	    }
 
         attractModeTimer -= Time.deltaTime;
         if(attractModeTimer < 0) {
         	SceneManager.LoadScene(1);
         }
-        /*       else if (Input.GetButtonUp("ButtonD0") || Input.GetButtonUp("ButtonC0") || Input.GetButtonUp("ButtonB0"))
-               {
-                   titleLogo.enabled = false;
-                   pressStart.enabled = false;
-                   infoScreen.enabled = true;
-                   currentUpdateFunction = InfoScreen;
-               }*/
+    }
+
+    void MoveToCharacterSelect() {
+		titleLogo.enabled = false;
+        titleLogo.transform.GetChild(0).gameObject.SetActive(false);
+        pressStart.enabled = false;
+		background.enabled = true;
+        characterSelectManager.Reset();
+        characterSelectManager.SetControllers(player1Controller, player2Controller);
+        currentUpdateFunction = CharacterSelect;
     }
 
     void InfoScreen()
@@ -229,15 +233,14 @@ public class GameManager : MonoBehaviour {
 	}
     
 	void StartRound() {
-		#if DEV
-		player1 = playerFactory.CreatePlayer(player1Controls, characterSelectManager.p1Character, player1Pos, 0);
-        player2 = playerFactory.CreatePlayer(player2Controls, characterSelectManager.p2Character, player2Pos, 1);
-        #elif RELEASE
-		player1 = playerFactory.CreatePlayer(player1Controller, characterSelectManager.p1Character, player1Pos, 0);
-        player2 = playerFactory.CreatePlayer(player2Controller, characterSelectManager.p2Character, player2Pos, 1);
-        #else
-        Debug.LogError("Preprocessor directive not defined for GameManager");
-        #endif
+		if(Application.isEditor) {
+			player1 = playerFactory.CreatePlayerInEditor(player1Controls, characterSelectManager.p1Character, player1Pos, 0);
+        	player2 = playerFactory.CreatePlayerInEditor(player2Controls, characterSelectManager.p2Character, player2Pos, 1);
+        }
+        else {
+		player1 = playerFactory.CreatePlayerWithController(player1Controller, characterSelectManager.p1Character, player1Pos, 0);
+        player2 = playerFactory.CreatePlayerWithController(player2Controller, characterSelectManager.p2Character, player2Pos, 1);
+        }
         CreateBars();
         CreateObstacles();
         currentUpdateFunction = InGameUpdate;

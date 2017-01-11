@@ -1,4 +1,4 @@
-﻿#define RELEASE
+﻿
 using UnityEngine;
 using System.Collections;
 using InControl;
@@ -13,8 +13,7 @@ public class PlayerInitializer : MonoBehaviour {
 	public float hirukoSpeed;
 	public float bastetSpeed;
 
-	#if DEV
-	public GameObject CreatePlayer(string[] controls, Character character, Vector3 position, int number){
+	public GameObject CreatePlayerInEditor(string[] controls, Character character, Vector3 position, int number){
 		Color color = character == Character.Loholt ? Color.blue : Color.red;
 		GameObject temp = (GameObject)Instantiate(Resources.Load("prefabs/Player"), 
 												position, Quaternion.identity);
@@ -78,8 +77,8 @@ public class PlayerInitializer : MonoBehaviour {
 
         return temp;
 	}
-	#elif RELEASE
-	public GameObject CreatePlayer(InputDevice controls, Character character, Vector3 position, int number){
+
+	public GameObject CreatePlayerWithController(InputDevice controls, Character character, Vector3 position, int number){
 		Color color = character == Character.Loholt ? Color.blue : Color.red;
 		GameObject temp = (GameObject)Instantiate(Resources.Load("prefabs/Player"), 
 												position, Quaternion.identity);
@@ -132,9 +131,4 @@ public class PlayerInitializer : MonoBehaviour {
 
         return temp;
 	}
-	#else
-	public GameObject CreatePlayer(string[] controls, Character character, Vector3 position, int number) {
-		Debug.LogError("No Preprocessor directive defined for PlayerInitializer");
-	}
-	#endif
 }

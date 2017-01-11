@@ -149,9 +149,14 @@ public class TrainingModeManager : MonoBehaviour {
 	}
     
 	void StartRound() {
-		player1 = playerFactory.CreatePlayer(player1Controller, characterSelectManager.p1Character, player1Pos, 0);
-        player2 = playerFactory.CreatePlayer(player2Controller, characterSelectManager.p2Character, player2Pos, 1);
-
+		if(Application.isEditor) {
+			player1 = playerFactory.CreatePlayerInEditor(CreateControlScheme(0), characterSelectManager.p1Character, player1Pos, 0);
+	        player2 = playerFactory.CreatePlayerInEditor(CreateControlScheme(1), characterSelectManager.p2Character, player2Pos, 1);
+		}
+		else {
+			player1 = playerFactory.CreatePlayerWithController(player1Controller, characterSelectManager.p1Character, player1Pos, 0);
+	        player2 = playerFactory.CreatePlayerWithController(player2Controller, characterSelectManager.p2Character, player2Pos, 1);
+	    }
         CreateBars();
         CreateObstacles();
         currentUpdateFunction = InGameUpdate;
@@ -327,7 +332,12 @@ public class TrainingModeManager : MonoBehaviour {
 			}
 		Destroy(player1Reticle);
 		Destroy(player1);
-		player1 = playerFactory.CreatePlayer(player1Controller, characterSelectManager.p1Character, player1Pos, 0);
+		if(Application.isEditor) {
+			player1 = playerFactory.CreatePlayerInEditor(player1Controls, characterSelectManager.p1Character, player1Pos, 0);
+		}
+		else {
+			player1 = playerFactory.CreatePlayerWithController(player1Controller, characterSelectManager.p1Character, player1Pos, 0);
+		}
 		player1Stats = player1.GetComponent<PlayerStats>();
         player1Stats.lifeBar = p1LifeBar;
         p1LifeBar.transform.localScale = Vector3.one;
