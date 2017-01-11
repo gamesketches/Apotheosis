@@ -29,9 +29,11 @@ public class PlayerInitializer : MonoBehaviour {
 				tempMovement.speed = hirukoSpeed;
 				temp.AddComponent<OffscreenShot>();
 				tempInputManager = temp.GetComponent<OffscreenShot>();
-				Destroy(temp.GetComponent<InputManager>());
-				break;
-			case Character.Loholt:
+                Debug.Log(temp.GetComponent<InputManager>().mashBufferSize + " dogmngs");
+                Debug.Log(tempInputManager.mashBufferSize + " dogmngs");
+                Destroy(temp.GetComponent<InputManager>());
+                break;
+            case Character.Loholt:
 				tempMovement.speed = loholtSpeed;
 				temp.AddComponent<RecallShot>();
 				tempInputManager = temp.GetComponent<RecallShot>();
@@ -54,9 +56,10 @@ public class PlayerInitializer : MonoBehaviour {
 
 		for(int i = 0; i < System.Enum.GetValues(typeof(BulletType)).Length; i++) {
 			if(bullets.types[(int)character].projectileTypes[i].volleys.Length != tempInputManager.mashBufferSize) {
-				Debug.LogError("Mismatch between MashBufferSize and number of volleys specified for character " + character.ToString());
-			}
-		}
+                Debug.LogError("Mismatch between MashBufferSize and number of volleys specified for character " + character.ToString());
+                Debug.LogError("mashbuffer size  " + tempInputManager.mashBufferSize);
+            }
+        }
 		tempInputManager.bullets = bullets;
 		tempInputManager.InitializeControls(controls);
 		tempInputManager.reticle = reticle;
