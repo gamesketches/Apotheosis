@@ -387,15 +387,17 @@ public class InputManager : MonoBehaviour {
     public IEnumerator Dash()
     {
         playerMovement.GetRigidbody2D().velocity = Vector2.zero;
-        playerMovement.locked = true;
+        playerMovement.dashing = true;
         reticle.melee = true;
-        reticle.GetRigidbody2D().velocity = new Vector2(Mathf.Cos(playerMovement.CurrentShotAngle() * Mathf.Deg2Rad), Mathf.Sin(playerMovement.CurrentShotAngle() * Mathf.Deg2Rad)) * jabSpeed;
-        playerMovement.GetRigidbody2D().velocity = new Vector2(Mathf.Cos(playerMovement.CurrentShotAngle() * Mathf.Deg2Rad), Mathf.Sin(playerMovement.CurrentShotAngle() * Mathf.Deg2Rad)) * jabSpeed;
-        yield return new WaitForSeconds(jabTime);
+        //reticle.GetRigidbody2D().velocity = new Vector2(Mathf.Cos(playerMovement.CurrentShotAngle() * Mathf.Deg2Rad), Mathf.Sin(playerMovement.CurrentShotAngle() * Mathf.Deg2Rad)) * jabSpeed;
+        playerMovement.GetRigidbody2D().velocity = new Vector2(Mathf.Cos(playerMovement.CurrentShotAngle() * Mathf.Deg2Rad), Mathf.Sin(playerMovement.CurrentShotAngle() * Mathf.Deg2Rad)) * playerMovement.speed * 5.0f;
+        reticle.GetRigidbody2D().velocity = new Vector2(Mathf.Cos(playerMovement.CurrentShotAngle() * Mathf.Deg2Rad), Mathf.Sin(playerMovement.CurrentShotAngle() * Mathf.Deg2Rad)) * playerMovement.speed * 5.0f;
+        yield return new WaitForSeconds(0.3f); //duration of dash
         reticle.GetRigidbody2D().velocity = Vector2.zero;
         playerMovement.SetReticle();
         melee = false;
         reticle.melee = false;
+        playerMovement.dashing = false;
         playerMovement.locked = false;
         reticle.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/reticle-18");
     }
