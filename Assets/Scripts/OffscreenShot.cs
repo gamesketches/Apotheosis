@@ -39,7 +39,7 @@ public class OffscreenShot : InputManager {
 			shotCooldownTimer = shotCooldownTime;
             if (button != 'D') // threw everything in here to get this cooldown not to interfere with sword. works.
             {
-				if (bufferIter >= mashBufferSize - 1) {
+				if (bufferIter >= mashBufferSize) {
 					Fire();
 				}
 				else {
