@@ -6,7 +6,7 @@ public class OffscreenShot : InputInterpretter {
     private float lifetime;
 
     // Use this for initialization
-    void Start () {
+    public override void Start () {
 		mashBufferSize = 8;
 		shotCooldownTime = 0.25f;
 		exponentCooldownTime = 0.1f;

@@ -53,7 +53,9 @@
           <damage>8</damage>
           <angle>-5</angle>
         </Bullet>
-        <!-- Volley #6 -->
+      </Volley>
+      <Volley>
+      <!-- Volley #6 -->
         <Bullet>
           <size>4</size>
           <speed>3.5</speed>
@@ -103,8 +105,6 @@
           <angle>-5</angle>
         </Bullet>
       </Volley>
-      
-    
     </ProjectileType>
 		<ProjectileType name="hippo" desc="Shield for blocking"> <!-- BLOCK blt count: 1,1,1,1,1,1,1  (B1)-->
       <Volley>
@@ -115,7 +115,7 @@
 						<angle>0</angle>
 					</Bullet>
 				</Volley>
-				<Volley>
+			<Volley>
           <!-- Volley #2  -->
           <Bullet>
 						<size>2.5</size>
@@ -124,7 +124,7 @@
 						<angle>180</angle>
 					</Bullet>
 				</Volley>
-				<Volley>
+			<Volley>
           <!-- Volley #3 -->
 					<Bullet>
 						<size>2.5</size>
@@ -133,7 +133,7 @@
 						<angle>90</angle>
 					</Bullet>
 				</Volley>
-				<Volley>
+			<Volley>
           <!-- Volley #4 1 bullets -->
           <Bullet>
 						<size>2.5</size>
@@ -142,7 +142,7 @@
 						<angle>-90</angle>
 					</Bullet>
 				</Volley>
-				<Volley>
+			<Volley>
           <!-- Volley #5 1 bullet  -->
           <Bullet>
 						<size>2.5</size>
@@ -151,7 +151,7 @@
 						<angle>0</angle>
 					</Bullet>
 				</Volley>
-				<Volley>
+			<Volley>
           <!-- Volley #6 1 bullet  -->
           <Bullet>
 							<size>2.5</size>
@@ -160,7 +160,7 @@
 							<angle>-180</angle>
 						</Bullet>
 				</Volley>
-				<Volley>
+			<Volley>
           <!-- Volley #7 1 bullet -->
           <Bullet>
 							<size>2.5</size>
@@ -169,7 +169,7 @@
 							<angle>90</angle>
 						</Bullet>
 				</Volley>
-				<Volley>
+			<Volley>
           <!-- Volley #8 1 bullet -->
           <Bullet>
 							<size>2.5</size>
@@ -178,10 +178,9 @@
 							<angle>-90</angle>
 						</Bullet>
 				</Volley>
-
 		</ProjectileType>
 		<ProjectileType name="crane" desc="Recalls When Held"> <!-- ROUNDABOUT blt count: 1,2,4,6,6,10,10,10-->
-				<Volley>
+			<Volley>
           <!-- Volley #1 1 bullets 4dmg  -->
           <Bullet>
 						<size>1</size>
@@ -190,7 +189,7 @@
 						<angle>180</angle>
 					</Bullet>
 				</Volley>
-				<Volley>
+			<Volley>
           <!-- Volley #2 2 bullets 4dmg  -->
           <Bullet>
 						<size>1.5</size>
@@ -205,7 +204,7 @@
 						<angle>200</angle>
 					</Bullet>
 				</Volley>
-				<Volley>
+			<Volley>
           <!-- Volley #3 4 bullets 8 dmg -->
 					<Bullet>
 						<size>1.5</size>
@@ -232,7 +231,7 @@
 						<angle>210</angle>
 					</Bullet>
 				</Volley>
-				<Volley>
+			<Volley>
           <!-- Volley #4 (6 bullets )-->
 					<Bullet>
 						<size>1</size>
@@ -271,7 +270,7 @@
 						<angle>240</angle>
 					</Bullet>
 				</Volley>
-				<Volley>
+			<Volley>
           <!-- Volley #5 6 bullets 10 dmg: :2 big -(1dmg) -->
 					<Bullet>
 						<size>1</size>
@@ -310,7 +309,7 @@
 						<angle>60</angle>
 					</Bullet>
 				</Volley>
-				<Volley>
+			<Volley>
           <!-- Volley #6 10 bullets 6 big : 18 dmg -->
 					<Bullet>
 						<size>1</size>
@@ -373,7 +372,7 @@
 						<angle>240</angle>
 					</Bullet>
 				</Volley>
-				<Volley>
+			<Volley>
           <!-- Volley #7 10 bullets 6 big -->
 					<Bullet>
 						<size>2</size>
@@ -436,7 +435,7 @@
 						<angle>240</angle>
 					</Bullet>
 				</Volley>
-				<Volley>
+			<Volley>
           <!-- Volley #8 10 bullets 10 big -->
 					<Bullet>
 						<size>2</size>

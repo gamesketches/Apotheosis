@@ -10,8 +10,9 @@ public class PlayerMovement : MonoBehaviour {
 	public float reticleRadius;
 	public float knockbackTime;
     public float slowFactor;
-	public bool locked;
-	public int bufferIter;
+    public bool locked;
+    public bool dashing;
+    public int bufferIter;
 	public Direction lastDirection;
 
 	public Reticle reticle;
@@ -67,7 +68,11 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void HandleMovement() {
-		if(!locked) {
+        if (dashing)
+        {
+
+        }
+		else if(!locked) {
 			if(knockbackVector != Vector2.zero) {
 				SetReticle();
 				return;

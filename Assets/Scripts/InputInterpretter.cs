@@ -57,7 +57,7 @@ public class InputInterpretter : MonoBehaviour {
 
     private bool debug_on = false;
 
-	public void Start() {
+	virtual public void Start() {
 		poweredUpBuffer = false;
 		poweredUpBullets = false;
 		baseScale = transform.localScale.x;
@@ -368,7 +368,7 @@ public class InputInterpretter : MonoBehaviour {
 			windowTimer -= Time.deltaTime;
 			yield return 0;
 		}
-		StartCoroutine("Jab");
+		StartCoroutine("Dash");
 	}
 
 	public IEnumerator Jab() {
@@ -387,29 +387,48 @@ public class InputInterpretter : MonoBehaviour {
 		reticle.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/reticle-18");
     }
 
-    public IEnumerator Spin() {
-		playerMovement.GetRigidbody2D().velocity = Vector2.zero;
-		playerMovement.locked = true;
-		reticle.melee = true;
-		reticle.spinning = true;
-		float angle = reticle.GetRigidbody2D().rotation;
-		float spinTimer = spinTime;
-		while(spinTimer > 0.0f) {
-			spinTimer -= Time.deltaTime;
-			angle += spinSpeed * Time.deltaTime;
-			float radians = angle * Mathf.Deg2Rad;
-			reticle.GetRigidbody2D().MovePosition((Vector2)transform.position + new Vector2(Mathf.Cos(radians), Mathf.Sin(radians)) * spinRadius);
-			reticle.GetRigidbody2D().MoveRotation(angle - 90.0f);
-			yield return 0;
-		}
-		playerMovement.SetReticle();
-		melee = false;
-		reticle.melee = false;
-		reticle.spinning = false;
-		playerMovement.locked = false;
-		reticle.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/reticle-18");
+    public IEnumerator Spin()
+    {
+        playerMovement.GetRigidbody2D().velocity = Vector2.zero;
+        playerMovement.locked = true;
+        reticle.melee = true;
+        reticle.spinning = true;
+        float angle = reticle.GetRigidbody2D().rotation;
+        float spinTimer = spinTime;
+        while (spinTimer > 0.0f)
+        {
+            spinTimer -= Time.deltaTime;
+            angle += spinSpeed * Time.deltaTime;
+            float radians = angle * Mathf.Deg2Rad;
+            reticle.GetRigidbody2D().MovePosition((Vector2)transform.position + new Vector2(Mathf.Cos(radians), Mathf.Sin(radians)) * spinRadius);
+            reticle.GetRigidbody2D().MoveRotation(angle - 90.0f);
+            yield return 0;
+        }
+        playerMovement.SetReticle();
+        melee = false;
+        reticle.melee = false;
+        reticle.spinning = false;
+        playerMovement.locked = false;
+        reticle.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/reticle-18");
     }
 
+    public IEnumerator Dash()
+    {
+        playerMovement.GetRigidbody2D().velocity = Vector2.zero;
+        playerMovement.dashing = true;
+        reticle.melee = true;
+        //reticle.GetRigidbody2D().velocity = new Vector2(Mathf.Cos(playerMovement.CurrentShotAngle() * Mathf.Deg2Rad), Mathf.Sin(playerMovement.CurrentShotAngle() * Mathf.Deg2Rad)) * jabSpeed;
+        playerMovement.GetRigidbody2D().velocity = new Vector2(Mathf.Cos(playerMovement.CurrentShotAngle() * Mathf.Deg2Rad), Mathf.Sin(playerMovement.CurrentShotAngle() * Mathf.Deg2Rad)) * playerMovement.speed * 5.0f;
+        reticle.GetRigidbody2D().velocity = new Vector2(Mathf.Cos(playerMovement.CurrentShotAngle() * Mathf.Deg2Rad), Mathf.Sin(playerMovement.CurrentShotAngle() * Mathf.Deg2Rad)) * playerMovement.speed * 5.0f;
+        yield return new WaitForSeconds(0.3f); //duration of dash
+        reticle.GetRigidbody2D().velocity = Vector2.zero;
+        playerMovement.SetReticle();
+        melee = false;
+        reticle.melee = false;
+        playerMovement.dashing = false;
+        playerMovement.locked = false;
+        reticle.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/reticle-18");
+    }
     public void SetExponentCooldownTimer(float value) {
 		exponentCooldownTimer = value;
 	}

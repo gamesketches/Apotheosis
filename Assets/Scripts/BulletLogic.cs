@@ -114,15 +114,13 @@ public class BulletLogic : MonoBehaviour {
                 break;
 			// Shield situation
 			default:
-			sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", character.ToString(), playerNum == 0 ? "" : "Alt", "/Shield"));
-				bulletFunction = SlowShotLogic;
-			//velocity = 2.5f;
-			GetComponent<CircleCollider2D>().radius = 0.5f;
-			shieldOscillationTime = 0;
-			lifetime = Lifetime / 1.5f;
-			//lifetime = Lifetime / 0.25f;
-			tempVector = Quaternion.AngleAxis(gameObject.transform.rotation.eulerAngles.z, Vector3.forward) * new Vector3(velocity, 0, 0);
-			travelVector = new Vector2(tempVector.x, tempVector.y);	
+			    sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", character.ToString(), playerNum == 0 ? "" : "Alt", "/Shield"));
+				    bulletFunction = SlowShotLogic;
+			    GetComponent<CircleCollider2D>().radius = 0.5f;
+			    lifetime = Lifetime / 1.5f;
+			    //lifetime = Lifetime / 0.25f;
+			    tempVector = Quaternion.AngleAxis(gameObject.transform.rotation.eulerAngles.z, Vector3.forward) * new Vector3(velocity, 0, 0);
+			    travelVector = new Vector2(tempVector.x, tempVector.y);	
 			break;
 		}
         //renderer.sprite = sprite;
@@ -238,12 +236,15 @@ public class BulletLogic : MonoBehaviour {
 	}
 
 	void SlowShotLogic(){
-		renderer.transform.position += Vector3.one * shieldVelocity.Evaluate(shieldOscillationTime);
+		renderer.transform.position += Vector3.one * shieldVelocity.Evaluate(shieldOscillationTime) * 0.33f;
 		shieldOscillationTime += Time.deltaTime;
 		//slowing shots in motion
-        travelVector *= 0.975f; //ski
+        //travelVector *= 0.975f; //ski
         //Debug.Log("sloweing. shieldOscillationTime = " + shieldOscillationTime);
-        if (shieldOscillationTime > 1) {
+        
+        if (shieldOscillationTime > 0.5f) {
+            travelVector *= 0.6f; //ski
+
             shieldOscillationTime = 0;
 			renderer.transform.localPosition = Vector3.zero;
 		}
