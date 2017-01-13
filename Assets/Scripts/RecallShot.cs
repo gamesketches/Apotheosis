@@ -1,5 +1,4 @@
-﻿#define RELEASE
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System;
 using InControl;
@@ -28,11 +27,7 @@ public class RecallShot : InputInterpretter {
 	// Update is called once per frame
 	void Update () {
 		base.Update();
-		#if DEV
-		if(Input.GetButton(buttonB)) {
-		#elif RELEASE
-		if(inputDevice.Action1.State) {
-		#endif
+		if(SpecialButtonDown()) {
 			if(recallButtonHeldTimer < recallButtonHoldTime) {
 				recallButtonHeldTimer += Time.fixedDeltaTime;
 			}
@@ -74,6 +69,15 @@ public class RecallShot : InputInterpretter {
 			bullet.position = Vector3.Lerp(startPosition, endPosition, t);
 			t += Time.deltaTime;
 			yield return null;
+		}
+	}
+
+	bool SpecialButtonDown() {
+		if(Application.isEditor) {
+			return Input.GetButton(buttonB);
+		}
+		else {
+			return inputDevice.Action1.State;
 		}
 	}
 }
