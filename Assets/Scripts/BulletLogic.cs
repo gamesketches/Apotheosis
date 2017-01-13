@@ -130,7 +130,12 @@ public class BulletLogic : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		if(other.gameObject.tag == "Boundary") {
 			if(reflectiveShot) {
-        		travelVector *= -1;
+				if(other.transform.position.y > transform.position.y) {
+					travelVector.Set(travelVector.x, -travelVector.y);
+				}
+				else {
+					travelVector.Set(-travelVector.x, travelVector.y);
+				}
         		return;
         	}
 			if(lifetime < 5) {
