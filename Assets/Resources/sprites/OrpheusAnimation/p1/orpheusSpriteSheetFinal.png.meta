@@ -1,0 +1,591 @@
+fileFormatVersion: 2
+guid: e475be1da8f264fcc952f04db79b894f
+timeCreated: 1484424849
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: orpheusSpriteSheetFinal_0
+    21300002: orpheusSpriteSheetFinal_1
+    21300004: orpheusSpriteSheetFinal_2
+    21300006: orpheusSpriteSheetFinal_3
+    21300008: orpheusSpriteSheetFinal_4
+    21300010: orpheusSpriteSheetFinal_5
+    21300012: orpheusSpriteSheetFinal_6
+    21300014: orpheusSpriteSheetFinal_7
+    21300016: orpheusSpriteSheetFinal_8
+    21300018: orpheusSpriteSheetFinal_9
+    21300020: orpheusSpriteSheetFinal_10
+    21300022: orpheusSpriteSheetFinal_11
+    21300024: orpheusSpriteSheetFinal_12
+    21300026: orpheusSpriteSheetFinal_13
+    21300028: orpheusSpriteSheetFinal_14
+    21300030: orpheusSpriteSheetFinal_15
+    21300032: orpheusSpriteSheetFinal_16
+    21300034: orpheusSpriteSheetFinal_17
+    21300036: orpheusSpriteSheetFinal_18
+    21300038: orpheusSpriteSheetFinal_19
+    21300040: orpheusSpriteSheetFinal_20
+    21300042: orpheusSpriteSheetFinal_21
+    21300044: orpheusSpriteSheetFinal_22
+    21300046: orpheusSpriteSheetFinal_23
+    21300048: orpheusSpriteSheetFinal_24
+    21300050: orpheusSpriteSheetFinal_25
+    21300052: orpheusSpriteSheetFinal_26
+    21300054: orpheusSpriteSheetFinal_27
+    21300056: orpheusSpriteSheetFinal_28
+    21300058: orpheusSpriteSheetFinal_29
+    21300060: orpheusSpriteSheetFinal_30
+    21300062: orpheusSpriteSheetFinal_31
+    21300064: orpheusSpriteSheetFinal_32
+    21300066: orpheusSpriteSheetFinal_33
+    21300068: orpheusSpriteSheetFinal_34
+    21300070: orpheusSpriteSheetFinal_35
+    21300072: orpheusSpriteSheetFinal_36
+    21300074: orpheusSpriteSheetFinal_37
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_0
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 0
+        width: 261
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_1
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 0
+        width: 245
+        height: 281
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_2
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 245
+        height: 281
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_3
+      rect:
+        serializedVersion: 2
+        x: 949
+        y: 0
+        width: 206
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_4
+      rect:
+        serializedVersion: 2
+        x: 1217
+        y: 0
+        width: 276
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_5
+      rect:
+        serializedVersion: 2
+        x: 1551
+        y: 3
+        width: 216
+        height: 297
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_6
+      rect:
+        serializedVersion: 2
+        x: 1856
+        y: 0
+        width: 212
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_7
+      rect:
+        serializedVersion: 2
+        x: 2174
+        y: 0
+        width: 150
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_8
+      rect:
+        serializedVersion: 2
+        x: 2446
+        y: 0
+        width: 178
+        height: 297
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_9
+      rect:
+        serializedVersion: 2
+        x: 2719
+        y: 0
+        width: 217
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_10
+      rect:
+        serializedVersion: 2
+        x: 3025
+        y: 0
+        width: 212
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_11
+      rect:
+        serializedVersion: 2
+        x: 3373
+        y: 0
+        width: 131
+        height: 297
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_12
+      rect:
+        serializedVersion: 2
+        x: 3682
+        y: 0
+        width: 156
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_13
+      rect:
+        serializedVersion: 2
+        x: 3944
+        y: 0
+        width: 211
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_14
+      rect:
+        serializedVersion: 2
+        x: 4244
+        y: 3
+        width: 195
+        height: 297
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_15
+      rect:
+        serializedVersion: 2
+        x: 4567
+        y: 0
+        width: 164
+        height: 297
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_16
+      rect:
+        serializedVersion: 2
+        x: 4840
+        y: 3
+        width: 178
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_17
+      rect:
+        serializedVersion: 2
+        x: 5125
+        y: 3
+        width: 205
+        height: 294
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_18
+      rect:
+        serializedVersion: 2
+        x: 5397
+        y: 3
+        width: 278
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_19
+      rect:
+        serializedVersion: 2
+        x: 5761
+        y: 3
+        width: 159
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_20
+      rect:
+        serializedVersion: 2
+        x: 6037
+        y: 0
+        width: 193
+        height: 292
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_21
+      rect:
+        serializedVersion: 2
+        x: 6321
+        y: 3
+        width: 239
+        height: 297
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_22
+      rect:
+        serializedVersion: 2
+        x: 6627
+        y: 3
+        width: 228
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_23
+      rect:
+        serializedVersion: 2
+        x: 6939
+        y: 3
+        width: 189
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_24
+      rect:
+        serializedVersion: 2
+        x: 7261
+        y: 3
+        width: 167
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_25
+      rect:
+        serializedVersion: 2
+        x: 7529
+        y: 3
+        width: 227
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_26
+      rect:
+        serializedVersion: 2
+        x: 7857
+        y: 3
+        width: 195
+        height: 297
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_27
+      rect:
+        serializedVersion: 2
+        x: 8160
+        y: 0
+        width: 164
+        height: 297
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_28
+      rect:
+        serializedVersion: 2
+        x: 8459
+        y: 0
+        width: 183
+        height: 297
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_29
+      rect:
+        serializedVersion: 2
+        x: 8748
+        y: 0
+        width: 205
+        height: 297
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_30
+      rect:
+        serializedVersion: 2
+        x: 9010
+        y: 3
+        width: 277
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_31
+      rect:
+        serializedVersion: 2
+        x: 9366
+        y: 3
+        width: 160
+        height: 297
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_32
+      rect:
+        serializedVersion: 2
+        x: 9655
+        y: 0
+        width: 194
+        height: 297
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_33
+      rect:
+        serializedVersion: 2
+        x: 9928
+        y: 3
+        width: 239
+        height: 297
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_34
+      rect:
+        serializedVersion: 2
+        x: 10234
+        y: 3
+        width: 222
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_35
+      rect:
+        serializedVersion: 2
+        x: 10557
+        y: 3
+        width: 189
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_36
+      rect:
+        serializedVersion: 2
+        x: 10857
+        y: 3
+        width: 167
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: orpheusSpriteSheetFinal_37
+      rect:
+        serializedVersion: 2
+        x: 11136
+        y: 3
+        width: 228
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
