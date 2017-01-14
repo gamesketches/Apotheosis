@@ -68,10 +68,11 @@ public class PlayerInitializer : MonoBehaviour {
 
 		animationController.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("sprites/OptimizedAnimationController");
 		string resourcePath = string.Concat("sprites/", character.ToString(), "Animation/p", (number + 1).ToString());
+		Debug.Log(Resources.LoadAll<AnimationClip>(resourcePath).Length);
 		foreach(AnimationClip clip in Resources.LoadAll<AnimationClip>(resourcePath)) {
 				animationController[clip.name] = clip;
 			}
-	
+
 		tempMovement.SetAnimator(animationController);
 		reticle.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/reticle-18");
 			//player1Reticle = reticle.gameObject;

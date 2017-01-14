@@ -76,25 +76,23 @@ public class PlayerMovement : MonoBehaviour {
 			else {
 				float computedSpeed =  speed * (float)(1 - slowFactor * bufferIter);
 				rb2D.velocity = (new Vector2(Input.GetAxisRaw(horizontalAxis), Input.GetAxisRaw(verticalAxis))).normalized * (float)computedSpeed;
-					anim.SetInteger("xAxis", (int) rb2D.velocity.x);
-					anim.SetInteger("yAxis", (int) rb2D.velocity.y);
-					//if(playerStats.character == Character.Hiruko) {
-						if(rb2D.velocity.x < 0) {
-							renderer.flipX = true;
+				anim.SetInteger("xAxis", (int) rb2D.velocity.x);
+				anim.SetInteger("yAxis", (int) rb2D.velocity.y);
+				if(rb2D.velocity.x < 0) {
+					renderer.flipX = true;
+				}
+				else if(rb2D.velocity.x > 0) {
+					renderer.flipX = false;
+				}
+				if(rb2D.velocity.x != 0.0f || rb2D.velocity.y != 0.0f) {
+					radians = Mathf.Atan2(rb2D.velocity.y, rb2D.velocity.x);
+					degrees = radians * Mathf.Rad2Deg;
+					if(degrees < 0.0f) {
+						degrees += 360.0f;
 						}
-						else if(rb2D.velocity.x > 0) {
-							renderer.flipX = false;
-						}
-					//}
-					if(rb2D.velocity.x != 0.0f || rb2D.velocity.y != 0.0f) {
-						radians = Mathf.Atan2(rb2D.velocity.y, rb2D.velocity.x);
-						degrees = radians * Mathf.Rad2Deg;
-						if(degrees < 0.0f) {
-							degrees += 360.0f;
-						}
-						SetReticle();
+					SetReticle();
 					}
-					}
+				}
 			}
 		else {
 			rb2D.velocity = Vector2.zero;

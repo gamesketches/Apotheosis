@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: e475be1da8f264fcc952f04db79b894f
-timeCreated: 1484424849
+timeCreated: 1484426864
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -94,9 +94,9 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_0
       rect:
         serializedVersion: 2
-        x: 25
+        x: 0
         y: 0
-        width: 261
+        width: 300
         height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -107,10 +107,10 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_1
       rect:
         serializedVersion: 2
-        x: 345
+        x: 300
         y: 0
-        width: 245
-        height: 281
+        width: 300
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -120,10 +120,10 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_2
       rect:
         serializedVersion: 2
-        x: 640
+        x: 600
         y: 0
-        width: 245
-        height: 281
+        width: 300
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,12 +133,12 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_3
       rect:
         serializedVersion: 2
-        x: 949
+        x: 900
         y: 0
-        width: 206
+        width: 300
         height: 300
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -146,9 +146,9 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_4
       rect:
         serializedVersion: 2
-        x: 1217
+        x: 1200
         y: 0
-        width: 276
+        width: 300
         height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -159,10 +159,10 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_5
       rect:
         serializedVersion: 2
-        x: 1551
-        y: 3
-        width: 216
-        height: 297
+        x: 1500
+        y: 0
+        width: 300
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -172,9 +172,9 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_6
       rect:
         serializedVersion: 2
-        x: 1856
+        x: 1800
         y: 0
-        width: 212
+        width: 300
         height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -185,9 +185,9 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_7
       rect:
         serializedVersion: 2
-        x: 2174
+        x: 2100
         y: 0
-        width: 150
+        width: 300
         height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -198,10 +198,10 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_8
       rect:
         serializedVersion: 2
-        x: 2446
+        x: 2400
         y: 0
-        width: 178
-        height: 297
+        width: 300
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -211,12 +211,12 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_9
       rect:
         serializedVersion: 2
-        x: 2719
+        x: 2700
         y: 0
-        width: 217
+        width: 300
         height: 300
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -224,9 +224,9 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_10
       rect:
         serializedVersion: 2
-        x: 3025
+        x: 3000
         y: 0
-        width: 212
+        width: 300
         height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -237,10 +237,10 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_11
       rect:
         serializedVersion: 2
-        x: 3373
+        x: 3300
         y: 0
-        width: 131
-        height: 297
+        width: 300
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -250,9 +250,9 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_12
       rect:
         serializedVersion: 2
-        x: 3682
+        x: 3600
         y: 0
-        width: 156
+        width: 300
         height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -263,9 +263,9 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_13
       rect:
         serializedVersion: 2
-        x: 3944
+        x: 3900
         y: 0
-        width: 211
+        width: 300
         height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -276,10 +276,10 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_14
       rect:
         serializedVersion: 2
-        x: 4244
-        y: 3
-        width: 195
-        height: 297
+        x: 4200
+        y: 0
+        width: 300
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -289,10 +289,10 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_15
       rect:
         serializedVersion: 2
-        x: 4567
+        x: 4500
         y: 0
-        width: 164
-        height: 297
+        width: 300
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -302,10 +302,10 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_16
       rect:
         serializedVersion: 2
-        x: 4840
-        y: 3
-        width: 178
-        height: 294
+        x: 4800
+        y: 0
+        width: 300
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -315,12 +315,12 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_17
       rect:
         serializedVersion: 2
-        x: 5125
-        y: 3
-        width: 205
-        height: 294
+        x: 5100
+        y: 0
+        width: 300
+        height: 300
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -328,10 +328,10 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_18
       rect:
         serializedVersion: 2
-        x: 5397
-        y: 3
-        width: 278
-        height: 294
+        x: 5400
+        y: 0
+        width: 300
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -341,10 +341,10 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_19
       rect:
         serializedVersion: 2
-        x: 5761
-        y: 3
-        width: 159
-        height: 294
+        x: 5700
+        y: 0
+        width: 300
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -354,10 +354,10 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_20
       rect:
         serializedVersion: 2
-        x: 6037
+        x: 6000
         y: 0
-        width: 193
-        height: 292
+        width: 300
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -367,10 +367,10 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_21
       rect:
         serializedVersion: 2
-        x: 6321
-        y: 3
-        width: 239
-        height: 297
+        x: 6300
+        y: 0
+        width: 300
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -380,10 +380,10 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_22
       rect:
         serializedVersion: 2
-        x: 6627
-        y: 3
-        width: 228
-        height: 294
+        x: 6600
+        y: 0
+        width: 300
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -393,10 +393,10 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_23
       rect:
         serializedVersion: 2
-        x: 6939
-        y: 3
-        width: 189
-        height: 294
+        x: 6900
+        y: 0
+        width: 300
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -406,10 +406,10 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_24
       rect:
         serializedVersion: 2
-        x: 7261
-        y: 3
-        width: 167
-        height: 294
+        x: 7200
+        y: 0
+        width: 300
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -419,10 +419,10 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_25
       rect:
         serializedVersion: 2
-        x: 7529
-        y: 3
-        width: 227
-        height: 294
+        x: 7500
+        y: 0
+        width: 300
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -432,10 +432,10 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_26
       rect:
         serializedVersion: 2
-        x: 7857
-        y: 3
-        width: 195
-        height: 297
+        x: 7800
+        y: 0
+        width: 300
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -445,10 +445,10 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_27
       rect:
         serializedVersion: 2
-        x: 8160
+        x: 8100
         y: 0
-        width: 164
-        height: 297
+        width: 300
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -458,10 +458,10 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_28
       rect:
         serializedVersion: 2
-        x: 8459
+        x: 8400
         y: 0
-        width: 183
-        height: 297
+        width: 300
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -471,10 +471,10 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_29
       rect:
         serializedVersion: 2
-        x: 8748
+        x: 8700
         y: 0
-        width: 205
-        height: 297
+        width: 300
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -484,10 +484,10 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_30
       rect:
         serializedVersion: 2
-        x: 9010
-        y: 3
-        width: 277
-        height: 294
+        x: 9000
+        y: 0
+        width: 300
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -497,10 +497,10 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_31
       rect:
         serializedVersion: 2
-        x: 9366
-        y: 3
-        width: 160
-        height: 297
+        x: 9300
+        y: 0
+        width: 300
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -510,10 +510,10 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_32
       rect:
         serializedVersion: 2
-        x: 9655
+        x: 9600
         y: 0
-        width: 194
-        height: 297
+        width: 300
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -523,10 +523,10 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_33
       rect:
         serializedVersion: 2
-        x: 9928
-        y: 3
-        width: 239
-        height: 297
+        x: 9900
+        y: 0
+        width: 300
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -536,10 +536,10 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_34
       rect:
         serializedVersion: 2
-        x: 10234
-        y: 3
-        width: 222
-        height: 294
+        x: 10200
+        y: 0
+        width: 300
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -549,10 +549,10 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_35
       rect:
         serializedVersion: 2
-        x: 10557
-        y: 3
-        width: 189
-        height: 294
+        x: 10500
+        y: 0
+        width: 300
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -562,10 +562,10 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_36
       rect:
         serializedVersion: 2
-        x: 10857
-        y: 3
-        width: 167
-        height: 294
+        x: 10800
+        y: 0
+        width: 300
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -575,10 +575,10 @@ TextureImporter:
       name: orpheusSpriteSheetFinal_37
       rect:
         serializedVersion: 2
-        x: 11136
-        y: 3
-        width: 228
-        height: 294
+        x: 11100
+        y: 0
+        width: 300
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
