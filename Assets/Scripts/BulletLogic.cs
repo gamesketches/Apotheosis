@@ -22,6 +22,7 @@ public class BulletLogic : MonoBehaviour {
     private Sprite sprite;
     private int animFrame;
     private bool reflectiveShot;
+    private string playerPathString;
     new AudioSource audio;
     new SpriteRenderer renderer;
 	private new Sprite[] animation; 
@@ -70,6 +71,7 @@ public class BulletLogic : MonoBehaviour {
 		transform.localScale = new Vector3(size, size, size);
 		gameObject.tag = bulletType.ToString();
 		velocity = Velocity * velocityMultiplier;
+		playerPathString = string.Concat(character.ToString(), playerNum == 0 ? "" : "Alt");
 		if(velocity == 0) {
 			velocity = 5f;
 		}
@@ -92,7 +94,7 @@ public class BulletLogic : MonoBehaviour {
 					Lifetime = 100;
 				}
 				else bulletFunction = IndirectLogic;
-				sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", character.ToString(), playerNum == 0 ? "" : "Alt", "/Boomerang"));
+				sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", playerPathString, "/Boomerang"));
 				headingTime = 0f;
                 //indirectHomingTime = 1000f;
                 //indirectHomingLimit = 1000f;
@@ -105,7 +107,7 @@ public class BulletLogic : MonoBehaviour {
 				}
                 break;
 			case BulletType.Knife:
-                sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", character.ToString(), playerNum == 0 ? "" : "Alt", "/Knife"));
+                sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", playerPathString, "/Knife"));
                 // TODO: change this
                 transform.Rotate(new Vector3(0f, 0f, -90f));
                 //transform.rotation = new Vector3(0f, 0f, -90.0f);
@@ -114,7 +116,7 @@ public class BulletLogic : MonoBehaviour {
                 break;
 			// Shield situation
 			default:
-			    sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", character.ToString(), playerNum == 0 ? "" : "Alt", "/Shield"));
+			    sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", playerPathString, "/Shield"));
 				    bulletFunction = SlowShotLogic;
 			    GetComponent<CircleCollider2D>().radius = 0.5f;
 			    lifetime = Lifetime / 1.5f;
@@ -188,10 +190,10 @@ public class BulletLogic : MonoBehaviour {
 				temp.GetComponent<SoundEffectObjectScript>().PlaySoundEffect("rpsBulletCancel");
 				//theDepot.AddObject(gameObject);
                 Debug.Log("Added depot code 5");
-                GameObject sparks = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/HitSparks"), transform.position, Quaternion.identity);
-                sparks.transform.localScale = new Vector3(10f, 10f, 10f);
+                //GameObject sparks = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/HitSparks"), transform.position, Quaternion.identity);
+                //sparks.transform.localScale = new Vector3(10f, 10f, 10f);
                 //Debug.Log("hit spark 2");
-                sparks.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/hitSparks/hitspark");
+                //sparks.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/hitSparks/hitspark");
 				killBullet();	
 			}
 			else {
@@ -256,8 +258,11 @@ public class BulletLogic : MonoBehaviour {
 	}
 
 	public void killBullet() {
+		GameObject temp = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/BulletDeathObject"), gameObject.transform.position, Quaternion.identity);
+		temp.GetComponent<BulletDeathBehavior>().PlayAnimation(playerPathString, type);
 		transform.rotation = Quaternion.identity;
 		renderer.transform.rotation = Quaternion.identity;
 		theDepot.AddObject(gameObject);
+
 	}
 }
