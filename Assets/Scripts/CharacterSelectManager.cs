@@ -11,6 +11,7 @@ public class CharacterSelectManager : MonoBehaviour {
 	private bool p1Selected, p2Selected, p1ButtonDown, p2ButtonDown;
 	private int numCharacters;
 	private string[,] bulletDescriptions;
+	AudioSource audioSource;
 	// Use this for initialization
 	void Awake () {
 		p1Selected = false;
@@ -26,6 +27,7 @@ public class CharacterSelectManager : MonoBehaviour {
         p2CharacterPortraits = Resources.LoadAll<Sprite>("characterSelect/p2/portraits");
 		p2InfoPanes = Resources.LoadAll<Sprite>("characterSelect/p2/summons");
 		numCharacters = System.Enum.GetValues(typeof(Character)).Length;
+		audioSource = GetComponent<AudioSource>();
 	}
 
 	public void Reset() {
@@ -37,6 +39,7 @@ public class CharacterSelectManager : MonoBehaviour {
 		characterSelectElements.SetActive(true);
         p1Character = Character.Loholt;
         p2Character = Character.Orpheus;
+        audioSource.clip = Resources.Load<AudioClip>("audio/music/characterSelect/characterSelectSound");
 	}
 
 	public void CharacterSelectUpdate() {
@@ -56,10 +59,12 @@ public class CharacterSelectManager : MonoBehaviour {
 
     	if(Input.GetButtonUp("ButtonB0")) {
 			p1Selected = true;
+			audioSource.Play();
             Debug.Log("P1 Selected");
         }
     	if(Input.GetButtonUp("ButtonB1")) {
     		p2Selected = true;
+    		audioSource.Play();
             Debug.Log("P2 Selected");
         }
     	if(p1Selected && p2Selected) {

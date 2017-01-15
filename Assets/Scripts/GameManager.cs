@@ -118,6 +118,7 @@ public class GameManager : MonoBehaviour {
             titleLogo.transform.GetChild(0).gameObject.SetActive(false);
             pressStart.enabled = false;
 			background.enabled = true;
+			ChangeBackgroundMusic("audio/music/characterSelect/StrengthOfWillCut");
             characterSelectManager.Reset();
             currentUpdateFunction = CharacterSelect;
         }
@@ -394,9 +395,7 @@ public class GameManager : MonoBehaviour {
         pressStart.enabled = true;
 		background.enabled = true;
 		roundTimer.enabled = false;
-		AudioSource backgroundMusic = Camera.main.GetComponent<AudioSource>();
-		backgroundMusic.clip = Resources.Load<AudioClip>("audio/music/menu/LandOfTwoFields");
-		backgroundMusic.Play();
+		ChangeBackgroundMusic("audio/music/menu/LandOfTwoFields");
 		currentUpdateFunction = TitleScreen;
 		ToggleUI(false);
 	}
@@ -424,9 +423,7 @@ public class GameManager : MonoBehaviour {
 		StartCoroutine(ReadyFightMessageChange());
 		// Probably put some ready fight shit over here
 		Invoke("UnlockPlayers", 2.5f);
-		AudioSource backgroundMusic = Camera.main.GetComponent<AudioSource>();
-		backgroundMusic.clip = Resources.Load<AudioClip>("audio/music/battleTheme/RenewYourSoul");
-		backgroundMusic.Play();
+		ChangeBackgroundMusic("audio/music/battleTheme/RenewYourSoul");
 	}
 
 	void LockPlayers() {
@@ -490,5 +487,11 @@ public class GameManager : MonoBehaviour {
 
 	void ToggleUI(bool mode) {
 		UIElements.SetActive(mode);
+	}
+
+	void ChangeBackgroundMusic(string path){
+		AudioSource backgroundMusic = Camera.main.GetComponent<AudioSource>();
+		backgroundMusic.clip = Resources.Load<AudioClip>(path);
+		backgroundMusic.Play();
 	}
 }
