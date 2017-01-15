@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour {
 	PlayerStats player1Stats, player2Stats;
 	BulletDepot bullets;
 	GameObject p1LifeBar, p2LifeBar, p1BufferBar, p2BufferBar;
+	GameObject UIElements;
     private int roundsToWin;
     public float screenShake;
     #endregion
@@ -57,6 +58,7 @@ public class GameManager : MonoBehaviour {
         p1BufferBar = GameObject.Find("P1BufferBar");
         p2LifeBar = GameObject.Find("P2LifeBar");
 		p2BufferBar = GameObject.Find("P2BufferBar");
+		UIElements = GameObject.Find("InGameUIElements");
         ToggleUI(false);
         player1Wins = 0;
         player2Wins = 0;
@@ -226,8 +228,6 @@ public class GameManager : MonoBehaviour {
   
 
 	void CreateBars() {
-		Vector3 lifebarOffset = new Vector3(9f, 19.6f, 0);
-		Vector3 bufferBarOffset = new Vector3(-10, 20, 0);
 
 		ToggleUI(true);
         player1Stats = player1.GetComponent<PlayerStats>();
@@ -491,9 +491,6 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void ToggleUI(bool mode) {
-		p1LifeBar.SetActive(mode);
-		p1BufferBar.SetActive(mode);
-		p2LifeBar.SetActive(mode);
-		p2BufferBar.SetActive(mode);
+		UIElements.SetActive(mode);
 	}
 }
