@@ -22,14 +22,10 @@ public class CharacterSelectManager : MonoBehaviour {
         characterSelectElements.SetActive(false);
 		p1CharacterPortraits = Resources.LoadAll<Sprite>("characterSelect/p1/portraits");
 		Debug.Log(p1CharacterPortraits.Length);
-        p1InfoPanes = Resources.LoadAll<Sprite>("characterSelect/p1/summons");
+        p1InfoPanes = Resources.LoadAll<Sprite>("characterSelect/p1/info");
         p2CharacterPortraits = Resources.LoadAll<Sprite>("characterSelect/p2/portraits");
 		p2InfoPanes = Resources.LoadAll<Sprite>("characterSelect/p2/summons");
 		numCharacters = System.Enum.GetValues(typeof(Character)).Length;
-	}
-
-	public void SetBulletDescriptions(string[,] descriptions) {
-		bulletDescriptions = descriptions;
 	}
 
 	public void Reset() {
@@ -110,13 +106,6 @@ public class CharacterSelectManager : MonoBehaviour {
     	portrait.sprite = portraits[(int)highlightedCharacter];
     	SpriteRenderer infoPane = player.GetComponentsInChildren<SpriteRenderer>()[2];
     	infoPane.sprite = infoPanes[(int)highlightedCharacter];
-    	Text nameText = player.GetComponentInChildren<Text>();
-    	nameText.text = highlightedCharacter.ToString();
-    	Text[] bulletDescriptionSlots = player.GetComponentsInChildren<Text>();
-    	int firstText = bulletDescriptionSlots.Length - 3;
-		bulletDescriptionSlots[firstText + 0].text = bulletDescriptions[(int)highlightedCharacter,0];
-		bulletDescriptionSlots[firstText + 1].text = bulletDescriptions[(int)highlightedCharacter,1];
-		bulletDescriptionSlots[firstText + 2].text = bulletDescriptions[(int)highlightedCharacter,2];  
     }
 
     Character CycleThroughCharacters(Character character, string axis) {

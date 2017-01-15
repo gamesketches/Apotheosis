@@ -61,14 +61,7 @@ public class TrainingModeManager : MonoBehaviour {
 
         characterSelectManager = GetComponent<CharacterSelectManager>();
         int numCharacters = System.Enum.GetNames(typeof(Character)).Length;
-		string[,] bulletDescriptions = new string[numCharacters, numCharacters];
-        for(int i = 0; i < numCharacters; i++){
-			bulletDescriptions[i,0] = bullets.types[i].projectileTypes[1].bulletDescription;
-			bulletDescriptions[i,1] = bullets.types[i].projectileTypes[2].bulletDescription;
-			bulletDescriptions[i,2] = bullets.types[i].projectileTypes[0].bulletDescription;
-        }
 
-        characterSelectManager.SetBulletDescriptions(bulletDescriptions);
         AnalyticsEngine.Initialize(new string[] {"LoholtBulletsFired", "OrpheusBulletsFired", "HirukoBulletsFired"});
 		characterSelectManager.Reset();
         currentUpdateFunction = CharacterSelect;
