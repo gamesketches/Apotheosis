@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour {
         roundsToWin = 2;
 
         int j = 0;
-        for (int i = 2; i >= 0; i--)
+        for (int i = 1; i >= 0; i--)
         {
             HorusWinsIconsSR[j] = HorusWinsIcons[i].GetComponent<SpriteRenderer>();
             SetWinsIconsSR[j] = SetWinsIcons[i].GetComponent<SpriteRenderer>();
