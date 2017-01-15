@@ -51,7 +51,6 @@ public class BulletDepot : ScriptableObject {
 		var serializer = new XmlSerializer(typeof(CharacterData));
 		for(int i = 0; i <  characterNames.Length; i++) {
 			TextAsset bulletData = Resources.Load(string.Concat(characterNames[i].ToLower(), "Bullets")) as TextAsset;
-			Debug.Log(string.Concat(characterNames[i].ToLower(), "Bullets"));
 			TextReader reader = new StringReader(bulletData.text);
 			types[i] = (CharacterData)serializer.Deserialize(reader);
 		}

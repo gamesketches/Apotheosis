@@ -21,6 +21,7 @@ public class CharacterSelectManager : MonoBehaviour {
 		characterSelectElements = GameObject.Find("CharacterSelectElements");
         characterSelectElements.SetActive(false);
 		p1CharacterPortraits = Resources.LoadAll<Sprite>("characterSelect/p1/portraits");
+		Debug.Log(p1CharacterPortraits.Length);
         p1InfoPanes = Resources.LoadAll<Sprite>("characterSelect/p1/summons");
         p2CharacterPortraits = Resources.LoadAll<Sprite>("characterSelect/p2/portraits");
 		p2InfoPanes = Resources.LoadAll<Sprite>("characterSelect/p2/summons");
