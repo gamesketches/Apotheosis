@@ -45,6 +45,7 @@ public class InputManager : MonoBehaviour {
     protected new SpriteRenderer renderer;
 	protected PlayerMovement playerMovement;
 	protected AudioSource soundEffects;
+	protected Animator anim;
 
 
     public enum BarLerpStyle { grow, shrink };
@@ -68,6 +69,7 @@ public class InputManager : MonoBehaviour {
 		}
 
         buffer_style = BarLerpStyle.shrink;
+        anim = GetComponent<Animator>();
 
     }
 
@@ -153,21 +155,25 @@ public class InputManager : MonoBehaviour {
     }
 
     public char GetButtonPress() {
+    	char input = '0';
 		if(Input.GetButtonDown(buttonA)) {
-			return 'A';
+			input = 'A';
 		}
 		else if(Input.GetButtonDown(buttonB)) {
-			return 'B';
+			input = 'B';
 		}
 		else if(Input.GetButtonDown(buttonC)) {
-			return 'C';
+			input = 'C';
 		}
 		else if(Input.GetButtonDown(buttonD)) {
-			return 'D';
+			input = 'D';
 		}
-		else {
-			return '0';
-		}
+		if(input != 'D' && input != '0'){
+				anim.SetTrigger("Shoot");
+				Debug.Log("shoot");
+			}
+			return input;
+		
 	}
 
 	public void ExponentShot() {
