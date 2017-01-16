@@ -21,7 +21,6 @@ public class BulletDeathBehavior : MonoBehaviour {
 		string resourcePath = string.Concat("sprites/weaponDeaths/", animationName);
 		foreach(AnimationClip clip in Resources.LoadAll<AnimationClip>(resourcePath)) {
 				animationController[clip.name] = clip;
-				Debug.Log(clip.name);
 			}
 		anim.runtimeAnimatorController = animationController;
 		anim.SetInteger("type", (int) type);

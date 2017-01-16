@@ -112,7 +112,7 @@ public class InputManager : MonoBehaviour {
                         mashing = true;
                     }
                     ExponentShot();
-                    if (!poweredUpBuffer || bufferIter < mashBufferSize - 2)
+                    if (poweredUpBuffer || bufferIter < mashBufferSize)
                     {
                         bufferIter++;
                     }

@@ -6,7 +6,7 @@ public class OffscreenShot : InputManager {
     private float lifetime;
 
     // Use this for initialization
-    public override void Start () {
+    void Awake () {
 		mashBufferSize = 8;
 		shotCooldownTime = 0.25f;
 		exponentCooldownTime = 0.1f;
@@ -18,7 +18,6 @@ public class OffscreenShot : InputManager {
 		spinRadius = 2.5f;
 		fullBufferScale = 2f;
 		base.Start();
-
 
         lifetime = 5.8f; 
     }
@@ -50,13 +49,17 @@ public class OffscreenShot : InputManager {
 				    if(!mashing) {
 					    mashing = true;
 				    }
-				    if(button != 'B') {
-			  	    	ExponentShot();
-			  	    }
-			  	    else {
+				    if(button == 'B') {
 			  	    	OffScreenShot();
 			  	    }
-				    bufferIter++;
+			  	    else {
+			  	    	ExponentShot();
+			  	    }
+					if (poweredUpBuffer || bufferIter < mashBufferSize)
+                    {
+                        bufferIter++;
+
+                    }
             }
            }
 		} else if(mashing && button == '0' && !melee ){
@@ -85,7 +88,8 @@ public class OffscreenShot : InputManager {
 
 		//playerMovement.ResetReticle();
 		if(exponentCooldownTimer <= 0) {
-			if(mashBuffer[bufferIter] == 'B') {
+			if(mashBuffer[mashBuffer.Length - 1] == 'B') {
+				bufferIter--;
 				OffScreenShot();
 			}
 			else {
