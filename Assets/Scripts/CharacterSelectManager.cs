@@ -25,7 +25,7 @@ public class CharacterSelectManager : MonoBehaviour {
 		Debug.Log(p1CharacterPortraits.Length);
         p1InfoPanes = Resources.LoadAll<Sprite>("characterSelect/p1/info");
         p2CharacterPortraits = Resources.LoadAll<Sprite>("characterSelect/p2/portraits");
-		p2InfoPanes = Resources.LoadAll<Sprite>("characterSelect/p2/summons");
+		p2InfoPanes = Resources.LoadAll<Sprite>("characterSelect/p2/info");
 		numCharacters = System.Enum.GetValues(typeof(Character)).Length;
 		audioSource = GetComponent<AudioSource>();
 	}
