@@ -24,23 +24,23 @@ public class PlayerInitializer : MonoBehaviour {
 		switch(character) {
 			case Character.Orpheus:
 				tempMovement.speed = orpheusSpeed;
-				break;
-			case Character.Hiruko: 
-				tempMovement.speed = hirukoSpeed;
 				temp.AddComponent<OffscreenShot>();
 				tempInputManager = temp.GetComponent<OffscreenShot>();
                 Debug.Log(temp.GetComponent<InputManager>().mashBufferSize + " dogmngs");
                 Debug.Log(tempInputManager.mashBufferSize + " dogmngs");
                 Destroy(temp.GetComponent<InputManager>());
+				break;
+			case Character.Hiruko: 
+				tempMovement.speed = hirukoSpeed;
                 break;
             case Character.Loholt:
 				tempMovement.speed = loholtSpeed;
-				temp.AddComponent<RecallShot>();
-				tempInputManager = temp.GetComponent<RecallShot>();
-				Destroy(temp.GetComponent<InputManager>());
 				break;
 			case Character.Bastet:
 				tempMovement.speed = bastetSpeed;
+				temp.AddComponent<RecallShot>();
+				tempInputManager = temp.GetComponent<RecallShot>();
+				Destroy(temp.GetComponent<InputManager>());
 				break;
 		};
 

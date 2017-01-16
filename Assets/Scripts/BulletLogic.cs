@@ -82,12 +82,12 @@ public class BulletLogic : MonoBehaviour {
     
         switch (type) {
 			case BulletType.Boomerang:
-				if(character == Character.Loholt) { 
+				if(character == Character.Bastet) { 
 					bulletFunction = StraightLogic;
 					transform.Rotate(new Vector3(0f, 0f, -90f));
 					travelVector *= -1;
 					}
-				else if(character == Character.Bastet) {
+				else if(character == Character.Loholt) {
 					bulletFunction = StraightLogic;
 					reflectiveShot = true;
 					travelVector *= -1;
