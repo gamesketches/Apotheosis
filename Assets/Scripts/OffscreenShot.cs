@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-public class OffscreenShot : InputManager {
+public class OffscreenShot : InputInterpretter {
 
 
     private float lifetime;

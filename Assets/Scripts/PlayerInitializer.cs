@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
+using InControl;
 
 public class PlayerInitializer : MonoBehaviour {
 
@@ -11,7 +13,7 @@ public class PlayerInitializer : MonoBehaviour {
 	public float hirukoSpeed;
 	public float bastetSpeed;
 
-	public GameObject CreatePlayer(string[] controls, Character character, Vector3 position, int number){
+	public GameObject CreatePlayerInEditor(string[] controls, Character character, Vector3 position, int number){
 		Color color = character == Character.Loholt ? Color.blue : Color.red;
 		GameObject temp = (GameObject)Instantiate(Resources.Load("prefabs/Player"), 
 												position, Quaternion.identity);
@@ -20,15 +22,13 @@ public class PlayerInitializer : MonoBehaviour {
 		//temp.GetComponent<Renderer>() = color;
 		PlayerStats tempStats = temp.GetComponent<PlayerStats>();
 		PlayerMovement tempMovement = temp.GetComponent<PlayerMovement>();
-		InputManager tempInputManager = temp.GetComponent<InputManager>();
+		InputInterpretter tempInputManager = temp.GetComponent<InputInterpretter>();
 		switch(character) {
 			case Character.Orpheus:
 				tempMovement.speed = orpheusSpeed;
 				temp.AddComponent<OffscreenShot>();
 				tempInputManager = temp.GetComponent<OffscreenShot>();
-                Debug.Log(temp.GetComponent<InputManager>().mashBufferSize + " dogmngs");
-                Debug.Log(tempInputManager.mashBufferSize + " dogmngs");
-                Destroy(temp.GetComponent<InputManager>());
+				Destroy(temp.GetComponent<InputInterpretter>());
 				break;
 			case Character.Hiruko: 
 				tempMovement.speed = hirukoSpeed;
@@ -40,7 +40,7 @@ public class PlayerInitializer : MonoBehaviour {
 				tempMovement.speed = bastetSpeed;
 				temp.AddComponent<RecallShot>();
 				tempInputManager = temp.GetComponent<RecallShot>();
-				Destroy(temp.GetComponent<InputManager>());
+				Destroy(temp.GetComponent<InputInterpretter>());
 				break;
 		};
 
@@ -73,6 +73,60 @@ public class PlayerInitializer : MonoBehaviour {
 				animationController[clip.name] = clip;
 			}
 
+		tempMovement.SetAnimator(animationController);
+		reticle.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/reticle-18");
+			//player1Reticle = reticle.gameObject;
+
+        return temp;
+	}
+
+	public GameObject CreatePlayerWithController(InputDevice controls, Character character, Vector3 position, int number){
+		Color color = character == Character.Loholt ? Color.blue : Color.red;
+		GameObject temp = (GameObject)Instantiate(Resources.Load("prefabs/Player"), 
+												position, Quaternion.identity);
+		Reticle reticle = ((GameObject)Instantiate(Resources.Load("prefabs/Reticle"))).GetComponent<Reticle>();
+		//SetControls(temp);
+		//temp.GetComponent<Renderer>() = color;
+		PlayerStats tempStats = temp.GetComponent<PlayerStats>();
+		PlayerMovement tempMovement = temp.GetComponent<PlayerMovement>();
+		InputInterpretter tempInputManager = temp.GetComponent<InputInterpretter>();
+		switch(character) {
+			case Character.Orpheus:
+				break;
+			case Character.Hiruko: 
+				temp.AddComponent<OffscreenShot>();
+				tempInputManager = temp.GetComponent<OffscreenShot>();
+				Destroy(temp.GetComponent<InputInterpretter>());
+				break;
+			case Character.Loholt:
+				temp.AddComponent<RecallShot>();
+				tempInputManager = temp.GetComponent<RecallShot>();
+				Destroy(temp.GetComponent<InputInterpretter>());
+				break;
+		};
+
+		tempStats.health = startingHealth;
+		tempStats.maxHealth = startingHealth;
+		tempStats.character = character;
+		tempStats.playerColor = color;
+		tempStats.number = number;
+		temp.GetComponent<PlayerMovement>().InitializeController(controls);
+        tempStats.screenShake = screenShake;
+		reticle.color = color;
+		tempMovement.reticle = reticle;
+
+		tempInputManager.bullets = bullets;
+		tempInputManager.InitializeControls(controls);
+		tempInputManager.reticle = reticle;
+
+		AnimatorOverrideController animationController = new AnimatorOverrideController();
+
+		animationController.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("sprites/OptimizedAnimationController");
+		string resourcePath = string.Concat("sprites/", character.ToString(), "Animation/p", (number + 1).ToString());
+		foreach(AnimationClip clip in Resources.LoadAll<AnimationClip>(resourcePath)) {
+				animationController[clip.name] = clip;
+			}
+	
 		tempMovement.SetAnimator(animationController);
 		reticle.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/reticle-18");
 			//player1Reticle = reticle.gameObject;

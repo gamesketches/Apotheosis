@@ -30,11 +30,11 @@ public class Reticle : MonoBehaviour {
 					if(spinning) {
 						StartCoroutine(Hitstop(spinHitStun));
 						collider.gameObject.GetComponent<PlayerMovement>().StartKnockback(transform, spinDamage);
-						collider.gameObject.GetComponent<InputManager>().SetExponentCooldownTimer(spinCooldown);
+						collider.gameObject.GetComponent<InputInterpretter>().SetExponentCooldownTimer(spinCooldown);
 					} else {
 						StartCoroutine(Hitstop(jabHitStun));
 						collider.gameObject.GetComponent<PlayerMovement>().StartKnockback(transform, jabDamage);
-						collider.gameObject.GetComponent<InputManager>().SetExponentCooldownTimer(jabCooldown);
+						collider.gameObject.GetComponent<InputInterpretter>().SetExponentCooldownTimer(jabCooldown);
                         Debug.Log("cooldown now");
 					}
 					string hitSparkSpritePath = string.Concat("sprites/hitSparks/hit", color == Color.blue ? "BR" : "RB");

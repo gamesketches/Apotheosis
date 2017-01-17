@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿#define RELEASE
+using UnityEngine;
 using System.Collections;
+using InControl;
 
 public enum Direction {Right, Up, Left, Down};
 
@@ -22,6 +24,8 @@ public class PlayerMovement : MonoBehaviour {
 
 	private string horizontalAxis;
 	private string verticalAxis;
+
+	private InputDevice controller;
 
 	private Rigidbody2D rb2D;
 
@@ -74,8 +78,7 @@ public class PlayerMovement : MonoBehaviour {
 				return;
 			}
 			else {
-				float computedSpeed =  speed * (float)(1 - slowFactor * bufferIter);
-				rb2D.velocity = (new Vector2(Input.GetAxisRaw(horizontalAxis), Input.GetAxisRaw(verticalAxis))).normalized * (float)computedSpeed;
+				rb2D.velocity = GetInput();
 				anim.SetInteger("xAxis", (int) rb2D.velocity.x);
 				anim.SetInteger("yAxis", (int) rb2D.velocity.y);
 				if(rb2D.velocity.x < 0) {
@@ -99,6 +102,16 @@ public class PlayerMovement : MonoBehaviour {
 		}
 	}
 
+	Vector2 GetInput() {
+		float computedSpeed =  speed * (float)(1 - slowFactor * bufferIter);
+		if(Application.isEditor) {
+			return new Vector2(Input.GetAxisRaw(horizontalAxis), Input.GetAxisRaw(verticalAxis)).normalized * (float)computedSpeed;
+		}
+		else {
+			return new Vector2(controller.DPad.X, controller.DPad.Y).normalized * (float)computedSpeed;
+		}
+	}
+
 	public float CurrentShotAngle() {
 			return radians * Mathf.Rad2Deg;
 	}
@@ -106,6 +119,10 @@ public class PlayerMovement : MonoBehaviour {
 	public void InitializeAxes(string[] controls) {
 		horizontalAxis = controls[0];
 		verticalAxis = controls[1];
+	}
+
+	public void InitializeController(InputDevice newController) {
+		controller = newController;
 	}
 
 	public void SetReticle() {

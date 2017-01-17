@@ -1,7 +1,10 @@
-﻿using UnityEngine;
+﻿#define RELEASE
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using InControl;
+using System;
 
 public enum Character {Bastet, Hiruko, Loholt, Orpheus};
 
@@ -20,6 +23,7 @@ public class GameManager : MonoBehaviour {
 	public Vector3 player1Pos, player2Pos;
 	public Vector3 powerUpZonePosition;
 	string[] player1Controls, player2Controls;
+	InputDevice player1Controller, player2Controller;
 	PlayerInitializer playerFactory;
 	PlayerStats player1Stats, player2Stats;
 	BulletDepot bullets;
@@ -110,78 +114,43 @@ public class GameManager : MonoBehaviour {
 
     void TitleScreen()
     {
-		if (Input.GetButtonUp("ButtonA0") || Input.GetButtonUp("ButtonB0") || Input.GetButtonUp("ButtonC0") 
-			|| Input.GetButtonUp("ButtonD0") || Input.GetButtonUp("ButtonA1") || Input.GetButtonUp("ButtonB1")
-			|| Input.GetButtonUp("ButtonC1") || Input.GetButtonUp("ButtonD1"))
-        {
-            titleLogo.enabled = false;
-            titleLogo.transform.GetChild(0).gameObject.SetActive(false);
-            pressStart.enabled = false;
-			background.enabled = true;
-			ChangeBackgroundMusic("audio/music/characterSelect/StrengthOfWillCut");
-            characterSelectManager.Reset();
-            currentUpdateFunction = CharacterSelect;
-        }
+    	if(Application.isEditor) {
+    		if(Input.anyKeyDown) {
+    			MoveToCharacterSelect();
+    		}
+    	}
+    	else {
+	    	if(InputManager.Devices.Count < 1) {
+	    		pressStart.transform.GetChild(0).GetComponent<Text>().text = "<color=White>Please Attach Two Controllers</color>";
+	    	}
+	    	else {
+				pressStart.transform.GetChild(0).GetComponent<Text>().text = "<color=White>Press Any Button to Start</color>";
+	    	}
+	    	if(InputManager.ActiveDevice != null && InputManager.ActiveDevice.AnyButton) {
+	    		player1Controller = InputManager.ActiveDevice;
+	    		foreach(InputDevice controller in InputManager.Devices) {
+	    			if(controller != InputManager.ActiveDevice) {
+	    				player2Controller = controller;
+	    			}
+	    		}
+	    		MoveToCharacterSelect();
+	        }
+	    }
 
         attractModeTimer -= Time.deltaTime;
         if(attractModeTimer < 0) {
         	SceneManager.LoadScene(1);
         }
-        /*       else if (Input.GetButtonUp("ButtonD0") || Input.GetButtonUp("ButtonC0") || Input.GetButtonUp("ButtonB0"))
-               {
-                   titleLogo.enabled = false;
-                   pressStart.enabled = false;
-                   infoScreen.enabled = true;
-                   currentUpdateFunction = InfoScreen;
-               }*/
+    }
 
-        //ski 
-        if (Input.GetKeyUp(KeyCode.Alpha7))
-        {
-            //debug to start round directly
-            titleLogo.enabled = false;
-            titleLogo.transform.GetChild(0).gameObject.SetActive(false);
-            pressStart.enabled = false;
-            background.enabled = true;
-            characterSelectManager.p1Character = Character.Loholt;
-            characterSelectManager.p2Character = Character.Orpheus;
-            InitializeGameSettings();
-        }
-        else if (Input.GetKeyUp(KeyCode.Alpha8))
-        {
-            //debug to start round directly
-            titleLogo.enabled = false;
-            titleLogo.transform.GetChild(0).gameObject.SetActive(false);
-            pressStart.enabled = false;
-            background.enabled = true;
-            characterSelectManager.p1Character = Character.Orpheus;
-            characterSelectManager.p2Character = Character.Hiruko;
-            InitializeGameSettings();
-        }
-        else if (Input.GetKeyUp(KeyCode.Alpha9))
-        {
-            //debug to start round directly
-            titleLogo.enabled = false;
-            titleLogo.transform.GetChild(0).gameObject.SetActive(false);
-            pressStart.enabled = false;
-            background.enabled = true;
-            characterSelectManager.p1Character = Character.Hiruko;
-            characterSelectManager.p2Character = Character.Loholt;
-            InitializeGameSettings();
-        }
-
-        else if (Input.GetKeyUp(KeyCode.Alpha0))
-        {
-            //debug to start round directly
-            titleLogo.enabled = false;
-            titleLogo.transform.GetChild(0).gameObject.SetActive(false);
-            pressStart.enabled = false;
-            background.enabled = true;
-            characterSelectManager.p1Character = Character.Orpheus;
-            characterSelectManager.p2Character = Character.Bastet;
-            InitializeGameSettings();
-        }
-
+    void MoveToCharacterSelect() {
+		titleLogo.enabled = false;
+        titleLogo.transform.GetChild(0).gameObject.SetActive(false);
+        pressStart.enabled = false;
+		background.enabled = true;
+        characterSelectManager.Reset();
+        characterSelectManager.SetControllers(player1Controller, player2Controller);
+        currentUpdateFunction = CharacterSelect;
     }
 
     void InfoScreen()
@@ -269,9 +238,14 @@ public class GameManager : MonoBehaviour {
 	}
     
 	void StartRound() {
-		player1 = playerFactory.CreatePlayer(player1Controls, characterSelectManager.p1Character, player1Pos, 0);
-        player2 = playerFactory.CreatePlayer(player2Controls, characterSelectManager.p2Character, player2Pos, 1);
-
+		if(Application.isEditor) {
+			player1 = playerFactory.CreatePlayerInEditor(player1Controls, characterSelectManager.p1Character, player1Pos, 0);
+        	player2 = playerFactory.CreatePlayerInEditor(player2Controls, characterSelectManager.p2Character, player2Pos, 1);
+        }
+        else {
+		player1 = playerFactory.CreatePlayerWithController(player1Controller, characterSelectManager.p1Character, player1Pos, 0);
+        player2 = playerFactory.CreatePlayerWithController(player2Controller, characterSelectManager.p2Character, player2Pos, 1);
+        }
         CreateBars();
         CreateObstacles();
         currentUpdateFunction = InGameUpdate;

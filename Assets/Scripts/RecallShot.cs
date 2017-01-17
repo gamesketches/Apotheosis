@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using InControl;
 
-public class RecallShot : InputManager {
+public class RecallShot : InputInterpretter {
 
 	float recallButtonHoldTime = 0.5f;
 	float recallButtonHeldTimer = 0f;
@@ -26,7 +27,7 @@ public class RecallShot : InputManager {
 	// Update is called once per frame
 	void Update () {
 		base.Update();
-		if(Input.GetButton(buttonB)) {
+		if(SpecialButtonDown()) {
 			if(recallButtonHeldTimer < recallButtonHoldTime) {
 				recallButtonHeldTimer += Time.fixedDeltaTime;
 			}
@@ -68,6 +69,15 @@ public class RecallShot : InputManager {
 			bullet.position = Vector3.Lerp(startPosition, endPosition, t);
 			t += Time.deltaTime;
 			yield return null;
+		}
+	}
+
+	bool SpecialButtonDown() {
+		if(Application.isEditor) {
+			return Input.GetButton(buttonB);
+		}
+		else {
+			return inputDevice.Action1.State;
 		}
 	}
 }

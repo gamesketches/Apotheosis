@@ -1,6 +1,9 @@
-﻿using UnityEngine;
+﻿#define RELEASE
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using InControl;
+using System;
 
 public class CharacterSelectManager : MonoBehaviour {
 
@@ -11,6 +14,7 @@ public class CharacterSelectManager : MonoBehaviour {
 	private bool p1Selected, p2Selected, p1ButtonDown, p2ButtonDown;
 	private int numCharacters;
 	private string[,] bulletDescriptions;
+	InputDevice player1Controller, player2Controller;
 	AudioSource audioSource;
 	// Use this for initialization
 	void Awake () {
@@ -44,25 +48,25 @@ public class CharacterSelectManager : MonoBehaviour {
 
 	public void CharacterSelectUpdate() {
 		CheckDirectionals();
-		if(!p1Selected && Input.GetAxis("Horizontal0") != 0 && !p1ButtonDown) {
+		if(!p1Selected && GetPlayer1XAxis() != 0 && !p1ButtonDown) {
 			p1ButtonDown = true;
-    		p1Character = CycleThroughCharacters(p1Character, "Horizontal0");
+    		p1Character = CycleThroughCharacters(p1Character, GetPlayer1XAxis());
     	}
-		if(!p2Selected && Input.GetAxis("Horizontal1") != 0 && !p2ButtonDown) {
+		if(!p2Selected && GetPlayer2XAxis() != 0 && !p2ButtonDown) {
 			p2ButtonDown = true;
-    		p2Character = CycleThroughCharacters(p2Character, "Horizontal1");
+    		p2Character = CycleThroughCharacters(p2Character, GetPlayer2XAxis());
     	}
     	UpdateInfoCharacterSelect(characterSelectElements.transform.GetChild(0).gameObject,
     										 p1Character, p1CharacterPortraits, p1InfoPanes);
     	UpdateInfoCharacterSelect(characterSelectElements.transform.GetChild(1).gameObject,
     										 p2Character, p2CharacterPortraits, p2InfoPanes);
 
-    	if(Input.GetButtonUp("ButtonB0")) {
+    	if(GetPlayer1ConfirmButton()) {
 			p1Selected = true;
 			audioSource.Play();
             Debug.Log("P1 Selected");
         }
-    	if(Input.GetButtonUp("ButtonB1")) {
+    	if(GetPlayer2ConfirmButton()) {
     		p2Selected = true;
     		audioSource.Play();
             Debug.Log("P2 Selected");
@@ -73,19 +77,19 @@ public class CharacterSelectManager : MonoBehaviour {
     	}
     }
 
-    public void TrainingModeCharacterSelectUpdate() {
+	public void TrainingModeCharacterSelectUpdate() {
     	CheckDirectionals();
-    		if(Input.GetAxis("Horizontal0") != 0 && !p1ButtonDown) {
+    		if(GetPlayer1XAxis() != 0 && !p1ButtonDown) {
     			p1ButtonDown = true;
     			if(p1Selected) {
-					p2Character = CycleThroughCharacters(p2Character, "Horizontal0");
+					p2Character = CycleThroughCharacters(p2Character, GetPlayer1XAxis());
     			}
     			else {
-	    			p1Character = CycleThroughCharacters(p1Character, "Horizontal0");
+					p1Character = CycleThroughCharacters(p1Character, GetPlayer1XAxis());
 	    		}
     		}
 
-		if(Input.GetButtonUp("ButtonB0")) {
+		if(GetPlayer1ConfirmButton()) {
 			if(p1Selected) {
 				p2Selected = true;
 			}
@@ -104,6 +108,51 @@ public class CharacterSelectManager : MonoBehaviour {
         }
     }
 
+	void CheckDirectionals() {
+    	if(GetPlayer1XAxis() == 0) {
+    		p1ButtonDown = false;
+    	}
+    	if(GetPlayer2XAxis() == 0) {
+    		p2ButtonDown = false;
+    	}
+    }
+
+    float GetPlayer1XAxis() {
+    	if(Application.isEditor) {
+    		return Input.GetAxis("Horizontal0");
+    	}
+    	else {
+    		return player1Controller.Direction.X;
+    	}
+    }
+
+    float GetPlayer2XAxis(){
+		if(Application.isEditor) {
+    		return Input.GetAxis("Horizontal1");
+    	}
+    	else {
+    		return player2Controller.Direction.X;
+    	}
+    }
+
+    bool GetPlayer1ConfirmButton() {
+    	if(Application.isEditor) {
+    		return Input.GetButtonUp("ButtonB0");
+    	}
+    	else {
+    		return player1Controller.Action1.State;
+    	}
+    }
+
+    bool GetPlayer2ConfirmButton() {
+    	if(Application.isEditor) {
+    		return Input.GetButtonUp("ButtonB1");
+    	}
+    	else {
+    		return player2Controller.Action2.State;
+    	}
+    }
+
     void UpdateInfoCharacterSelect(GameObject player, Character highlightedCharacter,
     														 Sprite[] portraits,
     														 Sprite[] infoPanes) {
@@ -113,8 +162,8 @@ public class CharacterSelectManager : MonoBehaviour {
     	infoPane.sprite = infoPanes[(int)highlightedCharacter];
     }
 
-    Character CycleThroughCharacters(Character character, string axis) {
-		if(Input.GetAxisRaw(axis) < 0) {
+	Character CycleThroughCharacters(Character character, float xVal) {
+		if(xVal < 0) {
 				int temp = (int)character;
 				temp -= 1;
    		 		if(temp < 0) {
@@ -123,7 +172,7 @@ public class CharacterSelectManager : MonoBehaviour {
 				return (Character)temp;//System.Enum.GetValues(typeof(Character)).GetValue(temp);
 
    		 	}
-    	else if(Input.GetAxisRaw(axis) > 0) {
+    	else if(xVal > 0) {
     			character += 1;
     			if((int)character == numCharacters) {
     				return (Character)System.Enum.GetValues(typeof(Character)).GetValue(0);
@@ -132,12 +181,8 @@ public class CharacterSelectManager : MonoBehaviour {
     	return character;
     }
 
-    void CheckDirectionals() {
-    	if(Input.GetAxis("Horizontal0") == 0) {
-    		p1ButtonDown = false;
-    	}
-    	if(Input.GetAxis("Horizontal1") == 0) {
-    		p2ButtonDown = false;
-    	}
+    public void SetControllers(InputDevice player1, InputDevice player2) {
+    	player1Controller = player1;
+    	player2Controller = player2;
     }
 }
