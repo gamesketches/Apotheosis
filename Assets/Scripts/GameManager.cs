@@ -115,7 +115,10 @@ public class GameManager : MonoBehaviour {
     void TitleScreen()
     {
     	if(Application.isEditor) {
-    		if(Input.anyKeyDown) {
+    		if(Input.GetKeyDown(KeyCode.Return)) {
+    			SceneManager.LoadScene(2);
+    		}
+    		else if(Input.anyKeyDown) {
     			MoveToCharacterSelect();
     		}
     	}
@@ -124,7 +127,7 @@ public class GameManager : MonoBehaviour {
 	    		pressStart.transform.GetChild(0).GetComponent<Text>().text = "<color=White>Please Attach Two Controllers</color>";
 	    	}
 	    	else {
-				pressStart.transform.GetChild(0).GetComponent<Text>().text = "<color=White>Press Any Button to Start</color>";
+				pressStart.transform.GetChild(0).GetComponent<Text>().text = "<color=White>Press Start for Training Mode\nX for Versus</color>";
 	    	}
 	    	if(InputManager.ActiveDevice != null && InputManager.ActiveDevice.AnyButton) {
 	    		player1Controller = InputManager.ActiveDevice;

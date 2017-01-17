@@ -23,6 +23,7 @@ public class TrainingModeManager : MonoBehaviour {
 	PlayerStats player1Stats, player2Stats;
 	BulletDepot bullets;
 	GameObject p1LifeBar, p2LifeBar, p1BufferBar, p2BufferBar;
+	GameObject UIElements;
     private int roundsToWin;
     public float screenShake;
     InputDevice player1Controller, player2Controller;
@@ -46,12 +47,13 @@ public class TrainingModeManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         p1LifeBar = GameObject.Find("P1LifeBar");
-		//p1BufferBar = GameObject.Find("P1BufferBar");
 		p1BufferBar = GameObject.Find("P1BufferBarSegments");
         p2LifeBar = GameObject.Find("P2LifeBar");
 		p2BufferBar = GameObject.Find("P2BufferBarSegments");
-		//p2BufferBar = GameObject.Find("P2BufferBar");
+		UIElements = GameObject.Find("InGameUIElements");
         ToggleUI(false);
+
+		victoryText = GameObject.FindGameObjectWithTag("VictoryText").GetComponent<Text>();
 
 		//bullets = new BulletDepot(); // clearing a warning w/next line - ski
         bullets = ScriptableObject.CreateInstance<BulletDepot>();
@@ -106,21 +108,17 @@ public class TrainingModeManager : MonoBehaviour {
   
 
 	void CreateBars() {
-		Vector3 lifebarOffset = new Vector3(9f, 19.6f, 0);
-		Vector3 bufferBarOffset = new Vector3(-10, 20, 0);
 
 		ToggleUI(true);
         player1Stats = player1.GetComponent<PlayerStats>();
         player1Stats.lifeBar = p1LifeBar;
         p1LifeBar.transform.localScale = Vector3.one;
         player1Stats.bufferBar = p1BufferBar.GetComponentsInChildren<Transform>();
-        //p1BufferBar.transform.localScale = Vector3.one;
 
         player2Stats = player2.GetComponent<PlayerStats>();
 		player2Stats.lifeBar = p2LifeBar;
 		p2LifeBar.transform.localScale = Vector3.one;
 		player2Stats.bufferBar = p2BufferBar.GetComponentsInChildren<Transform>();
-        //p2BufferBar.transform.localScale = Vector3.one;
 
 	}
 
@@ -313,10 +311,7 @@ public class TrainingModeManager : MonoBehaviour {
 	}
 
 	void ToggleUI(bool mode) {
-		p1LifeBar.SetActive(mode);
-		p1BufferBar.SetActive(mode);
-		p2LifeBar.SetActive(mode);
-		p2BufferBar.SetActive(mode);
+		UIElements.SetActive(mode);
 	}
 
 	public void ChangeCharacter() {
