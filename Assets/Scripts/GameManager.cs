@@ -55,9 +55,9 @@ public class GameManager : MonoBehaviour {
         HorusWinsIconsSR = new SpriteRenderer[HorusWinsIcons.Length];
         SetWinsIconsSR = new SpriteRenderer[SetWinsIcons.Length];
         p1LifeBar = GameObject.Find("P1LifeBar");
-        p1BufferBar = GameObject.Find("P1BufferBar");
+		p1BufferBar = GameObject.Find("P1BufferBarSegments");
         p2LifeBar = GameObject.Find("P2LifeBar");
-		p2BufferBar = GameObject.Find("P2BufferBar");
+		p2BufferBar = GameObject.Find("P2BufferBarSegments");
 		UIElements = GameObject.Find("InGameUIElements");
         ToggleUI(false);
         player1Wins = 0;
@@ -232,14 +232,20 @@ public class GameManager : MonoBehaviour {
         player1Stats = player1.GetComponent<PlayerStats>();
         player1Stats.lifeBar = p1LifeBar;
         p1LifeBar.transform.localScale = Vector3.one;
-        player1Stats.bufferBar = p1BufferBar;
-        p1BufferBar.transform.localScale = Vector3.one;
+
+        player1Stats.bufferBar = p1BufferBar.GetComponentsInChildren<Transform>();
+        foreach(Transform bar in player1Stats.bufferBar) {
+        	bar.gameObject.SetActive(false);
+        }
 
         player2Stats = player2.GetComponent<PlayerStats>();
 		player2Stats.lifeBar = p2LifeBar;
 		p2LifeBar.transform.localScale = Vector3.one;
-		player2Stats.bufferBar = p2BufferBar;
-        p2BufferBar.transform.localScale = Vector3.one;
+
+		player2Stats.bufferBar = p2BufferBar.GetComponentsInChildren<Transform>();
+		foreach(Transform bar in player2Stats.bufferBar) {
+        	bar.gameObject.SetActive(false);
+        }
 
 	}
 
@@ -285,7 +291,6 @@ public class GameManager : MonoBehaviour {
 
         if (roundTimer.text == "0")
         {
-            Debug.Log("time over");
             victoryText.text = "TIME'S\nUP";
             victoryText.enabled = true;
             yield return new WaitForSeconds(1.5f);
@@ -294,7 +299,6 @@ public class GameManager : MonoBehaviour {
         }
 
         if (playerNum == 5) {
-            Debug.Log("time over + playerNum =" + playerNum);
             victoryText.text = "DRAW\nGAME";
 		}
 		else {
@@ -305,7 +309,6 @@ public class GameManager : MonoBehaviour {
 				yield return new WaitForSeconds(1.5f);
 				playerNum -= 2;
 			}
-			if (debug_on) Debug.Log(playerNum);
 	        victoryText.text = playerNum == 2 ? "Player Two" : "Player One";
 			victoryText.text += roundsWon == roundsToWin ? "\n IS \n   VICTORIOUS" : "\nWINS";
 		}
@@ -332,15 +335,6 @@ public class GameManager : MonoBehaviour {
 		victoryText.enabled = false;
         victoryText.text = "";
     }
-
-    /*	// Use this for initialization
-        void Start () {
-            // Fill in the MenuUpdate function
-            // then uncomment line 27 and delete line 28
-            // currentUpdateFunction = MenuUpdate;
-            //InitializeGameSettings();
-        }*/
-   
 	
 	// Update is called once per frame
 	void Update () {
@@ -449,7 +443,6 @@ public class GameManager : MonoBehaviour {
         }
 
         int currentRound = (player1RoundWins + player2RoundWins + 1);
-        //victoryText.text = ("ROUND " + (player1RoundWins + player2RoundWins + 1.0f).ToString());
         victoryText.text = "ROUND " + currentRound.ToString();
         Debug.Log("GameManager.cs: ROUND NUMBER = " + (player1RoundWins + player2RoundWins + 1).ToString());
         yield return new WaitForSeconds(1.0f);

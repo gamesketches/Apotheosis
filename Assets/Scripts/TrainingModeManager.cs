@@ -44,9 +44,11 @@ public class TrainingModeManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         p1LifeBar = GameObject.Find("P1LifeBar");
-        p1BufferBar = GameObject.Find("P1BufferBar");
+		//p1BufferBar = GameObject.Find("P1BufferBar");
+		p1BufferBar = GameObject.Find("P1BufferBarSegments");
         p2LifeBar = GameObject.Find("P2LifeBar");
-		p2BufferBar = GameObject.Find("P2BufferBar");
+		p2BufferBar = GameObject.Find("P2BufferBarSegments");
+		//p2BufferBar = GameObject.Find("P2BufferBar");
         ToggleUI(false);
 
 		//bullets = new BulletDepot(); // clearing a warning w/next line - ski
@@ -103,14 +105,14 @@ public class TrainingModeManager : MonoBehaviour {
         player1Stats = player1.GetComponent<PlayerStats>();
         player1Stats.lifeBar = p1LifeBar;
         p1LifeBar.transform.localScale = Vector3.one;
-        player1Stats.bufferBar = p1BufferBar;
-        p1BufferBar.transform.localScale = Vector3.one;
+        player1Stats.bufferBar = p1BufferBar.GetComponentsInChildren<Transform>();
+        //p1BufferBar.transform.localScale = Vector3.one;
 
         player2Stats = player2.GetComponent<PlayerStats>();
 		player2Stats.lifeBar = p2LifeBar;
 		p2LifeBar.transform.localScale = Vector3.one;
-		player2Stats.bufferBar = p2BufferBar;
-        p2BufferBar.transform.localScale = Vector3.one;
+		player2Stats.bufferBar = p2BufferBar.GetComponentsInChildren<Transform>();
+        //p2BufferBar.transform.localScale = Vector3.one;
 
 	}
 
@@ -316,8 +318,8 @@ public class TrainingModeManager : MonoBehaviour {
 		player1Stats = player1.GetComponent<PlayerStats>();
         player1Stats.lifeBar = p1LifeBar;
         p1LifeBar.transform.localScale = Vector3.one;
-        player1Stats.bufferBar = p1BufferBar;
-        p1BufferBar.transform.localScale = Vector3.one;
+        player1Stats.bufferBar = p1BufferBar.GetComponentsInChildren<Transform>();
+        //p1BufferBar.transform.localScale = Vector3.one;
 	}
 
 	public void MainMenu() {

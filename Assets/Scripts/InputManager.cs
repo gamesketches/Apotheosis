@@ -62,7 +62,6 @@ public class InputManager : MonoBehaviour {
 		playerStats = GetComponent<PlayerStats>();
 		playerMovement = GetComponent<PlayerMovement>();
 		renderer = GetComponent<SpriteRenderer>();
-		//mashBufferSize = 8;
 		mashBuffer = new char[mashBufferSize];
 		for(int i = 0; i < mashBufferSize; i++){
 			mashBuffer.SetValue('*', i);
@@ -76,10 +75,6 @@ public class InputManager : MonoBehaviour {
     public void Update()
     {
         playerMovement.bufferIter = bufferIter;
-        if (bufferIter > 1)
-        {
-            //Debug.Log("buffer iter: " + bufferIter);
-        }
         if (playerMovement.locked)
         {
             return;
@@ -104,8 +99,6 @@ public class InputManager : MonoBehaviour {
                 }
                 else
                 {
-                    //gameObject.transform.localScale = Vector3.Lerp(new Vector3(1f, 1f, 1f), new Vector3(fullBufferScale, fullBufferScale, fullBufferScale),(float)bufferIter / (float)mashBufferSize);
-                    gameObject.transform.localScale = Vector3.Lerp(gameObject.transform.localScale, new Vector3(fullBufferScale, fullBufferScale, fullBufferScale), (float)bufferIter / (float)mashBufferSize);
                     mashBuffer.SetValue(button, bufferIter);
                     if (!mashing)
                     {
@@ -139,19 +132,8 @@ public class InputManager : MonoBehaviour {
             renderer.color = new Color(1f, 1f, 1f);
         }
 
-        //playerStats.bufferBar.transform.localScale = new Vector3(1 * bufferIter + 1, 1, 1);
-        switch (buffer_style)
-        {
-            case BarLerpStyle.shrink:
-                playerStats.UpdateBufferBar((1 / (float)mashBufferSize) * (mashBufferSize - bufferIter));
-                break;
-            case BarLerpStyle.grow:
-			playerStats.UpdateBufferBar((1 / (float)mashBufferSize) * bufferIter + 1);
-                break;
-            default:
-			playerStats.UpdateBufferBar((1 / (float)mashBufferSize) * bufferIter + 1);
-                break;
-        }
+        playerStats.UpdateBufferBar(bufferIter);
+
     }
 
     public char GetButtonPress() {
@@ -170,7 +152,6 @@ public class InputManager : MonoBehaviour {
 		}
 		if(input != 'D' && input != '0'){
 				anim.SetTrigger("Shoot");
-				Debug.Log("shoot");
 			}
 			return input;
 		
@@ -193,7 +174,7 @@ public class InputManager : MonoBehaviour {
 		}
 
 		BulletDepot.Volley volley = bullets.types[(int)playerStats.character].projectileTypes[(int)type].volleys[bufferIter];
-        //Debug.Log(" volley = " + bufferIter); //ski
+
 		foreach(BulletDepot.Bullet bullet in volley.volley) {
 			CreateBullet(bullet, type);
         }
