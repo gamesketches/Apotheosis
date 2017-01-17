@@ -15,6 +15,7 @@ public class CharacterSelectManager : MonoBehaviour {
 	private int numCharacters;
 	private string[,] bulletDescriptions;
 	InputDevice player1Controller, player2Controller;
+	AudioSource audioSource;
 	// Use this for initialization
 	void Awake () {
 		p1Selected = false;
@@ -25,14 +26,12 @@ public class CharacterSelectManager : MonoBehaviour {
 		characterSelectElements = GameObject.Find("CharacterSelectElements");
         characterSelectElements.SetActive(false);
 		p1CharacterPortraits = Resources.LoadAll<Sprite>("characterSelect/p1/portraits");
-        p1InfoPanes = Resources.LoadAll<Sprite>("characterSelect/p1/summons");
+		Debug.Log(p1CharacterPortraits.Length);
+        p1InfoPanes = Resources.LoadAll<Sprite>("characterSelect/p1/info");
         p2CharacterPortraits = Resources.LoadAll<Sprite>("characterSelect/p2/portraits");
-		p2InfoPanes = Resources.LoadAll<Sprite>("characterSelect/p2/summons");
+		p2InfoPanes = Resources.LoadAll<Sprite>("characterSelect/p2/info");
 		numCharacters = System.Enum.GetValues(typeof(Character)).Length;
-	}
-
-	public void SetBulletDescriptions(string[,] descriptions) {
-		bulletDescriptions = descriptions;
+		audioSource = GetComponent<AudioSource>();
 	}
 
 	public void Reset() {
@@ -44,6 +43,7 @@ public class CharacterSelectManager : MonoBehaviour {
 		characterSelectElements.SetActive(true);
         p1Character = Character.Loholt;
         p2Character = Character.Orpheus;
+        audioSource.clip = Resources.Load<AudioClip>("audio/music/characterSelect/characterSelectSound");
 	}
 
 	public void CharacterSelectUpdate() {
@@ -63,10 +63,12 @@ public class CharacterSelectManager : MonoBehaviour {
 
     	if(GetPlayer1ConfirmButton()) {
 			p1Selected = true;
+			audioSource.Play();
             Debug.Log("P1 Selected");
         }
     	if(GetPlayer2ConfirmButton()) {
     		p2Selected = true;
+    		audioSource.Play();
             Debug.Log("P2 Selected");
         }
     	if(p1Selected && p2Selected) {
@@ -151,6 +153,15 @@ public class CharacterSelectManager : MonoBehaviour {
     	}
     }
 
+    void UpdateInfoCharacterSelect(GameObject player, Character highlightedCharacter,
+    														 Sprite[] portraits,
+    														 Sprite[] infoPanes) {
+    	SpriteRenderer portrait = player.GetComponentInChildren<SpriteRenderer>();
+    	portrait.sprite = portraits[(int)highlightedCharacter];
+    	SpriteRenderer infoPane = player.GetComponentsInChildren<SpriteRenderer>()[2];
+    	infoPane.sprite = infoPanes[(int)highlightedCharacter];
+    }
+
 	Character CycleThroughCharacters(Character character, float xVal) {
 		if(xVal < 0) {
 				int temp = (int)character;
@@ -168,22 +179,6 @@ public class CharacterSelectManager : MonoBehaviour {
     			}
     		}
     	return character;
-    }
-
-    void UpdateInfoCharacterSelect(GameObject player, Character highlightedCharacter,
-    														 Sprite[] portraits,
-    														 Sprite[] infoPanes) {
-    	SpriteRenderer portrait = player.GetComponentInChildren<SpriteRenderer>();
-    	portrait.sprite = portraits[(int)highlightedCharacter];
-    	SpriteRenderer infoPane = player.GetComponentsInChildren<SpriteRenderer>()[2];
-    	infoPane.sprite = infoPanes[(int)highlightedCharacter];
-    	Text nameText = player.GetComponentInChildren<Text>();
-    	nameText.text = highlightedCharacter.ToString();
-    	Text[] bulletDescriptionSlots = player.GetComponentsInChildren<Text>();
-    	int firstText = bulletDescriptionSlots.Length - 3;
-		bulletDescriptionSlots[firstText + 0].text = bulletDescriptions[(int)highlightedCharacter,0];
-		bulletDescriptionSlots[firstText + 1].text = bulletDescriptions[(int)highlightedCharacter,1];
-		bulletDescriptionSlots[firstText + 2].text = bulletDescriptions[(int)highlightedCharacter,2];  
     }
 
     public void SetControllers(InputDevice player1, InputDevice player2) {

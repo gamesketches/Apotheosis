@@ -11,14 +11,14 @@ public class PlayerStats : MonoBehaviour {
 	public int number;
 	public Character character;
 	public GameObject lifeBar;
-	public GameObject bufferBar;
-	private BarController bufferBarController;
+	public Transform[] bufferBar;
+	//private BarController bufferBarController;
 
     public float screenShake;
 
     
     void Start() {
-        bufferBarController = bufferBar.GetComponent<BarController>();
+        //bufferBarController = bufferBar.GetComponent<BarController>();
     }
 
     public void TakeDamage(float damage) {
@@ -35,8 +35,20 @@ public class PlayerStats : MonoBehaviour {
         }
 	}
 
+	/*
 	public void UpdateBufferBar(float scale) {
 		bufferBarController.LerpChange(scale);
+	}*/
+
+	public void UpdateBufferBar(int bufferIter) {
+		for(int i = 0; i < bufferBar.Length; i++) {
+			if(i < bufferIter) {
+				bufferBar[i].gameObject.SetActive(true);
+			}
+			else {
+				bufferBar[i].gameObject.SetActive(false);
+			}
+		}
 	}
 
     IEnumerator ShakeCamera(float damage)

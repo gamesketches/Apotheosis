@@ -26,21 +26,21 @@ public class PlayerInitializer : MonoBehaviour {
 		switch(character) {
 			case Character.Orpheus:
 				tempMovement.speed = orpheusSpeed;
-				break;
-			case Character.Hiruko: 
-				tempMovement.speed = hirukoSpeed;
 				temp.AddComponent<OffscreenShot>();
 				tempInputManager = temp.GetComponent<OffscreenShot>();
 				Destroy(temp.GetComponent<InputInterpretter>());
 				break;
-			case Character.Loholt:
+			case Character.Hiruko: 
+				tempMovement.speed = hirukoSpeed;
+                break;
+            case Character.Loholt:
 				tempMovement.speed = loholtSpeed;
-				temp.AddComponent<RecallShot>();
-				tempInputManager = temp.GetComponent<RecallShot>();
-				Destroy(temp.GetComponent<InputInterpretter>());
 				break;
 			case Character.Bastet:
 				tempMovement.speed = bastetSpeed;
+				temp.AddComponent<RecallShot>();
+				tempInputManager = temp.GetComponent<RecallShot>();
+				Destroy(temp.GetComponent<InputInterpretter>());
 				break;
 		};
 
@@ -68,10 +68,11 @@ public class PlayerInitializer : MonoBehaviour {
 
 		animationController.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("sprites/OptimizedAnimationController");
 		string resourcePath = string.Concat("sprites/", character.ToString(), "Animation/p", (number + 1).ToString());
+		Debug.Log(Resources.LoadAll<AnimationClip>(resourcePath).Length);
 		foreach(AnimationClip clip in Resources.LoadAll<AnimationClip>(resourcePath)) {
 				animationController[clip.name] = clip;
 			}
-	
+
 		tempMovement.SetAnimator(animationController);
 		reticle.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/reticle-18");
 			//player1Reticle = reticle.gameObject;

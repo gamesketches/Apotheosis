@@ -6,7 +6,7 @@ public class OffscreenShot : InputInterpretter {
     private float lifetime;
 
     // Use this for initialization
-    public override void Start () {
+    void Awake () {
 		mashBufferSize = 8;
 		shotCooldownTime = 0.25f;
 		exponentCooldownTime = 0.1f;
@@ -18,7 +18,6 @@ public class OffscreenShot : InputInterpretter {
 		spinRadius = 2.5f;
 		fullBufferScale = 2f;
 		base.Start();
-
 
         lifetime = 5.8f; 
     }
@@ -39,24 +38,26 @@ public class OffscreenShot : InputInterpretter {
 			shotCooldownTimer = shotCooldownTime;
             if (button != 'D') // threw everything in here to get this cooldown not to interfere with sword. works.
             {
-				if (bufferIter >= mashBufferSize - 1) {
+				if (bufferIter >= mashBufferSize) {
 					Fire();
 				}
 				else {
-	                //gameObject.transform.localScale = Vector3.Lerp(new Vector3(1f, 1f, 1f), new Vector3(fullBufferScale, fullBufferScale, fullBufferScale),(float)bufferIter / (float)mashBufferSize);
-	                gameObject.transform.localScale = Vector3.Lerp(gameObject.transform.localScale, new Vector3(fullBufferScale, fullBufferScale, fullBufferScale),(float)bufferIter / (float)mashBufferSize);
-                    mashBuffer.SetValue(button, bufferIter);
+	               mashBuffer.SetValue(button, bufferIter);
    	         
 				    if(!mashing) {
 					    mashing = true;
 				    }
-				    if(button != 'B') {
-			  	    	ExponentShot();
-			  	    }
-			  	    else {
+				    if(button == 'B') {
 			  	    	OffScreenShot();
 			  	    }
-				    bufferIter++;
+			  	    else {
+			  	    	ExponentShot();
+			  	    }
+					if (poweredUpBuffer || bufferIter < mashBufferSize)
+                    {
+                        bufferIter++;
+
+                    }
             }
            }
 		} else if(mashing && button == '0' && !melee ){
@@ -74,6 +75,8 @@ public class OffscreenShot : InputInterpretter {
 		else {
 			renderer.color = new Color(1f, 1f, 1f);
 		}
+
+		playerStats.UpdateBufferBar(bufferIter);
 	}
 
 	public override void Fire ()
@@ -85,7 +88,8 @@ public class OffscreenShot : InputInterpretter {
 
 		//playerMovement.ResetReticle();
 		if(exponentCooldownTimer <= 0) {
-			if(mashBuffer[bufferIter] == 'B') {
+			if(mashBuffer[mashBuffer.Length - 1] == 'B') {
+				bufferIter--;
 				OffScreenShot();
 			}
 			else {

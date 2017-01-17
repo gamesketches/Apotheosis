@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		reticle.gameObject.layer = gameObject.layer;
 		rb2D = GetComponent<Rigidbody2D>();
-		anim.speed = 0.6f;
+		anim.speed = 1f;
 		if(playerStats.number == 0) {
 			radians = 0.0f;
 			lastDirection = Direction.Right;
@@ -78,36 +78,37 @@ public class PlayerMovement : MonoBehaviour {
 				return;
 			}
 			else {
-				float computedSpeed =  speed * (float)(1 - slowFactor * bufferIter);
-				#if DEV
-				rb2D.velocity = (new Vector2(Input.GetAxisRaw(horizontalAxis), Input.GetAxisRaw(verticalAxis))).normalized * (float)computedSpeed;
-				#elif RELEASE
-				rb2D.velocity = (new Vector2(controller.DPad.X, controller.DPad.Y)).normalized * (float)computedSpeed;
-				#else
-				Debug.LogError("Preprocessor directive not defined for Player Movement");
-				#endif
-					anim.SetInteger("xAxis", (int) rb2D.velocity.x);
-					anim.SetInteger("yAxis", (int) rb2D.velocity.y);
-					//if(playerStats.character == Character.Hiruko) {
-						if(rb2D.velocity.x < 0) {
-							renderer.flipX = true;
+				rb2D.velocity = GetInput();
+				anim.SetInteger("xAxis", (int) rb2D.velocity.x);
+				anim.SetInteger("yAxis", (int) rb2D.velocity.y);
+				if(rb2D.velocity.x < 0) {
+					renderer.flipX = true;
+				}
+				else if(rb2D.velocity.x > 0) {
+					renderer.flipX = false;
+				}
+				if(rb2D.velocity.x != 0.0f || rb2D.velocity.y != 0.0f) {
+					radians = Mathf.Atan2(rb2D.velocity.y, rb2D.velocity.x);
+					degrees = radians * Mathf.Rad2Deg;
+					if(degrees < 0.0f) {
+						degrees += 360.0f;
 						}
-						else if(rb2D.velocity.x > 0) {
-							renderer.flipX = false;
-						}
-					//}
-					if(rb2D.velocity.x != 0.0f || rb2D.velocity.y != 0.0f) {
-						radians = Mathf.Atan2(rb2D.velocity.y, rb2D.velocity.x);
-						degrees = radians * Mathf.Rad2Deg;
-						if(degrees < 0.0f) {
-							degrees += 360.0f;
-						}
-						SetReticle();
+					SetReticle();
 					}
-					}
+				}
 			}
 		else {
 			rb2D.velocity = Vector2.zero;
+		}
+	}
+
+	Vector2 GetInput() {
+		float computedSpeed =  speed * (float)(1 - slowFactor * bufferIter);
+		if(Application.isEditor) {
+			return new Vector2(Input.GetAxisRaw(horizontalAxis), Input.GetAxisRaw(verticalAxis)).normalized * (float)computedSpeed;
+		}
+		else {
+			return new Vector2(controller.DPad.X, controller.DPad.Y).normalized * (float)computedSpeed;
 		}
 	}
 

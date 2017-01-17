@@ -50,6 +50,7 @@ public class InputInterpretter : MonoBehaviour {
     protected new SpriteRenderer renderer;
 	protected PlayerMovement playerMovement;
 	protected AudioSource soundEffects;
+	protected Animator anim;
 
 
     public enum BarLerpStyle { grow, shrink };
@@ -66,23 +67,19 @@ public class InputInterpretter : MonoBehaviour {
 		playerStats = GetComponent<PlayerStats>();
 		playerMovement = GetComponent<PlayerMovement>();
 		renderer = GetComponent<SpriteRenderer>();
-		//mashBufferSize = 8;
 		mashBuffer = new char[mashBufferSize];
 		for(int i = 0; i < mashBufferSize; i++){
 			mashBuffer.SetValue('*', i);
 		}
 
         buffer_style = BarLerpStyle.shrink;
+        anim = GetComponent<Animator>();
 
     }
 
     public void Update()
     {
         playerMovement.bufferIter = bufferIter;
-        if (bufferIter > 1)
-        {
-            //Debug.Log("buffer iter: " + bufferIter);
-        }
         if (playerMovement.locked)
         {
             return;
@@ -107,15 +104,13 @@ public class InputInterpretter : MonoBehaviour {
                 }
                 else
                 {
-                    //gameObject.transform.localScale = Vector3.Lerp(new Vector3(1f, 1f, 1f), new Vector3(fullBufferScale, fullBufferScale, fullBufferScale),(float)bufferIter / (float)mashBufferSize);
-                    gameObject.transform.localScale = Vector3.Lerp(gameObject.transform.localScale, new Vector3(fullBufferScale, fullBufferScale, fullBufferScale), (float)bufferIter / (float)mashBufferSize);
                     mashBuffer.SetValue(button, bufferIter);
                     if (!mashing)
                     {
                         mashing = true;
                     }
                     ExponentShot();
-                    if (!poweredUpBuffer || bufferIter < mashBufferSize - 2)
+                    if (poweredUpBuffer || bufferIter < mashBufferSize)
                     {
                         bufferIter++;
                     }
@@ -142,56 +137,45 @@ public class InputInterpretter : MonoBehaviour {
             renderer.color = new Color(1f, 1f, 1f);
         }
 
-        //playerStats.bufferBar.transform.localScale = new Vector3(1 * bufferIter + 1, 1, 1);
-        switch (buffer_style)
-        {
-            case BarLerpStyle.shrink:
-                playerStats.UpdateBufferBar((1 / (float)mashBufferSize) * (mashBufferSize - bufferIter));
-                break;
-            case BarLerpStyle.grow:
-			playerStats.UpdateBufferBar((1 / (float)mashBufferSize) * bufferIter + 1);
-                break;
-            default:
-			playerStats.UpdateBufferBar((1 / (float)mashBufferSize) * bufferIter + 1);
-                break;
-        }
+        playerStats.UpdateBufferBar(bufferIter);
+
     }
 
     public char GetButtonPress() {
+    	char input = '0';
     	if(Application.isEditor) {
 			if(Input.GetButtonDown(buttonA)) {
-				return 'A';
+				input = 'A';
 			}
 			else if(Input.GetButtonDown(buttonB)) {
-				return 'B';
+				input = 'B';
 			}
 			else if(Input.GetButtonDown(buttonC)) {
-				return 'C';
+				input = 'C';
 			}
 			else if(Input.GetButtonDown(buttonD)) {
-				return 'D';
-			}
-			else {
-				return '0';
+				input = 'D';
 			}
 		}
 		else {
 			if(inputDevice.Action3.HasChanged && inputDevice.Action3.State) {
-				return 'A';
+				input = 'A';
 			}
 			else if(inputDevice.Action1.HasChanged && inputDevice.Action1.State) {
-				return 'B';
+				input = 'B';
 			}
 			else if(inputDevice.Action2.HasChanged && inputDevice.Action2.State) {
-				return 'C';
+				input = 'C';
 			}
 			else if(inputDevice.Action4.HasChanged && inputDevice.Action4.State) {
-				return 'D';
-			}
-			else {
-				return '0';
+				input = 'D';
 			}
 		}
+		if(input != 'D' && input != '0'){
+				anim.SetTrigger("Shoot");
+			}
+			return input;
+		
 	}
 
 	public void ExponentShot() {
@@ -211,7 +195,7 @@ public class InputInterpretter : MonoBehaviour {
 		}
 
 		BulletDepot.Volley volley = bullets.types[(int)playerStats.character].projectileTypes[(int)type].volleys[bufferIter];
-        //Debug.Log(" volley = " + bufferIter); //ski
+
 		foreach(BulletDepot.Bullet bullet in volley.volley) {
 			CreateBullet(bullet, type);
         }

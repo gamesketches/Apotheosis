@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour {
 	PlayerStats player1Stats, player2Stats;
 	BulletDepot bullets;
 	GameObject p1LifeBar, p2LifeBar, p1BufferBar, p2BufferBar;
+	GameObject UIElements;
     private int roundsToWin;
     public float screenShake;
     #endregion
@@ -58,16 +59,17 @@ public class GameManager : MonoBehaviour {
         HorusWinsIconsSR = new SpriteRenderer[HorusWinsIcons.Length];
         SetWinsIconsSR = new SpriteRenderer[SetWinsIcons.Length];
         p1LifeBar = GameObject.Find("P1LifeBar");
-        p1BufferBar = GameObject.Find("P1BufferBar");
+		p1BufferBar = GameObject.Find("P1BufferBarSegments");
         p2LifeBar = GameObject.Find("P2LifeBar");
-		p2BufferBar = GameObject.Find("P2BufferBar");
+		p2BufferBar = GameObject.Find("P2BufferBarSegments");
+		UIElements = GameObject.Find("InGameUIElements");
         ToggleUI(false);
         player1Wins = 0;
         player2Wins = 0;
         roundsToWin = 2;
 
         int j = 0;
-        for (int i = 2; i >= 0; i--)
+        for (int i = 1; i >= 0; i--)
         {
             HorusWinsIconsSR[j] = HorusWinsIcons[i].GetComponent<SpriteRenderer>();
             SetWinsIconsSR[j] = SetWinsIcons[i].GetComponent<SpriteRenderer>();
@@ -105,7 +107,6 @@ public class GameManager : MonoBehaviour {
 			bulletDescriptions[i,2] = bullets.types[i].projectileTypes[0].bulletDescription;
         }
 
-        characterSelectManager.SetBulletDescriptions(bulletDescriptions);
         AnalyticsEngine.Initialize(new string[] {"LoholtBulletsFired", "OrpheusBulletsFired", "HirukoBulletsFired"});
     }
 
@@ -195,21 +196,25 @@ public class GameManager : MonoBehaviour {
   
 
 	void CreateBars() {
-		Vector3 lifebarOffset = new Vector3(9f, 19.6f, 0);
-		Vector3 bufferBarOffset = new Vector3(-10, 20, 0);
 
 		ToggleUI(true);
         player1Stats = player1.GetComponent<PlayerStats>();
         player1Stats.lifeBar = p1LifeBar;
         p1LifeBar.transform.localScale = Vector3.one;
-        player1Stats.bufferBar = p1BufferBar;
-        p1BufferBar.transform.localScale = Vector3.one;
+
+        player1Stats.bufferBar = p1BufferBar.GetComponentsInChildren<Transform>();
+        foreach(Transform bar in player1Stats.bufferBar) {
+        	bar.gameObject.SetActive(false);
+        }
 
         player2Stats = player2.GetComponent<PlayerStats>();
 		player2Stats.lifeBar = p2LifeBar;
 		p2LifeBar.transform.localScale = Vector3.one;
-		player2Stats.bufferBar = p2BufferBar;
-        p2BufferBar.transform.localScale = Vector3.one;
+
+		player2Stats.bufferBar = p2BufferBar.GetComponentsInChildren<Transform>();
+		foreach(Transform bar in player2Stats.bufferBar) {
+        	bar.gameObject.SetActive(false);
+        }
 
 	}
 
@@ -260,7 +265,6 @@ public class GameManager : MonoBehaviour {
 
         if (roundTimer.text == "0")
         {
-            Debug.Log("time over");
             victoryText.text = "TIME'S\nUP";
             victoryText.enabled = true;
             yield return new WaitForSeconds(1.5f);
@@ -269,7 +273,6 @@ public class GameManager : MonoBehaviour {
         }
 
         if (playerNum == 5) {
-            Debug.Log("time over + playerNum =" + playerNum);
             victoryText.text = "DRAW\nGAME";
 		}
 		else {
@@ -280,7 +283,6 @@ public class GameManager : MonoBehaviour {
 				yield return new WaitForSeconds(1.5f);
 				playerNum -= 2;
 			}
-			if (debug_on) Debug.Log(playerNum);
 	        victoryText.text = playerNum == 2 ? "Player Two" : "Player One";
 			victoryText.text += roundsWon == roundsToWin ? "\n IS \n   VICTORIOUS" : "\nWINS";
 		}
@@ -307,15 +309,6 @@ public class GameManager : MonoBehaviour {
 		victoryText.enabled = false;
         victoryText.text = "";
     }
-
-    /*	// Use this for initialization
-        void Start () {
-            // Fill in the MenuUpdate function
-            // then uncomment line 27 and delete line 28
-            // currentUpdateFunction = MenuUpdate;
-            //InitializeGameSettings();
-        }*/
-   
 	
 	// Update is called once per frame
 	void Update () {
@@ -333,17 +326,22 @@ public class GameManager : MonoBehaviour {
 
 		if(player1Stats.health <= 0 || player2Stats.health <= 0 || currentRoundTime <= 0) {
 			LockPlayers();
+			foreach(GameObject reticle in GameObject.FindGameObjectsWithTag("Reticle")) {
+				Destroy(reticle);
+			}
 			if(player1Stats.health <= 0 && player2Stats.health <= 0 ||
 							player1Stats.health == player2Stats.health) {
 					StartCoroutine(DisplayVictoryText(5, 0));
 			}
 			else if(player1Stats.health <= 0 || player1Stats.health < player2Stats.health) {
                 player2RoundWins++;
+                Destroy(player1);
                 StartCoroutine(DisplayVictoryText(2, player2RoundWins));
                 SetWinsIconsSR[player2RoundWins - 1].enabled = true;
 			}
 			else if (player2Stats.health <= 0 || player2Stats.health < player1Stats.health){
                 player1RoundWins++;
+                Destroy(player2);
                 StartCoroutine(DisplayVictoryText(1, player1RoundWins));
                 HorusWinsIconsSR[player1RoundWins - 1].enabled = true;
 			}
@@ -370,20 +368,12 @@ public class GameManager : MonoBehaviour {
         pressStart.enabled = true;
 		background.enabled = true;
 		roundTimer.enabled = false;
-		AudioSource backgroundMusic = Camera.main.GetComponent<AudioSource>();
-		backgroundMusic.clip = Resources.Load<AudioClip>("audio/music/menu/LandOfTwoFields");
-		backgroundMusic.Play();
+		ChangeBackgroundMusic("audio/music/menu/LandOfTwoFields");
 		currentUpdateFunction = TitleScreen;
 		ToggleUI(false);
 	}
 
 	void ClearObjects() {
-		Destroy(player1Reticle);
-		Destroy(player2Reticle);
-		// TODO ERASE THIS GARBAGE
-		foreach(GameObject reticle in GameObject.FindGameObjectsWithTag("Reticle")) {
-			Destroy(reticle);
-		}
 		Destroy(player1);
 		Destroy(player2);
 
@@ -400,9 +390,7 @@ public class GameManager : MonoBehaviour {
 		StartCoroutine(ReadyFightMessageChange());
 		// Probably put some ready fight shit over here
 		Invoke("UnlockPlayers", 2.5f);
-		AudioSource backgroundMusic = Camera.main.GetComponent<AudioSource>();
-		backgroundMusic.clip = Resources.Load<AudioClip>("audio/music/battleTheme/RenewYourSoul");
-		backgroundMusic.Play();
+		ChangeBackgroundMusic("audio/music/battleTheme/RenewYourSoul");
 	}
 
 	void LockPlayers() {
@@ -429,7 +417,6 @@ public class GameManager : MonoBehaviour {
         }
 
         int currentRound = (player1RoundWins + player2RoundWins + 1);
-        //victoryText.text = ("ROUND " + (player1RoundWins + player2RoundWins + 1.0f).ToString());
         victoryText.text = "ROUND " + currentRound.ToString();
         Debug.Log("GameManager.cs: ROUND NUMBER = " + (player1RoundWins + player2RoundWins + 1).ToString());
         yield return new WaitForSeconds(1.0f);
@@ -465,9 +452,12 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void ToggleUI(bool mode) {
-		p1LifeBar.SetActive(mode);
-		p1BufferBar.SetActive(mode);
-		p2LifeBar.SetActive(mode);
-		p2BufferBar.SetActive(mode);
+		UIElements.SetActive(mode);
+	}
+
+	void ChangeBackgroundMusic(string path){
+		AudioSource backgroundMusic = Camera.main.GetComponent<AudioSource>();
+		backgroundMusic.clip = Resources.Load<AudioClip>(path);
+		backgroundMusic.Play();
 	}
 }
