@@ -358,17 +358,22 @@ public class GameManager : MonoBehaviour {
 
 		if(player1Stats.health <= 0 || player2Stats.health <= 0 || currentRoundTime <= 0) {
 			LockPlayers();
+			foreach(GameObject reticle in GameObject.FindGameObjectsWithTag("Reticle")) {
+				Destroy(reticle);
+			}
 			if(player1Stats.health <= 0 && player2Stats.health <= 0 ||
 							player1Stats.health == player2Stats.health) {
 					StartCoroutine(DisplayVictoryText(5, 0));
 			}
 			else if(player1Stats.health <= 0 || player1Stats.health < player2Stats.health) {
                 player2RoundWins++;
+                Destroy(player1);
                 StartCoroutine(DisplayVictoryText(2, player2RoundWins));
                 SetWinsIconsSR[player2RoundWins - 1].enabled = true;
 			}
 			else if (player2Stats.health <= 0 || player2Stats.health < player1Stats.health){
                 player1RoundWins++;
+                Destroy(player2);
                 StartCoroutine(DisplayVictoryText(1, player1RoundWins));
                 HorusWinsIconsSR[player1RoundWins - 1].enabled = true;
 			}
@@ -401,12 +406,6 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void ClearObjects() {
-		Destroy(player1Reticle);
-		Destroy(player2Reticle);
-		// TODO ERASE THIS GARBAGE
-		foreach(GameObject reticle in GameObject.FindGameObjectsWithTag("Reticle")) {
-			Destroy(reticle);
-		}
 		Destroy(player1);
 		Destroy(player2);
 
