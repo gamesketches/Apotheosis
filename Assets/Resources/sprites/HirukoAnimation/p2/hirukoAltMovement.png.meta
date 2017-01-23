@@ -1,47 +1,47 @@
 fileFormatVersion: 2
-guid: 34d51e7630df54e19a4490f1b22f878e
-timeCreated: 1485212634
+guid: 51ef16f28fc744bbfb58488efadea1c3
+timeCreated: 1485213096
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: loholtAltMovement_0
-    21300002: loholtAltMovement_1
-    21300004: loholtAltMovement_2
-    21300006: loholtAltMovement_3
-    21300008: loholtAltMovement_4
-    21300010: loholtAltMovement_5
-    21300012: loholtAltMovement_6
-    21300014: loholtAltMovement_7
-    21300016: loholtAltMovement_8
-    21300018: loholtAltMovement_9
-    21300020: loholtAltMovement_10
-    21300022: loholtAltMovement_11
-    21300024: loholtAltMovement_12
-    21300026: loholtAltMovement_13
-    21300028: loholtAltMovement_14
-    21300030: loholtAltMovement_15
-    21300032: loholtAltMovement_16
-    21300034: loholtAltMovement_17
-    21300036: loholtAltMovement_18
-    21300038: loholtAltMovement_19
-    21300040: loholtAltMovement_20
-    21300042: loholtAltMovement_21
-    21300044: loholtAltMovement_22
-    21300046: loholtAltMovement_23
-    21300048: loholtAltMovement_24
-    21300050: loholtAltMovement_25
-    21300052: loholtAltMovement_26
-    21300054: loholtAltMovement_27
-    21300056: loholtAltMovement_28
-    21300058: loholtAltMovement_29
-    21300060: loholtAltMovement_30
-    21300062: loholtAltMovement_31
-    21300064: loholtAltMovement_32
-    21300066: loholtAltMovement_33
-    21300068: loholtAltMovement_34
-    21300070: loholtAltMovement_35
-    21300072: loholtAltMovement_36
-    21300074: loholtAltMovement_37
+    21300000: hirukoAltMovement_0
+    21300002: hirukoAltMovement_1
+    21300004: hirukoAltMovement_2
+    21300006: hirukoAltMovement_3
+    21300008: hirukoAltMovement_4
+    21300010: hirukoAltMovement_5
+    21300012: hirukoAltMovement_6
+    21300014: hirukoAltMovement_7
+    21300016: hirukoAltMovement_8
+    21300018: hirukoAltMovement_9
+    21300020: hirukoAltMovement_10
+    21300022: hirukoAltMovement_11
+    21300024: hirukoAltMovement_12
+    21300026: hirukoAltMovement_13
+    21300028: hirukoAltMovement_14
+    21300030: hirukoAltMovement_15
+    21300032: hirukoAltMovement_16
+    21300034: hirukoAltMovement_17
+    21300036: hirukoAltMovement_18
+    21300038: hirukoAltMovement_19
+    21300040: hirukoAltMovement_20
+    21300042: hirukoAltMovement_21
+    21300044: hirukoAltMovement_22
+    21300046: hirukoAltMovement_23
+    21300048: hirukoAltMovement_24
+    21300050: hirukoAltMovement_25
+    21300052: hirukoAltMovement_26
+    21300054: hirukoAltMovement_27
+    21300056: hirukoAltMovement_28
+    21300058: hirukoAltMovement_29
+    21300060: hirukoAltMovement_30
+    21300062: hirukoAltMovement_31
+    21300064: hirukoAltMovement_32
+    21300066: hirukoAltMovement_33
+    21300068: hirukoAltMovement_34
+    21300070: hirukoAltMovement_35
+    21300072: hirukoAltMovement_36
+    21300074: hirukoAltMovement_37
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -64,7 +64,7 @@ TextureImporter:
   cubemapConvolutionSteps: 7
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -1
+  textureFormat: -3
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
@@ -91,7 +91,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: loholtAltMovement_0
+      name: hirukoAltMovement_0
       rect:
         serializedVersion: 2
         x: 0
@@ -104,7 +104,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_1
+      name: hirukoAltMovement_1
       rect:
         serializedVersion: 2
         x: 300
@@ -117,7 +117,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_2
+      name: hirukoAltMovement_2
       rect:
         serializedVersion: 2
         x: 600
@@ -130,7 +130,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_3
+      name: hirukoAltMovement_3
       rect:
         serializedVersion: 2
         x: 900
@@ -143,7 +143,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_4
+      name: hirukoAltMovement_4
       rect:
         serializedVersion: 2
         x: 1200
@@ -156,7 +156,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_5
+      name: hirukoAltMovement_5
       rect:
         serializedVersion: 2
         x: 1500
@@ -169,7 +169,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_6
+      name: hirukoAltMovement_6
       rect:
         serializedVersion: 2
         x: 1800
@@ -182,7 +182,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_7
+      name: hirukoAltMovement_7
       rect:
         serializedVersion: 2
         x: 2100
@@ -195,7 +195,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_8
+      name: hirukoAltMovement_8
       rect:
         serializedVersion: 2
         x: 2400
@@ -208,7 +208,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_9
+      name: hirukoAltMovement_9
       rect:
         serializedVersion: 2
         x: 2700
@@ -221,7 +221,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_10
+      name: hirukoAltMovement_10
       rect:
         serializedVersion: 2
         x: 3000
@@ -234,7 +234,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_11
+      name: hirukoAltMovement_11
       rect:
         serializedVersion: 2
         x: 3300
@@ -247,7 +247,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_12
+      name: hirukoAltMovement_12
       rect:
         serializedVersion: 2
         x: 3600
@@ -260,7 +260,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_13
+      name: hirukoAltMovement_13
       rect:
         serializedVersion: 2
         x: 3900
@@ -273,7 +273,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_14
+      name: hirukoAltMovement_14
       rect:
         serializedVersion: 2
         x: 4200
@@ -286,7 +286,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_15
+      name: hirukoAltMovement_15
       rect:
         serializedVersion: 2
         x: 4500
@@ -299,7 +299,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_16
+      name: hirukoAltMovement_16
       rect:
         serializedVersion: 2
         x: 4800
@@ -312,7 +312,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_17
+      name: hirukoAltMovement_17
       rect:
         serializedVersion: 2
         x: 5100
@@ -325,7 +325,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_18
+      name: hirukoAltMovement_18
       rect:
         serializedVersion: 2
         x: 5400
@@ -338,7 +338,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_19
+      name: hirukoAltMovement_19
       rect:
         serializedVersion: 2
         x: 5700
@@ -351,7 +351,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_20
+      name: hirukoAltMovement_20
       rect:
         serializedVersion: 2
         x: 6000
@@ -364,7 +364,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_21
+      name: hirukoAltMovement_21
       rect:
         serializedVersion: 2
         x: 6300
@@ -377,7 +377,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_22
+      name: hirukoAltMovement_22
       rect:
         serializedVersion: 2
         x: 6600
@@ -390,7 +390,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_23
+      name: hirukoAltMovement_23
       rect:
         serializedVersion: 2
         x: 6900
@@ -403,7 +403,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_24
+      name: hirukoAltMovement_24
       rect:
         serializedVersion: 2
         x: 7200
@@ -416,7 +416,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_25
+      name: hirukoAltMovement_25
       rect:
         serializedVersion: 2
         x: 7500
@@ -429,7 +429,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_26
+      name: hirukoAltMovement_26
       rect:
         serializedVersion: 2
         x: 7800
@@ -442,7 +442,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_27
+      name: hirukoAltMovement_27
       rect:
         serializedVersion: 2
         x: 8100
@@ -455,7 +455,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_28
+      name: hirukoAltMovement_28
       rect:
         serializedVersion: 2
         x: 8400
@@ -468,7 +468,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_29
+      name: hirukoAltMovement_29
       rect:
         serializedVersion: 2
         x: 8700
@@ -481,7 +481,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_30
+      name: hirukoAltMovement_30
       rect:
         serializedVersion: 2
         x: 9000
@@ -494,7 +494,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_31
+      name: hirukoAltMovement_31
       rect:
         serializedVersion: 2
         x: 9300
@@ -507,7 +507,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_32
+      name: hirukoAltMovement_32
       rect:
         serializedVersion: 2
         x: 9600
@@ -520,7 +520,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_33
+      name: hirukoAltMovement_33
       rect:
         serializedVersion: 2
         x: 9900
@@ -533,7 +533,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_34
+      name: hirukoAltMovement_34
       rect:
         serializedVersion: 2
         x: 10200
@@ -546,7 +546,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_35
+      name: hirukoAltMovement_35
       rect:
         serializedVersion: 2
         x: 10500
@@ -559,7 +559,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_36
+      name: hirukoAltMovement_36
       rect:
         serializedVersion: 2
         x: 10800
@@ -572,7 +572,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltMovement_37
+      name: hirukoAltMovement_37
       rect:
         serializedVersion: 2
         x: 11100

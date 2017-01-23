@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: 3374dc7a4fade45338552445bb1f1395
-timeCreated: 1485212651
+guid: 86c4080e30620424eb73ae7e3b071ef3
+timeCreated: 1485212278
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: loholtAltShoot_0
-    21300002: loholtAltShoot_1
-    21300004: loholtAltShoot_2
-    21300006: loholtAltShoot_3
+    21300000: hirukoShoot_0
+    21300002: hirukoShoot_1
+    21300004: hirukoShoot_2
+    21300006: hirukoShoot_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -30,7 +30,7 @@ TextureImporter:
   cubemapConvolutionSteps: 7
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -1
+  textureFormat: -3
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
@@ -57,7 +57,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: loholtAltShoot_0
+      name: hirukoShoot_0
       rect:
         serializedVersion: 2
         x: 0
@@ -70,7 +70,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltShoot_1
+      name: hirukoShoot_1
       rect:
         serializedVersion: 2
         x: 300
@@ -83,7 +83,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltShoot_2
+      name: hirukoShoot_2
       rect:
         serializedVersion: 2
         x: 600
@@ -96,7 +96,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: loholtAltShoot_3
+      name: hirukoShoot_3
       rect:
         serializedVersion: 2
         x: 900
