@@ -100,8 +100,6 @@ public class TrainingModeManager : MonoBehaviour {
         bullets = ScriptableObject.CreateInstance<BulletDepot>();
 
         bullets.Load();
-		player1Controls = CreateControlScheme(0);
-		player2Controls = CreateControlScheme(1);
 		StartRound();
 	}
 
