@@ -25,6 +25,7 @@ public class MenuController : MonoBehaviour {
 		pointer.transform.position = currentOption.position - new Vector3(230, 0, 0);
 		pointer.GetComponent<RectTransform>().position = currentOption.position - new Vector3(230, 0, 0);
 		Debug.Log(pointer.transform.position);
+		Debug.Log(pointer.GetComponent<RectTransform>().position);
 		Debug.Log(currentOption.position);
 		if(!active) {
 			topOptionList.gameObject.SetActive(false);
@@ -33,22 +34,25 @@ public class MenuController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log(pointer.transform.position);
 		if(active) {
 			if(Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) {
+				SetHighlight(currentOption, false);
 				int siblingIndex = currentOption.GetSiblingIndex() + 1;
 				if(siblingIndex >= currentOption.transform.parent.childCount) {
 					siblingIndex = 0;
 				}
 				currentOption = currentOption.transform.parent.GetChild(siblingIndex);
+				SetHighlight(currentOption, true);
 			}
 
 			if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) {
+				SetHighlight(currentOption, false);
 				int siblingIndex = currentOption.GetSiblingIndex() - 1;
 				if(siblingIndex < 0) {
 					siblingIndex = currentOption.transform.parent.childCount - 1;
 				}
 				currentOption = currentOption.transform.parent.GetChild(siblingIndex);
+				SetHighlight(currentOption, true);
 			}
 			if(Input.GetKeyDown(KeyCode.Space)) {
 				MenuActionScript actionScript = currentOption.GetComponent<MenuActionScript>();
@@ -69,7 +73,9 @@ public class MenuController : MonoBehaviour {
 							break;
 						}
 					}
+					SetHighlight(currentOption, false);
 					currentOption = grandParent;
+					SetHighlight(currentOption, true);
 					grandParent.GetComponent<MenuActionScript>().DeActivate();
 				}
 			}
@@ -90,5 +96,17 @@ public class MenuController : MonoBehaviour {
 
 	void UpdatePosition() {
 		pointer.transform.position = currentOption.position - new Vector3(230, 0, 0);
+	}
+
+	void SetHighlight(Transform option, bool toggleOn) {
+		Image buttonImage = option.gameObject.GetComponent<Image>();
+		Color targetColor = buttonImage.color;
+		if(toggleOn) {
+			targetColor.a = 0.2f;
+		}
+		else {
+			targetColor.a = 0.0f;
+		}
+		buttonImage.color = targetColor;
 	}
 }
