@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class MenuController : MonoBehaviour {
@@ -22,6 +23,9 @@ public class MenuController : MonoBehaviour {
 		currentOptionList = optionList.GetComponentsInChildren<Transform>();
 		currentOption = currentOptionList[listPosition];
 		pointer.transform.position = currentOption.position - new Vector3(230, 0, 0);
+		pointer.GetComponent<RectTransform>().position = currentOption.position - new Vector3(230, 0, 0);
+		Debug.Log(pointer.transform.position);
+		Debug.Log(currentOption.position);
 		if(!active) {
 			topOptionList.gameObject.SetActive(false);
 		}
@@ -29,6 +33,7 @@ public class MenuController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		Debug.Log(pointer.transform.position);
 		if(active) {
 			if(Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) {
 				int siblingIndex = currentOption.GetSiblingIndex() + 1;

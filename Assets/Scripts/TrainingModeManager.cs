@@ -216,7 +216,7 @@ public class TrainingModeManager : MonoBehaviour {
 		if(player2Stats.health <= 0) {
 			player2Stats.TakeDamage(-playerFactory.startingHealth);
 		}
-		if(Input.GetKeyDown(KeyCode.Return)) {
+		if(Input.GetKeyDown(KeyCode.Return) || player1Controller.Command) {
 			if(menuController.active) {
 				UnlockPlayers();
 			}
