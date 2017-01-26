@@ -91,9 +91,11 @@ public class CharacterSelectManager : MonoBehaviour {
 
 		if(GetPlayer1ConfirmButton()) {
 			if(p1Selected) {
+				audioSource.Play();
 				p2Selected = true;
 			}
 			else { 
+				audioSource.Play();
 				p1Selected = true;
 			}
         }
@@ -137,7 +139,7 @@ public class CharacterSelectManager : MonoBehaviour {
 
     bool GetPlayer1ConfirmButton() {
     	if(Application.isEditor) {
-    		return Input.GetButtonUp("ButtonB0");
+    		return Input.GetButtonDown("ButtonB0");
     	}
     	else {
     		return player1Controller.Action1.State;
@@ -146,7 +148,7 @@ public class CharacterSelectManager : MonoBehaviour {
 
     bool GetPlayer2ConfirmButton() {
     	if(Application.isEditor) {
-    		return Input.GetButtonUp("ButtonB1");
+    		return Input.GetButtonDown("ButtonB1");
     	}
     	else {
     		return player2Controller.Action2.State;

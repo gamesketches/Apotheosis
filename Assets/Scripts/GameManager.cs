@@ -129,7 +129,11 @@ public class GameManager : MonoBehaviour {
 	    	else {
 				pressStart.transform.GetChild(0).GetComponent<Text>().text = "<color=White>Press Start for Training Mode\nX for Versus</color>";
 	    	}
-	    	if(InputManager.ActiveDevice != null && InputManager.ActiveDevice.AnyButton) {
+			if(InputManager.ActiveDevice != null) {
+			  if(InputManager.ActiveDevice.Command) {
+			  	SceneManager.LoadScene(2);
+			  }
+	    	  else if (InputManager.ActiveDevice.AnyButton) {
 	    		player1Controller = InputManager.ActiveDevice;
 	    		foreach(InputDevice controller in InputManager.Devices) {
 	    			if(controller != InputManager.ActiveDevice) {
@@ -137,6 +141,7 @@ public class GameManager : MonoBehaviour {
 	    			}
 	    		}
 	    		MoveToCharacterSelect();
+	        	}
 	        }
 	    }
 
