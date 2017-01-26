@@ -319,6 +319,9 @@ public class TrainingModeManager : MonoBehaviour {
 				characterSelectManager.p1Character = (Character)System.Enum.GetValues(typeof(Character)).GetValue(0);
 			}
 		Destroy(player1Reticle);
+		foreach(GameObject reticle in GameObject.FindGameObjectsWithTag("Reticle")) {
+			Destroy(reticle);
+		}
 		Destroy(player1);
 		if(Application.isEditor) {
 			player1 = playerFactory.CreatePlayerInEditor(player1Controls, characterSelectManager.p1Character, player1Pos, 0);
@@ -328,6 +331,7 @@ public class TrainingModeManager : MonoBehaviour {
 		}
 		player1Stats = player1.GetComponent<PlayerStats>();
         player1Stats.lifeBar = p1LifeBar;
+        player1.GetComponent<PlayerMovement>().locked = true;
         p1LifeBar.transform.localScale = Vector3.one;
         player1Stats.bufferBar = p1BufferBar.GetComponentsInChildren<Transform>();
         //p1BufferBar.transform.localScale = Vector3.one;

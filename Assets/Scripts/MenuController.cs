@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using InControl;
 
 public class MenuController : MonoBehaviour {
 
@@ -35,7 +36,7 @@ public class MenuController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(active) {
-			if(Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) {
+			if(Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S) || InputManager.ActiveDevice.Direction.Y < 0) {
 				SetHighlight(currentOption, false);
 				int siblingIndex = currentOption.GetSiblingIndex() + 1;
 				if(siblingIndex >= currentOption.transform.parent.childCount) {
@@ -45,7 +46,7 @@ public class MenuController : MonoBehaviour {
 				SetHighlight(currentOption, true);
 			}
 
-			if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) {
+			if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W) || InputManager.ActiveDevice.Direction.Y > 0) {
 				SetHighlight(currentOption, false);
 				int siblingIndex = currentOption.GetSiblingIndex() - 1;
 				if(siblingIndex < 0) {
@@ -54,7 +55,7 @@ public class MenuController : MonoBehaviour {
 				currentOption = currentOption.transform.parent.GetChild(siblingIndex);
 				SetHighlight(currentOption, true);
 			}
-			if(Input.GetKeyDown(KeyCode.Space)) {
+			if(Input.GetButtonDown("ButtonB0") || InputManager.ActiveDevice.Action1.WasPressed) {
 				MenuActionScript actionScript = currentOption.GetComponent<MenuActionScript>();
 				actionScript.Activate();
 				if(actionScript.listOption) {
@@ -90,6 +91,7 @@ public class MenuController : MonoBehaviour {
 		}
 		else {
 			topOptionList.gameObject.SetActive(true);
+			SetHighlight(currentOption, true);
 			active = true;
 		}
 	}
