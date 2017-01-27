@@ -29,7 +29,7 @@ public class MenuBuilder : MonoBehaviour {
 
 		pointer = GetComponent<MenuController>();
 
-		pointer.Initialize(GenMenuList(topNode, transform, new Vector3(400, 130, 0)));
+		pointer.Initialize(GenMenuList(topNode, transform, new Vector3(390, 130, 0)));
 
 
 	}
@@ -45,7 +45,7 @@ public class MenuBuilder : MonoBehaviour {
 			if(node.Name == "Action") {
 				GameObject actionOption = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/MenuAction"), newPos, Quaternion.identity);
 				actionOption.transform.SetParent(listOption.transform, false);
-				actionOption.GetComponent<MenuActionScript>().Initialize(playerType.GetMethod(node.InnerText), player);
+				actionOption.GetComponent<MenuActionScript>().Initialize(playerType.GetMethod(node.InnerText.Replace(" ", string.Empty)), player);
 				actionOption.GetComponentInChildren<Text>().text = node.InnerText;
 			}
 			else if(node.Name == "List") {

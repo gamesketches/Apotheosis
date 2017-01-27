@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
  <List name="Actions">
- 		<Action>ChangeCharacter</Action>
- 		<Action>MainMenu</Action>
+ 		<Action>Change Character</Action>
+ 		<Action>Main Menu</Action>
  </List>
 </Root>
