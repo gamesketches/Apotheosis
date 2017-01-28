@@ -318,7 +318,6 @@ public class GameManager : MonoBehaviour {
 		else {
 			RoundReset();
 		}
-		//victoryText.enabled = false;
         victoryText.text = "";
     }
 	
