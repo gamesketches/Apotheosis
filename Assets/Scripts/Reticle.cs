@@ -35,7 +35,6 @@ public class Reticle : MonoBehaviour {
 						StartCoroutine(Hitstop(jabHitStun));
 						collider.gameObject.GetComponent<PlayerMovement>().StartKnockback(transform, jabDamage);
 						collider.gameObject.GetComponent<InputInterpretter>().SetExponentCooldownTimer(jabCooldown);
-                        Debug.Log("cooldown now");
 					}
 					string hitSparkSpritePath = string.Concat("sprites/hitSparks/hit", color == Color.blue ? "BR" : "RB");
 					GameObject sparks = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/HitSparks"), transform.position, Quaternion.identity);

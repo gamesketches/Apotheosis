@@ -60,7 +60,6 @@ public class PlayerStats : MonoBehaviour {
            	if(shakeX.x > 4) {
            		shakeX.x = 4;
            	}
-            Debug.Log("Screen shake: " + shakeX + " shakeScale :" + shakeScale + "damage: " + damage);
             Camera.main.transform.position += shakeX / 2.0f;
             yield return new WaitForSeconds(0.05f);
             Camera.main.transform.position -= shakeX;

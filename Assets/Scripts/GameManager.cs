@@ -337,6 +337,7 @@ public class GameManager : MonoBehaviour {
 			foreach(GameObject reticle in GameObject.FindGameObjectsWithTag("Reticle")) {
 				Destroy(reticle);
 			}
+			Destroy(GameObject.Find("Obstacle(Clone)"));
 			if(player1Stats.health <= 0 && player2Stats.health <= 0 ||
 							player1Stats.health == player2Stats.health) {
 					StartCoroutine(DisplayVictoryText(5, 0));
@@ -391,7 +392,6 @@ public class GameManager : MonoBehaviour {
 			renderer.enabled = false;
 		}
 
-		Destroy(GameObject.Find("Obstacle(Clone)"));
 	}
 
 	void FightIntro() {
