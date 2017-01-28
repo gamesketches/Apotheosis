@@ -296,14 +296,18 @@ public class GameManager : MonoBehaviour {
 		}
 		victoryText.enabled = true;
         yield return new WaitForSeconds(3.0f);
+		foreach(GameObject reticle in GameObject.FindGameObjectsWithTag("Reticle")) {
+				Destroy(reticle);
+			}
+			Destroy(GameObject.Find("Obstacle(Clone)"));
 
 		if(player1RoundWins >= roundsToWin || player2RoundWins >= roundsToWin)
         {
         	victoryText.text = "X FOR REMATCH\n O TO QUIT";
-        	while(!Input.GetButtonUp("ButtonB0") && !Input.GetButtonUp("ButtonC0")) {
+        	while(!Input.GetButtonDown("ButtonB0") && !Input.GetButtonDown("ButtonC0")) {
         		yield return null;
         	}
-        	if(Input.GetButtonUp("ButtonB0")) {
+        	if(Input.GetButtonDown("ButtonB0")) {
         		ClearObjects();
         		InitializeGameSettings();
         	}
@@ -314,7 +318,7 @@ public class GameManager : MonoBehaviour {
 		else {
 			RoundReset();
 		}
-		victoryText.enabled = false;
+		//victoryText.enabled = false;
         victoryText.text = "";
     }
 	
@@ -334,10 +338,6 @@ public class GameManager : MonoBehaviour {
 
 		if(player1Stats.health <= 0 || player2Stats.health <= 0 || currentRoundTime <= 0) {
 			LockPlayers();
-			foreach(GameObject reticle in GameObject.FindGameObjectsWithTag("Reticle")) {
-				Destroy(reticle);
-			}
-			Destroy(GameObject.Find("Obstacle(Clone)"));
 			if(player1Stats.health <= 0 && player2Stats.health <= 0 ||
 							player1Stats.health == player2Stats.health) {
 					StartCoroutine(DisplayVictoryText(5, 0));

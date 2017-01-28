@@ -69,8 +69,6 @@ public class Reticle : MonoBehaviour {
 		float startTime = Time.realtimeSinceStartup;
 		Time.timeScale = 0;
 		while(Time.realtimeSinceStartup < startTime + hitStun) {
-			Debug.Log(Time.timeSinceLevelLoad);
-			Debug.Log(startTime + hitStun);
 			yield return null;
 		}
 		Time.timeScale = 1;

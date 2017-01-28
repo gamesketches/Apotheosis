@@ -68,7 +68,6 @@ public class PlayerInitializer : MonoBehaviour {
 
 		animationController.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("sprites/OptimizedAnimationController");
 		string resourcePath = string.Concat("sprites/", character.ToString(), "Animation/p", (number + 1).ToString());
-		Debug.Log(Resources.LoadAll<AnimationClip>(resourcePath).Length);
 		foreach(AnimationClip clip in Resources.LoadAll<AnimationClip>(resourcePath)) {
 				animationController[clip.name] = clip;
 			}
