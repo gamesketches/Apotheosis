@@ -124,10 +124,10 @@ public class GameManager : MonoBehaviour {
     	}
     	else {
 	    	if(InputManager.Devices.Count < 1) {
-	    		pressStart.transform.GetChild(0).GetComponent<Text>().text = "<color=White>Please Attach Two Controllers</color>";
+	    		pressStart.transform.GetChild(0).GetComponent<Text>().text = "<color=White>PLEASE ATTACH TWO CONTROLLERS</color>";
 	    	}
 	    	else {
-				pressStart.transform.GetChild(0).GetComponent<Text>().text = "<color=White>Press Start for Training Mode\nX for Versus</color>";
+				pressStart.transform.GetChild(0).GetComponent<Text>().text = "<color=White>PRESS START FOR TRAINING MODE\nX FOR VERSUS</color>";
 	    	}
 			if(InputManager.ActiveDevice != null) {
 			  if(InputManager.ActiveDevice.Command) {
@@ -291,7 +291,7 @@ public class GameManager : MonoBehaviour {
 				yield return new WaitForSeconds(1.5f);
 				playerNum -= 2;
 			}
-	        victoryText.text = playerNum == 2 ? "Player Two" : "Player One";
+	        victoryText.text = playerNum == 2 ? "PLAYER ONE" : "PLAYER TWO";
 			victoryText.text += roundsWon == roundsToWin ? "\n IS \n   VICTORIOUS" : "\nWINS";
 		}
 		victoryText.enabled = true;
@@ -299,7 +299,7 @@ public class GameManager : MonoBehaviour {
 
 		if(player1RoundWins >= roundsToWin || player2RoundWins >= roundsToWin)
         {
-        	victoryText.text = "X For Rematch\n O to Quit";
+        	victoryText.text = "X FOR REMATCH\n O TO QUIT";
         	while(!Input.GetButtonUp("ButtonB0") && !Input.GetButtonUp("ButtonC0")) {
         		yield return null;
         	}
@@ -364,7 +364,6 @@ public class GameManager : MonoBehaviour {
           	  if (player1RoundWins > 2) player1Wins++;
             	else player2Wins++;
 				Invoke("ResetGame", 3f);
-				Debug.Log("Called in RoundEndUpdate");
 				return;
 			}
 	}
@@ -391,6 +390,8 @@ public class GameManager : MonoBehaviour {
 		foreach(SpriteRenderer renderer in SetWinsIconsSR) {
 			renderer.enabled = false;
 		}
+
+		Destroy(GameObject.Find("Obstacle(Clone)"));
 	}
 
 	void FightIntro() {
@@ -426,7 +427,6 @@ public class GameManager : MonoBehaviour {
 
         int currentRound = (player1RoundWins + player2RoundWins + 1);
         victoryText.text = "ROUND " + currentRound.ToString();
-        Debug.Log("GameManager.cs: ROUND NUMBER = " + (player1RoundWins + player2RoundWins + 1).ToString());
         yield return new WaitForSeconds(1.0f);
         victoryText.text = "";
         yield return new WaitForSeconds(0.2f);
