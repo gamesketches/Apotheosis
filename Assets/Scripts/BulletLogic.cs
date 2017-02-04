@@ -29,10 +29,14 @@ public class BulletLogic : MonoBehaviour {
 	AnimationCurve shieldVelocity;
 	public BulletDepot theDepot;
 
+    public GameObject myColliders;
+
     private bool debug_on = false; 
     // Use this for initialization
     void Start () {
-    	reflectiveShot = false;
+        myColliders = GameObject.Find("BulletColliders");
+
+        reflectiveShot = false;
 		renderer = GetComponentInChildren<SpriteRenderer>();
 		audio = GetComponent<AudioSource>();
 		audio.clip = Resources.Load<AudioClip>("audio/soundEffects/rpsBulletCancel");
@@ -43,6 +47,7 @@ public class BulletLogic : MonoBehaviour {
 			modulation *= -1;
 		}
 		shieldVelocity = new AnimationCurve(keyFrames);
+
     }
 	
 	// Update is called once per frame
@@ -56,10 +61,6 @@ public class BulletLogic : MonoBehaviour {
         }
         bulletFunction();
 		gameObject.transform.position += new Vector3(travelVector.x, travelVector.y) * Time.deltaTime;
-
-        //make the hippos crawl.
-
-
   	}
 
 	public void Initialize(BulletType bulletType, int bulletDamage, float Velocity, float size,
@@ -112,6 +113,15 @@ public class BulletLogic : MonoBehaviour {
                 transform.Rotate(new Vector3(0f, 0f, -90f));
                 //transform.rotation = new Vector3(0f, 0f, -90.0f);
 				bulletFunction = StraightLogic;
+                if (character == Character.Loholt) // add custom collider
+                {
+                    
+                    Destroy(gameObject.GetComponent<Collider2D>());
+                    PolygonCollider2D myPoly = gameObject.AddComponent<PolygonCollider2D>() as PolygonCollider2D;
+                    myPoly.points = myColliders.GetComponent<PolygonCollider2D>().points;
+                    myPoly.isTrigger = true;
+                    
+                }
                 //Debug.Log("in here");
                 break;
 			// Shield situation
@@ -132,6 +142,8 @@ public class BulletLogic : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		if(other.gameObject.tag == "Boundary") {
 			if(reflectiveShot) {
+                travelVector *= 1.25f;
+                lifetime *= 1.2f;
 				if(other.transform.position.y > transform.position.y) {
 					travelVector.Set(travelVector.x, -travelVector.y);
 				}
@@ -150,7 +162,7 @@ public class BulletLogic : MonoBehaviour {
 		if(other.gameObject.layer != gameObject.layer) {
 			if(other.gameObject.tag == "Player") {
 					other.gameObject.GetComponent<PlayerStats>().TakeDamage(damage);
-					GameObject sparks = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/HitSparks"), transform.position, Quaternion.identity);
+					GameObject sparks = (GameObject)Instantiate(Resources.Load<GameObject>("prefabs/HitSparks"), other.transform.position, Quaternion.identity);
 					sparks.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/hitSparks/hitspark");
                     sparks.transform.localScale = new Vector3(damage * 2, damage * 2, damage * 2);
                     //if (debug_on) Debug.Log("hit spark 0");

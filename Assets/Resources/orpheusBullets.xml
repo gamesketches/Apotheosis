@@ -211,7 +211,8 @@
 		</ProjectileType>
 		<ProjectileType name="crane" desc="Offscreen shot"> <!-- ROUNDABOUT blt count: 1,2,4,6,6,10,10,10-->
 			<Volley>
-        <!-- Volley #1 1 bullets 4dmg  -->
+        <!-- Volley #1 -->
+        <!-- 1 bullet 3 dmg -->
         <Bullet>
 					<size>1</size>
 					<speed>3</speed>
@@ -220,7 +221,8 @@
 				</Bullet>
 			</Volley>
 			<Volley>
-        <!-- Volley #2 2 bullets 4dmg  -->
+        <!-- Volley #2 -->
+        <!-- 2 bullet 4 dmg -->
         <Bullet>
 					<size>1</size>
 					<speed>3</speed>
@@ -235,7 +237,8 @@
 				</Bullet>
 			</Volley>
 			<Volley>
-        <!-- Volley #3 4 bullets 8 dmg -->
+        <!-- Volley #3 -->
+        <!-- 4 bullet 8 dmg -->
 				<Bullet>
 					<size>1</size>
 					<speed>1</speed>
@@ -262,8 +265,9 @@
 				</Bullet>
 			</Volley>
 			<Volley>
-        <!-- Volley #4 6 bullets 12 dmg-->
-				<Bullet>
+        <!-- Volley #4 -->
+        <!-- 6 bullet 6 dmg -->
+        <Bullet>
 					<size>1</size>
 					<speed>1</speed>
 					<damage>1</damage>
@@ -301,8 +305,9 @@
 				</Bullet>
 			</Volley>
 			<Volley>
-        <!-- Volley #5 6 bullets 10 dmg: :2 big -(1dmg) -->
-				<Bullet>
+        <!-- Volley #5  -->
+        <!-- 6 bullet 9 dmg -->
+        <Bullet>
 					<size>1</size>
 					<speed>1</speed>
 					<damage>2</damage>
@@ -340,8 +345,9 @@
 				</Bullet>
 			</Volley>
 			<Volley>
-        <!-- Volley #6 6 bullets -->
-				<Bullet>
+        <!-- Volley #6 -->
+        <!-- 6 bullets 10 dmg -->
+        <Bullet>
 					<size>2</size>
 					<speed>1</speed>
 					<damage>1</damage>
@@ -379,8 +385,9 @@
 				</Bullet>
 			</Volley>
 			<Volley>
-        <!-- Volley #7 10 bullets 6 big -->
-				<Bullet>
+        <!-- Volley #7  -->
+        <!-- 10 bullets 18 dmg -->
+        <Bullet>
 					<size>2</size>
 					<speed>1</speed>
 					<damage>2</damage>
@@ -442,8 +449,9 @@
 				</Bullet>
 			</Volley>
 			<Volley>
-        <!-- Volley #8 10 bullets 10 big -->
-				<Bullet>
+        <!-- Volley #8 -->
+        <!-- 06 blt 09 dmg -->
+        <Bullet>
 					<size>2</size>
 					<speed>1</speed>
 					<damage>1</damage>
