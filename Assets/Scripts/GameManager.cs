@@ -291,7 +291,7 @@ public class GameManager : MonoBehaviour {
 				yield return new WaitForSeconds(1.5f);
 				playerNum -= 2;
 			}
-	        victoryText.text = playerNum == 2 ? "PLAYER ONE" : "PLAYER TWO";
+	        victoryText.text = playerNum == 2 ? "PLAYER TWO" : "PLAYER ONE";
 			victoryText.text += roundsWon == roundsToWin ? "\n IS \n   VICTORIOUS" : "\nWINS";
 		}
 		victoryText.enabled = true;

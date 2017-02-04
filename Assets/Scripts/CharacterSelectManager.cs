@@ -26,7 +26,6 @@ public class CharacterSelectManager : MonoBehaviour {
 		characterSelectElements = GameObject.Find("CharacterSelectElements");
         characterSelectElements.SetActive(false);
 		p1CharacterPortraits = Resources.LoadAll<Sprite>("characterSelect/p1/portraits");
-		Debug.Log(p1CharacterPortraits.Length);
         p1InfoPanes = Resources.LoadAll<Sprite>("characterSelect/p1/info");
         p2CharacterPortraits = Resources.LoadAll<Sprite>("characterSelect/p2/portraits");
 		p2InfoPanes = Resources.LoadAll<Sprite>("characterSelect/p2/info");
@@ -142,7 +141,7 @@ public class CharacterSelectManager : MonoBehaviour {
     		return Input.GetButtonDown("ButtonB0");
     	}
     	else {
-    		return player1Controller.Action1.State;
+    		return player1Controller.Action1.WasPressed;
     	}
     }
 
@@ -151,7 +150,7 @@ public class CharacterSelectManager : MonoBehaviour {
     		return Input.GetButtonDown("ButtonB1");
     	}
     	else {
-    		return player2Controller.Action2.State;
+    		return player2Controller.Action1.WasPressed;
     	}
     }
 
