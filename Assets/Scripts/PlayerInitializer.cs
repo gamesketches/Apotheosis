@@ -91,13 +91,19 @@ public class PlayerInitializer : MonoBehaviour {
 		InputInterpretter tempInputManager = temp.GetComponent<InputInterpretter>();
 		switch(character) {
 			case Character.Orpheus:
-				break;
-			case Character.Hiruko: 
+				tempMovement.speed = orpheusSpeed;
 				temp.AddComponent<OffscreenShot>();
 				tempInputManager = temp.GetComponent<OffscreenShot>();
 				Destroy(temp.GetComponent<InputInterpretter>());
 				break;
-			case Character.Loholt:
+			case Character.Hiruko: 
+				tempMovement.speed = hirukoSpeed;
+                break;
+            case Character.Loholt:
+				tempMovement.speed = loholtSpeed;
+				break;
+			case Character.Bastet:
+				tempMovement.speed = bastetSpeed;
 				temp.AddComponent<RecallShot>();
 				tempInputManager = temp.GetComponent<RecallShot>();
 				Destroy(temp.GetComponent<InputInterpretter>());
