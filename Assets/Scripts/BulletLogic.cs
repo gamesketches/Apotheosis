@@ -29,14 +29,15 @@ public class BulletLogic : MonoBehaviour {
 	AnimationCurve shieldVelocity;
 	public BulletDepot theDepot;
 
-    public GameObject myColliders;
+    GameObject myCollidersObj;
+    PolygonCollider2D[] myPolys;
+    PolygonCollider2D myPoly;
+
 
     private bool debug_on = false; 
     // Use this for initialization
     void Start () {
-        myColliders = GameObject.Find("BulletColliders");
-
-        reflectiveShot = false;
+        //reflectiveShot = false;
 		renderer = GetComponentInChildren<SpriteRenderer>();
 		audio = GetComponent<AudioSource>();
 		audio.clip = Resources.Load<AudioClip>("audio/soundEffects/rpsBulletCancel");
@@ -80,7 +81,12 @@ public class BulletLogic : MonoBehaviour {
 		travelVector = new Vector2(tempVector.x, tempVector.y);
 		lifetime = Lifetime;
 		gameObject.layer = 8 + playerNum;
-    
+
+        myCollidersObj = GameObject.Find("BulletColliders");
+        myPolys = myCollidersObj.GetComponents<PolygonCollider2D>();
+
+
+
         switch (type) {
 			case BulletType.Boomerang:
 				if(character == Character.Bastet) { 
@@ -93,9 +99,49 @@ public class BulletLogic : MonoBehaviour {
 					reflectiveShot = true;
 					travelVector *= -1;
 					Lifetime = 100;
-				}
-				else bulletFunction = IndirectLogic;
-				sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", playerPathString, "/Boomerang"));
+                    // add custom collider, 
+                    gameObject.GetComponent<CircleCollider2D>().enabled = false;
+                    myPoly = gameObject.GetComponent<PolygonCollider2D>();
+                    myPoly.points = myPolys[2].points;
+                    myPoly.isTrigger = true;
+                    myPoly.enabled = true;
+                }
+                else bulletFunction = IndirectLogic;
+
+                // add custom collider, 
+                if (character == Character.Orpheus)
+                {
+                    gameObject.GetComponent<CircleCollider2D>().enabled = false;
+
+                    myPoly = gameObject.GetComponent<PolygonCollider2D>();
+                    myPoly.points = myPolys[3].points;
+                    myPoly.isTrigger = true;
+                    myPoly.enabled = true;
+                }
+
+                // add custom collider, 
+                if (character == Character.Hiruko)
+                {
+                    gameObject.GetComponent<CircleCollider2D>().enabled = false;
+
+                    myPoly = gameObject.GetComponent<PolygonCollider2D>();
+                    myPoly.points = myPolys[4].points;
+                    myPoly.isTrigger = true;
+                    myPoly.enabled = true;
+                }
+
+                // add custom collider, 
+                if (character == Character.Bastet)
+                {
+                    gameObject.GetComponent<CircleCollider2D>().enabled = false;
+
+                    myPoly = gameObject.GetComponent<PolygonCollider2D>();
+                    myPoly.points = myPolys[5].points;
+                    myPoly.isTrigger = true;
+                    myPoly.enabled = true;
+                }
+
+                sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", playerPathString, "/Boomerang"));
 				headingTime = 0f;
                 //indirectHomingTime = 1000f;
                 //indirectHomingLimit = 1000f;
@@ -106,6 +152,7 @@ public class BulletLogic : MonoBehaviour {
 						target = player.transform;
 						}
 				}
+
                 break;
 			case BulletType.Knife:
                 sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", playerPathString, "/Knife"));
@@ -114,13 +161,14 @@ public class BulletLogic : MonoBehaviour {
                 //transform.rotation = new Vector3(0f, 0f, -90.0f);
 				bulletFunction = StraightLogic;
                 if (character == Character.Loholt) // add custom collider
-                {
-                    
-                    Destroy(gameObject.GetComponent<Collider2D>());
-                    PolygonCollider2D myPoly = gameObject.AddComponent<PolygonCollider2D>() as PolygonCollider2D;
-                    myPoly.points = myColliders.GetComponent<PolygonCollider2D>().points;
+                {   
+                    //Destroy(gameObject.GetComponent<Collider2D>());
+                    gameObject.GetComponent<CircleCollider2D>().enabled = false;
+                    myPoly = gameObject.GetComponent<PolygonCollider2D>();
+                    myPoly.points = myCollidersObj.GetComponent<PolygonCollider2D>().points;
                     myPoly.isTrigger = true;
-                    
+                    myPoly.enabled = true;
+
                 }
                 //Debug.Log("in here");
                 break;
@@ -132,8 +180,17 @@ public class BulletLogic : MonoBehaviour {
 			    lifetime = Lifetime / 1.5f;
 			    //lifetime = Lifetime / 0.25f;
 			    tempVector = Quaternion.AngleAxis(gameObject.transform.rotation.eulerAngles.z, Vector3.forward) * new Vector3(velocity, 0, 0);
-			    travelVector = new Vector2(tempVector.x, tempVector.y);	
-			break;
+			    travelVector = new Vector2(tempVector.x, tempVector.y);
+                //create polygon colider
+                if (character == Character.Loholt) // add custom collider, trying it on loholt
+                {
+                    gameObject.GetComponent<CircleCollider2D>().enabled = false;
+                    myPoly = gameObject.GetComponent<PolygonCollider2D>();
+                    myPoly.points = myPolys[1].points;
+                    myPoly.isTrigger = true;
+                    myPoly.enabled = true;
+                }
+                break;
 		}
         //renderer.sprite = sprite;
         GetComponentInChildren<SpriteRenderer>().sprite = sprite;
@@ -144,13 +201,28 @@ public class BulletLogic : MonoBehaviour {
 			if(reflectiveShot) {
                 travelVector *= 1.25f;
                 lifetime *= 1.2f;
-				if(other.transform.position.y > transform.position.y) {
-					travelVector.Set(travelVector.x, -travelVector.y);
-				}
-				else {
+                if (other.transform.position.y > 0) //top
+                {
+                    travelVector.Set(travelVector.x, -travelVector.y);
+                    Debug.Log("hell 1");
+                }
+                else if (other.transform.position.y < 0) //bottom
+                {
+                    travelVector.Set(travelVector.x, -travelVector.y);
+                    Debug.Log("hell 2");
+
+                }
+                else if (other.transform.position.x < 0) //left
+                {
+                    travelVector.Set(-travelVector.x, travelVector.y);
+                    Debug.Log("hell 3");
+                }
+                else //right
+                {
 					travelVector.Set(-travelVector.x, travelVector.y);
-				}
-        		return;
+                    Debug.Log("hell 4" + " travelvector" + travelVector );
+                }
+                return;
         	}
 			if(lifetime < 5) {
 				killBullet();
