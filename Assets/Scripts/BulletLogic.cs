@@ -140,15 +140,26 @@ public class BulletLogic : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-		if(other.gameObject.tag == "Boundary") {
+		if(other.gameObject.tag == "Boundary" || other.gameObject.tag == "ComplexBoundary") {
 			if(reflectiveShot) {
                 travelVector *= 1.25f;
                 lifetime *= 1.2f;
-				if(other.transform.position.y > transform.position.y) {
-					travelVector.Set(travelVector.x, -travelVector.y);
-				}
+                if(other.gameObject.tag == "ComplexBoundary") {
+					RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y) - travelVector, travelVector * 2);
+                	if(hit != null) {
+                		travelVector = Vector2.Reflect(travelVector, hit.normal);
+                }
 				else {
-					travelVector.Set(-travelVector.x, travelVector.y);
+					Debug.Log("travel vector" + travelVector.ToString());
+					if(other.transform.position.y > transform.position.y) {
+						travelVector.Set(travelVector.x, -travelVector.y);
+					}
+					else {
+						travelVector.Set(-travelVector.x, travelVector.y);
+						}
+					}
+					Debug.Log("adjusted " + travelVector.ToString());
+					Debug.Break();
 				}
         		return;
         	}
