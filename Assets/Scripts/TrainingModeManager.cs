@@ -78,6 +78,7 @@ public class TrainingModeManager : MonoBehaviour {
     			player2Controller = controller;
     		}
     	}
+    	characterSelectManager.SetControllers(player1Controller, player2Controller);
         //menuController.Toggle();
     }
 
