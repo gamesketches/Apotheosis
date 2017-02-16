@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using InControl;
 
 [RequireComponent (typeof (AudioSource))]
 
@@ -16,6 +17,9 @@ public class AttractModeController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(Input.anyKey || InputManager.ActiveDevice.AnyButton) {
+			SceneManager.LoadScene(0);
+		}
 		if(!movie.isPlaying) {
 			SceneManager.LoadScene(0);
 		}
