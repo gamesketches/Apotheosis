@@ -32,6 +32,8 @@ public class BulletLogic : MonoBehaviour {
     GameObject myCollidersObj;
     PolygonCollider2D[] myPolys;
     PolygonCollider2D myPoly;
+    private float speedUp = 0;
+    const float SPEEDCAP = 5.0f;
 
 
     private bool debug_on = false; 
@@ -199,9 +201,13 @@ public class BulletLogic : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		if(other.gameObject.tag == "Boundary" || other.gameObject.tag == "ComplexBoundary") {
 			if(reflectiveShot) {
-                travelVector *= 1.25f;
-                lifetime *= 1.2f;
-                if(other.gameObject.tag == "ComplexBoundary") {
+                speedUp += 1.0f;
+                if (speedUp < SPEEDCAP) //quick way to cap max speed
+                {
+                    travelVector *= 1.25f;
+                }
+                lifetime *= 1.2f; //small juice to lifetime for hitting the wall
+                if (other.gameObject.tag == "ComplexBoundary") {
 					RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y) - travelVector, travelVector * 2);
                 	if(hit != null) {
                 		travelVector = Vector2.Reflect(travelVector, hit.normal);
@@ -211,25 +217,25 @@ public class BulletLogic : MonoBehaviour {
                 if (other.transform.position.y > 0) //top
                 {
                     travelVector.Set(travelVector.x, -travelVector.y);
-                    Debug.Log("hell 1");
-                }
-                else if (other.transform.position.y < 0) //bottom
+                    //Debug.Log("hell 1");
+                    }
+                    else if (other.transform.position.y < 0) //bottom
                 {
                     travelVector.Set(travelVector.x, -travelVector.y);
-                    Debug.Log("hell 2");
+                    //Debug.Log("hell 2");
 
                 }
                 else if (other.transform.position.x < 0) //left
                 {
                     travelVector.Set(-travelVector.x, travelVector.y);
-                    Debug.Log("hell 3");
+                    //Debug.Log("hell 3");
                 }
                 else //right
                 {
 					travelVector.Set(-travelVector.x, travelVector.y);
-                    Debug.Log("hell 4" + " travelvector" + travelVector );
-                }
-                return;
+                    //Debug.Log("hell 4" + " travelvector" + travelVector );
+                    }
+                    return;
                 }
         	}
 			if(lifetime < 5) {

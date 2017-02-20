@@ -135,9 +135,8 @@ public class InputInterpretter : MonoBehaviour {
         else
         {
             renderer.color = new Color(1f, 1f, 1f);
+            playerStats.UpdateBufferBar(bufferIter);
         }
-
-        playerStats.UpdateBufferBar(bufferIter);
 
     }
 
@@ -258,13 +257,16 @@ public class InputInterpretter : MonoBehaviour {
 			mashBuffer.SetValue('*', i);
 		}
 		// This will be the hardest part to get right
-		int lockFrames = (bufferIter * (bufferIter + 1));
+		//int lockFrames = (bufferIter * (bufferIter + 1)); //##
+		int lockFrames = (bufferIter * (bufferIter * 3));
 		if(bufferIter < mashBufferSize) {
-			lockFrames = lockFrames / 2;
+			lockFrames = lockFrames / 2; //punish for max buffer?
 		}
 		// TODO: CHANGE THIS TO SOMETHIGN REAL
 		exponentCooldownTimer = lockFrames * Time.deltaTime;
-		bufferIter = 0;
+        Debug.Log("lock frames  = " + lockFrames);
+        Debug.Log("exponentCooldownTimer   = " + exponentCooldownTimer);
+        bufferIter = 0;
 		mashing = false;
 		gameObject.transform.localScale = new Vector3(baseScale, baseScale, baseScale);
 	}
@@ -339,8 +341,8 @@ public class InputInterpretter : MonoBehaviour {
 	public void Melee() {
 		if(melee && !playerMovement.locked) {
 			StopCoroutine("MeleeWindow");
-			StartCoroutine("Spin");
-		} else {
+            StartCoroutine("Dash");
+        } else {
 			StartCoroutine("MeleeWindow");
 		}
 	}
@@ -352,7 +354,7 @@ public class InputInterpretter : MonoBehaviour {
 			windowTimer -= Time.deltaTime;
 			yield return 0;
 		}
-		StartCoroutine("Dash");
+        StartCoroutine("Spin");
 	}
 
 	public IEnumerator Jab() {

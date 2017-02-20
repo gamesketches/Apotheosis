@@ -42,7 +42,7 @@ public class PlayerStats : MonoBehaviour {
 
 	public void UpdateBufferBar(int bufferIter) {
 		for(int i = 0; i < bufferBar.Length; i++) {
-			if(i < bufferIter) {
+			if(i <= bufferIter) {
 				bufferBar[i].gameObject.SetActive(true);
 			}
 			else {
