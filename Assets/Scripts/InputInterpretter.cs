@@ -404,8 +404,8 @@ public class InputInterpretter : MonoBehaviour {
         playerMovement.dashing = true;
         reticle.melee = true;
         //reticle.GetRigidbody2D().velocity = new Vector2(Mathf.Cos(playerMovement.CurrentShotAngle() * Mathf.Deg2Rad), Mathf.Sin(playerMovement.CurrentShotAngle() * Mathf.Deg2Rad)) * jabSpeed;
-        playerMovement.GetRigidbody2D().velocity = new Vector2(Mathf.Cos(playerMovement.CurrentShotAngle() * Mathf.Deg2Rad), Mathf.Sin(playerMovement.CurrentShotAngle() * Mathf.Deg2Rad)) * playerMovement.speed * 5.0f;
-        reticle.GetRigidbody2D().velocity = new Vector2(Mathf.Cos(playerMovement.CurrentShotAngle() * Mathf.Deg2Rad), Mathf.Sin(playerMovement.CurrentShotAngle() * Mathf.Deg2Rad)) * playerMovement.speed * 5.0f;
+        playerMovement.GetRigidbody2D().velocity = new Vector2(Mathf.Cos(playerMovement.CurrentShotAngle() * Mathf.Deg2Rad), Mathf.Sin(playerMovement.CurrentShotAngle() * Mathf.Deg2Rad)) * playerMovement.speed * playerMovement.speed / 1.5f;
+        reticle.GetRigidbody2D().velocity = new Vector2(Mathf.Cos(playerMovement.CurrentShotAngle() * Mathf.Deg2Rad), Mathf.Sin(playerMovement.CurrentShotAngle() * Mathf.Deg2Rad)) * playerMovement.speed * playerMovement.speed / 1.5f;
         yield return new WaitForSeconds(0.3f); //duration of dash
         reticle.GetRigidbody2D().velocity = Vector2.zero;
         playerMovement.SetReticle();
