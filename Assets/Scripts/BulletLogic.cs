@@ -11,10 +11,10 @@ public class BulletLogic : MonoBehaviour {
 	public float lifetime;
 	public float velocityMultiplier = 10f;
 	public float indirectCorrectionSpeed = 5f;
-    public float indirectHomingTime = 0.5f;
-    public float indirectHomingLimit = 100.0f;
+    public float indirectHomingTime = 50.5f; // how long it updates its target 
+    public float indirectHomingLimit = 10.0f; // how long it flies towards target    
     delegate void BulletFunction();
-	BulletFunction bulletFunction;
+    BulletFunction bulletFunction;
 	private Vector2 travelVector;
 	private Transform target;
 	private Vector3 targetPosition;
@@ -145,10 +145,8 @@ public class BulletLogic : MonoBehaviour {
 
                 sprite = Resources.Load<Sprite>(string.Concat("sprites/weapons/", playerPathString, "/Boomerang"));
 				headingTime = 0f;
-                //indirectHomingTime = 1000f;
-                //indirectHomingLimit = 1000f;
-                indirectHomingTime = 50.5f; // how long it updates
-                indirectHomingLimit = 10f; // how long it tracks
+    
+                //indirectHomingLimit = 10f; // how long it tracks
                 foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")){
 					if(player.layer != gameObject.layer) {
 						target = player.transform;
@@ -331,8 +329,8 @@ public class BulletLogic : MonoBehaviour {
 			    headingTime);
 		    travelVector.x = temp.x;
 		    travelVector.y = temp.y;
-		    //headingTime += indirectCorrectionSpeed / (indirectCorrectionSpeed * 60);
-		    headingTime += indirectCorrectionSpeed / 60.0f  ;
+		    headingTime += indirectCorrectionSpeed / (indirectCorrectionSpeed * 60);
+		    //headingTime += indirectCorrectionSpeed / 60.0f  ;
         }
     }
 

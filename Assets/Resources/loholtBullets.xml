@@ -83,25 +83,24 @@
           <angle>-10</angle>
         </Bullet>
       </Volley>
-      <Volley n="" d="">
-        <!-- Volley #8 3 -->
+      <Volley n="8" d="03BLT 38DMG">
         <Bullet n="" d="">
           <size>4</size>
-          <speed>3.5</speed>
+          <speed>1</speed>
           <damage>8</damage>
-          <angle>5</angle>
+          <angle>15</angle>
         </Bullet>
         <Bullet n="" d="">
           <size>5</size>
-          <speed>3.5</speed>
+          <speed>0.75</speed>
           <damage>12</damage>
           <angle>0</angle>
         </Bullet>
         <Bullet n="" d="">
           <size>4</size>
-          <speed>3.5</speed>
+          <speed>1</speed>
           <damage>8</damage>
-          <angle>-5</angle>
+          <angle>-15</angle>
         </Bullet>
       </Volley>
     </ProjectileType>

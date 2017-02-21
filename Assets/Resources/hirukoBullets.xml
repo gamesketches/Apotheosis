@@ -83,25 +83,24 @@
           <angle>-9</angle>
         </Bullet>
       </Volley>
-      <Volley n="" d="">
-        <!-- Volley #8 3 -->
+      <Volley n="8" d="03BLT 20DMG">
         <Bullet n="" d="">
           <size>3.5</size>
-          <speed>3.0</speed>
-          <damage>8</damage>
-          <angle>10</angle>
+          <speed>0.75</speed>
+          <damage>5</damage>
+          <angle>30</angle>
         </Bullet>
         <Bullet n="" d="">
           <size>8</size>
-          <speed>3.0</speed>
+          <speed>1.0</speed>
           <damage>10</damage>
           <angle>0</angle>
         </Bullet>
         <Bullet n="" d="">
           <size>3.5</size>
-          <speed>3.0</speed>
-          <damage>8</damage>
-          <angle>-10</angle>
+          <speed>0.75</speed>
+          <damage>5</damage>
+          <angle>-30</angle>
         </Bullet>
       </Volley>
     </ProjectileType>
@@ -208,7 +207,7 @@
         </Bullet>
       </Volley>
     </ProjectileType>
-    <ProjectileType name="crane" desc="Tracks enemies"> <!-- ROUNDABOUT BLT count: 1,2,4,6,6,10,10,10-->
+    <ProjectileType name="crane" desc="Tracks enemies"> <!-- ROUNDABOUT BLT count: 1,2,4,4,6,10,10,10-->
       <Volley n="1" d="01BLT 04DMG">
         <Bullet n="1" d="">
           <size>1</size>
@@ -217,9 +216,7 @@
           <angle>180</angle>
         </Bullet>
       </Volley>
-      <Volley n="" d="">
-        <!-- Volley #2 -->
-        <!-- 02 BLT 04DMG -->
+      <Volley n="2" d="02BLT 04DMG">
         <Bullet n="" d="">
           <size>1</size>
           <speed>1</speed>
@@ -233,9 +230,7 @@
           <angle>200</angle>
         </Bullet>
       </Volley>
-      <Volley n="" d="">
-        <!-- Volley #3 -->
-        <!-- 04 BLT 08DMG -->
+      <Volley n="3" d="04BLT 08DMG">
         <Bullet n="" d="">
           <size>1</size>
           <speed>1</speed>
@@ -261,9 +256,7 @@
           <angle>240</angle>
         </Bullet>
       </Volley>
-      <Volley n="" d="">
-        <!-- Volley #4 6 bullets 12 DMG-->
-        <!-- 06 BLT 12DMG -->
+      <Volley n="4" d="04BLT 08DMG">
         <Bullet n="" d="">
           <size>1</size>
           <speed>1</speed>
@@ -280,18 +273,6 @@
           <size>1</size>
           <speed>1</speed>
           <damage>2</damage>
-          <angle>160</angle>
-        </Bullet>
-        <Bullet n="" d="">
-          <size>1</size>
-          <speed>1</speed>
-          <damage>2</damage>
-          <angle>200</angle>
-        </Bullet>
-        <Bullet n="" d="">
-          <size>1</size>
-          <speed>1</speed>
-          <damage>2</damage>
           <angle>220</angle>
         </Bullet>
         <Bullet n="" d="">
@@ -301,9 +282,7 @@
           <angle>240</angle>
         </Bullet>
       </Volley>
-      <Volley n="" d="">
-        <!-- Volley #5 6 bullets 10 DMG: :2 big -->
-        <!-- 06 BLT 10DMG -->
+      <Volley n="5" d="06BLT 12DMG">
         <Bullet n="" d="">
           <size>1</size>
           <speed>1</speed>
@@ -341,10 +320,9 @@
           <angle>240</angle>
         </Bullet>
       </Volley>
-      <Volley n="" d="">
-        <!-- Volley #6 10 bullets 6 big : 18 DMG -->
+      <Volley n="6" d="06BLT 12DMG">
         <Bullet n="" d="">
-          <size>1</size>
+          <size>2</size>
           <speed>1</speed>
           <damage>2</damage>
           <angle>120</angle>
@@ -352,41 +330,17 @@
         <Bullet n="" d="">
           <size>2</size>
           <speed>1</speed>
-          <damage>1</damage>
+          <damage>2</damage>
           <angle>140</angle>
         </Bullet>
         <Bullet n="" d="">
-          <size>1</size>
+          <size>2</size>
           <speed>1</speed>
           <damage>2</damage>
           <angle>150</angle>
         </Bullet>
         <Bullet n="" d="">
-          <size>1</size>
-          <speed>1</speed>
-          <damage>2</damage>
-          <angle>160</angle>
-        </Bullet>
-        <Bullet n="" d="">
-          <size>1</size>
-          <speed>1</speed>
-          <damage>2</damage>
-          <angle>170</angle>
-        </Bullet>
-        <Bullet n="" d="">
-          <size>1</size>
-          <speed>1</speed>
-          <damage>2</damage>
-          <angle>190</angle>
-        </Bullet>
-        <Bullet n="" d="">
-          <size>1</size>
-          <speed>1</speed>
-          <damage>2</damage>
-          <angle>200</angle>
-        </Bullet>
-        <Bullet n="" d="">
-          <size>1</size>
+          <size>2</size>
           <speed>1</speed>
           <damage>2</damage>
           <angle>210</angle>
@@ -394,57 +348,43 @@
         <Bullet n="" d="">
           <size>2</size>
           <speed>1</speed>
-          <damage>1</damage>
+          <damage>2</damage>
           <angle>220</angle>
         </Bullet>
         <Bullet n="" d="">
-          <size>1</size>
+          <size>2</size>
           <speed>1</speed>
           <damage>2</damage>
           <angle>240</angle>
         </Bullet>
       </Volley>
-      <Volley n="" d="">
-        <!-- Volley #7 10 bullets 6 big -->
-        <!-- 10 BLT 04DMG -->
+      <Volley n="7" d="08BLT 16DMG">
         <Bullet n="" d="">
           <size>2</size>
           <speed>1</speed>
-          <damage>3</damage>
+          <damage>2</damage>
           <angle>120</angle>
         </Bullet>
         <Bullet n="" d="">
           <size>2</size>
           <speed>1</speed>
-          <damage>3</damage>
+          <damage>2</damage>
           <angle>140</angle>
         </Bullet>
         <Bullet n="" d="">
           <size>2</size>
           <speed>1</speed>
-          <damage>3</damage>
+          <damage>2</damage>
           <angle>150</angle>
         </Bullet>
         <Bullet n="" d="">
-          <size>1</size>
+          <size>2</size>
           <speed>1</speed>
           <damage>2</damage>
           <angle>160</angle>
         </Bullet>
         <Bullet n="" d="">
-          <size>1</size>
-          <speed>1</speed>
-          <damage>2</damage>
-          <angle>170</angle>
-        </Bullet>
-        <Bullet n="" d="">
-          <size>1</size>
-          <speed>1</speed>
-          <damage>2</damage>
-          <angle>190</angle>
-        </Bullet>
-        <Bullet n="" d="">
-          <size>1</size>
+          <size>2</size>
           <speed>1</speed>
           <damage>2</damage>
           <angle>200</angle>
@@ -452,81 +392,117 @@
         <Bullet n="" d="">
           <size>2</size>
           <speed>1</speed>
-          <damage>3</damage>
+          <damage>2</damage>
           <angle>210</angle>
         </Bullet>
         <Bullet n="" d="">
           <size>2</size>
           <speed>1</speed>
-          <damage>3</damage>
+          <damage>2</damage>
           <angle>220</angle>
         </Bullet>
         <Bullet n="" d="">
           <size>2</size>
           <speed>1</speed>
-          <damage>3</damage>
+          <damage>2</damage>
           <angle>240</angle>
         </Bullet>
       </Volley>
-      <Volley n="" d="">
-        <!-- Volley #8 10 bullets 10 big -->
-        <!-- 10BLT 30DMG -->
+      <Volley n="8" d="16BLT 36DMG">
         <Bullet n="" d="">
           <size>2</size>
           <speed>1</speed>
-          <damage>3</damage>
+          <damage>2</damage>
           <angle>120</angle>
         </Bullet>
         <Bullet n="" d="">
           <size>2</size>
           <speed>1</speed>
-          <damage>3</damage>
+          <damage>2</damage>
           <angle>140</angle>
         </Bullet>
         <Bullet n="" d="">
           <size>2</size>
           <speed>1</speed>
-          <damage>3</damage>
+          <damage>2</damage>
           <angle>150</angle>
         </Bullet>
         <Bullet n="" d="">
           <size>2</size>
           <speed>1</speed>
-          <damage>3</damage>
+          <damage>2</damage>
           <angle>160</angle>
         </Bullet>
         <Bullet n="" d="">
           <size>2</size>
           <speed>1</speed>
-          <damage>3</damage>
+          <damage>2</damage>
           <angle>170</angle>
         </Bullet>
         <Bullet n="" d="">
           <size>2</size>
           <speed>1</speed>
-          <damage>3</damage>
+          <damage>2</damage>
           <angle>190</angle>
         </Bullet>
         <Bullet n="" d="">
           <size>2</size>
           <speed>1</speed>
-          <damage>3</damage>
+          <damage>2</damage>
           <angle>200</angle>
         </Bullet>
         <Bullet n="" d="">
           <size>2</size>
           <speed>1</speed>
-          <damage>3</damage>
+          <damage>2</damage>
           <angle>210</angle>
         </Bullet>
         <Bullet n="" d="">
           <size>2</size>
           <speed>1</speed>
-          <damage>3</damage>
+          <damage>2</damage>
           <angle>220</angle>
         </Bullet>
         <Bullet n="" d="">
           <size>2</size>
+          <speed>1</speed>
+          <damage>2</damage>
+          <angle>240</angle>
+        </Bullet>
+
+        <Bullet n="" d="">
+          <size>2</size>
+          <speed>1</speed>
+          <damage>2</damage>
+          <angle>170</angle>
+        </Bullet>
+        <Bullet n="" d="">
+          <size>2</size>
+          <speed>1</speed>
+          <damage>2</damage>
+          <angle>190</angle>
+        </Bullet>
+        
+        <Bullet n="" d="">
+          <size>3.5</size>
+          <speed>1</speed>
+          <damage>3</damage>
+          <angle>200</angle>
+        </Bullet>
+        <Bullet n="" d="">
+          <size>3.5</size>
+          <speed>1</speed>
+          <damage>3</damage>
+          <angle>210</angle>
+        </Bullet>
+        <Bullet n="" d="">
+          <size>3.5</size>
+          <speed>1</speed>
+          <damage>3</damage>
+          <angle>220</angle>
+        </Bullet>
+        <Bullet n="" d="">
+          <size>3.5</size>
           <speed>1</speed>
           <damage>3</damage>
           <angle>240</angle>
