@@ -1,253 +1,183 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<Character name="bastet">
-    <ProjectileType name="gator" desc="A piercing summon">
+    <ProjectileType name="gator" desc="A piercing summon"> <!-- blt count: 1,1,1,1,2,2,2,3 (T1)-->
       <Volley>
-        <!-- blt count: 1,1,1,1,2,2,2,3 -->
         <!-- Volley #1 -->
         <Bullet>
-          <size>2.0</size>
-          <speed>7</speed>
-          <damage>8</damage>
+          <size>2.5</size>
+          <speed>5</speed>
+          <damage>9</damage>
           <angle>0</angle>
         </Bullet>
       </Volley>
       <Volley>
         <!-- Volley #2 -->
         <Bullet>
-          <size>1.5</size>
-          <speed>8.0</speed>
-          <damage>2</damage>
+          <size>2.0</size>
+          <speed>5.5</speed>
+          <damage>3</damage>
           <angle>0</angle>
         </Bullet>
       </Volley>
       <Volley>
         <!-- Volley #3 -->
         <Bullet>
-          <size>1.5</size>
-          <speed>8.0</speed>
-          <damage>2</damage>
+          <size>2.0</size>
+          <speed>5.5</speed>
+          <damage>3</damage>
           <angle>0</angle>
         </Bullet>
       </Volley>
       <Volley>
         <!-- Volley #4 -->
         <Bullet>
-          <size>2.0</size>
-          <speed>5.5</speed>
-          <damage>5</damage>
+          <size>2.5</size>
+          <speed>5.0</speed>
+          <damage>6</damage>
           <angle>0</angle>
         </Bullet>
       </Volley>
       <Volley>
         <!-- Volley #5 -->
         <Bullet>
-          <size>2.5</size>
-          <speed>4.0</speed>
+          <size>3</size>
+          <speed>3.5</speed>
           <damage>5</damage>
           <angle>5</angle>
         </Bullet>
         <Bullet>
-          <size>2.5</size>
-          <speed>4.0</speed>
+          <size>3</size>
+          <speed>3.5</speed>
           <damage>8</damage>
           <angle>-5</angle>
         </Bullet>
-       </Volley>
+      </Volley>
       <Volley>
         <!-- Volley #6 -->
         <Bullet>
-          <size>3.5</size>
-          <speed>5.0</speed>
-          <damage>6</damage>
+          <size>4</size>
+          <speed>3.5</speed>
+          <damage>8</damage>
           <angle>10</angle>
         </Bullet>
         <Bullet>
-          <size>3.5</size>
-          <speed>5.0</speed>
-          <damage>6</damage>
+          <size>4</size>
+          <speed>3.5</speed>
+          <damage>8</damage>
           <angle>-10</angle>
         </Bullet>
       </Volley>
       <Volley>
         <!-- Volley #7 3 big 2 small -->
         <Bullet>
-          <size>3.5</size>
-          <speed>5.0</speed>
+          <size>4</size>
+          <speed>3.5</speed>
           <damage>1</damage>
-          <angle>12</angle>
+          <angle>10</angle>
         </Bullet>
         <Bullet>
-          <size>3.5</size>
-          <speed>5.5</speed>
+          <size>4</size>
+          <speed>3.5</speed>
           <damage>8</damage>
-          <angle>-12</angle>
+          <angle>-10</angle>
         </Bullet>
       </Volley>
       <Volley>
         <!-- Volley #8 3 -->
         <Bullet>
-          <size>1</size>
-          <speed>4.0</speed>
-          <damage>5</damage>
-          <angle>30</angle>
+          <size>4</size>
+          <speed>3.5</speed>
+          <damage>8</damage>
+          <angle>5</angle>
         </Bullet>
         <Bullet>
-          <size>1</size>
-          <speed>4.0</speed>
-          <damage>8</damage>
+          <size>5</size>
+          <speed>3.5</speed>
+          <damage>12</damage>
           <angle>0</angle>
         </Bullet>
         <Bullet>
-          <size>1</size>
-          <speed>4.0</speed>
+          <size>4</size>
+          <speed>3.5</speed>
           <damage>8</damage>
-          <angle>-30</angle>
+          <angle>-5</angle>
         </Bullet>
       </Volley>
     </ProjectileType>
-		<ProjectileType name="hippo" desc="Shield for blocking"> <!-- BLOCK blt count: 2,2,0,2,0,2,0,4 == 67 holy shit-->
-        <Volley>
-          <!-- Volley #1 2 bullets -->
-          <Bullet>
-            <size>0.5</size>
-            <speed>2</speed>
-            <damage>1</damage>
-            <angle>30</angle>
-          </Bullet>
-          <Bullet>
-            <size>0.5</size>
-            <speed>2</speed>
-						<damage>1</damage>
-						<angle>-30</angle>
-					</Bullet>
-				</Volley>
-				<Volley>
-          <!-- Volley #2 2 bullets -->
-          <Bullet>
-            <size>0.5</size>
-            <speed>2</speed>
-						<damage>1</damage>
-						<angle>120</angle>
-					</Bullet>
-					<Bullet>
-            <size>0.5</size>
-            <speed>2</speed>
-						<damage>1</damage>
-						<angle>-120</angle>
-					</Bullet>
-				</Volley>
-				<Volley>
-          <!-- Volley #3 0 bullets -->
-          <Bullet>
-            <size>1.0</size>
-            <speed>1.5</speed>
-            <damage>1</damage>
-            <angle>30</angle>
-          </Bullet>
-          <Bullet>
-            <size>1.0</size>
-            <speed>1.5</speed>
-            <damage>1</damage>
-            <angle>-30</angle>
-          </Bullet>
-        </Volley>
-        <Volley>
-          <!-- Volley #4 2 bullets -->
-          <Bullet>
-            <size>1.0</size>
-            <speed>1.5</speed>
-            <damage>1</damage>
-            <angle>120</angle>
-          </Bullet>
-          <Bullet>
-            <size>1.0</size>
-            <speed>1.5</speed>
-            <damage>1</damage>
-            <angle>-120</angle>
-          </Bullet>
-        </Volley>
-        <Volley>
-          <!-- Volley #5 0 bullets-->
-          <Bullet>
-            <size>1.5</size>
-            <speed>1</speed>
-            <damage>1</damage>
-            <angle>30</angle>
-          </Bullet>
-          <Bullet>
-            <size>1.5</size>
-            <speed>1</speed>
-            <damage>1</damage>
-            <angle>-30</angle>
-          </Bullet>
-        </Volley>
-        <Volley>
-          <!-- Volley #6 2 bullets -->
-          <Bullet>
-            <size>1.5</size>
-            <speed>1</speed>
-            <damage>1</damage>
-            <angle>120</angle>
-          </Bullet>
-          <Bullet>
-            <size>1.5</size>
-            <speed>1</speed>
-            <damage>1</damage>
-            <angle>-120</angle>
-          </Bullet>
-        </Volley>
-				<Volley>
-         <!-- Volley #7 0 bullets-->
-          <Bullet>
-            <size>2.0</size>
-            <speed>0.75</speed>
-            <damage>1</damage>
-            <angle>30</angle>
-          </Bullet>
-          <Bullet>
-            <size>2.0</size>
-            <speed>0.75</speed>
-            <damage>1</damage>
-            <angle>0</angle>
-          </Bullet>
-          <Bullet>
-            <size>2.0</size>
-            <speed>0.75</speed>
-            <damage>1</damage>
-            <angle>-30</angle>
-          </Bullet>
-        </Volley>
-        <Volley>
-          <!-- Volley #8 4 bullets-->
-          <Bullet>
-            <size>2.0</size>
-            <speed>0.5</speed>
-            <damage>1</damage>
-            <angle>-30</angle>
-          </Bullet>
-          <Bullet>
-            <size>2.0</size>
-            <speed>0.5</speed>
-            <damage>1</damage>
-            <angle>120</angle>
-          </Bullet>
-          <Bullet>
-            <size>2.0</size>
-            <speed>0.5</speed>
-            <damage>1</damage>
-            <angle>30</angle>
-          </Bullet>
-          <Bullet>
-            <size>2.0</size>
-            <speed>0.5</speed>
-            <damage>1</damage>
-            <angle>-120</angle>
-          </Bullet>
-        </Volley>
-
-
-      </ProjectileType>
+    <ProjectileType name="hippo" desc="Shield for blocking"> <!-- BLOCK blt count: 1,1,1,1,1,1,1  (B1)-->
+      <Volley>
+        <Bullet>
+          <size>2.5</size>
+          <speed>1.6</speed>
+          <damage>1</damage>
+          <angle>0</angle>
+        </Bullet>
+      </Volley>
+      <Volley>
+        <!-- Volley #2  -->
+        <Bullet>
+          <size>2.5</size>
+          <speed>1.6</speed>
+          <damage>1</damage>
+          <angle>180</angle>
+        </Bullet>
+      </Volley>
+      <Volley>
+        <!-- Volley #3 -->
+        <Bullet>
+          <size>2.5</size>
+          <speed>1.6</speed>
+          <damage>1</damage>
+          <angle>90</angle>
+        </Bullet>
+      </Volley>
+      <Volley>
+        <!-- Volley #4 1 bullets -->
+        <Bullet>
+          <size>2.5</size>
+          <speed>1.6</speed>
+          <damage>1</damage>
+          <angle>-90</angle>
+        </Bullet>
+      </Volley>
+      <Volley>
+        <!-- Volley #5 1 bullet  -->
+        <Bullet>
+          <size>2.5</size>
+          <speed>1.5</speed>
+          <damage>1</damage>
+          <angle>0</angle>
+        </Bullet>
+      </Volley>
+      <Volley>
+        <!-- Volley #6 1 bullet  -->
+        <Bullet>
+          <size>2.5</size>
+          <speed>1.5</speed>
+          <damage>3</damage>
+          <angle>-180</angle>
+        </Bullet>
+      </Volley>
+      <Volley>
+        <!-- Volley #7 1 bullet -->
+        <Bullet>
+          <size>2.5</size>
+          <speed>1.5</speed>
+          <damage>3</damage>
+          <angle>90</angle>
+        </Bullet>
+      </Volley>
+      <Volley>
+        <!-- Volley #8 1 bullet -->
+        <Bullet>
+          <size>2.5</size>
+          <speed>1.5</speed>
+          <damage>3</damage>
+          <angle>-90</angle>
+        </Bullet>
+      </Volley>
+    </ProjectileType>
     <ProjectileType name="crane" desc="Bounces off walls">
       <!-- ROUNDABOUT blt count: 1,2,4,6,6,10,10,10-->
       <Volley>

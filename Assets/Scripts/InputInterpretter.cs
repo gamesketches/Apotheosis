@@ -264,8 +264,8 @@ public class InputInterpretter : MonoBehaviour {
 		}
 		// TODO: CHANGE THIS TO SOMETHIGN REAL
 		exponentCooldownTimer = lockFrames * Time.deltaTime;
-        Debug.Log("lock frames  = " + lockFrames);
-        Debug.Log("exponentCooldownTimer   = " + exponentCooldownTimer);
+        //Debug.Log("lock frames  = " + lockFrames);
+        //Debug.Log("exponentCooldownTimer   = " + exponentCooldownTimer);
         bufferIter = 0;
 		mashing = false;
 		gameObject.transform.localScale = new Vector3(baseScale, baseScale, baseScale);
