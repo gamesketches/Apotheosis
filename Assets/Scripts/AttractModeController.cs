@@ -13,6 +13,8 @@ public class AttractModeController : MonoBehaviour {
 		movie = Resources.Load<MovieTexture>("AttractModeVideo");
 		GetComponent<Renderer>().materials[0].mainTexture = movie;
 		movie.Play();
+		GetComponent<AudioSource>().clip = Resources.Load<AudioClip>("AttractModeVideo");
+		GetComponent<AudioSource>().Play();
 	}
 	
 	// Update is called once per frame
