@@ -129,9 +129,6 @@ public class GameManager : MonoBehaviour {
 	    	else {
 				pressStart.transform.GetChild(0).GetComponent<Text>().text = "<color=White>PRESS START FOR TRAINING MODE\nX FOR VERSUS</color>";
 	    	}
-			if(InputManager.IsSetup == false) {
-				pressStart.transform.GetChild(0).GetComponent<Text>().text = "WTF";
-			}
 			if(InputManager.ActiveDevice != null) {
 			  if(InputManager.ActiveDevice.Command) {
 			  	SceneManager.LoadScene(2);
@@ -307,15 +304,29 @@ public class GameManager : MonoBehaviour {
 		if(player1RoundWins >= roundsToWin || player2RoundWins >= roundsToWin)
         {
         	victoryText.text = "X FOR REMATCH\n O TO QUIT";
-        	while(!Input.GetButtonDown("ButtonB0") && !Input.GetButtonDown("ButtonC0")) {
-        		yield return null;
-        	}
-        	if(Input.GetButtonDown("ButtonB0")) {
-        		ClearObjects();
-        		InitializeGameSettings();
-        	}
-        	else {
-				ResetGame();
+        	if(Application.isEditor) {
+	        	while(!Input.GetButtonDown("ButtonB0") && !Input.GetButtonDown("ButtonC0")) {
+	        		yield return null;
+	        	}
+	        	if(Input.GetButtonDown("ButtonB0")) {
+	        		ClearObjects();
+	        		InitializeGameSettings();
+	        	}
+	        	else {
+					ResetGame();
+					}
+				}
+			else {
+				while(!player1Controller.Action1 && !player1Controller.Action2) {
+					yield return null;
+				}
+				if(player1Controller.Action1) {
+					ClearObjects();
+					InitializeGameSettings();
+				}
+				else {
+					ResetGame();
+				}
 			}
 		}
 		else {
