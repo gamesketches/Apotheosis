@@ -152,6 +152,7 @@ public class GameManager : MonoBehaviour {
     }
 
     void MoveToCharacterSelect() {
+		ChangeBackgroundMusic("audio/music/characterSelect/StrengthOfWillcut");
 		titleLogo.enabled = false;
         titleLogo.transform.GetChild(0).gameObject.SetActive(false);
         pressStart.enabled = false;
