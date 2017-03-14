@@ -129,6 +129,9 @@ public class GameManager : MonoBehaviour {
 	    	else {
 				pressStart.transform.GetChild(0).GetComponent<Text>().text = "<color=White>PRESS START FOR TRAINING MODE\nX FOR VERSUS</color>";
 	    	}
+			if(InputManager.IsSetup == false) {
+				pressStart.transform.GetChild(0).GetComponent<Text>().text = "WTF";
+			}
 			if(InputManager.ActiveDevice != null) {
 			  if(InputManager.ActiveDevice.Command) {
 			  	SceneManager.LoadScene(2);
@@ -355,6 +358,12 @@ public class GameManager : MonoBehaviour {
 			}
 			currentUpdateFunction = RoundEndUpdate;
 			ClearBullets();
+			foreach(Transform bar in player1Stats.bufferBar) {
+	        	bar.gameObject.SetActive(true);
+	        }
+	        foreach(Transform bar in player2Stats.bufferBar) {
+				bar.gameObject.SetActive(true);
+	        }
 			AnalyticsEngine.PrintRow();
 		}
 	}
